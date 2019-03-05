@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="nav-on-header smart-nav" id="body">
+      <CompHeader />
+      <router-view></router-view>
+      <CompFooter />
+      <!-- Back to top button -->
+      <a id="scroll-up" href="#">
+        <i class="ti-angle-up"></i>
+      </a>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CompHeader from "@/components/TheHeader";
+import CompFooter from "@/components/TheFooter";
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    CompHeader,
+    CompFooter
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import "../public/static/css/app.min.css";
+@import "../public/static/css/custom.css";
+@import url("http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700");
+@import url();
+.navbar .container {
+  width: 100%;
 }
 </style>
