@@ -43,7 +43,7 @@ export default new Router({
     },
     {
       path: "/board",
-      component: () => import("@/views/Board"),
+      component: () => import("@/views/Board")
     },
     {
       path: "/membership",
@@ -143,7 +143,8 @@ export default new Router({
         ]
       },
       beforeEnter(to, from, next) {
-        if (localStorage.getItem("id_token")) { //is there a way to get this using the new structure functionality? 
+        if (localStorage.getItem("id_token")) {
+          //is there a way to get this using the new structure functionality?
           next();
         } else {
           next("/login");
@@ -203,7 +204,8 @@ export default new Router({
           }
         ]
       },
-      beforeEnter(to, from, next) { //is there a way to get this using the new structure functionality? 
+      beforeEnter(to, from, next) {
+        //is there a way to get this using the new structure functionality?
         if (localStorage.getItem("id_token")) {
           next();
         } else {
@@ -212,9 +214,8 @@ export default new Router({
       }
     }
   ],
-  mode: 'history',
-  scrollBehavior (to, from, savedPosition) {
-    return { x: 0, y: 0 }
+  mode: "history",
+  scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
   }
-
 });

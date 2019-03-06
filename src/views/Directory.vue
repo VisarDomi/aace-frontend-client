@@ -1,30 +1,33 @@
 <template>
   <div>
-        <!-- Site header -->
-    <header class="site-header size-lg text-center" style="background-image: url(static/img/home_banner_grayed_short.jpg);">
-        <div class="container">
-            <div class="col-xs-12">
-                
-                <h2>Engineering directory</h2>
-                <h5 class="font-alt">Use the search box to search for engineers</h5>
-                
-                <form class="header-job-search" @submit.prevent="search(name)">
-                    <div class="input-keyword" style="width:80%;">
-                        <input type="text" class="form-control" placeholder="Name and surname" v-model="name">
-                    </div>
+    <!-- Site header -->
+    <header
+      class="site-header size-lg text-center"
+      style="background-image: url(static/img/home_banner_grayed_short.jpg);"
+    >
+      <div class="container">
+        <div class="col-xs-12">
+          <h2>Engineering directory</h2>
+          <h5 class="font-alt">Use the search box to search for engineers</h5>
 
-                    <!-- <div class="input-location">
-                        <input type="text" class="form-control" placeholder="City, state or zip">
-                    </div> -->
-
-                    <div class="btn-search">
-                        <button class="btn btn-primary" type="submit">Find</button>
-                        <!-- <a href="">Advanced Job Search</a> -->
-                    </div>
-                </form>
+          <form class="header-job-search" @submit.prevent="search(fname, lname)">
+            <div class="input" style="width:100%;">
+              <input type="text" class="form-control" placeholder="First Name" v-model="fname">
+            </div>
+            <div class="input" style="width:100%;">
+              <input type="text" class="form-control" placeholder="Last Name" v-model="lname">
             </div>
 
+            <!-- <div class="input-location">
+              <input type="text" class="form-control" placeholder="City, state or zip">
+            </div>-->
+            <div class="btn-search">
+              <button class="btn btn-primary" type="submit">Find</button>
+              <!-- <a href="">Advanced Job Search</a> -->
+            </div>
+          </form>
         </div>
+      </div>
     </header>
     <!-- END Site header -->
     <!-- Main container -->
@@ -43,12 +46,8 @@
             <div class="col-xs-12" v-for="(user,index) in searchResult" :key="user.id">
               <router-link class="item-block" :to="{name:'profile', params: { id: user.id}}">
                 <header>
-                  <img
-                    class="resume-avatar"
-                    :src="profilePictures[index]"
-                    alt="Profile Picture"
-                  >
-                  
+                  <img class="resume-avatar" :src="profilePictures[index]" alt="Profile Picture">
+
                   <div class="hgroup">
                     <h4>{{user.first_name }} {{user.last_name}}</h4>
                     <h5>{{user.country}}</h5>
@@ -127,28 +126,31 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_MEMBER, FETCH_PICTURES, CLEAN_PICTURES } from "@/store/actions.type";
+import {
+  FETCH_MEMBER,
+  FETCH_PICTURES,
+  CLEAN_PICTURES
+} from "@/store/actions.type";
 export default {
   name: "directory",
-  components:{
+  components: {
     //MemberCard
   },
-  data(){
+  data() {
     return {
-      name: ""
-    }
+      fname: "",
+      lname: ""
+    };
   },
   methods: {
-    search(name) {
+    search(fname, lname) {
       this.$store.dispatch(CLEAN_PICTURES);
-      this.$store.dispatch(FETCH_MEMBER, {fname: name.split(' ')[0], lname: name.split(' ')[1]});
+      this.$store.dispatch(FETCH_MEMBER, { fname: fname, lname: lname });
     },
-    open_user_profile(user) {
-
-    }
+    open_user_profile(user) {}
   },
   computed: {
-    ...mapGetters(["searchResult","profilePictures"])
+    ...mapGetters(["searchResult", "profilePictures"])
   }
 };
 </script>
