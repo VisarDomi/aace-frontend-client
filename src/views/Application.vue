@@ -12,31 +12,11 @@
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input
-                  type="file"
-                  ref="profile_file"
-                  class="dropify"
-                  data-default-file="static/img/avatar.jpg"
-                  @change="handleFileUploadProfile"
-                >
+                <input type="file" ref="profile_file" @change="handleFileUploadProfile">
                 <span class="help-block">Please choose a 4:6 profile picture.</span>
               </div>
             </div>
-            <!-- <br>
-            <button
-              class="btn btn-primary btn-duplicator"
-              type="button"
-              @click="submitFile"
-            >Send Profile Picture</button>-->
             <div class="col-xs-12 col-sm-8">
-              <!-- <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control input-lg"
-                  placeholder="Comment from administrator"
-                  v-model="comment_from_administrator"
-                >
-              </div>-->
               <div class="form-group">
                 <input
                   type="text"
@@ -55,12 +35,7 @@
               </div>
 
               <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Headline (e.g. Front-end developer)"
-                  v-model="headline"
-                >
+                <input type="text" class="form-control" placeholder="Gjinia" v-model="sex">
               </div>
 
               <div class="form-group">
@@ -84,7 +59,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Country, e.g. Albania"
+                      placeholder="Vendlindja"
                       v-model="country"
                     >
                   </div>
@@ -121,26 +96,12 @@
                 <div class="form-group col-xs-12 col-sm-6">
                   <div class="input-group input-group-sm">
                     <span class="input-group-addon">
-                      <i class="fa fa-usd"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Industry, e.g. Road Construction"
-                      v-model="industry"
-                    >
-                  </div>
-                </div>
-
-                <div class="form-group col-xs-12 col-sm-6">
-                  <div class="input-group input-group-sm">
-                    <span class="input-group-addon">
                       <i class="fa fa-birthday-cake"></i>
                     </span>
                     <input
                       type="date"
                       class="form-control"
-                      placeholder="Birthday"
+                      placeholder="Datelindja"
                       v-model="birthday"
                     >
                   </div>
@@ -175,33 +136,6 @@
                   </div>
                 </div>
               </div>
-
-              <hr class="hr-lg">
-
-              <h6>Tags list</h6>
-              <div class="form-group">
-                <input
-                  type="text"
-                  value="HTML,CSS,Javascript"
-                  data-role="tagsinput"
-                  placeholder="Tag name"
-                >
-                <span class="help-block">Write tag name and press enter</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="button-group">
-            <div class="action-buttons">
-              <div class="upload-button">
-                <button class="btn btn-block btn-gray" type="button">Choose a resume file</button>
-                <input type="file">
-              </div>
-
-              <div class="upload-button">
-                <button class="btn btn-block btn-primary" type="button">Choose a cover image</button>
-                <input id="cover_img_file" type="file">
-              </div>
             </div>
           </div>
         </div>
@@ -218,10 +152,16 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" :key="index" v-for="(item, index) in this.educations">
+              <div
+                class="col-xs-12"
+                :key="educationInput.randomid"
+                v-for="(educationInput, index) in educationInputs">
                 <div class="item-block">
                   <div class="item-form">
-                    <button class="btn btn-danger btn-float btn-remove" type="button">
+                    <button
+                      class="btn btn-danger btn-float btn-remove"
+                      @click="onDeleteEducation(educationInput.randomid)"
+                      type="button">
                       <i class="ti-close"></i>
                     </button>
 
@@ -231,9 +171,8 @@
                           <input
                             type="file"
                             ref="education"
-                            class="dropify"
-                            data-default-file="static/img/logo-default.png"
-                            @change="handleFileUploadEducation"
+                            multiple
+                            @change="handleFileUploadEducation(educationInput.randomid, index)"
                           >
                           <span
                             class="help-block"
@@ -242,19 +181,42 @@
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="education_degree[index]"
-                            placeholder="Degree, e.g. Bachelor"
-                          >
+                        <label class='col-sm-4'>Vendos tipin e edukimit</label>
+                        <div class="form-group col-sm-5">
+                          <select class="form-control" v-model='education_type_id' @change='consoleLog'>
+                            <option v-for="option in education_type_options" 
+                                    v-bind:value="option.id"
+                                    :key='option.id'>
+                              {{ option.text }}
+                            </option>
+                          </select>
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-8">
+                          <label class='col-sm-4'>Degree</label>
+                          <div class="form-group col-sm-5">
+                            <select class="form-control" v-model='education_degree_id' @change='consoleLog'>
+                              <option v-for="option in education_degree_options[education_type_id]" 
+                                      v-bind:value="option.id"
+                                      :key='option.id'>
+                                {{ option.text }}
+                              </option>
+                            </select>
+                          </div>
                         </div>
                         <div class="form-group">
                           <input
                             type="text"
                             class="form-control"
-                            v-model="education_major[index]"
+                            v-model="educationInput.degree"
+                            placeholder="Degree, e.g. Bachelor">
+                        </div>
+                        
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            v-model="educationInput.field_of_study"
                             placeholder="Major, e.g. Computer Science"
                           >
                         </div>
@@ -262,11 +224,10 @@
                           <input
                             type="text"
                             class="form-control"
-                            v-model="education_school[index]"
+                            v-model="educationInput.school"
                             placeholder="School name, e.g. Massachusetts Institute of Technology"
                           >
                         </div>
-
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Date from</span>
@@ -274,7 +235,7 @@
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2012"
-                              v-model="education_startdate[index]"
+                              v-model="educationInput.from_date"
                             >
                             
                             <span class="input-group-addon">Date to</span>
@@ -282,17 +243,16 @@
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2016"
-                              v-model="education_enddate[index]"
+                              v-model="educationInput.to_date"
                             >
                           </div>
                         </div>
-
                         <div class="form-group">
                           <textarea
                             class="form-control"
                             rows="3"
                             placeholder="Short description"
-                            v-model="education_description[index]"
+                            v-model="educationInput.description"
                           ></textarea>
                         </div>
                       </div>
@@ -303,16 +263,13 @@
 
               <div class="col-xs-12 text-center">
                 <br>
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  @click="incrementEducation"
-                >Add education</button>
+                <button class="btn btn-primary" type="button" @click="onAddEducation">Add education</button>
               </div>
             </div>
           </div>
         </section>
         <!-- END Education -->
+
         <!-- Work Experience -->
         <section>
           <div class="container">
@@ -322,10 +279,13 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" :key="index" v-for="(item, index) in this.experiences">
+              <div class="col-xs-12" 
+              :key='experienceInput.randomid'
+              v-for='(experienceInput, index) in experienceInputs'>
                 <div class="item-block">
                   <div class="item-form">
-                    <button class="btn btn-danger btn-float btn-remove" type="button">
+                    <button class="btn btn-danger btn-float btn-remove" 
+                      @click="onDeleteExperience(experienceInput.randomid)" type="button">
                       <i class="ti-close"></i>
                     </button>
 
@@ -335,9 +295,8 @@
                           <input
                             type="file"
                             ref="experience"
-                            class="dropify"
-                            data-default-file="static/img/logo-default.png"
-                            @change="handleFileUploadExperience"
+                            multiple
+                            @change="handleFileUploadExperience(experienceInput.randomid, index)"
                           >
                           <span class="help-block">Please choose a square logo of the company</span>
                         </div>
@@ -348,8 +307,8 @@
                           <input
                             type="text"
                             class="form-control"
-                            v-model="experience_company[index]"
-                            placeholder="Company name"
+                            v-model="experienceInput.employer"
+                            placeholder="Emri i punedhenesit"
                           >
                         </div>
 
@@ -357,8 +316,17 @@
                           <input
                             type="text"
                             class="form-control"
-                            v-model="experience_position[index]"
-                            placeholder="Position, e.g. UI/UX Researcher"
+                            v-model="experienceInput.company"
+                            placeholder="Company"
+                          >
+                        </div>
+
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control"
+                            v-model="experienceInput.location"
+                            placeholder="Location"
                           >
                         </div>
 
@@ -368,14 +336,14 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="experience_startdate[index]"
+                              v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
                             >
                             <span class="input-group-addon">Date to</span>
                             <input
                               type="date"
                               class="form-control"
-                              v-model="experience_enddate[index]"
+                              v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
                             >
                           </div>
@@ -385,7 +353,7 @@
                           <textarea
                             class="form-control"
                             rows="3"
-                            v-model="experience_description[index]"
+                            v-model="experienceInput.description"
                             placeholder="Short description"
                           ></textarea>
                         </div>
@@ -400,85 +368,88 @@
                 <button
                   class="btn btn-primary btn-duplicator"
                   type="button"
-                  @click="incrementExperience"
+                  @click="onAddExperience"
                 >Add experience</button>
               </div>
             </div>
           </div>
         </section>
-        <!-- END Work Experience -->
-        <!-- Skills -->
+        <!--END Work Experience -->
+        <!-- Skill -->
         <section class="bg-alt">
           <div class="container">
             <header class="section-header">
               <span>Expertise Areas</span>
-              <h2>Skills</h2>
+              <h2>Kualifikime/Arritje profesionale</h2>
             </header>
 
             <div class="row">
-              <div class="col-xs-12">
+              <div class="col-xs-12" 
+              :key='skillInput.randomid'
+              v-for='(skillInput, index) in skillInputs'>
                 <div class="item-block">
                   <div class="item-form">
-                    <button class="btn btn-danger btn-float btn-remove" type="button">
+                    <button
+                      class="btn btn-danger btn-float btn-remove"
+                      @click="onDeleteSkill(skillInput.randomid)"
+                      type="button"
+                    >
                       <i class="ti-close"></i>
                     </button>
 
                     <div class="row">
-                      <div class="col-xs-12 col-sm-6">
+                      <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                          <input type="file" 
+                          ref="skill" 
+                          multiple 
+                          @change="handleFileUploadSkill(skillInput.randomid, index)">
+                          <span class="help-block">Please choose a photo of your skill</span>
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12 col-sm-8">
                         <div class="form-group">
                           <input
                             type="text"
                             class="form-control"
-                            placeholder="Skill name, e.g. HTML"
+                            v-model="skillInput.releaser"
+                            placeholder="Leshuesi i kualifikimit"
                           >
                         </div>
-                      </div>
-
-                      <div class="col-xs-12 col-sm-6">
-                        <div class="form-group">
-                          <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              placeholder="Skill proficiency, e.g. 90"
-                            >
-                            <span class="input-group-addon">%</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xs-12 duplicateable-content">
-                <div class="item-block">
-                  <div class="item-form">
-                    <button class="btn btn-danger btn-float btn-remove" type="button">
-                      <i class="ti-close"></i>
-                    </button>
-
-                    <div class="row">
-                      <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
                           <input
                             type="text"
                             class="form-control"
-                            placeholder="Skill name, e.g. HTML"
+                            v-model="skillInput.name"
+                            placeholder="Emri i kualifikimit"
                           >
                         </div>
-                      </div>
-
-                      <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
                           <div class="input-group">
+                            <span class="input-group-addon">Date from</span>
                             <input
-                              type="text"
+                              type="date"
                               class="form-control"
-                              placeholder="Skill proficiency, e.g. 90"
+                              v-model="skillInput.from_date"
+                              placeholder="e.g. 2012"
                             >
-                            <span class="input-group-addon">%</span>
+                            <span class="input-group-addon">Date to</span>
+                            <input
+                              type="date"
+                              class="form-control"
+                              v-model="skillInput.to_date"
+                              placeholder="e.g. 2016"
+                            >
                           </div>
+                        </div>
+                        <div class="form-group">
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            placeholder="Short description"
+                            v-model="skillInput.description"
+                          ></textarea>
                         </div>
                       </div>
                     </div>
@@ -488,12 +459,17 @@
 
               <div class="col-xs-12 text-center">
                 <br>
-                <button class="btn btn-primary btn-duplicator" type="button">Add experience</button>
+                <button
+                  class="btn btn-primary btn-duplicator"
+                  @click="onAddSkill"
+                  type="button"
+                >Add experience</button>
               </div>
             </div>
           </div>
         </section>
-        <!-- END Skills -->
+        <!-- END Skill -->
+
         <!-- Submit -->
         <section class="bg-img" style="background-image: url(static/img/newsletter_plc.jpg);">
           <div class="container">
@@ -512,19 +488,6 @@
       </main>
       <!-- END Main container -->
     </form>
-
-    <!-- Back to top button -->
-    <a id="scroll-up" href="#">
-      <i class="ti-angle-up"></i>
-    </a>
-    <!-- END Back to top button -->
-    <!-- <input class="form-input" type="text" value="Filan" v-model="firstname">
-    <input class="form-input" type="text" value="Fisteku" v-model="lastname">
-    <input class="form-input" type="text" value="Inxhinier Elektrik" v-model="occupation">
-    <input class="form-input" type="text" placeholder="" v-model="company">
-    <input class="form-input" type="text" value="+3923394039" v-model="phone">
-    <input class="form-input" type="text" value="Rr. 'Sheshi 3'" v-model="address">
-    <div class="col-xs-12 col-sm-2 col-centered" @click="sendApplication">-->
   </div>
 </template>
 
@@ -540,7 +503,7 @@ export default {
 
       first_name: "",
       last_name: "",
-      headline: "",
+      sex: "",
       summary: "",
       country: "",
       industry: "",
@@ -553,66 +516,137 @@ export default {
 
       //--------------- Image Files -------
       profile_picture_file: "",
-      education_institution_file: [],
-      experience_company_file: [],
 
       //--------------- Education -------
-      educations: 1,
+      educationInputs: [],
       education_files_index: 0,
-      education_degree: [],
-      education_major: [],
-      education_school: [],
-      education_startdate: [],
-      education_enddate: [],
-      education_description: [],
+        
+      education_type_id: '',
+      education_type_options: [
+        { text: "Shkolle e mesme", id:1 },
+        { text: "Shkolle e larte", id:2 }
+      ],
 
+      education_degree_id: '',
+      education_degree_other: false,
+      education_degree_options: {
+        1: [
+          { text: 'Pergjithshme', id:1 },
+          { text: 'Teknike', id:2},
+        ],
+        2: [
+          { text: 'Bachelor', id:3 },
+          { text: 'Master', id:4 },
+          { text: 'Diplom', id:5 },
+          { text: 'Te tjera', id:6 },
+        ],
+      },
+
+      education_major_id: '',
+      education_major_other: false,
+      education_major_options: {
+        1: [
+          { text: 'Pergjithshme', id:1 },
+          { text: 'Teknike', id:2},
+        ],
+        2: [
+          { text: 'Bachelor', id:3 },
+          { text: 'Master', id:4 },
+          { text: 'Diplom', id:5 },
+          { text: 'Te tjera', id:6 },
+        ],
+      },
       //---------------- Experience -------
-      experiences: 1,
+      experienceInputs: [],
       experience_files_index: 0,
-      experience_company: [],
-      experience_position: [],
-      experience_description: [],
-      experience_startdate: [],
-      experience_enddate: []
-      // experience_location: [],
-      // experience_type: [],
-      // experience_is_currently_work_here: [],
+
+      //---------------- Skill -------
+      skillInputs: [],
+      skill_files_index: 0
     };
   },
   methods: {
+    consoleLog(){
+      
+    },
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
     },
     // ------- Education -------
-    handleFileUploadEducation(event) {
-      this.education_institution_file.push(
-        this.$refs.education[this.educations - 1].files[0]
-      );
+    handleFileUploadEducation(randomid, index) {
+      let files = [];
+      for (let i = 0; i < this.$refs.education[index].files.length; i++) {
+        files.push(this.$refs.education[index].files[i]);
+      }
+      this.educationInputs.filter(
+        education => education.randomid === randomid
+      )[0].files = files;
     },
-    incrementEducation() {
-      this.educations += 1;
-      this.education_degree.push("");
-      this.education_major.push("");
-      this.education_school.push("");
-      this.education_startdate.push("");
-      this.education_enddate.push("");
-      this.education_description.push("");
+    onAddEducation() {
+      const newEducation = {
+        randomid: Math.random() * Math.random() * 1000,
+        education_type: '',
+        degree: '',
+        field_of_study: '',
+        school: '',
+        from_date: '',
+        to_date: '',
+        description: ''
+      }
+      this.educationInputs.push(newEducation)
+    },
+    onDeleteEducation(randomid) {
+      this.educationInputs = this.educationInputs.filter(education => education.randomid !== randomid)
     },
     // ------- Experience -------
-    handleFileUploadExperience(event) {
-      this.experience_company_file.push(
-        this.$refs.experience[this.experiences - 1].files[0]
-      );
+    handleFileUploadExperience(randomid, index) {
+      let files = [];
+      for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
+        files.push(this.$refs.experience[index].files[i]);
+      }
+      this.experienceInputs.filter(experience => experience.randomid === randomid)[0].files = files;
     },
-    incrementExperience() {
-      this.experiences += 1;
-      this.experience_company.push("");
-      this.experience_position.push("");
-      this.experience_description.push("");
-      this.experience_startdate.push("");
-      this.experience_enddate.push("");
+    onAddExperience() {
+      const newExperience = {
+        randomid: Math.random() * Math.random() * 1000,
+        employer: '',
+        company: '',
+        location: '',
+        from_date: '',
+        to_date: '',
+        is_currently_work_here: false,
+        description: ''
+      }
+      this.experienceInputs.push(newExperience)
     },
+    onDeleteExperience(randomid) {
+      this.experienceInputs = this.experienceInputs.filter(experience => experience.randomid !== randomid)
+    },
+    // ------- Skill -------
+    handleFileUploadSkill(randomid, index) {
+      let files = [];
+      for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
+        files.push(this.$refs.skill[index].files[i]);
+      }
+      this.skillInputs.filter(skill => skill.randomid === randomid)[0].files = files;
+    },
+    onAddSkill() {
+      const newSkill = {
+        randomid: Math.random() * Math.random() * 1000,
+        releaser: '',
+        name: '',
+        from_date: '',
+        to_date: '',
+        description: '',
+      }
+      this.skillInputs.push(newSkill)
+    },
+    onDeleteSkill(randomid) {
+      this.skillInputs = this.skillInputs.filter(skill => skill.randomid !== randomid)
+    },
+
     apply() {
+      
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
@@ -626,85 +660,71 @@ export default {
       let user_string = {
         first_name: this.first_name,
         last_name: this.last_name,
-        headline: this.headline,
+        sex: this.sex,
         summary: this.summary,
         country: this.country,
-        industry: this.industry,
+        // industry: this.industry,
         phone: this.phone,
         address: this.address,
         birthday: this.birthday,
         website: this.website
         // // email: this.email,
       };
-
-      // ------- Education file and post -------
-      // for(var i=0; i<this.educations; i++){
-
-      //   let education_string = {
-      //     degree: this.education_degree[i],
-      //     field_of_study: this.education_major[i],
-      //     school: this.education_school[i],
-      //     from_year: this.education_startdate[i],
-      //     to_year: this.education_enddate[i],
-      //     description: this.education_description[i]
-      //   };
-
-      //   axios.post(
-      //     "https://aace.ml/api/user/" + USER_ID + "/education",
-      //     education_string,
-      //     {
-      //       "Content-Type": "multipart/form-data",
-      //       headers: {
-      //         Authorization: "Bearer " + TOKEN
-      //       }
-      //     }
-      //   ).then(res => {
-
-      //     let EDUCATION_ID = res.data.id;
-
-      //     let formDataEducation = new FormData();
-      //     formDataEducation.append("file", this.education_institution_file[this.education_files_index]);
-      //     this.education_files_index++
-
-      //     axios.post(
-      //       AACE_URL_USER +
-      //         USER_ID +
-      //         "/education/" +
-      //         EDUCATION_ID +
-      //         "/media",
-      //       formDataEducation,
-      //       {
-      //         "Content-Type": "multipart/form-data",
-      //         headers: {
-      //           Authorization: "Bearer " + TOKEN
-      //         }
-      //       }
-      //     ).then(res => {
-      //       if (res.status == 200) {
-      //         console.log("pdf updated sucessfully.");
-      //         this.$router.push({
-      //           name: "SuccessSentPage"
-      //         });
-      //       }
-      //     }).catch(err => console.log(err));
-
-      //   })
-
-      // }
+      
+      
       // ------- Experience file and post -------
-      for (var i = 0; i < this.experiences; i++) {
-        let experience_string = {
-          company: this.experience_company[i],
-          title: this.experience_position[i],
-          from_date: this.experience_startdate[i],
-          to_date: this.experience_enddate[i],
-          description: this.experience_description[i]
-        };
+      for(var i=0; i<this.experienceInputs.length; i++){
+        axios.post(
+          "https://aace.ml/api/user/" + USER_ID + "/experience",
+          this.experienceInputs[i],
+          {
+            // "Content-Type": "multipart/form-data",
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          }
+        ).then(res => {
+          console.log('post experience')
+          let EXPERIENCE_ID = res.data.id;
 
+          let formDataExperience = new FormData();
+          if(this.experienceInputs[this.experience_files_index].files){
+            for(let j=0; j < this.experienceInputs[this.experience_files_index].files.length; j++){
+              formDataExperience.append("file", this.experienceInputs[this.experience_files_index].files[j])
+            }
+            this.experience_files_index++
+
+            axios.post(
+              "https://aace.ml/api/user/" +
+                USER_ID +
+                "/experience/" +
+                EXPERIENCE_ID +
+                "/media",
+              formDataExperience,
+              {
+                "Content-Type": "multipart/form-data",
+                headers: {
+                  Authorization: "Bearer " + TOKEN
+                }
+              }
+            ).then(res => {
+              if (res.status == 200) {
+                console.log("pdf updated sucessfully experience.");
+                this.$router.push({
+                  name: "SuccessSentPage"
+                });
+              }
+            }).catch(err => console.log(err));
+
+          } // closes the if statement
+        })
+      }
+      // ------- Skill file and post -------
+      for (var i = 0; i < this.skillInputs.length; i++) {
         axios
           .post(
-            "https://aace.ml/api/user/" + USER_ID + "/experience",
-            experience_string,
+            "https://aace.ml/api/user/" + USER_ID + "/skill",
+            this.skillInputs[i],
             {
               "Content-Type": "multipart/form-data",
               headers: {
@@ -713,81 +733,123 @@ export default {
             }
           )
           .then(res => {
-            let EXPERIENCE_ID = res.data.id;
+            console.log("post skill");
+            let SKILL_ID = res.data.id;
 
-            let formDataExperience = new FormData();
-            formDataExperience.append(
-              "file",
-              this.experience_company_file[this.experience_files_index]
-            );
-            this.experience_files_index++;
-
-            axios
-              .post(
-                AACE_URL_USER +
-                  USER_ID +
-                  "/experience/" +
-                  EXPERIENCE_ID +
-                  "/media",
-                formDataExperience,
-                {
-                  "Content-Type": "multipart/form-data",
-                  headers: {
-                    Authorization: "Bearer " + TOKEN
+            let formDataSkill = new FormData();
+            if(this.skillInputs[this.skill_files_index].files){
+              for(let j=0; j < this.skillInputs[this.skill_files_index].files.length; j++){
+                formDataSkill.append("file", this.skillInputs[this.skill_files_index].files[j])
+              }
+              this.skill_files_index++
+              axios
+                .post(
+                  "https://aace.ml/api/user/" +
+                    USER_ID +
+                    "/skill/" +
+                    SKILL_ID +
+                    "/media",
+                  formDataSkill,
+                  {
+                    "Content-Type": "multipart/form-data",
+                    headers: {
+                      Authorization: "Bearer " + TOKEN
+                    }
                   }
-                }
-              )
-              .then(res => {
-                if (res.status == 200) {
-                  console.log("pdf updated sucessfully experience.");
-                  this.$router.push({
-                    name: "SuccessSentPage"
-                  });
-                }
-              })
-              .catch(err => console.log(err));
+                )
+                .then(res => {
+                  if (res.status == 200) {
+                    console.log("pdf updated sucessfully.");
+                    this.$router.push({
+                      path: "/success"
+                    });
+                  }
+                })
+                .catch(err => console.log(err));
+              }
           });
       }
+      // ------- Education file and post -------
+      for(var i=0; i<this.educationInputs.length; i++){
 
-      // axios.all(
-      //   axios.post(
-      //     "https://aace.ml/api/user/" + USER_ID + "/media",
-      //       formDataUser,
-      //       {
-      //         "Content-Type": "multipart/form-data",
-      //         headers: {
-      //           Authorization: "Bearer " + TOKEN
-      //       }
-      //     }
-      //   ),
-      //   axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-      //       headers: {
-      //         Authorization: "Bearer " + TOKEN
-      //       }
-      //     })
-      //   ).then(
-      //     axios.spread((profileRes, stringRes) => {
-      //       console.log(
-      //         "res.statuses are: ",
-      //         profileRes.status,
-      //         stringRes.status
-      //       );
+        axios.post(
+          "https://aace.ml/api/user/" + USER_ID + "/education",
+          this.educationInputs[i],
+          {
+            "Content-Type": "multipart/form-data",
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          }
+        ).then(res => {
+          console.log('post education')
+          let EDUCATION_ID = res.data.id;
 
-      //       if (profileRes.status == 200) {
-      //         console.log("Profile picture updated successfully.");
-      //       } else {
-      //         console.log("profile picture bad response")
-      //       }
+          let formDataEducation = new FormData();
+          if(this.educationInputs[this.education_files_index].files){
+            for(let j=0; j < this.educationInputs[this.education_files_index].files.length; j++){
+              formDataEducation.append("file", this.educationInputs[this.education_files_index].files[j])
+            }
+            this.education_files_index++
+            axios.post(
+              "https://aace.ml/api/user/" + USER_ID + "/education/" + EDUCATION_ID + "/media",
+              formDataEducation,
+              {
+                "Content-Type": "multipart/form-data",
+                headers: {
+                  Authorization: "Bearer " + TOKEN
+                }
+              }
+            ).then(res => {
+              if (res.status == 200) {
+                console.log("pdf updated sucessfully.");
+                this.$router.push({
+                  name: "Success"
+                });
+              }
+            }).catch(err => console.log(err));
+          } // close if-statement
+        })
 
-      //       if (stringRes.status == 200) {
-      //         console.log("Strings sent successfully.");
-      //         localStorage.setItem("user", JSON.stringify(stringRes.data));
-      //       }  else {
-      //         console.log("String sent unsuccessfuly")
-      //       }
+      } 
+      axios.all([
+        axios.post(
+          "https://aace.ml/api/user/" + USER_ID + "/media",
+          formDataUser,
+          {
+            "Content-Type": "multipart/form-data",
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          }
+        ),
+        axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+          headers: {
+            Authorization: "Bearer " + TOKEN
+          }
+        })
+      ]).then(axios.spread((profileRes, stringRes) => {
+          console.log(
+            "res.statuses are: ",
+            profileRes.status,
+            stringRes.status
+          );
 
-      //     })
-      //   );
+          if (profileRes.status == 200) {
+            console.log("Profile picture updated successfully.");
+          } else {
+            console.log("profile picture bad response");
+          }
+
+          if (stringRes.status == 200) {
+            console.log("Strings sent successfully.");
+            localStorage.setItem("user", JSON.stringify(stringRes.data));
+          } else {
+            console.log("String sent unsuccessfuly");
+          }
+        })
+      );
+    
     }
   },
   mounted() {
@@ -800,18 +862,27 @@ export default {
       })
       .then(res => {
         console.log(res);
+
+        this.onAddEducation()
+        this.onAddExperience()
+        this.onAddSkill()
+
         this.first_name = res.data.first_name;
         this.last_name = res.data.last_name;
-        this.headline = res.data.headline;
+        this.sex = res.data.sex;
         this.summary = res.data.summary;
         this.country = res.data.country;
-        this.industry = res.data.industry;
-        this.email = res.data.email;
+        // this.sex = res.data.sex;
+        // this.years_of_experience = res.data.years_of_experience;
+        // this.email = res.data.email;
+        // this.comment_from_administrator = res.data.comment_from_administrator;
+        // this.profession = res.data.profession;
+        // this.register_status = res.data.register_status;
         this.phone = res.data.phone;
         this.address = res.data.address;
         this.birthday = res.data.birthday;
         this.website = res.data.website;
-      });
+      })
   }
 };
 </script>
