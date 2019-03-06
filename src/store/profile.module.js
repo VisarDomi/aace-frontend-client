@@ -54,7 +54,7 @@ const actions = {
         if (data.length != 0) {
           context.commit(SET_PICTURE, data[0].url);
         } else {
-          context.commit(SET_PICTURE, "https://aace.ml/static/files/dpi.jpg");
+          context.commit(SET_PICTURE, "https://aace.ml/static/dpi.jpg");
         }
       })
       .catch(() => {});
