@@ -45,7 +45,6 @@ export default {
     ...mapGetters(["communications"])
   },
   created() {
-    console.log("fetching coms from comonent")
     this.$store.dispatch(FETCH_COMMS);
   }
 };

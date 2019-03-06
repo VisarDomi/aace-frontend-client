@@ -25,28 +25,17 @@
 
                     <div class="row">
 
-                      <div class="item-block">
-                        <h6>Dokument1.pdf</h6>
-                        <i class="fa fa-folder fa-2x"></i>
+                      <div class="item-block" v-for="document in communicationDocuments" :key="document.id">
+                        
+                        <h6>{{document.filename}}</h6>
+                        
+                        
+                        <a class="btn btn-primary" :key="document.id" @click="downloadDoc(document.url, document.filename)"><i class="fa fa-file-zip-o"></i>Download Document {{document.id}}</a>                    
                         <br>
-                      </div>
-                      <div class="item-block">
-                        <h6>Dokument2.pdf</h6>
-                        <i class="fa fa-folder fa-2x"></i>
-                      </div>
-                      <div class="item-block">
-                        <h6>Dokument3.pdf</h6>
-                        <i class="fa fa-folder fa-2x"></i>
-                      </div>
-                      <div class="item-block">
-                        <h6>Shenime.pdf</h6>
-                        <i class="fa fa-folder fa-2x"></i>
                       </div>
                       
                     </div>
 
-                    <br>
-                    <a class="btn btn-primary btn-block" href="#">Shkarko dokumentat</a>
                   </li>
                 </ul>
               </div>
@@ -69,22 +58,60 @@
 </template>
 
 <script>
+import axios from "axios";
+const FileSaver = require('file-saver');
 import { mapGetters } from "vuex";
+import JwtService from "@/common/jwt.service";
 import {
-  FETCH_COMM
+  FETCH_COMM,
+  FETCH_DOCS
 } from "@/store/actions.type";
 import store from "@/store";
 export default {
   name: "communicationdetail",
   mounted() {
+    console.log("on mounted, fetching")
     this.$store.dispatch(FETCH_COMM, this.$route.params);
+    this.$store.dispatch(FETCH_DOCS, this.$route.params);
   },
+  methods: {
+    downloadDoc(docURL, docName){
+      console.log("inside downloads")
+      console.log("tring to download doc with ID: " + docURL)
+
+
+      axios
+        .get(docURL, {
+          responseType: 'arraybuffer',
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + JwtService.getToken(),
+            'Accept': 'application/pdf',
+            "Secure-Api-Key":
+        "asdfasdfetyeq"
+          }
+        })
+        .then(res => {
+            console.log("Media with id " + docURL + " downloaded successfully")
+            console.log(res);
+            // response.data is an empty object
+            const blob = new Blob([res.data], {
+              type: 'application/pdf',
+            });
+            FileSaver.saveAs(blob, docName);
+        });
+    
+  }
+  },
+
   computed: {
-    ...mapGetters(["comm"])
+    ...mapGetters(["comm", "communicationDocuments"])
   },  
   watch: {
     $route(to) {
+      console.log("on route(to), fetching")
       this.$store.dispatch(FETCH_COMM, to.params);
+      this.$store.dispatch(FETCH_DOCS, this.$route.params);
     }
   }
 };

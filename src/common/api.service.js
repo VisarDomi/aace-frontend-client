@@ -18,7 +18,7 @@ const ApiService = {
   setHeader() {
     Vue.axios.defaults.headers.common[
       "Authorization"
-    ] = `Token ${JwtService.getToken()}`;
+    ] = `Bearer ${JwtService.getToken()}`;
   },
 
   query(resource, params) {
@@ -73,6 +73,9 @@ export const MemberService = {
 export const MediaService = {
   getPicture(slug) {
     return ApiService.get("user", `${slug}/media/all`);
+  },
+  getCommunicationDocuments(slug){
+    return ApiService.get("officialcommunication", `${slug}/media/all`)
   }
 };
 

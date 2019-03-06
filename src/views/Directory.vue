@@ -10,7 +10,7 @@
           <h2>Engineering directory</h2>
           <h5 class="font-alt">Use the search box to search for engineers</h5>
 
-          <form class="header-job-search" @submit.prevent="search(fname, lname)">
+          <form class="header-job-search " @submit.prevent="search(fname, lname)">
             <div class="input" style="width:100%;">
               <input type="text" class="form-control" placeholder="First Name" v-model="fname">
             </div>
