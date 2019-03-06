@@ -181,8 +181,8 @@
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <label class='col-sm-4'>Vendos tipin e edukimit</label>
-                        <div class="form-group col-sm-5">
+                        <label class='col-sm-6'>Vendos tipin e edukimit*</label>
+                        <div class="form-group">
                           <select class="form-control" v-model='education_type_id' @change='consoleLog'>
                             <option v-for="option in education_type_options" 
                                     v-bind:value="option.id"
@@ -192,10 +192,12 @@
                           </select>
                         </div>
                         
-                        <div class="col-xs-12 col-sm-8">
-                          <label class='col-sm-4'>Degree</label>
+                        <div class="form-group">
+                          <label class='col-sm-2'>Degree</label>
                           <div class="form-group col-sm-5">
-                            <select class="form-control" v-model='education_degree_id' @change='consoleLog'>
+                            <select class="form-control" 
+                            v-model='education_degree_id' 
+                            @change='handleEducationOptionDegreeChange($event, index)'>
                               <option v-for="option in education_degree_options[education_type_id]" 
                                       v-bind:value="option.id"
                                       :key='option.id'>
@@ -203,23 +205,37 @@
                               </option>
                             </select>
                           </div>
+                          <div class="form-group col-sm-5">
+                            <input
+                              type="text"
+                              :disabled='!education_degree_other'
+                              class="form-control"
+                              v-model="educationInput.degree"
+                              placeholder="...">
+                          </div>
                         </div>
+
                         <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="educationInput.degree"
-                            placeholder="Degree, e.g. Bachelor">
+                          <label class='col-sm-2'>Major</label>
+                          <div class="form-group col-sm-5">
+                            <select class="form-control" v-model='education_major_id' @change='handleEducationOptionMajorChange($event, index)'>
+                              <option v-for="option in education_major_options[education_type_id]" 
+                                      v-bind:value="option.id"
+                                      :key='option.id'>
+                                {{ option.text }}
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-group col-sm-5">
+                            <input
+                              type="text"
+                              :disabled='!education_major_other'
+                              class="form-control"
+                              v-model="educationInput.field_of_study"
+                              placeholder="...">
+                          </div>
                         </div>
                         
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="educationInput.field_of_study"
-                            placeholder="Major, e.g. Computer Science"
-                          >
-                        </div>
                         <div class="form-group">
                           <input
                             type="text"
@@ -546,14 +562,13 @@ export default {
       education_major_other: false,
       education_major_options: {
         1: [
-          { text: 'Pergjithshme', id:1 },
-          { text: 'Teknike', id:2},
+          { text: '???', id:1 },
+          { text: '???', id:2},
         ],
         2: [
-          { text: 'Bachelor', id:3 },
-          { text: 'Master', id:4 },
-          { text: 'Diplom', id:5 },
-          { text: 'Te tjera', id:6 },
+          { text: 'Inxhinier Civil', id:3 },
+          { text: 'Inxhinier Elektrik', id:4 },
+          { text: 'Te tjera', id:5 },
         ],
       },
       //---------------- Experience -------
@@ -566,8 +581,38 @@ export default {
     };
   },
   methods: {
+    handleEducationOptionDegreeChange(e, i){
+      let educationOptionId = e.target.value
+      if(educationOptionId == 6){
+        this.education_degree_other = true;
+      }else{
+        this.education_degree_other = false;
+        if(this.education_type_id == 1)
+          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id][educationOptionId-1].text  
+        else
+          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id][educationOptionId-3].text
+      }
+      console.log(this.educationInputs[i].field_of_study)
+      console.log(this.educationInputs[i].degree)
+      console.log('')
+    },
+    handleEducationOptionMajorChange(e, i){
+      let educationOptionId = e.target.value
+      if(educationOptionId == 5){
+        this.education_major_other = true;
+      }else{
+        this.education_major_other = false;
+        if(this.education_type_id == 1)
+          this.educationInputs[i].field_of_study = this.education_major_options[this.education_type_id][educationOptionId-1].text  
+        else
+          this.educationInputs[i].field_of_study = this.education_major_options[this.education_type_id][educationOptionId-3].text
+      console.log(this.educationInputs[i].field_of_study)
+      console.log(this.educationInputs[i].degree)
+      console.log('')
+      }
+    },
     consoleLog(){
-      
+
     },
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
@@ -855,6 +900,9 @@ export default {
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+    this.onAddEducation()
+    this.onAddExperience()
+    this.onAddSkill()
 
     axios
       .get(AACE_URL_USER + USER_ID, {
@@ -863,9 +911,6 @@ export default {
       .then(res => {
         console.log(res);
 
-        this.onAddEducation()
-        this.onAddExperience()
-        this.onAddSkill()
 
         this.first_name = res.data.first_name;
         this.last_name = res.data.last_name;
