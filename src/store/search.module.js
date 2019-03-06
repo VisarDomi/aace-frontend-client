@@ -46,7 +46,7 @@ export const mutations = {
         if(data.length != 0){
             state.profilePictures.push(data[0].url);
         }else{
-            state.profilePictures.push('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png')
+            state.profilePictures.push('https://www.edgehill.ac.uk/health/files/2017/12/blank-profile.png')
         }
     },
     [DELETE_PICTURES](state){

@@ -51,7 +51,7 @@ const actions = {
         if(data.length!=0){
             context.commit(SET_PICTURE, data[0].url);
         }else{
-            context.commit(SET_PICTURE, 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png')
+            context.commit(SET_PICTURE, 'https://www.edgehill.ac.uk/health/files/2017/12/blank-profile.png')
         }
         
         

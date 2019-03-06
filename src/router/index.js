@@ -42,6 +42,60 @@ export default new Router({
       }
     },
     {
+      path: "/applicationstatus",
+      name: "applicationstatus",
+      component: () => import("@/views/ApplicationStatus"),
+      meta: {
+        title: "About",
+        metaTags: [
+          {
+            name: "description",
+            content: "The application status of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The application status of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/commdetail/:id",
+      name: "commdetail",
+      component: () => import("@/views/CommDetail"),
+      meta: {
+        title: "Communication Detail",
+        metaTags: [
+          {
+            name: "description",
+            content: "The communication detail page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The communication detail page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/communication",
+      name: "communication",
+      component: () => import("@/views/Communication"),
+      meta: {
+        title: "Communication",
+        metaTags: [
+          {
+            name: "description",
+            content: "The communication page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The communication page of AACE."
+          }
+        ]
+      }
+    },
+    {
       path: "/board",
       component: () => import("@/views/Board"),
     },
