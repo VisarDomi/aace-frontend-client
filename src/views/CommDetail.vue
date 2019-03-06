@@ -20,8 +20,8 @@
               <div class="col-md-9">{{communication.body}}</div>
               <div class="col-md-3" style="padding-top: 37px;">
                 <ul class="pricing">
-                  <li style="width: 100%;">
-                    <h5>Dokumenta</h5>
+                  <li style="width: 100%; border: none;">
+                    <h4 style="margin-bottom:0px;">Dokumenta</h4>
 
                     <div class="row">
 
