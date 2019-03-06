@@ -49,21 +49,12 @@ const actions = {
         // context.commit(SET_ERROR, response.data.errors)
       });
 
-<<<<<<< HEAD
-      MediaService.getPicture(id).then(({data})=>{
-          
-        if(data.length!=0){
-            context.commit(SET_PICTURE, data[0].url);
-        }else{
-            context.commit(SET_PICTURE, 'https://www.edgehill.ac.uk/health/files/2017/12/blank-profile.png')
-=======
     MediaService.getPicture(id)
       .then(({ data }) => {
         if (data.length != 0) {
           context.commit(SET_PICTURE, data[0].url);
         } else {
           context.commit(SET_PICTURE, "https://aace.ml/static/files/dpi.jpg");
->>>>>>> d098f3ed49ee6deebd08eb98f09352678ccf7a55
         }
       })
       .catch(() => {});

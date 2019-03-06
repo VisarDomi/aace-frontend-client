@@ -34,20 +34,6 @@ export const actions = {
 };
 
 export const mutations = {
-<<<<<<< HEAD
-    [SET_SEARCH_RESULT](state,data){
-        state.searchResult = data;
-    },
-    [SET_PICTURES](state,data){
-        if(data.length != 0){
-            state.profilePictures.push(data[0].url);
-        }else{
-            state.profilePictures.push('https://www.edgehill.ac.uk/health/files/2017/12/blank-profile.png')
-        }
-    },
-    [DELETE_PICTURES](state){
-        state.profilePictures=[];
-=======
   [SET_SEARCH_RESULT](state, data) {
     state.searchResult = data;
   },
@@ -56,7 +42,6 @@ export const mutations = {
       state.profilePictures.push(data[0].url);
     } else {
       state.profilePictures.push("https://aace.ml/static/files/dpi.jpg");
->>>>>>> d098f3ed49ee6deebd08eb98f09352678ccf7a55
     }
   },
   [DELETE_PICTURES](state) {
