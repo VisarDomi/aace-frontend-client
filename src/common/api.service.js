@@ -87,3 +87,12 @@ export const ExperienceService = {
     return ApiService.get("user", `${slug}/experience/all`);
   }
 };
+
+export const CommunicationService = {
+  getCommunications() {
+    return ApiService.get("officialcommunication", "all");
+  },
+  getCommunication(id){
+    return ApiService.get('officialcommunication',id);
+  }
+};

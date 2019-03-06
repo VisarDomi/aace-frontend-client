@@ -19,10 +19,10 @@
           <div class="category-grid" v-for="communication in communications" :key="communication.id">
             <router-link style="height: 295px;" :to="{name:'commdetail', params: { id: communication.id}}">
               
-              <h6>{{communication.title}}</h6>
+              <h6>{{communication.name}}</h6>
               <p>{{communication.description}}</p>
               <br>
-              <p><strong>{{communication.date}}</strong> </p>
+              <p><strong>{{communication.time}}</strong> </p>
             </router-link>
           </div>
         </div>
@@ -34,25 +34,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import store from "@/store";
+import {
+  FETCH_COMMS
+} from "@/store/actions.type";
 export default {
-  name: "about",
-  data() {
-      return {
-          communications : [
-              {
-                  "id" : "1",
-                  "title": "Asamble per Draft Ligjin",
-                  "description" : "Disa shenime mbi mbledhjen e dyte qe do behet per diskutimin e neneve te draft ligjit per krijimin e urdherit te inxhinierit.",
-                  "date" : "12 Mars, 2019"
-              },
-              {
-                  "id" : "2",
-                  "title": "Shenime mbi asamblen e dates 12 Mars",
-                  "description" : "Ky komunikim diskuton disa nga pikat qe u hodhen ne diskutim gjate asambles, si dhe pergjigjet per keto pika.",
-                  "date" : "27 Mars, 2019"
-              }
-          ]
-      }
+  name: "communication",
+  computed: {
+    ...mapGetters(["communications"])
+  },
+  created() {
+    console.log("fetching coms from comonent")
+    this.$store.dispatch(FETCH_COMMS);
   }
 };
 </script>
