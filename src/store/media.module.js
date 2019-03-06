@@ -1,38 +1,24 @@
 import Vue from "vue";
 
-import {
-    MediaService
-} from "@/common/api.service";
+import { MediaService } from "@/common/api.service";
 
-import {
+import {} from "./actions.type";
 
-} from "./actions.type";
+import {} from "./mutations.type";
 
-import {
+const initialState = {};
 
-} from "./mutations.type";
+export const state = { ...initialState };
 
-const initialState = {
+export const actions = {};
 
-}
+export const mutations = {};
 
-export const state = { ...initialState};
-
-export const actions = {
-
-}
-
-export const mutations = {
-
-}
-
-const getters = {
-
-}
+const getters = {};
 
 export default {
-    state,
-    actions,
-    mutations,
-    getters
+  state,
+  actions,
+  mutations,
+  getters
 };

@@ -37,7 +37,7 @@ const ApiService = {
     return Vue.axios.post(`${resource}`, params);
   },
 
-  login(resource, params){
+  login(resource, params) {
     return Vue.axios.post(`${resource}`, {}, params);
   },
 
@@ -59,31 +59,31 @@ const ApiService = {
 export default ApiService;
 
 export const MemberService = {
-  get(slug){
-    return ApiService.get('user', slug)
+  get(slug) {
+    return ApiService.get("user", slug);
   },
-  search(membername){
-    return ApiService.post("user/search", membername)
+  search(membername) {
+    return ApiService.post("user/search", membername);
   },
-  accepted(){
-    return ApiService.get("user/accepted")
+  accepted() {
+    return ApiService.get("user/accepted");
   }
-}
+};
 
 export const MediaService = {
-  getPicture(slug){
-    return ApiService.get('user',`${slug}/media/all`)
+  getPicture(slug) {
+    return ApiService.get("user", `${slug}/media/all`);
   }
-}
+};
 
 export const EducationService = {
-  getEducation(slug){
-    return ApiService.get('user',`${slug}/education/all`)
+  getEducation(slug) {
+    return ApiService.get("user", `${slug}/education/all`);
   }
-}
+};
 
 export const ExperienceService = {
-  getExperience(slug){
-    return ApiService.get('user',`${slug}/experience/all`)
+  getExperience(slug) {
+    return ApiService.get("user", `${slug}/experience/all`);
   }
-}
+};

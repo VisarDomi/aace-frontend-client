@@ -58,7 +58,6 @@
         </main>
       </div>
     </header>
-
   </div>
 </template>
 
@@ -76,8 +75,9 @@ export default {
   },
   methods: {
     onSubmit(username, password) {
-      this.$store.dispatch(LOGIN, {username, password})
-      .then(()=> this.$router.push({name: "memberarea"}));
+      this.$store
+        .dispatch(LOGIN, { username, password })
+        .then(() => this.$router.push({ name: "memberarea" }));
     }
   },
   computed: {

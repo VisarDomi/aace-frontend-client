@@ -1,6 +1,5 @@
 <template>
   <div class="nav-on-header smart-nav">
-
     <form @submit.prevent="apply">
       <!-- Page header -->
       <header class="page-header">
@@ -219,7 +218,7 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" :key='index' v-for='(item, index) in this.educations'>
+              <div class="col-xs-12" :key="index" v-for="(item, index) in this.educations">
                 <div class="item-block">
                   <div class="item-form">
                     <button class="btn btn-danger btn-float btn-remove" type="button">
@@ -231,8 +230,7 @@
                         <div class="form-group">
                           <input
                             type="file"
-                            ref="education" 
-                            
+                            ref="education"
                             class="dropify"
                             data-default-file="static/img/logo-default.png"
                             @change="handleFileUploadEducation"
@@ -305,7 +303,11 @@
 
               <div class="col-xs-12 text-center">
                 <br>
-                <button class="btn btn-primary" type="button" @click='incrementEducation'>Add education</button>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  @click="incrementEducation"
+                >Add education</button>
               </div>
             </div>
           </div>
@@ -320,7 +322,7 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" :key='index' v-for='(item, index) in this.experiences'>
+              <div class="col-xs-12" :key="index" v-for="(item, index) in this.experiences">
                 <div class="item-block">
                   <div class="item-form">
                     <button class="btn btn-danger btn-float btn-remove" type="button">
@@ -332,11 +334,10 @@
                         <div class="form-group">
                           <input
                             type="file"
-                            ref='experience'
-
+                            ref="experience"
                             class="dropify"
                             data-default-file="static/img/logo-default.png"
-                            @change='handleFileUploadExperience'
+                            @change="handleFileUploadExperience"
                           >
                           <span class="help-block">Please choose a square logo of the company</span>
                         </div>
@@ -344,18 +345,19 @@
 
                       <div class="col-xs-12 col-sm-8">
                         <div class="form-group">
-                          <input 
-                            type="text" 
-                            class="form-control" 
-                            v-model='experience_company[index]'
-                            placeholder="Company name">
+                          <input
+                            type="text"
+                            class="form-control"
+                            v-model="experience_company[index]"
+                            placeholder="Company name"
+                          >
                         </div>
 
                         <div class="form-group">
                           <input
                             type="text"
                             class="form-control"
-                            v-model='experience_position[index]'
+                            v-model="experience_position[index]"
                             placeholder="Position, e.g. UI/UX Researcher"
                           >
                         </div>
@@ -363,26 +365,29 @@
                         <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon">Date from</span>
-                            <input 
-                              type="date" 
-                              class="form-control"
-                              v-model='experience_startdate[index]' 
-                              placeholder="e.g. 2012">
-                            <span class="input-group-addon">Date to</span>
-                            <input 
+                            <input
                               type="date"
-                              class="form-control" 
-                              v-model='experience_enddate[index]'
-                              placeholder="e.g. 2016">
+                              class="form-control"
+                              v-model="experience_startdate[index]"
+                              placeholder="e.g. 2012"
+                            >
+                            <span class="input-group-addon">Date to</span>
+                            <input
+                              type="date"
+                              class="form-control"
+                              v-model="experience_enddate[index]"
+                              placeholder="e.g. 2016"
+                            >
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <textarea 
-                            class="form-control" 
-                            rows="3" 
-                            v-model='experience_description[index]'
-                            placeholder="Short description"></textarea>
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            v-model="experience_description[index]"
+                            placeholder="Short description"
+                          ></textarea>
                         </div>
                       </div>
                     </div>
@@ -390,10 +395,13 @@
                 </div>
               </div>
 
-
               <div class="col-xs-12 text-center">
                 <br>
-                <button class="btn btn-primary btn-duplicator" type="button" @click='incrementExperience'>Add experience</button>
+                <button
+                  class="btn btn-primary btn-duplicator"
+                  type="button"
+                  @click="incrementExperience"
+                >Add experience</button>
               </div>
             </div>
           </div>
@@ -505,7 +513,6 @@
       <!-- END Main container -->
     </form>
 
-
     <!-- Back to top button -->
     <a id="scroll-up" href="#">
       <i class="ti-angle-up"></i>
@@ -543,7 +550,7 @@ export default {
       website: "",
       email: "",
       // comment_from_administrator: "",
-      
+
       //--------------- Image Files -------
       profile_picture_file: "",
       education_institution_file: [],
@@ -566,7 +573,7 @@ export default {
       experience_position: [],
       experience_description: [],
       experience_startdate: [],
-      experience_enddate: [],
+      experience_enddate: []
       // experience_location: [],
       // experience_type: [],
       // experience_is_currently_work_here: [],
@@ -578,37 +585,41 @@ export default {
     },
     // ------- Education -------
     handleFileUploadEducation(event) {
-      this.education_institution_file.push(this.$refs.education[this.educations-1].files[0]);
+      this.education_institution_file.push(
+        this.$refs.education[this.educations - 1].files[0]
+      );
     },
-    incrementEducation(){
-      this.educations += 1
-      this.education_degree.push('')
-      this.education_major.push('')
-      this.education_school.push('')
-      this.education_startdate.push('')
-      this.education_enddate.push('')
-      this.education_description.push('')
+    incrementEducation() {
+      this.educations += 1;
+      this.education_degree.push("");
+      this.education_major.push("");
+      this.education_school.push("");
+      this.education_startdate.push("");
+      this.education_enddate.push("");
+      this.education_description.push("");
     },
     // ------- Experience -------
     handleFileUploadExperience(event) {
-      this.experience_company_file.push(this.$refs.experience[this.experiences-1].files[0]);
-    }, 
-    incrementExperience(){
-      this.experiences += 1
-      this.experience_company.push('')
-      this.experience_position.push('')
-      this.experience_description.push('')
-      this.experience_startdate.push('')
-      this.experience_enddate.push('')
+      this.experience_company_file.push(
+        this.$refs.experience[this.experiences - 1].files[0]
+      );
+    },
+    incrementExperience() {
+      this.experiences += 1;
+      this.experience_company.push("");
+      this.experience_position.push("");
+      this.experience_description.push("");
+      this.experience_startdate.push("");
+      this.experience_enddate.push("");
     },
     apply() {
-      // ------- Basic 
+      // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = JSON.parse(localStorage.getItem("token"));
 
-      console.log(TOKEN)
-      console.log(USER_ID)
+      console.log(TOKEN);
+      console.log(USER_ID);
       // ------- User -------
       let formDataUser = new FormData();
       formDataUser.append("file", this.profile_picture_file);
@@ -650,11 +661,11 @@ export default {
       //   ).then(res => {
 
       //     let EDUCATION_ID = res.data.id;
-          
+
       //     let formDataEducation = new FormData();
       //     formDataEducation.append("file", this.education_institution_file[this.education_files_index]);
       //     this.education_files_index++
-          
+
       //     axios.post(
       //       AACE_URL_USER +
       //         USER_ID +
@@ -679,11 +690,9 @@ export default {
 
       //   })
 
-
       // }
       // ------- Experience file and post -------
-      for(var i=0; i<this.experiences; i++){
-
+      for (var i = 0; i < this.experiences; i++) {
         let experience_string = {
           company: this.experience_company[i],
           title: this.experience_position[i],
@@ -692,50 +701,53 @@ export default {
           description: this.experience_description[i]
         };
 
-        axios.post(
-          "https://aace.ml/api/user/" + USER_ID + "/experience",
-          experience_string,
-          {
-            "Content-Type": "multipart/form-data",
-            headers: {
-              Authorization: "Bearer " + TOKEN
-            }
-          }
-        ).then(res => {
-
-          let EXPERIENCE_ID = res.data.id;
-          
-          let formDataExperience = new FormData();
-          formDataExperience.append("file", this.experience_company_file[this.experience_files_index]);
-          this.experience_files_index++
-          
-          axios.post(
-            AACE_URL_USER +
-              USER_ID +
-              "/experience/" +
-              EXPERIENCE_ID +
-              "/media",
-            formDataExperience,
+        axios
+          .post(
+            "https://aace.ml/api/user/" + USER_ID + "/experience",
+            experience_string,
             {
               "Content-Type": "multipart/form-data",
               headers: {
                 Authorization: "Bearer " + TOKEN
               }
             }
-          ).then(res => {
-            if (res.status == 200) {
-              console.log("pdf updated sucessfully experience.");
-              this.$router.push({
-                name: "SuccessSentPage"
-              });
-            }
-          }).catch(err => console.log(err));
+          )
+          .then(res => {
+            let EXPERIENCE_ID = res.data.id;
 
-        })
+            let formDataExperience = new FormData();
+            formDataExperience.append(
+              "file",
+              this.experience_company_file[this.experience_files_index]
+            );
+            this.experience_files_index++;
 
-
+            axios
+              .post(
+                AACE_URL_USER +
+                  USER_ID +
+                  "/experience/" +
+                  EXPERIENCE_ID +
+                  "/media",
+                formDataExperience,
+                {
+                  "Content-Type": "multipart/form-data",
+                  headers: {
+                    Authorization: "Bearer " + TOKEN
+                  }
+                }
+              )
+              .then(res => {
+                if (res.status == 200) {
+                  console.log("pdf updated sucessfully experience.");
+                  this.$router.push({
+                    name: "SuccessSentPage"
+                  });
+                }
+              })
+              .catch(err => console.log(err));
+          });
       }
-      
 
       // axios.all(
       //   axios.post(
@@ -747,7 +759,7 @@ export default {
       //           Authorization: "Bearer " + TOKEN
       //       }
       //     }
-      //   ), 
+      //   ),
       //   axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
       //       headers: {
       //         Authorization: "Bearer " + TOKEN
@@ -799,7 +811,7 @@ export default {
         this.address = res.data.address;
         this.birthday = res.data.birthday;
         this.website = res.data.website;
-      })
+      });
   }
 };
 </script>

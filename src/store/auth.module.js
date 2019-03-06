@@ -28,8 +28,8 @@ const getters = {
 const actions = {
   [LOGIN](context, credentials) {
     return new Promise(resolve => {
-      ApiService.login("auth/login",{ auth: credentials })
-        .then( ({data})  => {
+      ApiService.login("auth/login", { auth: credentials })
+        .then(({ data }) => {
           context.commit(SET_AUTH, data);
           resolve(data);
         })
@@ -43,7 +43,7 @@ const actions = {
   },
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {
-      ApiService.post("user",  credentials )
+      ApiService.post("user", credentials)
         .then(({ data }) => {
           context.commit(SET_AUTH, data);
           resolve(data);
@@ -57,14 +57,14 @@ const actions = {
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      context.commit(SET_AUTH,UserService.getUser());
-    //   ApiService.get("user",state.user.id)
-    //     .then(({ data }) => {
-    //       context.commit(SET_AUTH, data);
-    //     })
-    //     .catch(({ response }) => {
-    //       context.commit(SET_ERROR, response.data.errors);
-    //     });
+      context.commit(SET_AUTH, UserService.getUser());
+      //   ApiService.get("user",state.user.id)
+      //     .then(({ data }) => {
+      //       context.commit(SET_AUTH, data);
+      //     })
+      //     .catch(({ response }) => {
+      //       context.commit(SET_ERROR, response.data.errors);
+      //     });
     } else {
       context.commit(PURGE_AUTH);
     }
@@ -97,7 +97,7 @@ const mutations = {
     state.user = user;
     state.errors = {};
     JwtService.saveToken(state.user.token);
-    UserService.saveUser(user)
+    UserService.saveUser(user);
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;

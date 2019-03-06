@@ -14,7 +14,7 @@
               <img src="/static/img/eeee.png" alt="logo">
             </router-link>
             <router-link to="/" class="logo-alt">
-              <img src="/static/img/eeee.png" alt="logo-alt">
+              <img src="/static/img/eeee_alt.png" alt="logo-alt">
             </router-link>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <router-link to="/login" class="btn btn-sm btn-primary">Login</router-link>or
           <router-link to="/register">register</router-link>
         </div>
-        <div v-else class="pull-right user-login" >
+        <div v-else class="pull-right user-login">
           <i class="fa fa-user fa-2x"></i>
           {{currentUser.email}}
           <!-- <router-link to="/logout"> <h5>Log-out</h5> </router-link> -->
@@ -35,9 +35,13 @@
           <li>
             <router-link to="/" active-class="active">AACE</router-link>
             <ul>
-                <li><router-link to="/" active-class="active">Home</router-link></li>
-                <li><router-link to="/about">About us</router-link></li>
-                <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
+              <li>
+                <router-link to="/" active-class="active">Home</router-link>
+              </li>
+              <li>
+                <router-link to="/about">About us</router-link>
+              </li>
+              <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
             </ul>
           </li>
           <li>
@@ -51,21 +55,33 @@
           </li>
           <li>
             <router-link to="/publications">Publications</router-link>
-          </li> -->
+          </li>-->
           <li>
             <router-link to="/contact">Contact</router-link>
           </li>
           <li>
             <router-link to="/memberarea">User area</router-link>
             <ul>
-                <li><router-link to="/" active-class="active">Application Form</router-link></li>
-                <li><router-link to="/about">Application Status</router-link></li>
-                <li><router-link to="/about">Communications</router-link></li>
-                <li><router-link to="/about">Profile</router-link></li>
-                <li><router-link to="/about">Polls</router-link></li>
-                <li @click="logout" v-if="isAuthenticated"> <a href="#">Log-out</a> </li>
-                <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
-            </ul>            
+              <li>
+                <router-link to="/" active-class="active">Application Form</router-link>
+              </li>
+              <li>
+                <router-link to="/about">Application Status</router-link>
+              </li>
+              <li>
+                <router-link to="/about">Communications</router-link>
+              </li>
+              <li>
+                <router-link to="/about">Profile</router-link>
+              </li>
+              <li>
+                <router-link to="/about">Polls</router-link>
+              </li>
+              <li @click="logout" v-if="isAuthenticated">
+                <a href="#">Log-out</a>
+              </li>
+              <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
+            </ul>
           </li>
         </ul>
         <!-- END Navigation menu -->

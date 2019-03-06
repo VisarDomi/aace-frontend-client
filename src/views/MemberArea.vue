@@ -22,6 +22,7 @@
               <h6>Application Form</h6>
               <p>Apply for membership in AACE</p>
             </a>
+<<<<<<< HEAD
 
             <router-link to="/applicationstatus" style="height: 295px;">
               <i class="fa fa-institution"></i>
@@ -42,13 +43,37 @@
               <p>See how your profile looks publicly</p>
             </router-link>
 
+=======
+            
+            <a href="job-list-3.html" style="height: 295px;">
+              <i class="fa fa-institution"></i>
+              <h6>Application Status</h6>
+              <p>See the status of your application</p>
+            </a>
+            <a href="job-list-2.html" style="height: 295px;">
+              <i class="fa fa-line-chart"></i>
+              <h6>Communication</h6>
+              <p>Access association wide and personal communications</p>
+            </a>
+            
+            <a href="job-list-3.html" style="height: 295px;">
+              <i class="fa fa-medkit"></i>
+              <h6>Profile</h6>
+              <p>See how your profile looks publicly</p>
+            </a>
+            
+>>>>>>> d098f3ed49ee6deebd08eb98f09352678ccf7a55
             <a href="job-list-1.html" style="height: 295px;">
               <i class="fa fa-cutlery"></i>
               <h6>Polls</h6>
               <p>Engage in polling</p>
             </a>
             
+<<<<<<< HEAD
             <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
+=======
+            <a href="job-list-2.html" style="height: 295px;">
+>>>>>>> d098f3ed49ee6deebd08eb98f09352678ccf7a55
               <i class="fa fa-newspaper-o"></i>
               <h6>Log-out</h6>
               <p>Log out of the platform</p>
@@ -62,6 +87,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
 
@@ -77,5 +103,9 @@ export default {
   computed: {
     ...mapGetters(["currentUser", "isAuthenticated"])
   }
+=======
+export default {
+  name: "MemberArea"
+>>>>>>> d098f3ed49ee6deebd08eb98f09352678ccf7a55
 };
 </script>
