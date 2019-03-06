@@ -1,0 +1,59 @@
+<template>
+  <div>
+    <!-- Page header -->
+    <header
+      class="page-header bg-img size-sm"
+      style="background-image: url(static/img/bg-banner2.jpg)"
+    ></header>
+    <!-- END Page header -->
+    <!-- Main container -->
+    <main>
+      <!-- Company detail -->
+      <section style="padding-top:0px; padding-bottom:50px;">
+        <div class="container text-center">
+          <header class="section-header">
+            <h2>Application Status</h2>
+          </header>
+            <h4>Name of applicant: </h4> <p>{{currentUser.first_name}} {{currentUser.last_name}}</p>
+            <br>
+            <h4>Date of application: </h4> <p>12.12.2019</p>
+            <br>
+            <h4>Status: </h4> 
+            <div class="alert alert-warning" role="alert" style="width:33%; margin:auto;" v-if="currentUser.register_status == 'rebutted'">
+            <strong>Rebutted</strong>.
+            </div>
+            <div class="alert alert-info" role="alert" style="width:33%; margin:auto;" v-if="currentUser.register_status == 'blank'">
+            <strong>Not sent.</strong>
+            </div>
+            <div class="alert alert-info" role="alert" style="width:33%; margin:auto;" v-if="currentUser.register_status == 'applying'">
+            <strong>Sent.</strong>
+            </div>
+            <div class="alert alert-danger" role="alert" style="width:33%; margin:auto;" v-if="currentUser.register_status == 'rejected'">
+            <strong>Rejected.</strong>
+            </div>
+            <div class="alert alert-success" role="alert" style="width:33%; margin:auto;" v-if="currentUser.register_status == 'approved'">
+            <strong>Approved.</strong>
+            </div>
+            <br>
+            <h4 v-if="currentUser.comment_from_administrator">Comment from secretary: </h4>
+            <p>{{currentUser.comment_from_administrator}}</p>   
+            <br>
+            <button type="submit" class="btn btn-primary" v-if="currentUser.register_status == 'rebutted'">Fix application</button>
+        </div>
+
+      </section>
+      <!-- END Company detail -->
+    </main>
+    <!-- END Main container -->
+  </div>
+</template>
+
+<script>
+import { mapGetters } from "vuex";
+export default {
+  name: "applicationstatus",
+  computed: {
+    ...mapGetters(["currentUser"])
+  }
+};
+</script>
