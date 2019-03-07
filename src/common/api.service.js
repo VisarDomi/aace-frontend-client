@@ -94,11 +94,16 @@ export const ExperienceService = {
   }
 };
 
+
 export const CommunicationService = {
   getCommunications() {
     return ApiService.get("officialcommunication", "all");
   },
   getCommunication(id){
     return ApiService.get('officialcommunication',id);
+  },
+  postCommunication(commId, comment){
+    return ApiService.post(`officialcommunication/${commId}/comment`, comment);
   }
 };
+

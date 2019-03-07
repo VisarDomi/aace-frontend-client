@@ -43,9 +43,9 @@
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
-              <textarea class="form-control" rows="5"></textarea>
+              <textarea class="form-control" rows="5" v-model="comment"></textarea>
               <br>
-              <a class="btn btn-primary" href="#">Dergo koment</a>
+              <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
             </form>
           </div>
         </div>
@@ -63,7 +63,8 @@ import { mapGetters } from "vuex";
 import JwtService from "@/common/jwt.service";
 import {
   FETCH_COMM,
-  FETCH_DOCS
+  FETCH_DOCS,
+  ADD_COMMENT
 } from "@/store/actions.type";
 import store from "@/store";
 export default {
@@ -72,7 +73,18 @@ export default {
     this.$store.dispatch(FETCH_COMM, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);
   },
+  data(){
+    return{
+      comment: '',
+      commentId: '',
+      // ket commentId e bejm computed
+      //suppozohet ta kem available , po ta bej {{comm.id}} m'del ne html
+    }
+  },
   methods: {
+    sendComment(){
+      this.$store.dispatch(ADD_COMMENT, {id: this.comm.id, comment: this.comment})
+    },
     downloadDoc(docID, docName){
       axios
         .get('https://aace.ml/api/media/media_officialcommunication/'+docID, {

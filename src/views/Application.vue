@@ -487,7 +487,8 @@
         <!-- END Skill -->
 
         <!-- Submit -->
-        <section class="bg-img" style="background-image: url(static/img/newsletter_plc.jpg);">
+        <section >
+          <!-- class="bg-img" style="background-image: url(static/img/newsletter_plc.jpg);" -->
           <div class="container">
             <header class="section-header">
               <span>Are you done?</span>
