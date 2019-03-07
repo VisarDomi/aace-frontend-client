@@ -77,6 +77,9 @@ export const MediaService = {
   getCommunicationDocuments(slug){
     return ApiService.get("officialcommunication", `${slug}/media/all`)
   }
+  //setUserEducation(){}, 
+  //setUserExperience(){},
+  //setUserSkills
 };
 
 export const EducationService = {

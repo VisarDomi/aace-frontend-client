@@ -27,11 +27,10 @@
 
                       <div class="item-block" v-for="document in communicationDocuments" :key="document.id">
                         
-                        <h6>{{document.filename}}</h6>
+                        <h6>{{document.filename}}</h6>                        
                         
+                        <a style="margin-bottom:10px;" class="btn btn-primary" :key="document.id" @click="downloadDoc(document.id, document.filename)"><i class="fa fa-file-zip-o"></i>Download Document</a>                    
                         
-                        <a class="btn btn-primary" :key="document.id" @click="downloadDoc(document.url, document.filename)"><i class="fa fa-file-zip-o"></i>Download Document {{document.id}}</a>                    
-                        <br>
                       </div>
                       
                     </div>
@@ -70,30 +69,23 @@ import store from "@/store";
 export default {
   name: "communicationdetail",
   mounted() {
-    console.log("on mounted, fetching")
     this.$store.dispatch(FETCH_COMM, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);
   },
   methods: {
-    downloadDoc(docURL, docName){
-      console.log("inside downloads")
-      console.log("tring to download doc with ID: " + docURL)
-
-
+    downloadDoc(docID, docName){
       axios
-        .get(docURL, {
+        .get('https://aace.ml/api/media/media_officialcommunication/'+docID, {
           responseType: 'arraybuffer',
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + JwtService.getToken(),
-            'Accept': 'application/pdf',
+            "Authorization": "Bearer " + JwtService.getToken(),
+            // 'Accept': 'application/pdf',
             "Secure-Api-Key":
         "asdfasdfetyeq"
           }
         })
         .then(res => {
-            console.log("Media with id " + docURL + " downloaded successfully")
-            console.log(res);
             // response.data is an empty object
             const blob = new Blob([res.data], {
               type: 'application/pdf',
@@ -109,7 +101,6 @@ export default {
   },  
   watch: {
     $route(to) {
-      console.log("on route(to), fetching")
       this.$store.dispatch(FETCH_COMM, to.params);
       this.$store.dispatch(FETCH_DOCS, this.$route.params);
     }
