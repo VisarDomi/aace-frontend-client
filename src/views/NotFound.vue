@@ -6,7 +6,10 @@
       style="background-image: url(static/img/publication1.jpg)"
     >
       <div class="container no-shadow">
-        <h1 class="text-center">Not Found</h1>
+        <router-link :to="{name: 'home'}">
+          <h1 class="text-center" id="home">Go to homepage</h1>
+        </router-link>
+        <h1 class="text-center">(Page Not Found)</h1>
       </div>
     </header>
     <!-- END Site header -->
@@ -22,7 +25,7 @@
               <span>4</span>
             </h1>
           </div>
-          <h2>we are sorry, but the page you requested was not found</h2>
+          <h2>We are sorry, but the page that was requested was not found</h2>
         </div>
       </div>
     </main>
@@ -31,6 +34,10 @@
 </template>
 
 <style scoped>
+#home {
+  color: rgb(85, 85, 255);
+}
+
 #notfound {
   position: relative;
   height: 100vh;
