@@ -2,6 +2,19 @@
   <div>
     <!-- Site footer -->
     <footer class="site-footer">
+      <!-- Topper section -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-24 col-md-12">
+            <router-link :to="{name: 'Home'}" class="logo">
+              <img src="/static/img/eeee.png" alt="logo">
+            </router-link>
+          </div>
+        </div>
+
+        <hr>
+      </div>
+      <!-- END Topper section -->
       <!-- Top section -->
       <div class="container">
         <div class="row">

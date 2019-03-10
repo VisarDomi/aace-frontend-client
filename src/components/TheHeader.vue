@@ -46,7 +46,7 @@
               </li>
               <!-- <li>
                 <router-link :to="{name: 'Board'}">Board</router-link>
-              </li> -->
+              </li>-->
             </ul>
           </li>
           <li>
@@ -118,7 +118,7 @@ export default {
   width: 100%;
 } */
 
-@media screen and (min-width: 0px) and (max-width: 415px) {
+@media screen and (min-width: 0px) and (max-width: 770px) {
   .logo-wrapper {
     display: none !important;
   } /* dont show logo on small screens */
