@@ -9,7 +9,18 @@
         <router-link :to="{name: 'Home'}">
           <h1 class="text-center" id="home">Go to homepage</h1>
         </router-link>
-        <h1 class="text-center">(Page Not Found)</h1>
+        <router-link :to="{name: 'Contact'}">
+          <h3 class="text-center" id="home">Contact us</h3>
+        </router-link>
+        <router-link :to="{name: 'About'}">
+          <h3 class="text-center" id="home">About us</h3>
+        </router-link>
+        <router-link :to="{name: 'Directory'}">
+          <h3 class="text-center" id="home">Directory</h3>
+        </router-link>
+        <router-link :to="{name: 'Member Area'}">
+          <h3 class="text-center" id="home">Member Area</h3>
+        </router-link>
       </div>
     </header>
     <!-- END Site header -->
