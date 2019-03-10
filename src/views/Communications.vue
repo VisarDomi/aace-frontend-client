@@ -16,13 +16,21 @@
             <h2>Communications</h2>
           </header>
 
-          <div class="category-grid" v-for="communication in communications" :key="communication.id">
-            <router-link style="height: 295px;" :to="{name:'commdetail', params: { id: communication.id}}">
-              
+          <div
+            class="category-grid"
+            v-for="communication in communications"
+            :key="communication.id"
+          >
+            <router-link
+              style="height: 295px;"
+              :to="{name:'commdetail', params: { id: communication.id}}"
+            >
               <h6>{{communication.name}}</h6>
               <p>{{communication.description}}</p>
               <br>
-              <p><strong>{{communication.time}}</strong> </p>
+              <p>
+                <strong>{{communication.time}}</strong>
+              </p>
             </router-link>
           </div>
         </div>
@@ -36,11 +44,9 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import {
-  FETCH_COMMS
-} from "@/store/actions.type";
+import { FETCH_COMMS } from "@/store/actions.type";
 export default {
-  name: "communication",
+  name: "Communications",
   computed: {
     ...mapGetters(["communications"])
   },
@@ -51,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-.category-grid a{
+.category-grid a {
   margin-right: 1.5%;
 }
 </style>

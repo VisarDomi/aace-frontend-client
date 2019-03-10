@@ -135,9 +135,8 @@
   </div>
 </template>
 <script>
-
 export default {
-  name: "publications"
+  name: "Publications"
 };
 </script>
 <style scoped>

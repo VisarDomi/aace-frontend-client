@@ -24,17 +24,23 @@
                     <h4 style="margin-bottom:0px;">Dokumenta</h4>
 
                     <div class="row">
+                      <div
+                        class="item-block"
+                        v-for="document in communicationDocuments"
+                        :key="document.id"
+                      >
+                        <p>{{document.filename}}</p>
 
-                      <div class="item-block" v-for="document in communicationDocuments" :key="document.id">
-                        
-                        <p>{{document.filename}}</p>                        
-                        
-                        <a style="margin-bottom:10px;" class="btn btn-primary" :key="document.id" @click="downloadDoc(document.id, document.filename)"><i class="fa fa-file-zip-o"></i>Download Document</a>                    
-                        
+                        <a
+                          style="margin-bottom:10px;"
+                          class="btn btn-primary"
+                          :key="document.id"
+                          @click="downloadDoc(document.id, document.filename)"
+                        >
+                          <i class="fa fa-file-zip-o"></i>Download Document
+                        </a>
                       </div>
-                      
                     </div>
-
                   </li>
                 </ul>
               </div>
@@ -58,59 +64,56 @@
 
 <script>
 import axios from "axios";
-const FileSaver = require('file-saver');
+const FileSaver = require("file-saver");
 import { mapGetters } from "vuex";
 import JwtService from "@/common/jwt.service";
-import {
-  FETCH_COMM,
-  FETCH_DOCS,
-  ADD_COMMENT
-} from "@/store/actions.type";
+import { FETCH_COMM, FETCH_DOCS, ADD_COMMENT } from "@/store/actions.type";
 import store from "@/store";
 export default {
-  name: "communicationdetail",
+  name: "Communication Detail",
   mounted() {
     this.$store.dispatch(FETCH_COMM, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);
   },
-  data(){
-    return{
-      comment: '',
-      commentId: '',
+  data() {
+    return {
+      comment: "",
+      commentId: ""
       // ket commentId e bejm computed
       //suppozohet ta kem available , po ta bej {{comm.id}} m'del ne html
-    }
+    };
   },
   methods: {
-    sendComment(){
-      this.$store.dispatch(ADD_COMMENT, {id: this.comm.id, comment: this.comment})
+    sendComment() {
+      this.$store.dispatch(ADD_COMMENT, {
+        id: this.comm.id,
+        comment: this.comment
+      });
     },
-    downloadDoc(docID, docName){
+    downloadDoc(docID, docName) {
       axios
-        .get('https://aace.ml/api/media/media_officialcommunication/'+docID, {
-          responseType: 'arraybuffer',
+        .get("https://aace.ml/api/media/media_officialcommunication/" + docID, {
+          responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + JwtService.getToken(),
+            Authorization: "Bearer " + JwtService.getToken(),
             // 'Accept': 'application/pdf',
-            "Secure-Api-Key":
-        "asdfasdfetyeq"
+            "Secure-Api-Key": "asdfasdfetyeq"
           }
         })
         .then(res => {
-            // response.data is an empty object
-            const blob = new Blob([res.data], {
-              type: 'application/pdf',
-            });
-            FileSaver.saveAs(blob, docName);
+          // response.data is an empty object
+          const blob = new Blob([res.data], {
+            type: "application/pdf"
+          });
+          FileSaver.saveAs(blob, docName);
         });
-    
-  }
+    }
   },
 
   computed: {
     ...mapGetters(["comm", "communicationDocuments"])
-  },  
+  },
   watch: {
     $route(to) {
       this.$store.dispatch(FETCH_COMM, to.params);
@@ -122,7 +125,7 @@ export default {
 
 <style scoped>
 .pricing li:hover {
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 </style>

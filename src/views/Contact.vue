@@ -86,6 +86,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "Contact"
+};
+</script>
+
 <style scoped>
 .page-header {
   margin-bottom: 0px;

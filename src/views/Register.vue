@@ -56,9 +56,9 @@
               <hr class="hr-xs">
               <!-- <div class="form-group">{{ loading }}</div> -->
             </form>
-          <ul v-if="errors" class="error-messages">
-            <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
-          </ul>            
+            <ul v-if="errors" class="error-messages">
+              <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
+            </ul>
           </div>
 
           <div class="login-links">
@@ -69,7 +69,6 @@
         </main>
       </div>
     </header>
-
   </div>
 </template>
 
@@ -92,7 +91,7 @@ export default {
           email: this.email,
           password: this.password
         })
-        .then(() => this.$router.push({ name: "memberarea" }));
+        .then(() => this.$router.push({ name: "Member Area" }));
     }
   },
   computed: {

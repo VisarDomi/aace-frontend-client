@@ -536,7 +536,7 @@
 import axios from "axios";
 
 export default {
-  name: "ApplicationPage",
+  name: "Application",
   data() {
     return {
       //--------------- User -------
@@ -981,7 +981,7 @@ export default {
               console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               this.$router.push({
-                path: "/success"
+                name: "Success"
               });
             } else {
               console.log("String sent unsuccessfuly");

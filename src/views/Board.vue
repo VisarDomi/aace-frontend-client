@@ -44,7 +44,7 @@
                 <div class="team-avatar">
                   <img
                     class="img-responsive"
-                    src="http://keenthemes.com/assets/bootsnipp/member1.png"
+                    src="https://keenthemes.com/assets/bootsnipp/member1.png"
                     alt
                   >
                 </div>
@@ -59,7 +59,7 @@
                 <div class="team-avatar">
                   <img
                     class="img-responsive"
-                    src="http://keenthemes.com/assets/bootsnipp/member2.png"
+                    src="https://keenthemes.com/assets/bootsnipp/member2.png"
                     alt
                   >
                 </div>
@@ -74,7 +74,7 @@
                 <div class="team-avatar">
                   <img
                     class="img-responsive"
-                    src="http://keenthemes.com/assets/bootsnipp/member3.png"
+                    src="https://keenthemes.com/assets/bootsnipp/member3.png"
                     alt
                   >
                 </div>
@@ -96,7 +96,7 @@
 
 <script>
 export default {
-  name: "board"
+  name: "Board"
 };
 </script>
 

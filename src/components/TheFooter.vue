@@ -16,22 +16,19 @@
             <h6>AACE</h6>
             <ul class="footer-links">
               <li>
-                <router-link to="/about">About us</router-link>
+                <router-link :to="{name: 'About'}">About us</router-link>
               </li>
               <li>
-                <router-link to="/directory">Directory</router-link>
+                <router-link :to="{name: 'Directory'}">Directory</router-link>
               </li>
               <li>
-                <router-link to="/events">Events</router-link>
+                <router-link :to="{name: 'Events'}">Events</router-link>
               </li>
               <li>
-                <router-link to="/publications">Publications</router-link>
+                <router-link :to="{name: 'Publications'}">Publications</router-link>
               </li>
               <li>
-                <router-link to="/login">Login in</router-link>
-              </li>
-              <li>
-                <router-link to="/contact">Contact us</router-link>
+                <router-link :to="{name: 'Contact'}">Contact us</router-link>
               </li>
             </ul>
           </div>
@@ -40,19 +37,19 @@
             <h6>Useful links</h6>
             <ul class="footer-links">
               <li>
-                <router-link to="/membership">How to become a member</router-link>
+                <router-link :to="{name: 'Membership'}">How to become a member</router-link>
+              </li>
+              <li>
+                <router-link :to="{name: 'Login'}">Login in</router-link>
               </li>
               <!-- <li>
-                <router-link to="/subscribe">Subscribe to our newsletter</router-link>
+                <router-link :to="{name: 'Board'}">Contact the board</router-link>
               </li>-->
               <li>
-                <router-link to="/contact">Contact the board</router-link>
+                <router-link :to="{name: 'Privacy'}">Privacy Policy</router-link>
               </li>
               <li>
-                <router-link to="/privacy">Privacy Policy</router-link>
-              </li>
-              <li>
-                <router-link to="/terms">Terms and Agreement</router-link>
+                <router-link :to="{name: 'Terms'}">Terms and Agreement</router-link>
               </li>
             </ul>
           </div>
@@ -86,11 +83,11 @@
                   <i class="fa fa-twitter"></i>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a class="dribbble" href="#">
                   <i class="fa fa-dribbble"></i>
                 </a>
-              </li>
+              </li>-->
               <li>
                 <a class="linkedin" href="#">
                   <i class="fa fa-linkedin"></i>

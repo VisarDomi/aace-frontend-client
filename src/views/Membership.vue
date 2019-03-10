@@ -132,6 +132,6 @@
 
 <script>
 export default {
-  name: "membership"
+  name: "Membership"
 };
 </script>

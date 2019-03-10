@@ -6,7 +6,7 @@
       style="background-image: url(static/img/publication1.jpg)"
     >
       <div class="container no-shadow">
-        <router-link :to="{name: 'home'}">
+        <router-link :to="{name: 'Home'}">
           <h1 class="text-center" id="home">Go to homepage</h1>
         </router-link>
         <h1 class="text-center">(Page Not Found)</h1>
@@ -32,6 +32,13 @@
     <!-- END Main container -->
   </div>
 </template>
+
+<script>
+export default {
+  name: "Not Found"
+};
+</script>
+
 
 <style scoped>
 #home {

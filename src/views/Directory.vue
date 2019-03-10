@@ -128,7 +128,7 @@ import {
   CLEAN_PICTURES
 } from "@/store/actions.type";
 export default {
-  name: "directory",
+  name: "Directory",
   components: {
     //MemberCard
   },

@@ -28,6 +28,7 @@
 <script>
 import axios from "axios";
 export default {
+  name: "Success",
   mounted() {
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
     let TOKEN = localStorage.getItem("id_token");

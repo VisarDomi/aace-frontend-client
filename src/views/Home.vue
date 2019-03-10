@@ -16,7 +16,7 @@
           >This is the home of all engineers operating in Albania, the home for the Albanian scientific thought contributing in the development of the country. Local or foreign consulting engineers based in Albania are welcome to join the Association in order to give their contribution.</h6>
           <br>
           <br>
-          <router-link to="/membership">
+          <router-link :to="{name: 'Membership'}">
             <button class="btn btn-primary" type="submit">Get involved</button>
           </router-link>
         </div>
@@ -42,7 +42,7 @@
 
             <br>
             <br>
-            <router-link to="/about" class="btn btn-primary">Learn more</router-link>
+            <router-link :to="{name: 'About'}" class="btn btn-primary">Learn more</router-link>
           </div>
 
           <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
@@ -104,37 +104,37 @@
           </header>
 
           <div class="category-grid">
-            <router-link to="/events" style="height: 295px;">
+            <router-link :to="{name: 'Events'}" style="height: 295px;">
               <i class="fa fa-calendar"></i>
               <h6>Events</h6>
               <p>Attend events organized by members and directors</p>
             </router-link>
 
-            <router-link to="/browse" style="height: 295px;">
+            <router-link :to="{name: 'Directory'}" style="height: 295px;">
               <i class="fa fa-clipboard"></i>
               <h6>Engineer Directory</h6>
               <p>Find all member engineers in the platform</p>
             </router-link>
 
-            <router-link to="/publications" style="height: 295px;">
+            <router-link :to="{name: 'Publications'}" style="height: 295px;">
               <i class="fa fa-newspaper-o"></i>
               <h6>Publications</h6>
               <p>Read about our latest developments</p>
             </router-link>
 
-            <router-link to="/membership" style="height: 295px;">
+            <router-link :to="{name: 'Membership'}" style="height: 295px;">
               <i class="fa fa-users"></i>
               <h6>Membership</h6>
               <p>Learn the rules and how to become a member</p>
             </router-link>
 
-            <router-link to="/board" style="height: 295px;">
+            <router-link :to="{name: 'Board'}" style="height: 295px;">
               <i class="fa fa-sitemap"></i>
               <h6>Board of directors</h6>
               <p>Get to know our board of directors</p>
             </router-link>
 
-            <router-link to="/login" style="height: 295px;">
+            <router-link :to="{name: 'Login'}" style="height: 295px;">
               <i class="fa fa-sign-in"></i>
               <h6>Member platform</h6>
               <p>The social network platform for our members</p>
@@ -144,7 +144,7 @@
       </section>
       <!-- END Categories -->
       <!-- Newsletter -->
-      <section
+      <!-- <section
         class="bg-img text-center"
         style="background-image: url(/static/img/newsletter_plc.jpg)"
       >
@@ -164,7 +164,7 @@
             </div>
           </form>
         </div>
-      </section>
+      </section>-->
       <!-- END Newsletter -->
     </main>
     <!-- END Main container -->
@@ -173,7 +173,7 @@
 
 <script>
 export default {
-  name: "home"
+  name: "Home"
 };
 </script>
 

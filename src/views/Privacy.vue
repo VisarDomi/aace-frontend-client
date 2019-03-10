@@ -24,3 +24,10 @@
     <!-- END Main container -->
   </div>
 </template>
+
+<script>
+export default {
+  name: "Privacy"
+};
+</script>
+

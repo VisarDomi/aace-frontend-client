@@ -7,7 +7,7 @@ export default new Router({
   routes: [
     {
       path: "",
-      name: "home",
+      name: "Home",
       component: () => import("@/views/Home"),
       meta: {
         title: "Home",
@@ -25,7 +25,7 @@ export default new Router({
     },
     {
       path: "/about",
-      name: "about",
+      name: "About",
       component: () => import("@/views/About"),
       meta: {
         title: "About",
@@ -43,10 +43,10 @@ export default new Router({
     },
     {
       path: "/applicationstatus",
-      name: "applicationstatus",
+      name: "Application Status",
       component: () => import("@/views/ApplicationStatus"),
       meta: {
-        title: "About",
+        title: "Application Status",
         metaTags: [
           {
             name: "description",
@@ -61,7 +61,7 @@ export default new Router({
     },
     {
       path: "/commdetail/:id",
-      name: "commdetail",
+      name: "Communication Detail",
       component: () => import("@/views/CommDetail"),
       meta: {
         title: "Communication Detail",
@@ -78,26 +78,26 @@ export default new Router({
       }
     },
     {
-      path: "/communication",
-      name: "communication",
-      component: () => import("@/views/Communication"),
+      path: "/communications",
+      name: "Communications",
+      component: () => import("@/views/Communications"),
       meta: {
-        title: "Communication",
+        title: "Communications",
         metaTags: [
           {
             name: "description",
-            content: "The communication page of AACE."
+            content: "The communications page of AACE."
           },
           {
             property: "og:description",
-            content: "The communication page of AACE."
+            content: "The communications page of AACE."
           }
         ]
       }
     },
     {
       path: "/board",
-      name: "board",
+      name: "Board",
       component: () => import("@/views/Board"),
       meta: {
         title: "Board",
@@ -115,7 +115,7 @@ export default new Router({
     },
     {
       path: "/membership",
-      name: "membership",
+      name: "Membership",
       component: () => import("@/views/Membership"),
       meta: {
         title: "Membership",
@@ -133,7 +133,7 @@ export default new Router({
     },
     {
       path: "/directory",
-      name: "directory",
+      name: "Directory",
       component: () => import("@/views/Directory"),
       meta: {
         title: "Directory",
@@ -151,7 +151,7 @@ export default new Router({
     },
     {
       path: "/events",
-      name: "events",
+      name: "Events",
       component: () => import("@/views/Events"),
       meta: {
         title: "Events",
@@ -169,7 +169,7 @@ export default new Router({
     },
     {
       path: "/publications",
-      name: "publications",
+      name: "Publications",
       component: () => import("@/views/Publications"),
       meta: {
         title: "Publications",
@@ -187,7 +187,7 @@ export default new Router({
     },
     {
       path: "/profile/:id",
-      name: "profile",
+      name: "Profile",
       component: () => import("@/views/Profile"),
       meta: {
         title: "Profile",
@@ -205,7 +205,7 @@ export default new Router({
     },
     {
       path: "/contact",
-      name: "contact",
+      name: "Contact",
       component: () => import("@/views/Contact"),
       meta: {
         title: "Contact",
@@ -223,7 +223,7 @@ export default new Router({
     },
     {
       path: "/application",
-      name: "application",
+      name: "Application",
       component: () => import("@/views/Application"),
       meta: {
         title: "Application",
@@ -249,7 +249,7 @@ export default new Router({
     },
     {
       path: "/login",
-      name: "login",
+      name: "Login",
       component: () => import("@/views/Login"),
       meta: {
         title: "Login",
@@ -267,7 +267,7 @@ export default new Router({
     },
     {
       path: "/register",
-      name: "register",
+      name: "Register",
       component: () => import("@/views/Register"),
       meta: {
         title: "Register",
@@ -285,18 +285,18 @@ export default new Router({
     },
     {
       path: "*",
-      name: "not_found",
+      name: "Not Found",
       component: () => import("@/views/NotFound"),
       meta: {
         title: "Not Found",
         metaTags: [
           {
             name: "description",
-            content: "The not_found page of AACE."
+            content: "The not found page of AACE."
           },
           {
             property: "og:description",
-            content: "The not_found page of AACE."
+            content: "The not found page of AACE."
           }
         ]
       }
@@ -357,10 +357,10 @@ export default new Router({
     },
     {
       path: "/memberarea",
-      name: "memberarea",
+      name: "Member Area",
       component: () => import("@/views/MemberArea"),
       meta: {
-        title: "UserArea",
+        title: "Member Area",
         metaTags: [
           {
             name: "description",

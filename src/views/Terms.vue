@@ -1,6 +1,6 @@
 <template>
   <div>
-        <!-- Page header -->
+    <!-- Page header -->
     <header
       class="page-header bg-img size-sm"
       style="background-image: url(static/img/bg-banner2.jpg)"
@@ -18,11 +18,15 @@
 
           <p>no terms</p>
         </div>
-
       </section>
       <!-- END Company detail -->
     </main>
     <!-- END Main container -->
-
   </div>
 </template>
+
+<script>
+export default {
+  name: "Terms"
+};
+</script>
