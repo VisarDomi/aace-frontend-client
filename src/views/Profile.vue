@@ -174,7 +174,7 @@ export default {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },
   computed: {
-    ...mapGetters(["currentUser", "profile", "isAuthenticated", "profilePicture", "educations","experience"])
+    ...mapGetters(["currentUser", "profile", "isAuthenticated", "profilePicture", "educations","experiences"])
   },  
   watch: {
     $route(to) {

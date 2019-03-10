@@ -65,7 +65,9 @@
           <h4 v-if="currentUser.comment_from_administrator">Comment from secretary:</h4>
           <p>{{currentUser.comment_from_administrator}}</p>
           <br>
-          <button type="submit" class="btn btn-primary" v-if="status == 'rebutted'">Fix application</button>
+          <router-link :to="{name: 'ReApplication'}" v-if="status == 'rebutted'">
+            <button type="submit" class="btn btn-primary" >Fix application</button>
+          </router-link>
         </div>
       </section>
       <!-- END Company detail -->

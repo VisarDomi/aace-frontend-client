@@ -248,6 +248,32 @@ export default new Router({
       }
     },
     {
+      path: "/re-application",
+      name: "ReApplication",
+      component: () => import("@/views/ReApplication"),
+      meta: {
+        title: "ReApplication",
+        metaTags: [
+          {
+            name: "description",
+            content: "The re-application page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The re-application page of AACE."
+          }
+        ]
+      },
+      beforeEnter(to, from, next) {
+        if (localStorage.getItem("id_token")) {
+          //is there a way to get this using the new structure functionality?
+          next();
+        } else {
+          next("/login");
+        }
+      }
+    },
+    {
       path: "/login",
       name: "Login",
       component: () => import("@/views/Login"),

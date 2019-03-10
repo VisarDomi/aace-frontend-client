@@ -20,7 +20,7 @@ const state = {
   profile: {},
   profilePicture: "",
   educations: {},
-  experience: {},
+  experiences: {},
   status: ""
 };
 
@@ -34,8 +34,8 @@ const getters = {
   educations(state) {
     return state.educations;
   },
-  experience(state) {
-    return state.experience;
+  experiences(state) {
+    return state.experiences;
   },
   status(state) {
     return state.status;
@@ -97,9 +97,11 @@ const mutations = {
   },
   [SET_EDUCATION](state, education) {
     state.educations = education;
+    console.log('state educations set')
   },
   [SET_EXPERIENCE](state, experience) {
-    state.experience = experience;
+    state.experiences = experience;
+    console.log('state experience set')
   },
   [SET_STATUS](state, status) {
     state.status = status;
