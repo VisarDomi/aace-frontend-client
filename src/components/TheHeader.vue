@@ -26,23 +26,22 @@
         </div>
         <div v-else class="pull-right user-login">
           <i class="fa fa-user fa-2x"></i>
-          {{currentUser.email}}
-          <button
-            class="btn btn-sm btn-primary"
-            @click="logout"
-          >Logout</button>
+          <router-link :to="{name:'Profile', params: { id: currentUser.id}}">Profile</router-link>
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
         <ul class="nav-menu">
           <li>
-            <router-link to="/">AACE</router-link>
+            <router-link :to="{name: 'Home'}">AACE</router-link>
             <ul>
               <li>
                 <router-link :to="{name: 'Home'}">Home</router-link>
               </li>
               <li>
                 <router-link :to="{name: 'About'}">About us</router-link>
+              </li>
+              <li>
+                <router-link :to="{name: 'Contact'}">Contact us</router-link>
               </li>
               <!-- <li>
                 <router-link :to="{name: 'Board'}">Board</router-link>
@@ -56,11 +55,11 @@
             <router-link :to="{name: 'Directory'}">Directory</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Contact'}">Contact</router-link>
-          </li>
-          <li>
             <router-link :to="{name: 'Member Area'}">Member area</router-link>
             <ul>
+              <li>
+                <router-link :to="{name:'Profile', params: { id: currentUser.id}}">Profile</router-link>
+              </li>
               <li>
                 <router-link :to="{name: 'Application'}">Application Form</router-link>
               </li>
@@ -69,9 +68,6 @@
               </li>
               <li>
                 <router-link :to="{name: 'Communications'}">Communications</router-link>
-              </li>
-              <li>
-                <router-link :to="{name:'Profile', params: { id: currentUser.id}}">Profile</router-link>
               </li>
               <li>
                 <a href="#">Polls</a>
@@ -118,9 +114,10 @@ export default {
   width: 100%;
 } */
 
-@media screen and (min-width: 0px) and (max-width: 770px) {
+/* dont show logo on small screens */
+@media screen and (min-width: 0px) and (max-width: 600px) {
   .logo-wrapper {
     display: none !important;
-  } /* dont show logo on small screens */
+  }
 }
 </style>
