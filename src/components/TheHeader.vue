@@ -69,7 +69,7 @@
                 <router-link to="/application">Application Form</router-link>
               </li>
               <li>
-                <router-link to="/about">Application Status</router-link>
+                <router-link to="/applicationstatus">Application Status</router-link>
               </li>
               <li>
                 <router-link to="/communication">Communications</router-link>
