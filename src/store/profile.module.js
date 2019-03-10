@@ -21,7 +21,7 @@ const state = {
   profilePicture: "",
   educations: {},
   experience: {},
-  status : ""
+  status: ""
 };
 
 const getters = {
@@ -37,16 +37,16 @@ const getters = {
   experience(state) {
     return state.experience;
   },
-  status(state){
+  status(state) {
     return state.status;
   }
 };
 
 const actions = {
-  async [FETCH_STATUS](context){
+  async [FETCH_STATUS](context) {
     const id = UserService.getUser().id;
-    const {data} = await MemberService.get(id);
-      context.commit(SET_STATUS, data.register_status)
+    const { data } = await MemberService.get(id);
+    context.commit(SET_STATUS, data.register_status);
   },
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
@@ -93,19 +93,16 @@ const mutations = {
     state.errors = {};
   },
   [SET_PICTURE](state, picture) {
-
     state.profilePicture = picture;
   },
   [SET_EDUCATION](state, education) {
-
     state.educations = education;
   },
   [SET_EXPERIENCE](state, experience) {
-
     state.experience = experience;
   },
-  [SET_STATUS](state,status){
-    state.status=status;
+  [SET_STATUS](state, status) {
+    state.status = status;
   }
 };
 

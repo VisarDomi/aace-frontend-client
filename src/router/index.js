@@ -97,7 +97,21 @@ export default new Router({
     },
     {
       path: "/board",
-      component: () => import("@/views/Board")
+      name: "board",
+      component: () => import("@/views/Board"),
+      meta: {
+        title: "Board",
+        metaTags: [
+          {
+            name: "description",
+            content: "The board page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The board page of AACE."
+          }
+        ]
+      }
     },
     {
       path: "/membership",
@@ -137,11 +151,39 @@ export default new Router({
     },
     {
       path: "/events",
-      component: () => import("@/views/Events")
+      name: "events",
+      component: () => import("@/views/Events"),
+      meta: {
+        title: "Events",
+        metaTags: [
+          {
+            name: "description",
+            content: "The events page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The events page of AACE."
+          }
+        ]
+      }
     },
     {
       path: "/publications",
-      component: () => import("@/views/Publications")
+      name: "publications",
+      component: () => import("@/views/Publications"),
+      meta: {
+        title: "Publications",
+        metaTags: [
+          {
+            name: "description",
+            content: "The publications page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The publications page of AACE."
+          }
+        ]
+      }
     },
     {
       path: "/profile/:id",
@@ -237,6 +279,78 @@ export default new Router({
           {
             property: "og:description",
             content: "The register page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "*",
+      name: "not_found",
+      component: () => import("@/views/NotFound"),
+      meta: {
+        title: "Not Found",
+        metaTags: [
+          {
+            name: "description",
+            content: "The not_found page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The not_found page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/success",
+      name: "Success",
+      component: () => import("@/views/Success"),
+      meta: {
+        title: "Success",
+        metaTags: [
+          {
+            name: "description",
+            content: "The success page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The success page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/privacy",
+      name: "Privacy",
+      component: () => import("@/views/Privacy"),
+      meta: {
+        title: "Privacy",
+        metaTags: [
+          {
+            name: "description",
+            content: "The privacy page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The privacy page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/terms",
+      name: "Terms",
+      component: () => import("@/views/Terms"),
+      meta: {
+        title: "Terms",
+        metaTags: [
+          {
+            name: "description",
+            content: "The terms page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The terms page of AACE."
           }
         ]
       }

@@ -66,7 +66,7 @@
 
             <div class="action-buttons">
               <!-- <a class="btn btn-primary" href="#">Apply with linkedin</a> -->
-              <a href="/application" class="btn btn-success">Apply now</a>
+              <router-link to="/application" class="btn btn-success">Apply now</router-link>
               <!-- <router-link to="/application" class="btn btn-success">Apply now</router-link> -->
             </div>
           </div>

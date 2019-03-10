@@ -8,7 +8,7 @@ const ApiService = {
   init() {
     axios.defaults.headers.common = {
       "Secure-Api-Key":
-        "asdfasdfetyeq" /* unsecure, because by definition keys aren't meant to be on the frontend */,
+        "asdfasdfetyeq" /* needs to be put on environment variable */,
       "Content-Type": "application/json"
     };
     Vue.use(VueAxios, axios);
@@ -74,10 +74,10 @@ export const MediaService = {
   getPicture(slug) {
     return ApiService.get("user", `${slug}/media/all`);
   },
-  getCommunicationDocuments(slug){
-    return ApiService.get("officialcommunication", `${slug}/media/all`)
+  getCommunicationDocuments(slug) {
+    return ApiService.get("officialcommunication", `${slug}/media/all`);
   }
-  //setUserEducation(){}, 
+  //setUserEducation(){},
   //setUserExperience(){},
   //setUserSkills
 };
@@ -94,16 +94,14 @@ export const ExperienceService = {
   }
 };
 
-
 export const CommunicationService = {
   getCommunications() {
     return ApiService.get("officialcommunication", "all");
   },
-  getCommunication(id){
-    return ApiService.get('officialcommunication',id);
+  getCommunication(id) {
+    return ApiService.get("officialcommunication", id);
   },
-  postCommunication(commId, comment){
+  postCommunication(commId, comment) {
     return ApiService.post(`officialcommunication/${commId}/comment`, comment);
   }
 };
-
