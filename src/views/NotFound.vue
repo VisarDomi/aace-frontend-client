@@ -9,14 +9,14 @@
         <router-link :to="{name: 'Home'}">
           <h1 class="text-center" id="home">Go to homepage</h1>
         </router-link>
-        <router-link :to="{name: 'Contact'}">
-          <h3 class="text-center" id="home">Contact us</h3>
-        </router-link>
-        <router-link :to="{name: 'About'}">
-          <h3 class="text-center" id="home">About us</h3>
+        <router-link :to="{name: 'Membership'}">
+          <h3 class="text-center" id="home">Membership</h3>
         </router-link>
         <router-link :to="{name: 'Directory'}">
           <h3 class="text-center" id="home">Directory</h3>
+        </router-link>
+        <router-link :to="{name: 'Contact'}">
+          <h3 class="text-center" id="home">Contact us</h3>
         </router-link>
         <router-link :to="{name: 'Member Area'}">
           <h3 class="text-center" id="home">Member Area</h3>
