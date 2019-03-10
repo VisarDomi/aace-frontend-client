@@ -33,6 +33,14 @@
                   v-model="last_name"
                 >
               </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control input-lg"
+                  placeholder="Profesioni"
+                  v-model="profession"
+                >
+              </div>
 
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Gjinia" v-model="sex">
@@ -126,13 +134,7 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Email address"
-                      v-model="email"
-                      disabled
-                    >
+                    <input type="text" class="form-control" :placeholder="email" disabled>
                   </div>
                 </div>
               </div>
@@ -155,13 +157,15 @@
               <div
                 class="col-xs-12"
                 :key="educationInput.randomid"
-                v-for="(educationInput, index) in educationInputs">
+                v-for="(educationInput, index) in educationInputs"
+              >
                 <div class="item-block">
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
                       @click="onDeleteEducation(educationInput.randomid)"
-                      type="button">
+                      type="button"
+                    >
                       <i class="ti-close"></i>
                     </button>
 
@@ -181,61 +185,73 @@
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <label class='col-sm-6'>Vendos tipin e edukimit*</label>
+                        <label class="col-sm-6">Vendos tipin e edukimit*</label>
                         <div class="form-group">
-                          <select class="form-control" v-model='education_type_id' @change='consoleLog'>
-                            <option v-for="option in education_type_options" 
-                                    v-bind:value="option.id"
-                                    :key='option.id'>
-                              {{ option.text }}
-                            </option>
+                          <select
+                            class="form-control"
+                            v-model="education_type_id"
+                            @change="consoleLog"
+                          >
+                            <option
+                              v-for="option in education_type_options"
+                              v-bind:value="option.id"
+                              :key="option.id"
+                            >{{ option.text }}</option>
                           </select>
                         </div>
-                        
+
                         <div class="form-group">
-                          <label class='col-sm-2'>Degree</label>
+                          <label class="col-sm-2">Degree</label>
                           <div class="form-group col-sm-5">
-                            <select class="form-control" 
-                            v-model='education_degree_id' 
-                            @change='handleEducationOptionDegreeChange($event, index)'>
-                              <option v-for="option in education_degree_options[education_type_id]" 
-                                      v-bind:value="option.id"
-                                      :key='option.id'>
-                                {{ option.text }}
-                              </option>
+                            <select
+                              class="form-control"
+                              v-model="education_degree_id"
+                              @change="handleEducationOptionDegreeChange($event, index)"
+                            >
+                              <option
+                                v-for="option in education_degree_options[education_type_id]"
+                                v-bind:value="option.id"
+                                :key="option.id"
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
                             <input
                               type="text"
-                              :disabled='!education_degree_other'
+                              :disabled="!education_degree_other"
                               class="form-control"
                               v-model="educationInput.degree"
-                              placeholder="...">
+                              placeholder="..."
+                            >
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label class='col-sm-2'>Major</label>
+                          <label class="col-sm-2">Major</label>
                           <div class="form-group col-sm-5">
-                            <select class="form-control" v-model='education_major_id' @change='handleEducationOptionMajorChange($event, index)'>
-                              <option v-for="option in education_major_options[education_type_id]" 
-                                      v-bind:value="option.id"
-                                      :key='option.id'>
-                                {{ option.text }}
-                              </option>
+                            <select
+                              class="form-control"
+                              v-model="education_major_id"
+                              @change="handleEducationOptionMajorChange($event, index)"
+                            >
+                              <option
+                                v-for="option in education_major_options[education_type_id]"
+                                v-bind:value="option.id"
+                                :key="option.id"
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
                             <input
                               type="text"
-                              :disabled='!education_major_other'
+                              :disabled="!education_major_other"
                               class="form-control"
                               v-model="educationInput.field_of_study"
-                              placeholder="...">
+                              placeholder="..."
+                            >
                           </div>
                         </div>
-                        
+
                         <div class="form-group">
                           <input
                             type="text"
@@ -285,7 +301,6 @@
           </div>
         </section>
         <!-- END Education -->
-
         <!-- Work Experience -->
         <section>
           <div class="container">
@@ -295,13 +310,18 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" 
-              :key='experienceInput.randomid'
-              v-for='(experienceInput, index) in experienceInputs'>
+              <div
+                class="col-xs-12"
+                :key="experienceInput.randomid"
+                v-for="(experienceInput, index) in experienceInputs"
+              >
                 <div class="item-block">
                   <div class="item-form">
-                    <button class="btn btn-danger btn-float btn-remove" 
-                      @click="onDeleteExperience(experienceInput.randomid)" type="button">
+                    <button
+                      class="btn btn-danger btn-float btn-remove"
+                      @click="onDeleteExperience(experienceInput.randomid)"
+                      type="button"
+                    >
                       <i class="ti-close"></i>
                     </button>
 
@@ -400,9 +420,11 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" 
-              :key='skillInput.randomid'
-              v-for='(skillInput, index) in skillInputs'>
+              <div
+                class="col-xs-12"
+                :key="skillInput.randomid"
+                v-for="(skillInput, index) in skillInputs"
+              >
                 <div class="item-block">
                   <div class="item-form">
                     <button
@@ -416,10 +438,12 @@
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="form-group">
-                          <input type="file" 
-                          ref="skill" 
-                          multiple 
-                          @change="handleFileUploadSkill(skillInput.randomid, index)">
+                          <input
+                            type="file"
+                            ref="skill"
+                            multiple
+                            @change="handleFileUploadSkill(skillInput.randomid, index)"
+                          >
                           <span class="help-block">Please choose a photo of your skill</span>
                         </div>
                       </div>
@@ -479,15 +503,14 @@
                   class="btn btn-primary btn-duplicator"
                   @click="onAddSkill"
                   type="button"
-                >Add experience</button>
+                >Add skill</button>
               </div>
             </div>
           </div>
         </section>
         <!-- END Skill -->
-
         <!-- Submit -->
-        <section >
+        <section>
           <!-- class="bg-img" style="background-image: url(static/img/newsletter_plc.jpg);" -->
           <div class="container">
             <header class="section-header">
@@ -520,6 +543,7 @@ export default {
 
       first_name: "",
       last_name: "",
+      profession: "",
       sex: "",
       summary: "",
       country: "",
@@ -537,40 +561,34 @@ export default {
       //--------------- Education -------
       educationInputs: [],
       education_files_index: 0,
-        
-      education_type_id: '',
+
+      education_type_id: "",
       education_type_options: [
-        { text: "Shkolle e mesme", id:1 },
-        { text: "Shkolle e larte", id:2 }
+        { text: "Shkolle e mesme", id: 1 },
+        { text: "Shkolle e larte", id: 2 }
       ],
 
-      education_degree_id: '',
+      education_degree_id: "",
       education_degree_other: false,
       education_degree_options: {
-        1: [
-          { text: 'Pergjithshme', id:1 },
-          { text: 'Teknike', id:2},
-        ],
+        1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }],
         2: [
-          { text: 'Bachelor', id:3 },
-          { text: 'Master', id:4 },
-          { text: 'Diplom', id:5 },
-          { text: 'Te tjera', id:6 },
-        ],
+          { text: "Bachelor", id: 3 },
+          { text: "Master", id: 4 },
+          { text: "Diplom", id: 5 },
+          { text: "Te tjera", id: 6 }
+        ]
       },
 
-      education_major_id: '',
+      education_major_id: "",
       education_major_other: false,
       education_major_options: {
-        1: [
-          { text: '???', id:1 },
-          { text: '???', id:2},
-        ],
+        1: [{ text: "???", id: 1 }, { text: "???", id: 2 }],
         2: [
-          { text: 'Inxhinier Civil', id:3 },
-          { text: 'Inxhinier Elektrik', id:4 },
-          { text: 'Te tjera', id:5 },
-        ],
+          { text: "Inxhinier Civil", id: 3 },
+          { text: "Inxhinier Elektrik", id: 4 },
+          { text: "Te tjera", id: 5 }
+        ]
       },
       //---------------- Experience -------
       experienceInputs: [],
@@ -582,39 +600,45 @@ export default {
     };
   },
   methods: {
-    handleEducationOptionDegreeChange(e, i){
-      let educationOptionId = e.target.value
-      if(educationOptionId == 6){
+    handleEducationOptionDegreeChange(e, i) {
+      let educationOptionId = e.target.value;
+      if (educationOptionId == 6) {
         this.education_degree_other = true;
-      }else{
+      } else {
         this.education_degree_other = false;
-        if(this.education_type_id == 1)
-          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id][educationOptionId-1].text  
+        if (this.education_type_id == 1)
+          this.educationInputs[i].degree = this.education_degree_options[
+            this.education_type_id
+          ][educationOptionId - 1].text;
         else
-          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id][educationOptionId-3].text
+          this.educationInputs[i].degree = this.education_degree_options[
+            this.education_type_id
+          ][educationOptionId - 3].text;
       }
-      console.log(this.educationInputs[i].field_of_study)
-      console.log(this.educationInputs[i].degree)
-      console.log('')
+      console.log(this.educationInputs[i].field_of_study);
+      console.log(this.educationInputs[i].degree);
+      console.log("");
     },
-    handleEducationOptionMajorChange(e, i){
-      let educationOptionId = e.target.value
-      if(educationOptionId == 5){
+    handleEducationOptionMajorChange(e, i) {
+      let educationOptionId = e.target.value;
+      if (educationOptionId == 5) {
         this.education_major_other = true;
-      }else{
+      } else {
         this.education_major_other = false;
-        if(this.education_type_id == 1)
-          this.educationInputs[i].field_of_study = this.education_major_options[this.education_type_id][educationOptionId-1].text  
+        if (this.education_type_id == 1)
+          this.educationInputs[i].field_of_study = this.education_major_options[
+            this.education_type_id
+          ][educationOptionId - 1].text;
         else
-          this.educationInputs[i].field_of_study = this.education_major_options[this.education_type_id][educationOptionId-3].text
-      console.log(this.educationInputs[i].field_of_study)
-      console.log(this.educationInputs[i].degree)
-      console.log('')
+          this.educationInputs[i].field_of_study = this.education_major_options[
+            this.education_type_id
+          ][educationOptionId - 3].text;
+        console.log(this.educationInputs[i].field_of_study);
+        console.log(this.educationInputs[i].degree);
+        console.log("");
       }
     },
-    consoleLog(){
-
-    },
+    consoleLog() {},
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
     },
@@ -631,18 +655,20 @@ export default {
     onAddEducation() {
       const newEducation = {
         randomid: Math.random() * Math.random() * 1000,
-        education_type: '',
-        degree: '',
-        field_of_study: '',
-        school: '',
-        from_date: '',
-        to_date: '',
-        description: ''
-      }
-      this.educationInputs.push(newEducation)
+        education_type: "",
+        degree: "",
+        field_of_study: "",
+        school: "",
+        from_date: "",
+        to_date: "",
+        description: ""
+      };
+      this.educationInputs.push(newEducation);
     },
     onDeleteEducation(randomid) {
-      this.educationInputs = this.educationInputs.filter(education => education.randomid !== randomid)
+      this.educationInputs = this.educationInputs.filter(
+        education => education.randomid !== randomid
+      );
     },
     // ------- Experience -------
     handleFileUploadExperience(randomid, index) {
@@ -650,23 +676,27 @@ export default {
       for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
         files.push(this.$refs.experience[index].files[i]);
       }
-      this.experienceInputs.filter(experience => experience.randomid === randomid)[0].files = files;
+      this.experienceInputs.filter(
+        experience => experience.randomid === randomid
+      )[0].files = files;
     },
     onAddExperience() {
       const newExperience = {
         randomid: Math.random() * Math.random() * 1000,
-        employer: '',
-        company: '',
-        location: '',
-        from_date: '',
-        to_date: '',
+        employer: "",
+        company: "",
+        location: "",
+        from_date: "",
+        to_date: "",
         is_currently_work_here: false,
-        description: ''
-      }
-      this.experienceInputs.push(newExperience)
+        description: ""
+      };
+      this.experienceInputs.push(newExperience);
     },
     onDeleteExperience(randomid) {
-      this.experienceInputs = this.experienceInputs.filter(experience => experience.randomid !== randomid)
+      this.experienceInputs = this.experienceInputs.filter(
+        experience => experience.randomid !== randomid
+      );
     },
     // ------- Skill -------
     handleFileUploadSkill(randomid, index) {
@@ -674,98 +704,96 @@ export default {
       for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
         files.push(this.$refs.skill[index].files[i]);
       }
-      this.skillInputs.filter(skill => skill.randomid === randomid)[0].files = files;
+      this.skillInputs.filter(
+        skill => skill.randomid === randomid
+      )[0].files = files;
     },
     onAddSkill() {
       const newSkill = {
         randomid: Math.random() * Math.random() * 1000,
-        releaser: '',
-        name: '',
-        from_date: '',
-        to_date: '',
-        description: '',
-      }
-      this.skillInputs.push(newSkill)
+        releaser: "",
+        name: "",
+        from_date: "",
+        to_date: "",
+        description: ""
+      };
+      this.skillInputs.push(newSkill);
     },
     onDeleteSkill(randomid) {
-      this.skillInputs = this.skillInputs.filter(skill => skill.randomid !== randomid)
+      this.skillInputs = this.skillInputs.filter(
+        skill => skill.randomid !== randomid
+      );
     },
 
-    apply() {
-      
-      // ------- Basic
+    send_experiences() {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = JSON.parse(localStorage.getItem("token"));
+      let TOKEN = localStorage.getItem("id_token");
 
-      console.log(TOKEN);
-      console.log(USER_ID);
-      // ------- User -------
-      let formDataUser = new FormData();
-      formDataUser.append("file", this.profile_picture_file);
-      let user_string = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        sex: this.sex,
-        summary: this.summary,
-        country: this.country,
-        // industry: this.industry,
-        phone: this.phone,
-        address: this.address,
-        birthday: this.birthday,
-        website: this.website
-        // // email: this.email,
-      };
-      
-      
-      // ------- Experience file and post -------
-      for(var i=0; i<this.experienceInputs.length; i++){
-        axios.post(
-          "https://aace.ml/api/user/" + USER_ID + "/experience",
-          this.experienceInputs[i],
-          {
-            // "Content-Type": "multipart/form-data",
-            headers: {
-              Authorization: "Bearer " + TOKEN
-            }
-          }
-        ).then(res => {
-          console.log('post experience')
-          let EXPERIENCE_ID = res.data.id;
-
-          let formDataExperience = new FormData();
-          if(this.experienceInputs[this.experience_files_index].files){
-            for(let j=0; j < this.experienceInputs[this.experience_files_index].files.length; j++){
-              formDataExperience.append("file", this.experienceInputs[this.experience_files_index].files[j])
-            }
-            this.experience_files_index++
-
-            axios.post(
-              "https://aace.ml/api/user/" +
-                USER_ID +
-                "/experience/" +
-                EXPERIENCE_ID +
-                "/media",
-              formDataExperience,
-              {
-                "Content-Type": "multipart/form-data",
-                headers: {
-                  Authorization: "Bearer " + TOKEN
-                }
+      for (var i = 0; i < this.experienceInputs.length; i++) {
+        axios
+          .post(
+            "https://aace.ml/api/user/" + USER_ID + "/experience",
+            this.experienceInputs[i],
+            {
+              // "Content-Type": "multipart/form-data",
+              headers: {
+                Authorization: "Bearer " + TOKEN
               }
-            ).then(res => {
-              if (res.status == 200) {
-                console.log("pdf updated sucessfully experience.");
-                this.$router.push({
-                  name: "SuccessSentPage"
-                });
-              }
-            }).catch(err => console.log(err));
+            }
+          )
+          .then(res => {
+            console.log("post experience");
+            let EXPERIENCE_ID = res.data.id;
 
-          } // closes the if statement
-        })
+            let formDataExperience = new FormData();
+            if (this.experienceInputs[this.experience_files_index].files) {
+              for (
+                let j = 0;
+                j <
+                this.experienceInputs[this.experience_files_index].files.length;
+                j++
+              ) {
+                formDataExperience.append(
+                  "file",
+                  this.experienceInputs[this.experience_files_index].files[j]
+                );
+              }
+              this.experience_files_index++;
+
+              axios
+                .post(
+                  "https://aace.ml/api/user/" +
+                    USER_ID +
+                    "/experience/" +
+                    EXPERIENCE_ID +
+                    "/media",
+                  formDataExperience,
+                  {
+                    "Content-Type": "multipart/form-data",
+                    headers: {
+                      Authorization: "Bearer " + TOKEN
+                    }
+                  }
+                )
+                .then(res => {
+                  if (res.status == 200) {
+                    console.log("pdf updated sucessfully experience.");
+                    // this.$router.push({
+                    //   name: "/success"
+                    // });
+                  }
+                })
+                .catch(err => console.log(err));
+            } // closes the if statement
+          });
       }
-      // ------- Skill file and post -------
+    },
+    send_skills() {
+      let AACE_URL_USER = "https://aace.ml/api/user/";
+      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+      let TOKEN = localStorage.getItem("id_token");
+
       for (var i = 0; i < this.skillInputs.length; i++) {
         axios
           .post(
@@ -783,11 +811,18 @@ export default {
             let SKILL_ID = res.data.id;
 
             let formDataSkill = new FormData();
-            if(this.skillInputs[this.skill_files_index].files){
-              for(let j=0; j < this.skillInputs[this.skill_files_index].files.length; j++){
-                formDataSkill.append("file", this.skillInputs[this.skill_files_index].files[j])
+            if (this.skillInputs[this.skill_files_index].files) {
+              for (
+                let j = 0;
+                j < this.skillInputs[this.skill_files_index].files.length;
+                j++
+              ) {
+                formDataSkill.append(
+                  "file",
+                  this.skillInputs[this.skill_files_index].files[j]
+                );
               }
-              this.skill_files_index++
+              this.skill_files_index++;
               axios
                 .post(
                   "https://aace.ml/api/user/" +
@@ -806,104 +841,161 @@ export default {
                 .then(res => {
                   if (res.status == 200) {
                     console.log("pdf updated sucessfully.");
-                    this.$router.push({
-                      path: "/success"
-                    });
+                    // this.$router.push({
+                    //   path: "/success"
+                    // });
                   }
                 })
                 .catch(err => console.log(err));
-              }
+            }
           });
       }
+    },
+    send_educations() {
+      let AACE_URL_USER = "https://aace.ml/api/user/";
+      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+      let TOKEN = localStorage.getItem("id_token");
+
+      for (var i = 0; i < this.educationInputs.length; i++) {
+        axios
+          .post(
+            "https://aace.ml/api/user/" + USER_ID + "/education",
+            this.educationInputs[i],
+            {
+              "Content-Type": "multipart/form-data",
+              headers: {
+                Authorization: "Bearer " + TOKEN
+              }
+            }
+          )
+          .then(res => {
+            console.log("post education");
+            let EDUCATION_ID = res.data.id;
+
+            let formDataEducation = new FormData();
+            if (this.educationInputs[this.education_files_index].files) {
+              for (
+                let j = 0;
+                j <
+                this.educationInputs[this.education_files_index].files.length;
+                j++
+              ) {
+                formDataEducation.append(
+                  "file",
+                  this.educationInputs[this.education_files_index].files[j]
+                );
+              }
+              this.education_files_index++;
+              axios
+                .post(
+                  "https://aace.ml/api/user/" +
+                    USER_ID +
+                    "/education/" +
+                    EDUCATION_ID +
+                    "/media",
+                  formDataEducation,
+                  {
+                    "Content-Type": "multipart/form-data",
+                    headers: {
+                      Authorization: "Bearer " + TOKEN
+                    }
+                  }
+                )
+                .then(res => {
+                  if (res.status == 200) {
+                    console.log("pdf updated sucessfully.");
+                    // this.$router.push({
+                    //   name: "Success"
+                    // });
+                  }
+                })
+                .catch(err => console.log(err));
+            } // close if-statement
+          });
+      }
+    },
+    apply() {
+      // ------- Basic
+      let AACE_URL_USER = "https://aace.ml/api/user/";
+      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+      let TOKEN = localStorage.getItem("id_token");
+
+      console.log(TOKEN);
+      console.log(USER_ID);
+      // ------- User -------
+      let formDataUser = new FormData();
+      formDataUser.append("file", this.profile_picture_file);
+      let user_string = {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        profession: this.profession,
+        sex: this.sex,
+        summary: this.summary,
+        country: this.country,
+        phone: this.phone,
+        address: this.address,
+        birthday: this.birthday,
+        website: this.website
+      };
+
+      // ------- Experience file and post -------
+      this.send_experiences();
+      // ------- Skill file and post -------
+      this.send_skills();
       // ------- Education file and post -------
-      for(var i=0; i<this.educationInputs.length; i++){
-
-        axios.post(
-          "https://aace.ml/api/user/" + USER_ID + "/education",
-          this.educationInputs[i],
-          {
-            "Content-Type": "multipart/form-data",
+      this.send_educations();
+      // ------- User file and put -------
+      axios
+        .all([
+          axios.post(
+            "https://aace.ml/api/user/" + USER_ID + "/media",
+            formDataUser,
+            {
+              "Content-Type": "multipart/form-data",
+              headers: {
+                Authorization: "Bearer " + TOKEN
+              }
+            }
+          ),
+          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
             headers: {
               Authorization: "Bearer " + TOKEN
             }
-          }
-        ).then(res => {
-          console.log('post education')
-          let EDUCATION_ID = res.data.id;
+          })
+        ])
+        .then(
+          axios.spread((profileRes, stringRes) => {
+            console.log(
+              "res.statuses are: ",
+              profileRes.status,
+              stringRes.status
+            );
 
-          let formDataEducation = new FormData();
-          if(this.educationInputs[this.education_files_index].files){
-            for(let j=0; j < this.educationInputs[this.education_files_index].files.length; j++){
-              formDataEducation.append("file", this.educationInputs[this.education_files_index].files[j])
+            if (profileRes.status == 200) {
+              console.log("Profile picture updated successfully.");
+            } else {
+              console.log("profile picture bad response");
             }
-            this.education_files_index++
-            axios.post(
-              "https://aace.ml/api/user/" + USER_ID + "/education/" + EDUCATION_ID + "/media",
-              formDataEducation,
-              {
-                "Content-Type": "multipart/form-data",
-                headers: {
-                  Authorization: "Bearer " + TOKEN
-                }
-              }
-            ).then(res => {
-              if (res.status == 200) {
-                console.log("pdf updated sucessfully.");
-                this.$router.push({
-                  name: "Success"
-                });
-              }
-            }).catch(err => console.log(err));
-          } // close if-statement
-        })
 
-      } 
-      axios.all([
-        axios.post(
-          "https://aace.ml/api/user/" + USER_ID + "/media",
-          formDataUser,
-          {
-            "Content-Type": "multipart/form-data",
-            headers: {
-              Authorization: "Bearer " + TOKEN
+            if (stringRes.status == 200) {
+              console.log("Strings sent successfully.");
+              localStorage.setItem("user", JSON.stringify(stringRes.data));
+              this.$router.push({
+                path: "/success"
+              });
+            } else {
+              console.log("String sent unsuccessfuly");
             }
-          }
-        ),
-        axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-          headers: {
-            Authorization: "Bearer " + TOKEN
-          }
-        })
-      ]).then(axios.spread((profileRes, stringRes) => {
-          console.log(
-            "res.statuses are: ",
-            profileRes.status,
-            stringRes.status
-          );
-
-          if (profileRes.status == 200) {
-            console.log("Profile picture updated successfully.");
-          } else {
-            console.log("profile picture bad response");
-          }
-
-          if (stringRes.status == 200) {
-            console.log("Strings sent successfully.");
-            localStorage.setItem("user", JSON.stringify(stringRes.data));
-          } else {
-            console.log("String sent unsuccessfuly");
-          }
-        })
-      );
-    
+          })
+        );
     }
   },
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-    this.onAddEducation()
-    this.onAddExperience()
-    this.onAddSkill()
+    this.onAddEducation();
+    this.onAddExperience();
+    this.onAddSkill();
 
     axios
       .get(AACE_URL_USER + USER_ID, {
@@ -912,23 +1004,21 @@ export default {
       .then(res => {
         console.log(res);
 
-
         this.first_name = res.data.first_name;
         this.last_name = res.data.last_name;
         this.sex = res.data.sex;
         this.summary = res.data.summary;
         this.country = res.data.country;
-        // this.sex = res.data.sex;
         // this.years_of_experience = res.data.years_of_experience;
-        // this.email = res.data.email;
+        this.email = res.data.email;
         // this.comment_from_administrator = res.data.comment_from_administrator;
-        // this.profession = res.data.profession;
+        this.profession = res.data.profession;
         // this.register_status = res.data.register_status;
         this.phone = res.data.phone;
         this.address = res.data.address;
         this.birthday = res.data.birthday;
         this.website = res.data.website;
-      })
+      });
   }
 };
 </script>

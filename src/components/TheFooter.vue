@@ -19,16 +19,13 @@
                 <router-link to="/about">About us</router-link>
               </li>
               <li>
-                <router-link to="/browse">Directory</router-link>
+                <router-link to="/directory">Directory</router-link>
               </li>
               <li>
                 <router-link to="/events">Events</router-link>
               </li>
               <li>
                 <router-link to="/publications">Publications</router-link>
-              </li>
-              <li>
-                <router-link to="/membership">Membership</router-link>
               </li>
               <li>
                 <router-link to="/login">Login in</router-link>
@@ -45,14 +42,11 @@
               <li>
                 <router-link to="/membership">How to become a member</router-link>
               </li>
-              <li>
+              <!-- <li>
                 <router-link to="/subscribe">Subscribe to our newsletter</router-link>
-              </li>
+              </li>-->
               <li>
                 <router-link to="/contact">Contact the board</router-link>
-              </li>
-              <li>
-                <router-link to="/login">Access the platform</router-link>
               </li>
               <li>
                 <router-link to="/privacy">Privacy Policy</router-link>

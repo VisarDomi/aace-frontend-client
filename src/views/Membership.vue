@@ -9,18 +9,18 @@
         <div class="header-detail">
           <img class="logo" src="static/img/logocrop.jpg" alt>
           <div class="hgroup">
-            <h1>Membership request</h1>
+            <h1>Kerkese per Anetaresi</h1>
             <h3>
-              <a href="#">AACE</a>
+              <a href="#">SHOSHIK</a>
             </h3>
           </div>
           <!-- <time datetime="2016-03-03 20:00">2 days ago</time> -->
           <hr>
-          <h4>Steps required to become a member:</h4>
-          <p>Fill in and sign a registration letter with an authorized person and specify a representative for contact with the Association.</p>
-          <p>Recognize the AACE Statutes (the declaration is part of the registration document).</p>
-          <p>Pay the aliquot part of the membership fee (from the month of sending the membership card to the bank account: Banka e Shqiperise, account number: 126359019/0300). The basis for payment of the aliquot will be sent to you immediately after AACE receives your registration application.</p>
-          <p>Members interested in joining the Board of Directors must complete a registration form for joining the Board of Directors.</p>
+          <h4>Hapat per tu bere anetar:</h4>
+          <p>Te jesh inxhinier i diplomuar.</p>
+          <p>Te pranosh statutin e SHOSHIK.</p>
+          <p>Te paguhet kuota vjetore e anetaresimit.</p>
+          <p>Te mos kesh kufizime ligjore per ushtrimin e profesionit.</p>
           <br>
           <h5>Requirements:</h5>
           <ul class="details cols-3">
@@ -62,11 +62,10 @@
                   <i class="fa fa-linkedin"></i>
                 </a>
               </li>
-            </ul> -->
-
+            </ul>-->
             <div class="action-buttons">
               <!-- <a class="btn btn-primary" href="#">Apply with linkedin</a> -->
-              <a href="/application" class="btn btn-success">Apply now</a>
+              <router-link to="/application" class="btn btn-success">Apply now</router-link>
               <!-- <router-link to="/application" class="btn btn-success">Apply now</router-link> -->
             </div>
           </div>
@@ -132,7 +131,6 @@
 
 
 <script>
-
 export default {
   name: "membership"
 };

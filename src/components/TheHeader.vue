@@ -27,16 +27,19 @@
         <div v-else class="pull-right user-login">
           <i class="fa fa-user fa-2x"></i>
           {{currentUser.email}}
-          <!-- <router-link to="/logout"> <h5>Log-out</h5> </router-link> -->
+          <button
+            class="btn btn-sm btn-primary"
+            @click="logout"
+          >Logout</button>
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
         <ul class="nav-menu">
           <li>
-            <router-link to="/" active-class="active">AACE</router-link>
+            <router-link to="/">AACE</router-link>
             <ul>
               <li>
-                <router-link to="/" active-class="active">Home</router-link>
+                <router-link to="/">Home</router-link>
               </li>
               <li>
                 <router-link to="/about">About us</router-link>
@@ -63,19 +66,19 @@
             <router-link to="/memberarea">User area</router-link>
             <ul>
               <li>
-                <router-link to="/" active-class="active">Application Form</router-link>
+                <router-link to="/application">Application Form</router-link>
               </li>
               <li>
                 <router-link to="/about">Application Status</router-link>
               </li>
               <li>
-                <router-link to="/about">Communications</router-link>
+                <router-link to="/communication">Communications</router-link>
               </li>
               <li>
-                <router-link to="/about">Profile</router-link>
+                <router-link :to="{name:'profile', params: { id: currentUser.id}}">Profile</router-link>
               </li>
               <li>
-                <router-link to="/about">Polls</router-link>
+                <router-link to="/">Polls</router-link>
               </li>
               <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Log-out</a>

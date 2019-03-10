@@ -10,16 +10,12 @@
           <h2>Engineering directory</h2>
           <h5 class="font-alt">Use the search box to search for engineers</h5>
 
-          <form class="header-job-search " @submit.prevent="search(fname, lname)">
-            <div class="input" style="width:100%;">
-              <input type="text" class="form-control" placeholder="First Name" v-model="fname">
+          <form class="header-job-search" @submit.prevent="search(name)">
+            <div class="input-keyword" style="width:80%;">
+              <input type="text" class="form-control" placeholder="Name and surname" v-model="name">
             </div>
-            <div class="input" style="width:100%;">
-              <input type="text" class="form-control" placeholder="Last Name" v-model="lname">
-            </div>
-
             <!-- <div class="input-location">
-              <input type="text" class="form-control" placeholder="City, state or zip">
+                        <input type="text" class="form-control" placeholder="City, state or zip">
             </div>-->
             <div class="btn-search">
               <button class="btn btn-primary" type="submit">Find</button>
@@ -138,14 +134,13 @@ export default {
   },
   data() {
     return {
-      fname: "",
-      lname: ""
+      name: ""
     };
   },
   methods: {
-    search(fname, lname) {
+    search(name) {
       this.$store.dispatch(CLEAN_PICTURES);
-      this.$store.dispatch(FETCH_MEMBER, { fname: fname, lname: lname });
+      this.$store.dispatch(FETCH_MEMBER, { name: name });
     },
     open_user_profile(user) {}
   },
