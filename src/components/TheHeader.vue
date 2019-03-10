@@ -118,4 +118,8 @@ export default {
 /* .navbar .container {
   width: 100%;
 } */
+
+@media screen and (min-width: 0px) and (max-width: 415px) {
+  .logo-wrapper { display: none !important; }  /* dont show logo on small screens */
+}
 </style>

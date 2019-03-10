@@ -49,3 +49,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.category-grid a{
+  margin-right: 1.5%;
+}
+</style>

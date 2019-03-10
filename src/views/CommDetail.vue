@@ -27,7 +27,7 @@
 
                       <div class="item-block" v-for="document in communicationDocuments" :key="document.id">
                         
-                        <h6>{{document.filename}}</h6>                        
+                        <p>{{document.filename}}</p>                        
                         
                         <a style="margin-bottom:10px;" class="btn btn-primary" :key="document.id" @click="downloadDoc(document.id, document.filename)"><i class="fa fa-file-zip-o"></i>Download Document</a>                    
                         
