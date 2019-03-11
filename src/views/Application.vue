@@ -145,6 +145,7 @@
       <!-- END Page header -->
       <!-- Main container -->
       <main>
+        
         <!-- Education -->
         <section class="bg-alt">
           <div class="container">
@@ -189,8 +190,7 @@
                         <div class="form-group">
                           <select
                             class="form-control"
-                            v-model="education_type_id"
-                            @change="consoleLog"
+                            v-model="education_type_id[index]"
                           >
                             <option
                               v-for="option in education_type_options"
@@ -205,11 +205,11 @@
                           <div class="form-group col-sm-5">
                             <select
                               class="form-control"
-                              v-model="education_degree_id"
+                              v-model="education_degree_id[index]"
                               @change="handleEducationOptionDegreeChange($event, index)"
                             >
                               <option
-                                v-for="option in education_degree_options[education_type_id]"
+                                v-for="option in education_degree_options[education_type_id[index]]"
                                 v-bind:value="option.id"
                                 :key="option.id"
                               >{{ option.text }}</option>
@@ -218,7 +218,7 @@
                           <div class="form-group col-sm-5">
                             <input
                               type="text"
-                              :disabled="!education_degree_other"
+                              :disabled="!education_degree_other[index]"
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="..."
@@ -231,11 +231,11 @@
                           <div class="form-group col-sm-5">
                             <select
                               class="form-control"
-                              v-model="education_major_id"
+                              v-model="education_major_id[index]"
                               @change="handleEducationOptionMajorChange($event, index)"
                             >
                               <option
-                                v-for="option in education_major_options[education_type_id]"
+                                v-for="option in education_major_options[education_type_id[index]]"
                                 v-bind:value="option.id"
                                 :key="option.id"
                               >{{ option.text }}</option>
@@ -535,6 +535,8 @@
 <script>
 import axios from "axios";
 
+import store from "@/store";
+
 export default {
   name: "Application",
   data() {
@@ -553,6 +555,7 @@ export default {
       birthday: "",
       website: "",
       email: "",
+      comment_from_administrator: "",
       // comment_from_administrator: "",
 
       //--------------- Image Files -------
@@ -562,14 +565,14 @@ export default {
       educationInputs: [],
       education_files_index: 0,
 
-      education_type_id: "",
+      education_type_id: [],
       education_type_options: [
         { text: "Shkolle e mesme", id: 1 },
         { text: "Shkolle e larte", id: 2 }
       ],
 
-      education_degree_id: "",
-      education_degree_other: false,
+      education_degree_id: [],
+      education_degree_other: [false],
       education_degree_options: {
         1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }],
         2: [
@@ -580,8 +583,8 @@ export default {
         ]
       },
 
-      education_major_id: "",
-      education_major_other: false,
+      education_major_id: [],
+      education_major_other: [false],
       education_major_options: {
         1: [{ text: "???", id: 1 }, { text: "???", id: 2 }],
         2: [
@@ -603,17 +606,13 @@ export default {
     handleEducationOptionDegreeChange(e, i) {
       let educationOptionId = e.target.value;
       if (educationOptionId == 6) {
-        this.education_degree_other = true;
+        this.education_degree_other[i] = true;
       } else {
-        this.education_degree_other = false;
-        if (this.education_type_id == 1)
-          this.educationInputs[i].degree = this.education_degree_options[
-            this.education_type_id
-          ][educationOptionId - 1].text;
+        this.education_degree_other[i] = false;
+        if (this.education_type_id[i] == 1)
+          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id[i]][educationOptionId - 1].text;
         else
-          this.educationInputs[i].degree = this.education_degree_options[
-            this.education_type_id
-          ][educationOptionId - 3].text;
+          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id[i]][educationOptionId - 3].text;
       }
       console.log(this.educationInputs[i].field_of_study);
       console.log(this.educationInputs[i].degree);
@@ -625,20 +624,19 @@ export default {
         this.education_major_other = true;
       } else {
         this.education_major_other = false;
-        if (this.education_type_id == 1)
+        if (this.education_type_id[i] == 1)
           this.educationInputs[i].field_of_study = this.education_major_options[
-            this.education_type_id
+            this.education_type_id[i]
           ][educationOptionId - 1].text;
         else
           this.educationInputs[i].field_of_study = this.education_major_options[
-            this.education_type_id
+            this.education_type_id[i]
           ][educationOptionId - 3].text;
         console.log(this.educationInputs[i].field_of_study);
         console.log(this.educationInputs[i].degree);
         console.log("");
       }
     },
-    consoleLog() {},
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
     },
@@ -659,8 +657,8 @@ export default {
         degree: "",
         field_of_study: "",
         school: "",
-        from_date: "",
-        to_date: "",
+        from_date: "1900-12-31",
+        to_date: "1900-12-31",
         description: ""
       };
       this.educationInputs.push(newEducation);
@@ -686,8 +684,8 @@ export default {
         employer: "",
         company: "",
         location: "",
-        from_date: "",
-        to_date: "",
+        from_date: "1900-12-31",
+        to_date: "1900-12-31",
         is_currently_work_here: false,
         description: ""
       };
@@ -713,8 +711,8 @@ export default {
         randomid: Math.random() * Math.random() * 1000,
         releaser: "",
         name: "",
-        from_date: "",
-        to_date: "",
+        from_date: "1900-12-31",
+        to_date: "1900-12-31",
         description: ""
       };
       this.skillInputs.push(newSkill);
@@ -965,26 +963,26 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
-            console.log(
-              "res.statuses are: ",
-              profileRes.status,
-              stringRes.status
-            );
+            // console.log(
+            //   "res.statuses are: ",
+            //   profileRes.status,
+            //   stringRes.status
+            // );
 
             if (profileRes.status == 200) {
-              console.log("Profile picture updated successfully.");
+              // console.log("Profile picture updated successfully.");
             } else {
-              console.log("profile picture bad response");
+              // console.log("profile picture bad response");
             }
 
             if (stringRes.status == 200) {
-              console.log("Strings sent successfully.");
+              // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               this.$router.push({
                 name: "Success"
               });
             } else {
-              console.log("String sent unsuccessfuly");
+              // console.log("String sent unsuccessfuly");
             }
           })
         );
@@ -993,6 +991,9 @@ export default {
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+
+    console.log('user getter: ', this.$store.getters.user)
+
     this.onAddEducation();
     this.onAddExperience();
     this.onAddSkill();
