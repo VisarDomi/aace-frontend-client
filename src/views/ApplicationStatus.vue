@@ -66,7 +66,7 @@
           <p>{{currentUser.comment_from_administrator}}</p>
           <br>
           <router-link :to="{name: 'ReApplication'}" v-if="status == 'rebutted'">
-            <button type="submit" class="btn btn-primary" >Fix application</button>
+            <button type="submit" class="btn btn-primary">Fix application</button>
           </router-link>
         </div>
       </section>
@@ -81,7 +81,7 @@ import { mapGetters } from "vuex";
 import { FETCH_STATUS } from "@/store/actions.type";
 import store from "@/store";
 export default {
-  name: "Application Status",
+  name: "ApplicationStatus",
   computed: {
     ...mapGetters(["status", "currentUser"])
   },
