@@ -443,6 +443,66 @@
 						"description": ""
 					},
 					"response": []
+				},
+				{
+					"name": "{{url}}/api/organizationgroup/1/user",
+					"request": {
+						"url": "{{url}}/api/organizationgroup/1/user",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ids\": [19,20,21,22]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/organizationgroup/1/user",
+					"request": {
+						"url": "{{url}}/api/organizationgroup/1/user",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"ids\": [20,21,22]\n}"
+						},
+						"description": ""
+					},
+					"response": []
 				}
 			]
 		},
