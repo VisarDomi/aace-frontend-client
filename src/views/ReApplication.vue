@@ -858,14 +858,27 @@ export default {
             let AACE_URL_USER = "https://aace.ml/api/user/";
             let USER_ID = JSON.parse(localStorage.getItem("user")).id;
             let TOKEN = localStorage.getItem("id_token");
+            let eduInputs = []
 
             for (var i = 0; i < this.educationInputs.length; i++) {
-                console.log('education id ', this.educationInputs[i].id)
-                console.log(this.educationInputs[i])
+                let edu_id = this.educationInputs[i].id
+                eduInputs.push({})
+                for(var j=0; j < Object.keys(this.educationInputs[i]).length; j++){
+                    if(Object.keys(this.educationInputs[i])[j] != 'id' 
+                        && Object.keys(this.educationInputs[i])[j] != 'user_id')
+                        eduInputs[i][Object.keys(this.educationInputs[i])[j]] = 
+                            this.educationInputs[i][Object.keys(this.educationInputs[i])[j]]
+                }
+                console.log('edu inputs', eduInputs[i])
+                // this.educationInputs[i] = ( 
+                //     ({education_type, degree, field_of_study, school, from_date, to_date, description}) => 
+                //     ({education_type, degree, field_of_study, school, from_date, to_date, description}) 
+                // )(this.educationInputs[i])
+                // console.log(this.educationInputs[i])
                 axios
                 .put(
-                    "https://aace.ml/api/user/" + USER_ID + "/education/" + this.educationInputs[i].id,
-                    this.educationInputs[i],
+                    "https://aace.ml/api/user/" + USER_ID + "/education/" + edu_id,
+                    eduInputs[i],
                     {
                     "Content-Type": "multipart/form-data",
                     headers: {
@@ -1002,8 +1015,15 @@ export default {
             responseType: "json"
         }).then(res => {
             this.educationInputs = res.data
-            // let found = false
-                
+            console.log(this.educationInputs)
+            // for(let i=0; i<res.data.length; i++){
+            //     this.educationInputs[i] = ( 
+            //         ({education_type, degree, field_of_study, school, from_date, to_date, description}) => 
+            //         ({education_type, degree, field_of_study, school, from_date, to_date, description}) 
+            //     )(res.data[i])
+            // }
+
+
             // autofill dropdowns
             for(var i = 0; i < this.educationInputs.length; i++){
 
