@@ -51,7 +51,7 @@
           </div>
         </div>
 
-        <div class="button-group">
+        <!-- <div class="button-group">
           <ul class="social-icons">
             <li>
               <a class="facebook" href="#">
@@ -89,7 +89,7 @@
               href="#"
             >Contact me</a>
           </div>
-        </div>
+        </div>-->
       </div>
     </header>
     <!-- END Page header -->
@@ -152,7 +152,6 @@
               </div>
             </div>
             <!-- END Work item -->
-
           </div>
         </div>
       </section>
@@ -164,9 +163,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import {
-  FETCH_PROFILE
-} from "@/store/actions.type";
+import { FETCH_PROFILE } from "@/store/actions.type";
 import store from "@/store";
 export default {
   name: "Profile",
@@ -174,8 +171,15 @@ export default {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },
   computed: {
-    ...mapGetters(["currentUser", "profile", "isAuthenticated", "profilePicture", "educations","experiences"])
-  },  
+    ...mapGetters([
+      "currentUser",
+      "profile",
+      "isAuthenticated",
+      "profilePicture",
+      "educations",
+      "experiences"
+    ])
+  },
   watch: {
     $route(to) {
       this.$store.dispatch(FETCH_PROFILE, to.params);

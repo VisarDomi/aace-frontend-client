@@ -1,4 +1,4 @@
-import ApiService from "@/common/api.service";
+// import ApiService from "@/common/api.service";
 import { CommunicationService } from "@/common/api.service";
 import { FETCH_COMMS, FETCH_COMM, ADD_COMMENT } from "./actions.type";
 import { SET_COMM, SET_COMMS, POST_COMMENT } from "./mutations.type";

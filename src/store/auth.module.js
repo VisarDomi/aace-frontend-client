@@ -13,12 +13,16 @@ import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
 const state = {
   errors: null,
   user: {},
+  token: "",
   isAuthenticated: !!JwtService.getToken()
 };
 
 const getters = {
   currentUser(state) {
     return state.user;
+  },
+  currentToken(state) {
+    return state.token;
   },
   isAuthenticated(state) {
     return state.isAuthenticated;
@@ -57,15 +61,15 @@ const actions = {
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      // context.commit(SET_AUTH, UserService.getUser());
-      
-      //   ApiService.get("user",state.user.id)
-      //     .then(({ data }) => {
-      //       context.commit(SET_AUTH, data);
-      //     })
-      //     .catch(({ response }) => {
-      //       context.commit(SET_ERROR, response.data.errors);
-      //     });
+      context.commit(SET_AUTH, UserService.getUser(), JwtService.getToken());
+
+      // ApiService.get("user", state.user.id)
+      //   .then(({ data }) => {
+      //     context.commit(SET_AUTH, data);
+      //   })
+      //   .catch(({ response }) => {
+      //     context.commit(SET_ERROR, response.data.errors);
+      //   });
     } else {
       context.commit(PURGE_AUTH);
     }
@@ -93,13 +97,13 @@ const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
   },
-  [SET_AUTH](state, user) {
+  [SET_AUTH](state, user, token) {
     state.isAuthenticated = true;
     state.user = user;
+    state.token = token;
     state.errors = {};
-    console.log('saveToken', state.user.token)
-    JwtService.saveToken(state.user.token);
     UserService.saveUser(user);
+    JwtService.saveToken(token);
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;

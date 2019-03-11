@@ -11,6 +11,6 @@ export const SET_EXPERIENCE = "setExperience";
 export const SET_PICTURE = "setPicture";
 export const SET_COMM = "setComm";
 export const SET_COMMS = "setComms";
-export const SET_COMM_DOCS ="setCommDocs";
+export const SET_COMM_DOCS = "setCommDocs";
 
-export const POST_COMMENT = "postComment"
+export const POST_COMMENT = "postComment";

@@ -1,9 +1,6 @@
-import Vue from "vue";
-
+// import Vue from "vue";
 import { MemberService, MediaService } from "@/common/api.service";
-
 import { FETCH_MEMBER, FETCH_PICTURES, CLEAN_PICTURES } from "./actions.type";
-
 import {
   SET_SEARCH_RESULT,
   SET_PICTURES,
