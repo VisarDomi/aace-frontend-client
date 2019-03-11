@@ -151,10 +151,10 @@
                         <h2>Comment from Administrator</h2>
                         <p>{{comment_from_administrator}}</p>
                     </header>
-                    <header class="section-header" :key="education.id" v-for="education in educations">
+                    <header class="section-header" :key="education.id" v-for="education in educationInputs">
                         <p>{{education}}</p>
                     </header>
-                    <header class="section-header" :key="experience.id" v-for="experience in experiences">
+                    <header class="section-header" :key="experience.id" v-for="experience in experienceInputs">
                         <p>{{experience}}</p>
                     </header>
                     
@@ -172,7 +172,7 @@
                 <div
                     class="col-xs-12"
                     :key="educationInput.id"
-                    v-for="(educationInput, index) in educations"
+                    v-for="(educationInput, index) in educationInputs"
                 >
                     <div class="item-block">
                     <div class="item-form">
@@ -327,7 +327,7 @@
                 <div
                     class="col-xs-12"
                     :key="experienceInput.id"
-                    v-for="(experienceInput, index) in experiences"
+                    v-for="(experienceInput, index) in experienceInputs"
                 >
                     <div class="item-block">
                     <div class="item-form">
@@ -551,10 +551,7 @@ import axios from "axios";
 
 import { mapGetters } from "vuex";
 import { EducationService } from "@/common/api.service"
-import {
-    FETCH_PROFILE
-} from "@/store/actions.type";
-import store from "@/store";
+
 
 export default {
     name: "ReApplication",
@@ -605,7 +602,7 @@ export default {
         education_major_id: [],
         education_major_other: [false],
         education_major_options: {
-            1: [{ text: "???", id: 1 }, { text: "???", id: 2 }],
+            1: [{ text: "???", id: 1 }, { text: "????", id: 2 }],
             2: [
             { text: "Inxhinier Civil", id: 3 },
             { text: "Inxhinier Elektrik", id: 4 },
@@ -650,19 +647,18 @@ export default {
             this.profile_picture_file = this.$refs.profile_file.files[0];
         },
         // ------- Education -------
-        handleFileUploadEducation(randomid, index) {
+        handleFileUploadEducation(id, index) {
             let files = [];
             for (let i = 0; i < this.$refs.education[index].files.length; i++) {
                 files.push(this.$refs.education[index].files[i]);
             }
             this.educationInputs.filter(
-                education => education.randomid === randomid
+                education => education.id === id
             )[0].files = files;
         },
         onAddEducation() {
             const newEducation = {
-                randomid: Math.random() * Math.random() * 1000,
-                education_type: "",
+                id: Math.random() * Math.random() * 1000,
                 degree: "",
                 field_of_study: "",
                 school: "",
@@ -672,9 +668,9 @@ export default {
             };
             this.educationInputs.push(newEducation);
         },
-        onDeleteEducation(randomid) {
+        onDeleteEducation(id) {
             this.educationInputs = this.educationInputs.filter(
-                education => education.randomid !== randomid
+                education => education.id !== id
             );
         },
         // ------- Experience -------
@@ -864,9 +860,11 @@ export default {
             let TOKEN = localStorage.getItem("id_token");
 
             for (var i = 0; i < this.educationInputs.length; i++) {
+                console.log('education id ', this.educationInputs[i].id)
+                console.log(this.educationInputs[i])
                 axios
-                .post(
-                    "https://aace.ml/api/user/" + USER_ID + "/education",
+                .put(
+                    "https://aace.ml/api/user/" + USER_ID + "/education/" + this.educationInputs[i].id,
                     this.educationInputs[i],
                     {
                     "Content-Type": "multipart/form-data",
@@ -946,67 +944,111 @@ export default {
             };
 
             // ------- Experience file and post -------
-            this.send_experiences();
+            // this.send_experiences();
             // ------- Skill file and post -------
-            this.send_skills();
+            // this.send_skills();
             // ------- Education file and post -------
             this.send_educations();
             // ------- User file and put -------
-            axios
-                .all([
-                axios.post(
-                    "https://aace.ml/api/user/" + USER_ID + "/media",
-                    formDataUser,
-                    {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                        Authorization: "Bearer " + TOKEN
-                    }
-                    }
-                ),
-                axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-                    headers: {
-                    Authorization: "Bearer " + TOKEN
-                    }
-                })
-                ])
-                .then(
-                axios.spread((profileRes, stringRes) => {
-                    // console.log(
-                    //   "res.statuses are: ",
-                    //   profileRes.status,
-                    //   stringRes.status
-                    // );
+            // axios
+            //     .all([
+            //     axios.post(
+            //         "https://aace.ml/api/user/" + USER_ID + "/media",
+            //         formDataUser,
+            //         {
+            //         "Content-Type": "multipart/form-data",
+            //         headers: {
+            //             Authorization: "Bearer " + TOKEN
+            //         }
+            //         }
+            //     ),
+            //     axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+            //         headers: {
+            //         Authorization: "Bearer " + TOKEN
+            //         }
+            //     })
+            //     ])
+            //     .then(
+            //     axios.spread((profileRes, stringRes) => {
+            //         // console.log(
+            //         //   "res.statuses are: ",
+            //         //   profileRes.status,
+            //         //   stringRes.status
+            //         // );
 
-                    if (profileRes.status == 200) {
-                    // console.log("Profile picture updated successfully.");
-                    } else {
-                    // console.log("profile picture bad response");
-                    }
+            //         if (profileRes.status == 200) {
+            //         // console.log("Profile picture updated successfully.");
+            //         } else {
+            //         // console.log("profile picture bad response");
+            //         }
 
-                    if (stringRes.status == 200) {
-                    // console.log("Strings sent successfully.");
-                    localStorage.setItem("user", JSON.stringify(stringRes.data));
-                    this.$router.push({
-                        name: "Success"
-                    });
-                    } else {
-                    // console.log("String sent unsuccessfuly");
-                    }
-                })
-                );
+            //         if (stringRes.status == 200) {
+            //         // console.log("Strings sent successfully.");
+            //         localStorage.setItem("user", JSON.stringify(stringRes.data));
+            //         this.$router.push({
+            //             name: "Success"
+            //         });
+            //         } else {
+            //         // console.log("String sent unsuccessfuly");
+            //         }
+            //     })
+            //     );
             }
     },
     mounted() {
         let AACE_URL_USER = "https://aace.ml/api/user/";
         let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+        axios.get(AACE_URL_USER + USER_ID + '/education/all', {
+            responseType: "json"
+        }).then(res => {
+            this.educationInputs = res.data
+            // let found = false
+                
+            // autofill dropdowns
+            for(var i = 0; i < this.educationInputs.length; i++){
 
-        this.$store.dispatch(FETCH_PROFILE, JSON.parse(localStorage.getItem("user")))
+                this.educationInputs[i].education_type = 'asap'
+                // education type id ---------------------------
+                if(this.educationInputs[i].degree == this.education_degree_options[1][0].text)
+                    this.education_type_id[i] = 1
+                else if(this.educationInputs[i].degree == this.education_degree_options[1][1].text)
+                    this.education_type_id[i] = 1
+                else
+                    this.education_type_id[i] = 2
 
-
-        // this.onAddEducation();
-        // this.onAddExperience();
-        // this.onAddSkill();
+                // degree --------------------------------------
+                for(let j = 0; j < this.education_degree_options[1].length; j++){
+                    if(this.educationInputs[i].degree == this.education_degree_options[1][j].text){
+                        this.education_degree_id[i] = j+1
+                    }
+                }
+                for(let j = 0; j < this.education_degree_options[2].length; j++){
+                    if(this.educationInputs[i].degree == this.education_degree_options[2][j].text){
+                        this.education_degree_id[i] = j+3
+                    }
+                }
+                if(!this.education_degree_id[i]){
+                    this.education_degree_id[i] = 6
+                    this.education_degree_other[i] = true
+                }
+                // major  --------------------------------------
+                for(let j = 0; j < this.education_major_options[1].length; j++){
+                    if(this.educationInputs[i].field_of_study == this.education_major_options[1][j].text){
+                        this.education_major_id[i] = j+1
+                    }
+                }
+                for(let j = 0; j < this.education_major_options[2].length; j++){
+                    if(this.educationInputs[i].field_of_study == this.education_major_options[2][j].text){
+                        this.education_major_id[i] = j+3
+                    }
+                }
+                if(!this.education_major_id[i]){
+                    this.education_major_id[i] = 5
+                    this.education_major_other[i] = true
+                }
+            }
+            
+        });
 
         axios.get(AACE_URL_USER + USER_ID, {
             responseType: "json"
@@ -1030,12 +1072,6 @@ export default {
 
         });
 
-    },
-    computed: {
-        ...mapGetters(["educations", "experiences"]),
-        userEducations(){
-            return educations 
-        }
     },
 };
 </script>

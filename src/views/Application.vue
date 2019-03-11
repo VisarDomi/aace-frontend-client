@@ -992,8 +992,6 @@ export default {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
 
-    console.log('user getter: ', this.$store.getters.user)
-
     this.onAddEducation();
     this.onAddExperience();
     this.onAddSkill();
