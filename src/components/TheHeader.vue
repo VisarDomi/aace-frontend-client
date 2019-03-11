@@ -26,7 +26,7 @@
         </div>
         <div v-else class="pull-right user-login">
           <i class="fa fa-user fa-2x"></i>
-          <router-link :to="{name:'Profile', params: { id: currentUser.id}}">Profile</router-link>
+          <router-link :to="{name: 'Profile', params: { id: currentUser.id}}">Profile</router-link>
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
@@ -55,22 +55,22 @@
             <router-link :to="{name: 'Directory'}">Directory</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Member Area'}">Member area</router-link>
+            <router-link :to="{name: 'MemberArea'}">Member area</router-link>
             <ul>
               <li>
-                <router-link :to="{name:'Profile', params: { id: currentUser.id}}">Profile</router-link>
+                <router-link :to="{name: 'Profile', params: { id: currentUser.id}}">Profile</router-link>
               </li>
               <li>
                 <router-link :to="{name: 'Application'}">Application Form</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'Application Status'}">Application Status</router-link>
+                <router-link :to="{name: 'ApplicationStatus'}">Application Status</router-link>
               </li>
               <li>
                 <router-link :to="{name: 'Communications'}">Communications</router-link>
               </li>
               <li>
-                <a href="#">Polls</a>
+                <router-link :to="{name: 'ComingSoon'}">Polls</router-link>
               </li>
               <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Log-out</a>

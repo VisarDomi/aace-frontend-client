@@ -91,7 +91,7 @@ export default {
           email: this.email,
           password: this.password
         })
-        .then(() => this.$router.push({ name: "Member Area" }));
+        .then(() => this.$router.push({ name: "MemberArea" }));
     }
   },
   computed: {

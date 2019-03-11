@@ -57,11 +57,6 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "Basic cm9uYWxkQGFhY2UuY29tOnBhc3N3b3Jk",
-								"description": ""
 							}
 						],
 						"body": {
@@ -271,6 +266,36 @@
 							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
 						},
 						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/organizationgroup/unassigned_users",
+					"request": {
+						"url": "{{url}}/api/organizationgroup/unassigned_users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+						},
+						"description": ""
 					},
 					"response": []
 				},

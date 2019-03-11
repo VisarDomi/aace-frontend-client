@@ -42,8 +42,8 @@ export default new Router({
       }
     },
     {
-      path: "/applicationstatus",
-      name: "Application Status",
+      path: "/application_status",
+      name: "ApplicationStatus",
       component: () => import("@/views/ApplicationStatus"),
       meta: {
         title: "Application Status",
@@ -60,9 +60,9 @@ export default new Router({
       }
     },
     {
-      path: "/commdetail/:id",
-      name: "Communication Detail",
-      component: () => import("@/views/CommDetail"),
+      path: "/communication_detail/:id",
+      name: "CommunicationDetail",
+      component: () => import("@/views/CommunicationDetail"),
       meta: {
         title: "Communication Detail",
         metaTags: [
@@ -311,7 +311,7 @@ export default new Router({
     },
     {
       path: "*",
-      name: "Not Found",
+      name: "NotFound",
       component: () => import("@/views/NotFound"),
       meta: {
         title: "Not Found",
@@ -323,6 +323,24 @@ export default new Router({
           {
             property: "og:description",
             content: "The not found page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/coming_soon",
+      name: "ComingSoon",
+      component: () => import("@/views/ComingSoon"),
+      meta: {
+        title: "Coming Soon",
+        metaTags: [
+          {
+            name: "description",
+            content: "The coming soon page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The coming soon page of AACE."
           }
         ]
       }
@@ -382,8 +400,8 @@ export default new Router({
       }
     },
     {
-      path: "/memberarea",
-      name: "Member Area",
+      path: "/member_area",
+      name: "MemberArea",
       component: () => import("@/views/MemberArea"),
       meta: {
         title: "Member Area",

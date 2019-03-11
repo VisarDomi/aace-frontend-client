@@ -6,6 +6,9 @@
       style="background-image: url(static/img/publication1.jpg)"
     >
       <div class="container no-shadow">
+        <h1 class="text-center">Coming soon&trade;.</h1>
+      </div>
+      <div class="container no-shadow">
         <router-link :to="{name: 'Home'}">
           <h1 class="text-center" id="home">Go to homepage</h1>
         </router-link>
@@ -29,14 +32,9 @@
       <div class="nav-on-header smart-nav" id="notfound">
         <div class="notfound">
           <div class="notfound-404">
-            <h3>Page not found</h3>
-            <h1>
-              <span>4</span>
-              <span>0</span>
-              <span>4</span>
-            </h1>
+            <h3>Page coming soon.</h3>
           </div>
-          <h2>We are sorry, but the page that was requested was not found</h2>
+          <h2>We are sorry, but the page that was requested is coming soon.</h2>
         </div>
       </div>
     </main>
@@ -46,7 +44,7 @@
 
 <script>
 export default {
-  name: "NotFound"
+  name: "ComingSoon"
 };
 </script>
 

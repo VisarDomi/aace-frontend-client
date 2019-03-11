@@ -17,24 +17,24 @@
           </header>
 
           <div class="category-grid">
-            <router-link to="/application" style="height: 295px;">
+            <router-link :to="{name: 'Application'}" style="height: 295px;">
               <i class="fa fa-file-excel-o"></i>
               <h6>Application Form</h6>
               <p>Apply for membership in AACE</p>
             </router-link>
 
-            <router-link to="/applicationstatus" style="height: 295px;">
+            <router-link :to="{name: 'ApplicationStatus'}" style="height: 295px;">
               <i class="fa fa-info"></i>
               <h6>Application Status</h6>
               <p>See the status of your application</p>
             </router-link>
-            <router-link to="/communication" style="height: 295px;">
+            <router-link :to="{name: 'Communications'}" style="height: 295px;">
               <i class="fa fa-send-o"></i>
-              <h6>Communication</h6>
+              <h6>Communications</h6>
               <p>Access association wide and personal communications</p>
             </router-link>
             <router-link
-              :to="{name:'profile', params: { id: currentUser.id}}"
+              :to="{name: 'Profile', params: { id: currentUser.id}}"
               style="height: 295px;"
             >
               <i class="fa fa-vcard-o"></i>
@@ -42,12 +42,12 @@
               <p>See how your profile looks publicly</p>
             </router-link>
 
-            <a href="#" style="height: 295px;">
+            <router-link :to="{name: 'ComingSoon'}" style="height: 295px;">
               <i class="fa fa-bullhorn"></i>
               <h6>Polls</h6>
               <p>Engage in polling</p>
-            </a>
-            
+            </router-link>
+
             <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
               <i class="fa fa-sign-out"></i>
               <h6>Log-out</h6>
@@ -66,7 +66,7 @@ import { mapGetters } from "vuex";
 import { LOGOUT } from "@/store/actions.type";
 
 export default {
-  name: "Member Area",
+  name: "MemberArea",
   methods: {
     logout() {
       this.$store.dispatch(LOGOUT).then(() => {

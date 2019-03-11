@@ -70,7 +70,7 @@ import JwtService from "@/common/jwt.service";
 import { FETCH_COMM, FETCH_DOCS, ADD_COMMENT } from "@/store/actions.type";
 import store from "@/store";
 export default {
-  name: "Communication Detail",
+  name: "CommunicationDetail",
   mounted() {
     this.$store.dispatch(FETCH_COMM, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);

@@ -40,7 +40,7 @@
             </div>
             <!-- Resume detail -->
             <div class="col-xs-12" v-for="(user,index) in searchResult" :key="user.id">
-              <router-link class="item-block" :to="{name:'profile', params: { id: user.id}}">
+              <router-link class="item-block" :to="{name: 'Profile', params: { id: user.id}}">
                 <header>
                   <img class="resume-avatar" :src="profilePictures[index]" alt="Profile Picture">
 
