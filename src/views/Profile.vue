@@ -11,13 +11,18 @@
 
           <div class="col-xs-12 col-sm-8 header-detail">
             <div class="hgroup">
-              <h1>{{ profile.first_name }}</h1>
-              <h3>{{ profile.summary }}</h3>
+              <h1>{{ profile.first_name + " " + profile.last_name }}</h1>
+              <h3>{{ profile.profession }}</h3>
             </div>
             <hr>
             <p class="lead">{{ profile.summary }}</p>
 
             <ul class="details cols-2">
+              <li>
+                <i class="fa"></i>
+                <span>{{ profile.sex }}</span>
+              </li>
+
               <li>
                 <i class="fa fa-map-marker"></i>
                 <span>{{ profile.country }}</span>
@@ -30,7 +35,7 @@
 
               <li>
                 <i class="fa fa-money"></i>
-                <span>5 years experience</span>
+                <span>{{ profile.years_of_experience + " years of experience"}}</span>
               </li>
 
               <li>
@@ -104,14 +109,14 @@
           </header>
 
           <div class="row">
-            <div class="col-xs-12" v-bind:key="education.id" v-for="education in educations">
+            <div class="col-xs-12" :key="education.id" v-for="education in educations">
               <div class="item-block">
                 <header>
                   <img src="static/img/logo-mit.png" alt>
                   <div class="hgroup">
                     <h4>
                       {{ education.degree }}
-                      <small>{{ education.major }}</small>
+                      <small>{{ education.field_of_study }}</small>
                     </h4>
                     <h5>{{education.school}}</h5>
                   </div>
@@ -135,27 +140,55 @@
           </header>
 
           <div class="row">
-            <!-- Work item -->
-            <div class="col-xs-12" v-bind:key="work.id" v-for="work in experience">
+            <div class="col-xs-12" :key="experience.id" v-for="experience in experiences">
               <div class="item-block">
                 <header>
                   <img src="static/img/dutch_logo.png" alt>
                   <div class="hgroup">
-                    <h4>{{work.company}}</h4>
-                    <h5>{{work.title}}</h5>
+                    <h4>{{experience.title}}</h4>
+                    <h5>{{experience.employer}}</h5>
+                    <h5>{{experience.company}}</h5>
+                    <h5>{{experience.location}}</h5>
                   </div>
-                  <h6 class="time">{{work.from_date}} - {{work.to_date}}</h6>
+                  <h6 class="time">{{experience.from_date}} - {{experience.to_date}}</h6>
                 </header>
                 <div class="item-body">
-                  <p>{{work.description}}</p>
+                  <p>{{experience.description}}</p>
                 </div>
               </div>
             </div>
-            <!-- END Work item -->
           </div>
         </div>
       </section>
       <!-- END Work Experience -->
+      <!-- Skills -->
+      <section class="bg-alt">
+        <div class="container">
+          <header class="section-header">
+            <span>Past certifications</span>
+            <h2>Skills</h2>
+          </header>
+
+          <div class="row">
+            <div class="col-xs-12" :key="skill.id" v-for="skill in skills">
+              <div class="item-block">
+                <header>
+                  <img src="static/img/dutch_logo.png" alt>
+                  <div class="hgroup">
+                    <h4>{{skill.name }}</h4>
+                    <h5>{{skill.releaser}}</h5>
+                  </div>
+                  <h6 class="time">{{skill.from_date}} - {{skill.to_date}}</h6>
+                </header>
+                <div class="item-body">
+                  <p>{{skill.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END Skills -->
     </main>
     <!-- END Main container -->
   </div>
@@ -177,7 +210,8 @@ export default {
       "isAuthenticated",
       "profilePicture",
       "educations",
-      "experiences"
+      "experiences",
+      "skills"
     ])
   },
   watch: {

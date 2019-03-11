@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
 import auth from "./auth.module";
 import search from "./search.module";
 import media from "./media.module";

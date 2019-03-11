@@ -1,10 +1,11 @@
-import ApiService from "@/common/api.service";
+// import ApiService from "@/common/api.service";
 import UserService from "@/common/userstorage.service";
 import {
   MemberService,
   MediaService,
   EducationService,
-  ExperienceService
+  ExperienceService,
+  SkillService
 } from "@/common/api.service";
 import { FETCH_PROFILE, FETCH_STATUS } from "./actions.type";
 import {
@@ -12,6 +13,7 @@ import {
   SET_PICTURE,
   SET_EDUCATION,
   SET_EXPERIENCE,
+  SET_SKILL,
   SET_STATUS
 } from "./mutations.type";
 
@@ -21,6 +23,7 @@ const state = {
   profilePicture: "",
   educations: {},
   experiences: {},
+  skills: {},
   status: ""
 };
 
@@ -36,6 +39,9 @@ const getters = {
   },
   experiences(state) {
     return state.experiences;
+  },
+  skills(state) {
+    return state.skills;
   },
   status(state) {
     return state.status;
@@ -81,6 +87,11 @@ const actions = {
         context.commit(SET_EXPERIENCE, data);
       })
       .catch(() => {});
+    SkillService.getSkill(id)
+      .then(({ data }) => {
+        context.commit(SET_SKILL, data);
+      })
+      .catch(() => {});
   }
 };
 
@@ -95,13 +106,14 @@ const mutations = {
   [SET_PICTURE](state, picture) {
     state.profilePicture = picture;
   },
-  [SET_EDUCATION](state, education) {
-    state.educations = education;
-    console.log("state educations set");
+  [SET_EDUCATION](state, educations) {
+    state.educations = educations;
   },
-  [SET_EXPERIENCE](state, experience) {
-    state.experiences = experience;
-    console.log("state experience set");
+  [SET_EXPERIENCE](state, experiences) {
+    state.experiences = experiences;
+  },
+  [SET_SKILL](state, skills) {
+    state.skills = skills;
   },
   [SET_STATUS](state, status) {
     state.status = status;

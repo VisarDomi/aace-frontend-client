@@ -1,5 +1,4 @@
 // import Vue from "vue";
-
 import { MediaService } from "@/common/api.service";
 import { FETCH_DOCS } from "./actions.type";
 import { SET_COMM_DOCS } from "./mutations.type";

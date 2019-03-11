@@ -8,7 +8,12 @@ import {
   CHECK_AUTH,
   UPDATE_USER
 } from "./actions.type";
-import { SET_AUTH, PURGE_AUTH, SET_ERROR } from "./mutations.type";
+import {
+  SET_AUTH,
+  SET_AUTH_SECOND,
+  PURGE_AUTH,
+  SET_ERROR
+} from "./mutations.type";
 
 const state = {
   errors: null,
@@ -61,7 +66,7 @@ const actions = {
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      context.commit(SET_AUTH, UserService.getUser(), JwtService.getToken());
+      context.commit(SET_AUTH_SECOND, UserService.getUser());
 
       // ApiService.get("user", state.user.id)
       //   .then(({ data }) => {
@@ -97,13 +102,19 @@ const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
   },
-  [SET_AUTH](state, user, token) {
+  [SET_AUTH_SECOND](state, user) {
     state.isAuthenticated = true;
     state.user = user;
-    state.token = token;
     state.errors = {};
     UserService.saveUser(user);
-    JwtService.saveToken(token);
+  },
+  [SET_AUTH](state, user) {
+    state.isAuthenticated = true;
+    state.user = user;
+    state.errors = {};
+    console.log("saveToken", user.token);
+    JwtService.saveToken(user.token);
+    UserService.saveUser(user);
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;

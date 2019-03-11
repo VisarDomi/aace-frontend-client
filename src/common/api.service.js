@@ -64,9 +64,6 @@ export const MemberService = {
   },
   search(membername) {
     return ApiService.post("user/search", membername);
-  },
-  accepted() {
-    return ApiService.get("user/accepted");
   }
 };
 
@@ -79,7 +76,7 @@ export const MediaService = {
   }
   //setUserEducation(){},
   //setUserExperience(){},
-  //setUserSkills
+  //setUserSkill(){}
 };
 
 export const EducationService = {
@@ -91,6 +88,12 @@ export const EducationService = {
 export const ExperienceService = {
   getExperience(slug) {
     return ApiService.get("user", `${slug}/experience/all`);
+  }
+};
+
+export const SkillService = {
+  getSkill(slug) {
+    return ApiService.get("user", `${slug}/skill/all`);
   }
 };
 

@@ -145,7 +145,6 @@
       <!-- END Page header -->
       <!-- Main container -->
       <main>
-        
         <!-- Education -->
         <section class="bg-alt">
           <div class="container">
@@ -188,10 +187,7 @@
                       <div class="col-xs-12 col-sm-8">
                         <label class="col-sm-6">Vendos tipin e edukimit*</label>
                         <div class="form-group">
-                          <select
-                            class="form-control"
-                            v-model="education_type_id[index]"
-                          >
+                          <select class="form-control" v-model="education_type_id[index]">
                             <option
                               v-for="option in education_type_options"
                               v-bind:value="option.id"
@@ -610,9 +606,13 @@ export default {
       } else {
         this.education_degree_other[i] = false;
         if (this.education_type_id[i] == 1)
-          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id[i]][educationOptionId - 1].text;
+          this.educationInputs[i].degree = this.education_degree_options[
+            this.education_type_id[i]
+          ][educationOptionId - 1].text;
         else
-          this.educationInputs[i].degree = this.education_degree_options[this.education_type_id[i]][educationOptionId - 3].text;
+          this.educationInputs[i].degree = this.education_degree_options[
+            this.education_type_id[i]
+          ][educationOptionId - 3].text;
       }
       console.log(this.educationInputs[i].field_of_study);
       console.log(this.educationInputs[i].degree);
@@ -987,38 +987,38 @@ export default {
           })
         );
     }
-  },
-  mounted() {
-    let AACE_URL_USER = "https://aace.ml/api/user/";
-    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-
-    this.onAddEducation();
-    this.onAddExperience();
-    this.onAddSkill();
-
-    axios
-      .get(AACE_URL_USER + USER_ID, {
-        responseType: "json"
-      })
-      .then(res => {
-        console.log(res);
-
-        this.first_name = res.data.first_name;
-        this.last_name = res.data.last_name;
-        this.sex = res.data.sex;
-        this.summary = res.data.summary;
-        this.country = res.data.country;
-        // this.years_of_experience = res.data.years_of_experience;
-        this.email = res.data.email;
-        // this.comment_from_administrator = res.data.comment_from_administrator;
-        this.profession = res.data.profession;
-        // this.register_status = res.data.register_status;
-        this.phone = res.data.phone;
-        this.address = res.data.address;
-        this.birthday = res.data.birthday;
-        this.website = res.data.website;
-      });
   }
+  // mounted() {
+  //   let AACE_URL_USER = "https://aace.ml/api/user/";
+  //   let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+
+  //   this.onAddEducation();
+  //   this.onAddExperience();
+  //   this.onAddSkill();
+
+  //   axios
+  //     .get(AACE_URL_USER + USER_ID, {
+  //       responseType: "json"
+  //     })
+  //     .then(res => {
+  //       console.log(res);
+
+  //       this.first_name = res.data.first_name;
+  //       this.last_name = res.data.last_name;
+  //       this.sex = res.data.sex;
+  //       this.summary = res.data.summary;
+  //       this.country = res.data.country;
+  //       // this.years_of_experience = res.data.years_of_experience;
+  //       this.email = res.data.email;
+  //       // this.comment_from_administrator = res.data.comment_from_administrator;
+  //       this.profession = res.data.profession;
+  //       // this.register_status = res.data.register_status;
+  //       this.phone = res.data.phone;
+  //       this.address = res.data.address;
+  //       this.birthday = res.data.birthday;
+  //       this.website = res.data.website;
+  //     });
+  // }
 };
 </script>
 

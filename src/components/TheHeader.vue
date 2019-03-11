@@ -64,6 +64,9 @@
                 <router-link :to="{name: 'Application'}">Application Form</router-link>
               </li>
               <li>
+                <router-link :to="{name: 'ReApplication'}">ReApplication Form</router-link>
+              </li>
+              <li>
                 <router-link :to="{name: 'ApplicationStatus'}">Application Status</router-link>
               </li>
               <li>
