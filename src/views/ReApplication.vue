@@ -223,10 +223,10 @@
                               )
                             "
                           />
-                          <span class="help-block"
-                            >Please choose a square logo of your educational
-                            institution</span
-                          >
+                          <span class="help-block">
+                            Please choose a square logo of your educational
+                            institution
+                          </span>
                         </div>
                       </div>
 
@@ -1034,7 +1034,7 @@ export default {
         birthday: this.birthday,
         website: this.website
       };
-      console.log("user_string.birthday :", user_string.birthday);
+
       // ------- Experience file and post -------
       // this.send_experiences();
       // ------- Skill file and post -------
@@ -1185,10 +1185,9 @@ export default {
         this.phone = res.data.phone;
         this.address = res.data.address;
         // birthday needed in format yyyy-MM-dd
-        let blabla_date = res.data.birthday;
-        console.log("Date.parse(blabla_date) :", Date.parse(blabla_date));
-        console.log("res.data.birthday :", res.data.birthday);
-        this.birthday = res.data.birthday;
+        let date_object = new Date(res.data.birthday);
+        let birthday_autocomplete = date_object.toISOString().split("T")[0];
+        this.birthday = birthday_autocomplete;
         this.website = res.data.website;
       });
   }
