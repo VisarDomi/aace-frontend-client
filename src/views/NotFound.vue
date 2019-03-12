@@ -6,19 +6,19 @@
       style="background-image: url(static/img/publication1.jpg)"
     >
       <div class="container no-shadow">
-        <router-link :to="{name: 'Home'}">
+        <router-link :to="{ name: 'Home' }">
           <h1 class="text-center" id="home">Go to homepage</h1>
         </router-link>
-        <router-link :to="{name: 'Membership'}">
+        <router-link :to="{ name: 'Membership' }">
           <h3 class="text-center" id="home">Membership</h3>
         </router-link>
-        <router-link :to="{name: 'Directory'}">
+        <router-link :to="{ name: 'Directory' }">
           <h3 class="text-center" id="home">Directory</h3>
         </router-link>
-        <router-link :to="{name: 'Contact'}">
+        <router-link :to="{ name: 'Contact' }">
           <h3 class="text-center" id="home">Contact us</h3>
         </router-link>
-        <router-link :to="{name: 'MemberArea'}">
+        <router-link :to="{ name: 'MemberArea' }">
           <h3 class="text-center" id="home">Member Area</h3>
         </router-link>
       </div>
@@ -49,7 +49,6 @@ export default {
   name: "NotFound"
 };
 </script>
-
 
 <style scoped>
 #home {

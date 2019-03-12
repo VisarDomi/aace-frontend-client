@@ -12,7 +12,12 @@
 
           <form class="header-job-search" @submit.prevent="search(name)">
             <div class="input-keyword" style="width:80%;">
-              <input type="text" class="form-control" placeholder="Name and surname" v-model="name">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Name and surname"
+                v-model="name"
+              />
             </div>
             <!-- <div class="input-location">
                         <input type="text" class="form-control" placeholder="City, state or zip">
@@ -32,26 +37,37 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <br>
+              <br />
               <h5>
                 We found
-                <strong>{{searchResult.length}}</strong> matches.
+                <strong>{{ searchResult.length }}</strong> matches.
               </h5>
             </div>
             <!-- Resume detail -->
-            <div class="col-xs-12" v-for="(user,index) in searchResult" :key="user.id">
-              <router-link class="item-block" :to="{name: 'Profile', params: { id: user.id}}">
+            <div
+              class="col-xs-12"
+              v-for="(user, index) in searchResult"
+              :key="user.id"
+            >
+              <router-link
+                class="item-block"
+                :to="{ name: 'Profile', params: { id: user.id } }"
+              >
                 <header>
-                  <img class="resume-avatar" :src="profilePictures[index]" alt="Profile Picture">
+                  <img
+                    class="resume-avatar"
+                    :src="profilePictures[index]"
+                    alt="Profile Picture"
+                  />
 
                   <div class="hgroup">
-                    <h4>{{user.first_name }} {{user.last_name}}</h4>
-                    <h5>{{user.country}}</h5>
+                    <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                    <h5>{{ user.country }}</h5>
                   </div>
                 </header>
 
                 <div class="item-body">
-                  <p>{{user.summary}}</p>
+                  <p>{{ user.summary }}</p>
 
                   <!-- <div class="tag-list">
                                     <span>HTML5</span>
@@ -65,17 +81,17 @@
                   <ul class="details cols-3">
                     <li>
                       <i class="fa fa-map-marker"></i>
-                      <span>{{user.birthday}}</span>
+                      <span>{{ user.birthday }}</span>
                     </li>
 
                     <li>
                       <i class="fa fa-user"></i>
-                      <span>{{user.email}}</span>
+                      <span>{{ user.email }}</span>
                     </li>
 
                     <li>
                       <i class="fa fa-certificate"></i>
-                      <span>{{user.phone}}</span>
+                      <span>{{ user.phone }}</span>
                     </li>
                   </ul>
                 </footer>
@@ -149,4 +165,3 @@ export default {
   }
 };
 </script>
-

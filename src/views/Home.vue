@@ -7,16 +7,20 @@
     >
       <div class="container">
         <div class="col-md-5">
-          <br>
-          <br>
+          <br />
+          <br />
           <h4>Welcome to the Albanian Association of Consulting Engineers.</h4>
-          <br>
-          <h6
-            class="font-alt"
-          >This is the home of all engineers operating in Albania, the home for the Albanian scientific thought contributing in the development of the country. Local or foreign consulting engineers based in Albania are welcome to join the Association in order to give their contribution.</h6>
-          <br>
-          <br>
-          <router-link :to="{name: 'Membership'}">
+          <br />
+          <h6 class="font-alt">
+            This is the home of all engineers operating in Albania, the home for
+            the Albanian scientific thought contributing in the development of
+            the country. Local or foreign consulting engineers based in Albania
+            are welcome to join the Association in order to give their
+            contribution.
+          </h6>
+          <br />
+          <br />
+          <router-link :to="{ name: 'Membership' }">
             <button class="btn btn-primary" type="submit">Get involved</button>
           </router-link>
         </div>
@@ -34,24 +38,46 @@
               <h2>Who we are</h2>
             </header>
 
-            <p
-              class="lead"
-            >This is the home of all engineers operating in Albania, the home for the Albanian scientific thought contributing in the development of the country. Local or foreign consulting engineers based in Albania are welcome to join the Association in order to give their contribution.</p>
-            <p>Since 15 years the Albanian Association of Consulting Engineers has represented the voice of the sector locally and internationally. While the international events have helped us to get in touch with the recent developments in science and technology, the local meetings, seminars and conferences have given a significant contribution in bringing such experiences home to the Albanian engineers.</p>
-            <p>Our mission is to maintain a level of professionalism and standards in design and construction works in Albania by providing scientific backup and sustainable solutions.</p>
+            <p class="lead">
+              This is the home of all engineers operating in Albania, the home
+              for the Albanian scientific thought contributing in the
+              development of the country. Local or foreign consulting engineers
+              based in Albania are welcome to join the Association in order to
+              give their contribution.
+            </p>
+            <p>
+              Since 15 years the Albanian Association of Consulting Engineers
+              has represented the voice of the sector locally and
+              internationally. While the international events have helped us to
+              get in touch with the recent developments in science and
+              technology, the local meetings, seminars and conferences have
+              given a significant contribution in bringing such experiences home
+              to the Albanian engineers.
+            </p>
+            <p>
+              Our mission is to maintain a level of professionalism and
+              standards in design and construction works in Albania by providing
+              scientific backup and sustainable solutions.
+            </p>
 
-            <br>
-            <br>
-            <router-link :to="{name: 'About'}" class="btn btn-primary">Learn more</router-link>
+            <br />
+            <br />
+            <router-link :to="{ name: 'About' }" class="btn btn-primary"
+              >Learn more</router-link
+            >
           </div>
 
           <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <img class="center-block" src="/static/img/aboutus_plc.png" alt="how it works">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <img
+              class="center-block"
+              src="/static/img/aboutus_plc.png"
+              alt="how it works"
+            />
           </div>
         </div>
       </section>
@@ -64,30 +90,22 @@
         <div class="container">
           <div class="row">
             <div class="counter col-md-3 col-sm-6">
-              <p>
-                <span data-from="0" data-to="68"></span>+
-              </p>
+              <p><span data-from="0" data-to="68"></span>+</p>
               <h6>Publications</h6>
             </div>
 
             <div class="counter col-md-3 col-sm-6">
-              <p>
-                <span data-from="0" data-to="1200"></span>+
-              </p>
+              <p><span data-from="0" data-to="1200"></span>+</p>
               <h6>Members</h6>
             </div>
 
             <div class="counter col-md-3 col-sm-6">
-              <p>
-                <span data-from="0" data-to="36"></span>+
-              </p>
+              <p><span data-from="0" data-to="36"></span>+</p>
               <h6>Events</h6>
             </div>
 
             <div class="counter col-md-3 col-sm-6">
-              <p>
-                <span data-from="0" data-to="15"></span>+
-              </p>
+              <p><span data-from="0" data-to="15"></span>+</p>
               <h6>Partners</h6>
             </div>
           </div>
@@ -104,37 +122,37 @@
           </header>
 
           <div class="category-grid">
-            <router-link :to="{name: 'Events'}" style="height: 295px;">
+            <router-link :to="{ name: 'Events' }" style="height: 295px;">
               <i class="fa fa-calendar"></i>
               <h6>Events</h6>
               <p>Attend events organized by members and directors</p>
             </router-link>
 
-            <router-link :to="{name: 'Directory'}" style="height: 295px;">
+            <router-link :to="{ name: 'Directory' }" style="height: 295px;">
               <i class="fa fa-clipboard"></i>
               <h6>Engineer Directory</h6>
               <p>Find all member engineers in the platform</p>
             </router-link>
 
-            <router-link :to="{name: 'Publications'}" style="height: 295px;">
+            <router-link :to="{ name: 'Publications' }" style="height: 295px;">
               <i class="fa fa-newspaper-o"></i>
               <h6>Publications</h6>
               <p>Read about our latest developments</p>
             </router-link>
 
-            <router-link :to="{name: 'Membership'}" style="height: 295px;">
+            <router-link :to="{ name: 'Membership' }" style="height: 295px;">
               <i class="fa fa-users"></i>
               <h6>Membership</h6>
               <p>Learn the rules and how to become a member</p>
             </router-link>
 
-            <router-link :to="{name: 'Board'}" style="height: 295px;">
+            <router-link :to="{ name: 'Board' }" style="height: 295px;">
               <i class="fa fa-sitemap"></i>
               <h6>Board of directors</h6>
               <p>Get to know our board of directors</p>
             </router-link>
 
-            <router-link :to="{name: 'Login'}" style="height: 295px;">
+            <router-link :to="{ name: 'Login' }" style="height: 295px;">
               <i class="fa fa-sign-in"></i>
               <h6>Member platform</h6>
               <p>The social network platform for our members</p>
@@ -177,5 +195,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

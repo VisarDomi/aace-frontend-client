@@ -10,38 +10,42 @@
           </a>
 
           <div class="logo-wrapper">
-            <router-link :to="{name: 'Home'}" class="logo">
-              <img src="/static/img/eeee.png" alt="logo">
+            <router-link :to="{ name: 'Home' }" class="logo">
+              <img src="/static/img/eeee.png" alt="logo" />
             </router-link>
-            <router-link :to="{name: 'Home'}" class="logo-alt">
-              <img src="/static/img/eeee_alt.png" alt="logo-alt">
+            <router-link :to="{ name: 'Home' }" class="logo-alt">
+              <img src="/static/img/eeee_alt.png" alt="logo-alt" />
             </router-link>
           </div>
         </div>
         <!-- END Logo -->
         <!-- User account -->
         <div class="pull-right user-login" v-if="!isAuthenticated">
-          <router-link :to="{name: 'Login'}" class="btn btn-sm btn-primary">Login</router-link>or
-          <router-link :to="{name: 'Register'}">Register</router-link>
+          <router-link :to="{ name: 'Login' }" class="btn btn-sm btn-primary"
+            >Login</router-link
+          >or
+          <router-link :to="{ name: 'Register' }">Register</router-link>
         </div>
         <div v-else class="pull-right user-login">
           <i class="fa fa-user fa-2x"></i>
-          <router-link :to="{name: 'Profile', params: { id: currentUser.id}}">Profile</router-link>
+          <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }"
+            >Profile</router-link
+          >
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
         <ul class="nav-menu">
           <li>
-            <router-link :to="{name: 'Home'}">AACE</router-link>
+            <router-link :to="{ name: 'Home' }">AACE</router-link>
             <ul>
               <li>
-                <router-link :to="{name: 'Home'}">Home</router-link>
+                <router-link :to="{ name: 'Home' }">Home</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'About'}">About us</router-link>
+                <router-link :to="{ name: 'About' }">About us</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'Contact'}">Contact us</router-link>
+                <router-link :to="{ name: 'Contact' }">Contact us</router-link>
               </li>
               <!-- <li>
                 <router-link :to="{name: 'Board'}">Board</router-link>
@@ -49,31 +53,42 @@
             </ul>
           </li>
           <li>
-            <router-link :to="{name: 'Membership'}">Membership</router-link>
+            <router-link :to="{ name: 'Membership' }">Membership</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'Directory'}">Directory</router-link>
+            <router-link :to="{ name: 'Directory' }">Directory</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'MemberArea'}">Member area</router-link>
+            <router-link :to="{ name: 'MemberArea' }">Member area</router-link>
             <ul>
               <li>
-                <router-link :to="{name: 'Profile', params: { id: currentUser.id}}">Profile</router-link>
+                <router-link
+                  :to="{ name: 'Profile', params: { id: currentUser.id } }"
+                  >Profile</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'Application'}">Application Form</router-link>
+                <router-link :to="{ name: 'Application' }"
+                  >Application Form</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'ReApplication'}">ReApplication Form</router-link>
+                <router-link :to="{ name: 'ReApplication' }"
+                  >ReApplication Form</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'ApplicationStatus'}">Application Status</router-link>
+                <router-link :to="{ name: 'ApplicationStatus' }"
+                  >Application Status</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'Communications'}">Communications</router-link>
+                <router-link :to="{ name: 'Communications' }"
+                  >Communications</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'ComingSoon'}">Polls</router-link>
+                <router-link :to="{ name: 'ComingSoon' }">Polls</router-link>
               </li>
               <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Log-out</a>

@@ -16,28 +16,49 @@
             <h2>Governance Structure</h2>
           </header>
 
-          <p>AACE is a non for profit trade organisation and operates as a Company Limited by Guarantee and not having a share capital. The Articles of Association for AACE Group Ltd provide further information regarding its mandate of operation.</p>
-          <br>
-          <br>
+          <p>
+            AACE is a non for profit trade organisation and operates as a
+            Company Limited by Guarantee and not having a share capital. The
+            Articles of Association for AACE Group Ltd provide further
+            information regarding its mandate of operation.
+          </p>
+          <br />
+          <br />
           <div class="row">
             <div class="col text-center">
-              <img src="static/img/non-profit-chart.png" alt>
+              <img src="static/img/non-profit-chart.png" alt />
             </div>
           </div>
 
-          <br>
-          <br>
+          <br />
+          <br />
           <header class="section-header">
             <span>board</span>
             <h2>Board of Directors</h2>
           </header>
-          <p>The Board is the formal governing body of AACE which is responsible for overseeing the operational and financial decision making on behalf of Members. It consists of a mix of elected and appointed Members to ensure there is balance from across the sectors and Primes, Mid-tiers and SMEs.</p>
+          <p>
+            The Board is the formal governing body of AACE which is responsible
+            for overseeing the operational and financial decision making on
+            behalf of Members. It consists of a mix of elected and appointed
+            Members to ensure there is balance from across the sectors and
+            Primes, Mid-tiers and SMEs.
+          </p>
 
-          <p>Colin Smith from Rolls Royce and Chair of the Aerospace Growth Partnership was elected President of AACE in January 2018. Colin will serve as President and Chair of the Board during his two year tenure.</p>
+          <p>
+            Colin Smith from Rolls Royce and Chair of the Aerospace Growth
+            Partnership was elected President of AACE in January 2018. Colin
+            will serve as President and Chair of the Board during his two year
+            tenure.
+          </p>
 
-          <p>Four Vice Presidents also serve on the Board representing each of the sectors. All other Members of the Board represent a specific role as defined by the Board or the membership and set out in the Articles of Association.</p>
-          <br>
-          <br>
+          <p>
+            Four Vice Presidents also serve on the Board representing each of
+            the sectors. All other Members of the Board represent a specific
+            role as defined by the Board or the membership and set out in the
+            Articles of Association.
+          </p>
+          <br />
+          <br />
           <div class="row">
             <div class="col-sm-4">
               <div class="team-members">
@@ -46,7 +67,7 @@
                     class="img-responsive"
                     src="https://keenthemes.com/assets/bootsnipp/member1.png"
                     alt
-                  >
+                  />
                 </div>
                 <div class="team-desc">
                   <h4>John Doe</h4>
@@ -61,7 +82,7 @@
                     class="img-responsive"
                     src="https://keenthemes.com/assets/bootsnipp/member2.png"
                     alt
-                  >
+                  />
                 </div>
                 <div class="team-desc">
                   <h4>Melisa Doe</h4>
@@ -76,7 +97,7 @@
                     class="img-responsive"
                     src="https://keenthemes.com/assets/bootsnipp/member3.png"
                     alt
-                  >
+                  />
                 </div>
                 <div class="team-desc">
                   <h4>Alex Atkinson</h4>

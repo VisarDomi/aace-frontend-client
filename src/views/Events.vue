@@ -17,15 +17,25 @@
         <div class="col-lg-5 mt-5">
           <router-link to="/event_detail">
             <div class="card text-center">
-              <img class="card-img-top" src="static/img/publication1.jpg" alt="Card image cap">
+              <img
+                class="card-img-top"
+                src="static/img/publication1.jpg"
+                alt="Card image cap"
+              />
               <div class="card-body" id="card">
-                <h5 class="card-title">The 1nd International Congress on Roads</h5>
+                <h5 class="card-title">
+                  The 1nd International Congress on Roads
+                </h5>
               </div>
               <div class="card-footer text-muted">
                 <h5 class="card-date">4 January, 2019</h5>
-                <div
-                  class="card-body-text"
-                >Efficiently predominate cross functional mindshare via client-focused platforms. Collaboratively harness multifunctional resources and multimedia based models. Collaboratively build cost effective technologies through fully tested human capital. Efficiently...</div>
+                <div class="card-body-text">
+                  Efficiently predominate cross functional mindshare via
+                  client-focused platforms. Collaboratively harness
+                  multifunctional resources and multimedia based models.
+                  Collaboratively build cost effective technologies through
+                  fully tested human capital. Efficiently...
+                </div>
               </div>
             </div>
           </router-link>
@@ -34,15 +44,25 @@
         <div class="col-lg-5 mt-5">
           <router-link to="/event_detail">
             <div class="card text-center">
-              <img class="card-img-top" src="static/img/event2.jpg" alt="Card image cap">
+              <img
+                class="card-img-top"
+                src="static/img/event2.jpg"
+                alt="Card image cap"
+              />
               <div class="card-body" id="card">
-                <h5 class="card-title">The 2nd International Congress on Roads</h5>
+                <h5 class="card-title">
+                  The 2nd International Congress on Roads
+                </h5>
               </div>
               <div class="card-footer text-muted">
                 <h5 class="card-date">18 August, 2018</h5>
-                <div
-                  class="card-body-text"
-                >Efficiently predominate cross functional mindshare via client-focused platforms. Collaboratively harness multifunctional resources and multimedia based models. Collaboratively build cost effective technologies through fully tested human capital. Efficiently...</div>
+                <div class="card-body-text">
+                  Efficiently predominate cross functional mindshare via
+                  client-focused platforms. Collaboratively harness
+                  multifunctional resources and multimedia based models.
+                  Collaboratively build cost effective technologies through
+                  fully tested human capital. Efficiently...
+                </div>
               </div>
             </div>
           </router-link>

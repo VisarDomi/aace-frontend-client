@@ -16,7 +16,9 @@
               <router-link to="/">Go to Home Page</router-link>
             </li>
             <li class="list-group-item">
-              <router-link to="/application">Go to Application Again</router-link>
+              <router-link to="/application"
+                >Go to Application Again</router-link
+              >
             </li>
           </ul>
         </div>
@@ -51,4 +53,3 @@ export default {
   }
 };
 </script>
-

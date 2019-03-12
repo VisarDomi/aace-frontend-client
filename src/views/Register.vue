@@ -5,9 +5,11 @@
       style="background-image: url(static/img/home_banner_grayed_short.jpg); margin-bottom: 0px;"
     >
       <div class="login-page">
-        <main style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;">
+        <main
+          style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;"
+        >
           <div class="login-block">
-            <img src="static/img/aace_only_logo.png" alt="AACE logo">
+            <img src="static/img/aace_only_logo.png" alt="AACE logo" />
             <h1>Register a new account</h1>
 
             <form @submit.prevent="register">
@@ -31,11 +33,11 @@
                     class="form-control"
                     placeholder="Your email address"
                     v-model="email"
-                  >
+                  />
                 </div>
               </div>
 
-              <hr class="hr-xs">
+              <hr class="hr-xs" />
 
               <div class="form-group">
                 <div class="input-group">
@@ -47,13 +49,15 @@
                     class="form-control"
                     placeholder="Choose a password"
                     v-model="password"
-                  >
+                  />
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+              <button class="btn btn-primary btn-block" type="submit">
+                Sign up
+              </button>
 
-              <hr class="hr-xs">
+              <hr class="hr-xs" />
               <!-- <div class="form-group">{{ loading }}</div> -->
             </form>
             <ul v-if="errors" class="error-messages">
@@ -62,8 +66,11 @@
           </div>
 
           <div class="login-links">
-            <p class="text-center">Already have an account?
-              <router-link to="/login" class="txt-brand btn btn-light">Login</router-link>
+            <p class="text-center">
+              Already have an account?
+              <router-link to="/login" class="txt-brand btn btn-light"
+                >Login</router-link
+              >
             </p>
           </div>
         </main>

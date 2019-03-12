@@ -15,11 +15,11 @@
             <h2>Application Status</h2>
           </header>
           <h4>Name of applicant:</h4>
-          <p>{{currentUser.first_name}} {{currentUser.last_name}}</p>
-          <br>
+          <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
+          <br />
           <h4>Date of application:</h4>
           <p>12.12.2019</p>
-          <br>
+          <br />
           <h4>Status:</h4>
           <div
             class="alert alert-warning"
@@ -61,12 +61,19 @@
           >
             <strong>Approved.</strong>
           </div>
-          <br>
-          <h4 v-if="currentUser.comment_from_administrator">Comment from secretary:</h4>
-          <p>{{currentUser.comment_from_administrator}}</p>
-          <br>
-          <router-link :to="{name: 'ReApplication'}" v-if="status == 'rebutted'">
-            <button type="submit" class="btn btn-primary">Fix application</button>
+          <br />
+          <h4 v-if="currentUser.comment_from_administrator">
+            Comment from secretary:
+          </h4>
+          <p>{{ currentUser.comment_from_administrator }}</p>
+          <br />
+          <router-link
+            :to="{ name: 'ReApplication' }"
+            v-if="status == 'rebutted'"
+          >
+            <button type="submit" class="btn btn-primary">
+              Fix application
+            </button>
           </router-link>
         </div>
       </section>

@@ -23,13 +23,16 @@
           >
             <router-link
               style="height: 295px;"
-              :to="{name: 'CommunicationDetail', params: { id: communication.id}}"
+              :to="{
+                name: 'CommunicationDetail',
+                params: { id: communication.id }
+              }"
             >
-              <h6>{{communication.name}}</h6>
-              <p>{{communication.description}}</p>
-              <br>
+              <h6>{{ communication.name }}</h6>
+              <p>{{ communication.description }}</p>
+              <br />
               <p>
-                <strong>{{communication.time}}</strong>
+                <strong>{{ communication.time }}</strong>
               </p>
             </router-link>
           </div>

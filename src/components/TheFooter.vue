@@ -6,13 +6,13 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-24 col-md-12">
-            <router-link :to="{name: 'Home'}" class="logo">
-              <img src="/static/img/eeee.png" alt="logo">
+            <router-link :to="{ name: 'Home' }" class="logo">
+              <img src="/static/img/eeee.png" alt="logo" />
             </router-link>
           </div>
         </div>
 
-        <hr>
+        <hr />
       </div>
       <!-- END Topper section -->
       <!-- Top section -->
@@ -20,28 +20,36 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <h6>About</h6>
-            <p
-              class="text-justify"
-            >Since 15 years the Albanian Association of Consulting Engineers has represented the voice of the sector locally and internationally. While the international events have helped us to get in touch with the recent developments in science and technology, the local meetings, seminars and conferences have given a significant contribution in bringing such experiences home to the Albanian engineers.</p>
+            <p class="text-justify">
+              Since 15 years the Albanian Association of Consulting Engineers
+              has represented the voice of the sector locally and
+              internationally. While the international events have helped us to
+              get in touch with the recent developments in science and
+              technology, the local meetings, seminars and conferences have
+              given a significant contribution in bringing such experiences home
+              to the Albanian engineers.
+            </p>
           </div>
 
           <div class="col-xs-6 col-md-3">
             <h6>AACE</h6>
             <ul class="footer-links">
               <li>
-                <router-link :to="{name: 'About'}">About us</router-link>
+                <router-link :to="{ name: 'About' }">About us</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'Directory'}">Directory</router-link>
+                <router-link :to="{ name: 'Directory' }">Directory</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'Events'}">Events</router-link>
+                <router-link :to="{ name: 'Events' }">Events</router-link>
               </li>
               <li>
-                <router-link :to="{name: 'Publications'}">Publications</router-link>
+                <router-link :to="{ name: 'Publications' }"
+                  >Publications</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'Contact'}">Contact us</router-link>
+                <router-link :to="{ name: 'Contact' }">Contact us</router-link>
               </li>
             </ul>
           </div>
@@ -50,25 +58,31 @@
             <h6>Useful links</h6>
             <ul class="footer-links">
               <li>
-                <router-link :to="{name: 'Membership'}">How to become a member</router-link>
+                <router-link :to="{ name: 'Membership' }"
+                  >How to become a member</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'Login'}">Login in</router-link>
+                <router-link :to="{ name: 'Login' }">Login in</router-link>
               </li>
               <!-- <li>
                 <router-link :to="{name: 'Board'}">Contact the board</router-link>
               </li>-->
               <li>
-                <router-link :to="{name: 'Privacy'}">Privacy Policy</router-link>
+                <router-link :to="{ name: 'Privacy' }"
+                  >Privacy Policy</router-link
+                >
               </li>
               <li>
-                <router-link :to="{name: 'Terms'}">Terms and Agreement</router-link>
+                <router-link :to="{ name: 'Terms' }"
+                  >Terms and Agreement</router-link
+                >
               </li>
             </ul>
           </div>
         </div>
 
-        <hr>
+        <hr />
       </div>
       <!-- END Top section -->
       <!-- Bottom section -->
@@ -77,10 +91,7 @@
           <div class="col-md-8 col-sm-6 col-xs-12">
             <p class="copyright-text">
               Copyrights &copy; 2019 All Rights Reserved by
-              <a
-                href="https://forcewing.com"
-                target="_blank"
-              >FORCEWING</a>.
+              <a href="https://forcewing.com" target="_blank">FORCEWING</a>.
             </p>
           </div>
 

@@ -12,12 +12,12 @@
       <section style="padding-top:0px; padding-bottom:50px;">
         <div class="container">
           <header class="section-header">
-            <h2>{{comm.name}}</h2>
+            <h2>{{ comm.name }}</h2>
           </header>
 
           <div class="container" style=" white-space: pre-line;">
             <div class="row">
-              <div class="col-md-9">{{comm.body}}</div>
+              <div class="col-md-9">{{ comm.body }}</div>
               <div class="col-md-3" style="padding-top: 37px;">
                 <ul class="pricing">
                   <li style="width: 100%; border: none;">
@@ -29,7 +29,7 @@
                         v-for="document in communicationDocuments"
                         :key="document.id"
                       >
-                        <p>{{document.filename}}</p>
+                        <p>{{ document.filename }}</p>
 
                         <a
                           style="margin-bottom:10px;"
@@ -49,9 +49,15 @@
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
-              <textarea class="form-control" rows="5" v-model="comment"></textarea>
-              <br>
-              <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
+              <textarea
+                class="form-control"
+                rows="5"
+                v-model="comment"
+              ></textarea>
+              <br />
+              <a class="btn btn-primary" href="#" @click="sendComment"
+                >Dergo koment</a
+              >
             </form>
           </div>
         </div>

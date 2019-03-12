@@ -30,4 +30,3 @@ export default {
   name: "Privacy"
 };
 </script>
-

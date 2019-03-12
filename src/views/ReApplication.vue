@@ -5,15 +5,23 @@
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Add your resume</h1>
-          <p class="lead text-center">Create your application and it send to the board.</p>
+          <p class="lead text-center">
+            Create your application and it send to the board.
+          </p>
         </div>
 
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input type="file" ref="profile_file" @change="handleFileUploadProfile">
-                <span class="help-block">Please choose a 4:6 profile picture.</span>
+                <input
+                  type="file"
+                  ref="profile_file"
+                  @change="handleFileUploadProfile"
+                />
+                <span class="help-block"
+                  >Please choose a 4:6 profile picture.</span
+                >
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -23,7 +31,7 @@
                   class="form-control input-lg"
                   placeholder="First Name"
                   v-model="first_name"
-                >
+                />
               </div>
               <div class="form-group">
                 <input
@@ -31,7 +39,7 @@
                   class="form-control input-lg"
                   placeholder="Last Name"
                   v-model="last_name"
-                >
+                />
               </div>
               <div class="form-group">
                 <input
@@ -39,11 +47,16 @@
                   class="form-control input-lg"
                   placeholder="Profesioni"
                   v-model="profession"
-                >
+                />
               </div>
 
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Gjinia" v-model="sex">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Gjinia"
+                  v-model="sex"
+                />
               </div>
 
               <div class="form-group">
@@ -55,7 +68,7 @@
                 ></textarea>
               </div>
 
-              <hr class="hr-lg">
+              <hr class="hr-lg" />
 
               <h6>Basic information</h6>
               <div class="row">
@@ -69,7 +82,7 @@
                       class="form-control"
                       placeholder="Vendlindja"
                       v-model="country"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -83,7 +96,7 @@
                       class="form-control"
                       placeholder="Address, e.g. Rruga Pleurat Xhuvani"
                       v-model="address"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -97,7 +110,7 @@
                       class="form-control"
                       placeholder="Website address"
                       v-model="website"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -111,7 +124,7 @@
                       class="form-control"
                       placeholder="Datelindja"
                       v-model="birthday"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -125,7 +138,7 @@
                       class="form-control"
                       placeholder="Phone number"
                       v-model="phone"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -134,7 +147,12 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input type="text" class="form-control" :placeholder="email" disabled>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :placeholder="email"
+                      disabled
+                    />
                   </div>
                 </div>
               </div>
@@ -149,17 +167,21 @@
           <div class="container">
             <header class="section-header">
               <h2>Comment from Administrator</h2>
-              <p>{{comment_from_administrator}}</p>
+              <p>{{ comment_from_administrator }}</p>
             </header>
-            <header class="section-header" :key="education.id" v-for="education in educationInputs">
-              <p>{{education}}</p>
+            <header
+              class="section-header"
+              :key="education.id"
+              v-for="education in educationInputs"
+            >
+              <p>{{ education }}</p>
             </header>
             <header
               class="section-header"
               :key="experience.id"
               v-for="experience in experienceInputs"
             >
-              <p>{{experience}}</p>
+              <p>{{ experience }}</p>
             </header>
           </div>
         </section>
@@ -194,23 +216,33 @@
                             type="file"
                             ref="education"
                             multiple
-                            @change="handleFileUploadEducation(educationInput.id, index)"
+                            @change="
+                              handleFileUploadEducation(
+                                educationInput.id,
+                                index
+                              )
+                            "
+                          />
+                          <span class="help-block"
+                            >Please choose a square logo of your educational
+                            institution</span
                           >
-                          <span
-                            class="help-block"
-                          >Please choose a square logo of your educational institution</span>
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
                         <label class="col-sm-6">Vendos tipin e edukimit*</label>
                         <div class="form-group">
-                          <select class="form-control" v-model="education_type_id[index]">
+                          <select
+                            class="form-control"
+                            v-model="education_type_id[index]"
+                          >
                             <option
                               v-for="option in education_type_options"
                               v-bind:value="option.id"
                               :key="option.id"
-                            >{{ option.text }}</option>
+                              >{{ option.text }}</option
+                            >
                           </select>
                         </div>
 
@@ -220,13 +252,18 @@
                             <select
                               class="form-control"
                               v-model="education_degree_id[index]"
-                              @change="handleEducationOptionDegreeChange($event, index)"
+                              @change="
+                                handleEducationOptionDegreeChange($event, index)
+                              "
                             >
                               <option
-                                v-for="option in education_degree_options[education_type_id[index]]"
+                                v-for="option in education_degree_options[
+                                  education_type_id[index]
+                                ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
@@ -236,7 +273,7 @@
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="..."
-                            >
+                            />
                           </div>
                         </div>
 
@@ -246,13 +283,18 @@
                             <select
                               class="form-control"
                               v-model="education_major_id[index]"
-                              @change="handleEducationOptionMajorChange($event, index)"
+                              @change="
+                                handleEducationOptionMajorChange($event, index)
+                              "
                             >
                               <option
-                                v-for="option in education_major_options[education_type_id[index]]"
+                                v-for="option in education_major_options[
+                                  education_type_id[index]
+                                ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
@@ -262,7 +304,7 @@
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="..."
-                            >
+                            />
                           </div>
                         </div>
 
@@ -272,7 +314,7 @@
                             class="form-control"
                             v-model="educationInput.school"
                             placeholder="School name, e.g. Massachusetts Institute of Technology"
-                          >
+                          />
                         </div>
                         <div class="form-group">
                           <div class="input-group">
@@ -282,15 +324,15 @@
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
-                            >
-                            
+                            />
+
                             <span class="input-group-addon">Date to</span>
                             <input
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2016"
                               v-model="educationInput.to_date"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group">
@@ -308,8 +350,14 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br>
-                <button class="btn btn-primary" type="button" @click="onAddEducation">Add education</button>
+                <br />
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  @click="onAddEducation"
+                >
+                  Add education
+                </button>
               </div>
             </div>
           </div>
@@ -346,9 +394,16 @@
                             type="file"
                             ref="experience"
                             multiple
-                            @change="handleFileUploadExperience(experienceInput.id, index)"
+                            @change="
+                              handleFileUploadExperience(
+                                experienceInput.id,
+                                index
+                              )
+                            "
+                          />
+                          <span class="help-block"
+                            >Please choose a square logo of the company</span
                           >
-                          <span class="help-block">Please choose a square logo of the company</span>
                         </div>
                       </div>
 
@@ -359,7 +414,7 @@
                             class="form-control"
                             v-model="experienceInput.employer"
                             placeholder="Emri i punedhenesit"
-                          >
+                          />
                         </div>
 
                         <div class="form-group">
@@ -368,7 +423,7 @@
                             class="form-control"
                             v-model="experienceInput.company"
                             placeholder="Company"
-                          >
+                          />
                         </div>
 
                         <div class="form-group">
@@ -377,7 +432,7 @@
                             class="form-control"
                             v-model="experienceInput.location"
                             placeholder="Location"
-                          >
+                          />
                         </div>
 
                         <div class="form-group">
@@ -388,14 +443,14 @@
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
-                            >
+                            />
                             <span class="input-group-addon">Date to</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -414,12 +469,14 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br>
+                <br />
                 <button
                   class="btn btn-primary btn-duplicator"
                   type="button"
                   @click="onAddExperience"
-                >Add experience</button>
+                >
+                  Add experience
+                </button>
               </div>
             </div>
           </div>
@@ -456,9 +513,13 @@
                             type="file"
                             ref="skill"
                             multiple
-                            @change="handleFileUploadSkill(skillInput.randomid, index)"
+                            @change="
+                              handleFileUploadSkill(skillInput.randomid, index)
+                            "
+                          />
+                          <span class="help-block"
+                            >Please choose a photo of your skill</span
                           >
-                          <span class="help-block">Please choose a photo of your skill</span>
                         </div>
                       </div>
 
@@ -469,7 +530,7 @@
                             class="form-control"
                             v-model="skillInput.releaser"
                             placeholder="Leshuesi i kualifikimit"
-                          >
+                          />
                         </div>
                         <div class="form-group">
                           <input
@@ -477,7 +538,7 @@
                             class="form-control"
                             v-model="skillInput.name"
                             placeholder="Emri i kualifikimit"
-                          >
+                          />
                         </div>
                         <div class="form-group">
                           <div class="input-group">
@@ -487,14 +548,14 @@
                               class="form-control"
                               v-model="skillInput.from_date"
                               placeholder="e.g. 2012"
-                            >
+                            />
                             <span class="input-group-addon">Date to</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="skillInput.to_date"
                               placeholder="e.g. 2016"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group">
@@ -512,12 +573,14 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br>
+                <br />
                 <button
                   class="btn btn-primary btn-duplicator"
                   @click="onAddSkill"
                   type="button"
-                >Add skill</button>
+                >
+                  Add skill
+                </button>
               </div>
             </div>
           </div>
@@ -530,11 +593,16 @@
             <header class="section-header">
               <span>Are you done?</span>
               <h2>Submit application</h2>
-              <p>Please review your information once more and press the below button to send your application for review.</p>
+              <p>
+                Please review your information once more and press the below
+                button to send your application for review.
+              </p>
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">Submit your application</button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">
+                Submit your application
+              </button>
             </p>
           </div>
         </section>
@@ -544,7 +612,6 @@
     </form>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -967,7 +1034,7 @@ export default {
         birthday: this.birthday,
         website: this.website
       };
-
+      console.log("user_string.birthday :", user_string.birthday);
       // ------- Experience file and post -------
       // this.send_experiences();
       // ------- Skill file and post -------
@@ -1118,6 +1185,8 @@ export default {
         this.phone = res.data.phone;
         this.address = res.data.address;
         // birthday needed in format yyyy-MM-dd
+        let blabla_date = res.data.birthday;
+        console.log("Date.parse(blabla_date) :", Date.parse(blabla_date));
         console.log("res.data.birthday :", res.data.birthday);
         this.birthday = res.data.birthday;
         this.website = res.data.website;

@@ -2,11 +2,14 @@
   <div>
     <!-- Page header -->
     <!-- Page header -->
-    <header class="page-header bg-img" style="background-image: url(static/img/bg-banner1.jpg)">
+    <header
+      class="page-header bg-img"
+      style="background-image: url(static/img/bg-banner1.jpg)"
+    >
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-4">
-            <img :src="profilePicture" alt>
+            <img :src="profilePicture" alt />
           </div>
 
           <div class="col-xs-12 col-sm-8 header-detail">
@@ -14,7 +17,7 @@
               <h1>{{ profile.first_name + " " + profile.last_name }}</h1>
               <h3>{{ profile.profession }}</h3>
             </div>
-            <hr>
+            <hr />
             <p class="lead">{{ profile.summary }}</p>
 
             <ul class="details cols-2">
@@ -35,7 +38,9 @@
 
               <li>
                 <i class="fa fa-money"></i>
-                <span>{{ profile.years_of_experience + " years of experience"}}</span>
+                <span>{{
+                  profile.years_of_experience + " years of experience"
+                }}</span>
               </li>
 
               <li>
@@ -109,21 +114,27 @@
           </header>
 
           <div class="row">
-            <div class="col-xs-12" :key="education.id" v-for="education in educations">
+            <div
+              class="col-xs-12"
+              :key="education.id"
+              v-for="education in educations"
+            >
               <div class="item-block">
                 <header>
-                  <img src="static/img/logo-mit.png" alt>
+                  <img src="static/img/logo-mit.png" alt />
                   <div class="hgroup">
                     <h4>
                       {{ education.degree }}
                       <small>{{ education.field_of_study }}</small>
                     </h4>
-                    <h5>{{education.school}}</h5>
+                    <h5>{{ education.school }}</h5>
                   </div>
-                  <h6 class="time">{{education.from_date}} - {{education.to_date}}</h6>
+                  <h6 class="time">
+                    {{ education.from_date }} - {{ education.to_date }}
+                  </h6>
                 </header>
                 <div class="item-body">
-                  <p>{{education.description}}</p>
+                  <p>{{ education.description }}</p>
                 </div>
               </div>
             </div>
@@ -140,20 +151,26 @@
           </header>
 
           <div class="row">
-            <div class="col-xs-12" :key="experience.id" v-for="experience in experiences">
+            <div
+              class="col-xs-12"
+              :key="experience.id"
+              v-for="experience in experiences"
+            >
               <div class="item-block">
                 <header>
-                  <img src="static/img/dutch_logo.png" alt>
+                  <img src="static/img/dutch_logo.png" alt />
                   <div class="hgroup">
-                    <h4>{{experience.title}}</h4>
-                    <h5>{{experience.employer}}</h5>
-                    <h5>{{experience.company}}</h5>
-                    <h5>{{experience.location}}</h5>
+                    <h4>{{ experience.title }}</h4>
+                    <h5>{{ experience.employer }}</h5>
+                    <h5>{{ experience.company }}</h5>
+                    <h5>{{ experience.location }}</h5>
                   </div>
-                  <h6 class="time">{{experience.from_date}} - {{experience.to_date}}</h6>
+                  <h6 class="time">
+                    {{ experience.from_date }} - {{ experience.to_date }}
+                  </h6>
                 </header>
                 <div class="item-body">
-                  <p>{{experience.description}}</p>
+                  <p>{{ experience.description }}</p>
                 </div>
               </div>
             </div>
@@ -173,15 +190,17 @@
             <div class="col-xs-12" :key="skill.id" v-for="skill in skills">
               <div class="item-block">
                 <header>
-                  <img src="static/img/dutch_logo.png" alt>
+                  <img src="static/img/dutch_logo.png" alt />
                   <div class="hgroup">
-                    <h4>{{skill.name }}</h4>
-                    <h5>{{skill.releaser}}</h5>
+                    <h4>{{ skill.name }}</h4>
+                    <h5>{{ skill.releaser }}</h5>
                   </div>
-                  <h6 class="time">{{skill.from_date}} - {{skill.to_date}}</h6>
+                  <h6 class="time">
+                    {{ skill.from_date }} - {{ skill.to_date }}
+                  </h6>
                 </header>
                 <div class="item-body">
-                  <p>{{skill.description}}</p>
+                  <p>{{ skill.description }}</p>
                 </div>
               </div>
             </div>
@@ -221,4 +240,3 @@ export default {
   }
 };
 </script>
-
