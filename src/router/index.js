@@ -149,42 +149,42 @@ export default new Router({
         ]
       }
     },
-    {
-      path: "/events",
-      name: "Events",
-      component: () => import("@/views/Events"),
-      meta: {
-        title: "Events",
-        metaTags: [
-          {
-            name: "description",
-            content: "The events page of AACE."
-          },
-          {
-            property: "og:description",
-            content: "The events page of AACE."
-          }
-        ]
-      }
-    },
-    {
-      path: "/publications",
-      name: "Publications",
-      component: () => import("@/views/Publications"),
-      meta: {
-        title: "Publications",
-        metaTags: [
-          {
-            name: "description",
-            content: "The publications page of AACE."
-          },
-          {
-            property: "og:description",
-            content: "The publications page of AACE."
-          }
-        ]
-      }
-    },
+    // {
+    //   path: "/events",
+    //   name: "Events",
+    //   component: () => import("@/views/Events"),
+    //   meta: {
+    //     title: "Events",
+    //     metaTags: [
+    //       {
+    //         name: "description",
+    //         content: "The events page of AACE."
+    //       },
+    //       {
+    //         property: "og:description",
+    //         content: "The events page of AACE."
+    //       }
+    //     ]
+    //   }
+    // },
+    // {
+    //   path: "/publications",
+    //   name: "Publications",
+    //   component: () => import("@/views/Publications"),
+    //   meta: {
+    //     title: "Publications",
+    //     metaTags: [
+    //       {
+    //         name: "description",
+    //         content: "The publications page of AACE."
+    //       },
+    //       {
+    //         property: "og:description",
+    //         content: "The publications page of AACE."
+    //       }
+    //     ]
+    //   }
+    // },
     {
       path: "/profile/:id",
       name: "Profile",

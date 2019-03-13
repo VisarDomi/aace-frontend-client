@@ -13,47 +13,25 @@
     <!-- Main container -->
     <main class="container blog-page">
       <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-5 mt-5">
-          <router-link to="/event_detail">
+        <div class="col-lg-6 mt-6" :key="event.id" v-for="event in events">
+          <router-link :to="{name: 'EventDetail', params: { id: event.id }}">
             <div class="card text-center">
-              <img class="card-img-top" src="static/img/publication1.jpg" alt="Card image cap">
-              <div class="card-body" id="card">
-                <h5 class="card-title">The 1nd International Congress on Roads</h5>
+              <img class="card-img-top" :src="event.src" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{event.title}}</h5>
               </div>
               <div class="card-footer text-muted">
-                <h5 class="card-date">4 January, 2019</h5>
-                <div class="card-body-text">
-                  Efficiently predominate cross functional mindshare via
-                  client-focused platforms. Collaboratively harness
-                  multifunctional resources and multimedia based models.
-                  Collaboratively build cost effective technologies through
-                  fully tested human capital. Efficiently...
-                </div>
+                <h5 class="card-date">{{event.date}}</h5>
+                <div class="card-body-text">{{event.description}}</div>
               </div>
             </div>
           </router-link>
-        </div>
-
-        <div class="col-lg-5 mt-5">
-          <router-link to="/event_detail">
-            <div class="card text-center">
-              <img class="card-img-top" src="static/img/event2.jpg" alt="Card image cap">
-              <div class="card-body" id="card">
-                <h5 class="card-title">The 2nd International Congress on Roads</h5>
-              </div>
-              <div class="card-footer text-muted">
-                <h5 class="card-date">18 August, 2018</h5>
-                <div class="card-body-text">
-                  Efficiently predominate cross functional mindshare via
-                  client-focused platforms. Collaboratively harness
-                  multifunctional resources and multimedia based models.
-                  Collaboratively build cost effective technologies through
-                  fully tested human capital. Efficiently...
-                </div>
-              </div>
-            </div>
-          </router-link>
+          <p class="read-more">
+            <router-link
+              :to="{name: 'EventDetail', params: { id: event.id }}"
+              class="btn btn-primary btn-outline"
+            >Vazhdo leximin</router-link>
+          </p>
         </div>
       </div>
     </main>
@@ -63,7 +41,27 @@
 
 <script>
 export default {
-  name: "Events"
+  name: "Events",
+  data() {
+    return {
+      events: [
+        {
+          title: "Konferenca e pare per publikimin mbi rruget",
+          description: "Pershkrim i eventit 1",
+          id: 1,
+          date: "2017-06-04",
+          src: "static/img/publication1.jpg"
+        },
+        {
+          title: "Konferenca e dyte per publikimin mbi rruget",
+          description: "Pershkrim i eventit 2",
+          id: 2,
+          date: "2018-08-04",
+          src: "static/img/newsletter_plc.jpg"
+        }
+      ]
+    };
+  }
 };
 </script>
 

@@ -8,7 +8,7 @@
         <main style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;">
           <div class="login-block">
             <img src="static/img/logo_partial2.png" alt="AACE logo">
-            <h1>Log into your account</h1>
+            <h1>Hyr ne llogarine e juaj</h1>
 
             <form @submit.prevent="onSubmit(username, password)">
               <div class="form-group">
@@ -19,7 +19,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="myname@example.com"
+                    placeholder="Email-i juaj"
                     v-model="username"
                   >
                 </div>
@@ -35,13 +35,13 @@
                   <input
                     type="password"
                     class="form-control"
-                    placeholder="Password"
+                    placeholder="Fjalekalimi juaj"
                     v-model="password"
                   >
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-block" type="submit">Login</button>
+              <button class="btn btn-primary btn-block" type="submit">Hyr</button>
 
               <hr class="hr-xs">
               <!-- <div class="form-group">{{ loading }}</div> -->
@@ -52,11 +52,8 @@
           </div>
 
           <div class="login-links">
-            <a href="#" class="pull-left btn btn-light">Forgot Password?</a>
-            <router-link
-              to="/register"
-              class="pull-right btn btn-light go-to-pull-left"
-            >Register an account</router-link>
+            <a href="#" class="pull-left btn btn-light">Keni harruar fjalekalimin?</a>
+            <router-link to="/register" class="pull-right btn btn-light go-to-pull-left">Regjistrohu</router-link>
           </div>
         </main>
       </div>
@@ -92,7 +89,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 458px) {
+@media screen and (max-width: 456px) {
   .go-to-pull-left {
     float: left !important;
     margin-top: 10px;

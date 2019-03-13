@@ -9,16 +9,14 @@
           <!-- Loading -->
         </div>
         <div class="container abs text-center">
-          <h1>Success!</h1>
-          <h3>Your application has been sent.</h3>
+          <h1>Sukses!</h1>
+          <h3>Aplikimi juaj eshte derguar me sukses</h3>
           <ul class="list-group">
             <li class="list-group-item">
-              <router-link to="/">Go to Home Page</router-link>
+              <router-link :to="{name: 'Home'}">Shko ne faqen kryesore</router-link>
             </li>
             <li class="list-group-item">
-              <router-link to="/application"
-                >Go to Application Again</router-link
-              >
+              <router-link :to="{name: 'ApplicationStatus'}">Shiko statusin e aplikimit</router-link>
             </li>
           </ul>
         </div>

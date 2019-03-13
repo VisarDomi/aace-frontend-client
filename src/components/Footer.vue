@@ -40,13 +40,13 @@
               <li>
                 <router-link :to="{ name: 'Directory' }">Directory</router-link>
               </li>
-              <li>
+              <!-- <li>
                 <router-link :to="{ name: 'Events' }">Events</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'Publications' }">Publications</router-link>
               </li>
-              <li>
+              <li> -->
                 <router-link :to="{ name: 'Contact' }">Contact us</router-link>
               </li>
             </ul>

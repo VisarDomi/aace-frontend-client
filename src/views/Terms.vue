@@ -12,11 +12,11 @@
       <section>
         <div class="container">
           <header class="section-header">
-            <span>Story</span>
-            <h2>Terms</h2>
+            <span>Kushtet</span>
+            <h2>Kushtet e pranimit</h2>
           </header>
 
-          <p>no terms</p>
+          <p>Nuk ka asnje kusht pranimi per momentin.</p>
         </div>
       </section>
       <!-- END Company detail -->

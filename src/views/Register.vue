@@ -8,7 +8,7 @@
         <main style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;">
           <div class="login-block">
             <img src="static/img/logo_partial2.png" alt="AACE logo">
-            <h1>Register a new account</h1>
+            <h1>Regjistrohu</h1>
 
             <form @submit.prevent="register">
               <!-- <div class="form-group">
@@ -29,7 +29,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Your email address"
+                    placeholder="Email-i juaj"
                     v-model="email"
                   >
                 </div>
@@ -45,13 +45,13 @@
                   <input
                     type="password"
                     class="form-control"
-                    placeholder="Choose a password"
+                    placeholder="Fjalekalimi juaj"
                     v-model="password"
                   >
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+              <button class="btn btn-primary btn-block" type="submit">Regjistrohu</button>
 
               <hr class="hr-xs">
               <!-- <div class="form-group">{{ loading }}</div> -->
@@ -62,8 +62,8 @@
           </div>
 
           <div class="login-links">
-            <p class="text-center">Already have an account?
-              <router-link to="/login" class="txt-brand btn btn-light">Login</router-link>
+            <p class="text-center">Keni nje llogari te meparshme?
+              <router-link :to="{name: 'Login'}" class="txt-brand btn btn-light">Hyr</router-link>
             </p>
           </div>
         </main>

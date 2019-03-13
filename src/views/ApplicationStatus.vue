@@ -12,15 +12,15 @@
       <section style="padding-top:0px; padding-bottom:50px;">
         <div class="container text-center">
           <header class="section-header">
-            <h2>Application Status</h2>
+            <h2>Status i aplikimit</h2>
           </header>
-          <h4>Name of applicant:</h4>
+          <h4>Emri i aplikantit:</h4>
           <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
           <br>
-          <h4>Date of application:</h4>
+          <h4>Data e aplikimit:</h4>
           <p>{{ getFormattedDate(currentUser.application_date) }}</p>
           <br>
-          <h4>Status:</h4>
+          <h4>Status i aplikimit:</h4>
           <div
             class="alert alert-warning"
             role="alert"

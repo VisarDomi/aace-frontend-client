@@ -12,11 +12,11 @@
       <section>
         <div class="container">
           <header class="section-header">
-            <span>In this document is our Privacy Policy</span>
-            <h2>Privacy Policy</h2>
+            <span>ne kete dokument ndodhet polica e privacise</span>
+            <h2>Polica e privacise</h2>
           </header>
 
-          <p>There is no Policy for the moment.</p>
+          <p>Nuk ka asnje police privacie per momentin.</p>
         </div>
       </section>
       <!-- END Company detail -->
