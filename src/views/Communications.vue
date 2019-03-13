@@ -47,7 +47,7 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_COMMS } from "@/store/actions.type";
+import { FETCH_COMMUNICATIONS } from "@/store/actions.type";
 export default {
   name: "Communications",
   data() {
@@ -66,7 +66,7 @@ export default {
     ...mapGetters(["communications"])
   },
   created() {
-    this.$store.dispatch(FETCH_COMMS);
+    this.$store.dispatch(FETCH_COMMUNICATIONS);
   }
 };
 </script>

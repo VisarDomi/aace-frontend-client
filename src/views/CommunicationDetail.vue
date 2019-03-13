@@ -67,7 +67,11 @@ import axios from "axios";
 const FileSaver = require("file-saver");
 import { mapGetters } from "vuex";
 import JwtService from "@/common/jwt.service";
-import { FETCH_COMM, FETCH_DOCS, ADD_COMMENT } from "@/store/actions.type";
+import {
+  FETCH_COMMUNICATION,
+  FETCH_DOCS,
+  ADD_COMMENT
+} from "@/store/actions.type";
 import store from "@/store";
 export default {
   name: "CommunicationDetail",
@@ -123,7 +127,7 @@ export default {
   },
   watch: {
     $route(to) {
-      this.$store.dispatch(FETCH_COMM, to.params);
+      this.$store.dispatch(FETCH_COMMUNICATION, to.params);
       this.$store.dispatch(FETCH_DOCS, this.$route.params);
     }
   }

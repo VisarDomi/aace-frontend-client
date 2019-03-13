@@ -32,8 +32,8 @@ export const actions = {
     const { data } = await CommunicationService.getCommunications();
     context.commit(SET_COMMUNICATIONS, data);
   },
-  async [FETCH_COMMUNICATION](context, commId) {
-    const { id } = commId;
+  async [FETCH_COMMUNICATION](context, communicationId) {
+    const { id } = communicationId;
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMMUNICATION, data);
   },
