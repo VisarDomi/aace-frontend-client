@@ -22,16 +22,16 @@
             Articles of Association for AACE Group Ltd provide further
             information regarding its mandate of operation.
           </p>
-          <br />
-          <br />
+          <br>
+          <br>
           <div class="row">
             <div class="col text-center">
-              <img src="static/img/non-profit-chart.png" alt />
+              <!-- <img src="static/img/non-profit-chart.png" alt /> -->
             </div>
           </div>
 
-          <br />
-          <br />
+          <br>
+          <br>
           <header class="section-header">
             <span>board</span>
             <h2>Board of Directors</h2>
@@ -57,17 +57,17 @@
             role as defined by the Board or the membership and set out in the
             Articles of Association.
           </p>
-          <br />
-          <br />
+          <br>
+          <br>
           <div class="row">
             <div class="col-sm-4">
               <div class="team-members">
                 <div class="team-avatar">
-                  <img
+                  <!-- <img
                     class="img-responsive"
                     src="https://keenthemes.com/assets/bootsnipp/member1.png"
                     alt
-                  />
+                  />-->
                 </div>
                 <div class="team-desc">
                   <h4>John Doe</h4>
@@ -75,7 +75,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <!-- <div class="col-sm-4">
               <div class="team-members">
                 <div class="team-avatar">
                   <img
@@ -104,7 +104,7 @@
                   <span>Director</span>
                 </div>
               </div>
-            </div>
+            </div>-->
           </div>
           <!-- //end row -->
         </div>

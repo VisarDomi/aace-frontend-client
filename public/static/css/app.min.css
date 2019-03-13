@@ -16386,7 +16386,8 @@ dl.icon-holder dd {
 
 .navbar .logo-alt img,
 .navbar .logo img {
-    height: 60px
+    height: 60px;
+    margin-top: 10px;
 }
 
 .navbar .logo-alt {
@@ -16839,8 +16840,8 @@ dl.icon-holder dd {
 @media (max-width:767px) {
     .navbar .logo-alt img,
     .navbar .logo img {
-        height: 40px;
-        margin-top: 10px
+        height: 60px;
+        margin-top: 10px;
     }
     .user-login .btn {
         line-height: 26px;

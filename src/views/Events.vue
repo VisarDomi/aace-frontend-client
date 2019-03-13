@@ -17,15 +17,9 @@
         <div class="col-lg-5 mt-5">
           <router-link to="/event_detail">
             <div class="card text-center">
-              <img
-                class="card-img-top"
-                src="static/img/publication1.jpg"
-                alt="Card image cap"
-              />
+              <img class="card-img-top" src="static/img/publication1.jpg" alt="Card image cap">
               <div class="card-body" id="card">
-                <h5 class="card-title">
-                  The 1nd International Congress on Roads
-                </h5>
+                <h5 class="card-title">The 1nd International Congress on Roads</h5>
               </div>
               <div class="card-footer text-muted">
                 <h5 class="card-date">4 January, 2019</h5>
@@ -44,15 +38,9 @@
         <div class="col-lg-5 mt-5">
           <router-link to="/event_detail">
             <div class="card text-center">
-              <img
-                class="card-img-top"
-                src="static/img/event2.jpg"
-                alt="Card image cap"
-              />
+              <img class="card-img-top" src="static/img/event2.jpg" alt="Card image cap">
               <div class="card-body" id="card">
-                <h5 class="card-title">
-                  The 2nd International Congress on Roads
-                </h5>
+                <h5 class="card-title">The 2nd International Congress on Roads</h5>
               </div>
               <div class="card-footer text-muted">
                 <h5 class="card-date">18 August, 2018</h5>
@@ -80,11 +68,6 @@ export default {
 </script>
 
 <style scoped>
-.navbar .logo img,
-.navbar .logo-alt img {
-  height: 70px;
-}
-
 *:hover {
   -webkit-transition: all 1s ease;
   transition: all 1s ease;

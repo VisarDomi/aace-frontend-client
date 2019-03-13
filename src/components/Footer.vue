@@ -7,12 +7,12 @@
         <div class="row">
           <div class="col-sm-24 col-md-12">
             <router-link :to="{ name: 'Home' }" class="logo">
-              <img src="/static/img/eeee.png" alt="logo" />
+              <img src="/static/img/logo_full.png" alt="logo">
             </router-link>
           </div>
         </div>
 
-        <hr />
+        <hr>
       </div>
       <!-- END Topper section -->
       <!-- Top section -->
@@ -44,9 +44,7 @@
                 <router-link :to="{ name: 'Events' }">Events</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'Publications' }"
-                  >Publications</router-link
-                >
+                <router-link :to="{ name: 'Publications' }">Publications</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'Contact' }">Contact us</router-link>
@@ -58,9 +56,7 @@
             <h6>Useful links</h6>
             <ul class="footer-links">
               <li>
-                <router-link :to="{ name: 'Membership' }"
-                  >How to become a member</router-link
-                >
+                <router-link :to="{ name: 'Membership' }">How to become a member</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'Login' }">Login in</router-link>
@@ -69,20 +65,16 @@
                 <router-link :to="{name: 'Board'}">Contact the board</router-link>
               </li>-->
               <li>
-                <router-link :to="{ name: 'Privacy' }"
-                  >Privacy Policy</router-link
-                >
+                <router-link :to="{ name: 'Privacy' }">Privacy Policy</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'Terms' }"
-                  >Terms and Agreement</router-link
-                >
+                <router-link :to="{ name: 'Terms' }">Terms and Agreement</router-link>
               </li>
             </ul>
           </div>
         </div>
 
-        <hr />
+        <hr>
       </div>
       <!-- END Top section -->
       <!-- Bottom section -->
@@ -91,7 +83,10 @@
           <div class="col-md-8 col-sm-6 col-xs-12">
             <p class="copyright-text">
               Copyrights &copy; 2019 All Rights Reserved by
-              <a href="https://forcewing.com" target="_blank">FORCEWING</a>.
+              <a
+                href="https://forcewing.com"
+                target="_blank"
+              >FORCEWING</a>.
             </p>
           </div>
 
@@ -134,6 +129,6 @@
 
 <script>
 export default {
-  name: "CompFooter"
+  name: "AppFooter"
 };
 </script>

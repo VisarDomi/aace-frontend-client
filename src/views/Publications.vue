@@ -19,7 +19,7 @@
             <div class="col-md-5 col-lg-5">
               <div class="post-media">
                 <router-link to="/publication_detail">
-                  <img src="static/img/publication1.jpg" alt="..." />
+                  <img src="static/img/publication1.jpg" alt="...">
                 </router-link>
               </div>
             </div>
@@ -27,12 +27,10 @@
             <div class="col-md-7 col-lg-7">
               <header style="display:inline;">
                 <h2>
-                  <router-link to="/publication_detail"
-                    >First book of congress</router-link
-                  >
+                  <router-link to="/publication_detail">First book of congress</router-link>
                 </h2>
                 <time datetime="2016-04-04 20:00">April 04, 2016</time>
-                <br />
+                <br>
               </header>
 
               <div class="blog-content">
@@ -52,8 +50,7 @@
                 <router-link
                   to="/publication_detail"
                   class="btn btn-primary btn-outline"
-                  >Continue reading</router-link
-                >
+                >Continue reading</router-link>
               </p>
             </div>
           </article>
@@ -62,7 +59,7 @@
             <div class="col-md-5 col-lg-5">
               <div class="post-media">
                 <router-link to="/publication_detail">
-                  <img src="static/img/blog-3.jpg" alt="..." />
+                  <img src="static/img/blog-3.jpg" alt="...">
                 </router-link>
               </div>
             </div>
@@ -70,12 +67,10 @@
             <div class="col-md-7 col-lg-7">
               <header style="display:inline;">
                 <h2>
-                  <router-link href="/publication_detail"
-                    >Second book of congress</router-link
-                  >
+                  <router-link href="/publication_detail">Second book of congress</router-link>
                 </h2>
                 <time datetime="2016-04-04 20:00">March 04, 2017</time>
-                <br />
+                <br>
               </header>
 
               <div class="blog-content">
@@ -94,8 +89,7 @@
                 <router-link
                   to="/publication_detail"
                   class="btn btn-primary btn-outline"
-                  >Continue reading</router-link
-                >
+                >Continue reading</router-link>
               </p>
             </div>
           </article>
@@ -104,7 +98,7 @@
             <div class="col-md-5 col-lg-5">
               <div class="post-media">
                 <router-link to="/publication_detail">
-                  <img src="static/img/publication1.jpg" alt="..." />
+                  <img src="static/img/publication1.jpg" alt="...">
                 </router-link>
               </div>
             </div>
@@ -112,12 +106,10 @@
             <div class="col-md-7 col-lg-7">
               <header style="display:inline;">
                 <h2>
-                  <router-link to="/publication_detail"
-                    >First conference publication on roads</router-link
-                  >
+                  <router-link to="/publication_detail">First conference publication on roads</router-link>
                 </h2>
                 <time datetime="2016-04-04 20:00">July 04, 2017</time>
-                <br />
+                <br>
               </header>
 
               <div class="blog-content">
@@ -135,8 +127,7 @@
                 <router-link
                   to="/publication_detail"
                   class="btn btn-primary btn-outline"
-                  >Continue reading</router-link
-                >
+                >Continue reading</router-link>
               </p>
             </div>
           </article>
@@ -144,7 +135,9 @@
           <nav>
             <ul class="pager">
               <li class="previous">
-                <a href="#"> <i class="ti-arrow-left"></i> Older posts </a>
+                <a href="#">
+                  <i class="ti-arrow-left"></i> Older posts
+                </a>
               </li>
               <li class="next">
                 <a href="#">
@@ -166,12 +159,4 @@ export default {
 };
 </script>
 <style scoped>
-.navbar .logo img,
-.navbar .logo-alt img {
-  height: 70px;
-}
-
-.post-media {
-  padding-top: 29px;
-}
 </style>

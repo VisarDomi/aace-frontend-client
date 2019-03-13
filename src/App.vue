@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="nav-on-header smart-nav" id="body">
-      <CompHeader />
-      <router-view></router-view>
-      <CompFooter />
+      <app-navbar/>
+      <router-view/>
+      <app-footer/>
       <!-- Back to top button -->
       <a id="scroll-up" href="#">
         <i class="ti-angle-up"></i>
@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import CompHeader from "@/components/TheHeader";
-import CompFooter from "@/components/TheFooter";
+import AppNavbar from "@/components/Navbar";
+import AppFooter from "@/components/Footer";
 
 export default {
   name: "app",
   components: {
-    CompHeader,
-    CompFooter
+    AppNavbar,
+    AppFooter
   }
 };
 </script>
