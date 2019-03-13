@@ -760,7 +760,7 @@ export default {
       const newExperience = {
         randomid: Math.random() * Math.random() * 1000,
         employer: "",
-        company: "",
+        title: "",
         location: "",
         from_date: "",
         to_date: "",
