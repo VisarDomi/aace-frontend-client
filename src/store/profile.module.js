@@ -7,14 +7,13 @@ import {
   ExperienceService,
   SkillService
 } from "@/common/api.service";
-import { FETCH_PROFILE, FETCH_STATUS } from "./actions.type";
+import { FETCH_PROFILE } from "./actions.type";
 import {
   SET_PROFILE,
   SET_PICTURE,
   SET_EDUCATION,
   SET_EXPERIENCE,
-  SET_SKILL,
-  SET_STATUS
+  SET_SKILL
 } from "./mutations.type";
 
 const state = {
@@ -23,8 +22,7 @@ const state = {
   profilePicture: "",
   educations: {},
   experiences: {},
-  skills: {},
-  status: ""
+  skills: {}
 };
 
 const getters = {
@@ -42,18 +40,10 @@ const getters = {
   },
   skills(state) {
     return state.skills;
-  },
-  status(state) {
-    return state.status;
   }
 };
 
 const actions = {
-  async [FETCH_STATUS](context) {
-    const id = UserService.getUser().id;
-    const { data } = await MemberService.get(id);
-    context.commit(SET_STATUS, data.register_status);
-  },
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
     MemberService.get(id)
@@ -114,9 +104,6 @@ const mutations = {
   },
   [SET_SKILL](state, skills) {
     state.skills = skills;
-  },
-  [SET_STATUS](state, status) {
-    state.status = status;
   }
 };
 

@@ -12,5 +12,4 @@ export const CLEAN_PICTURES = "cleanPictures";
 export const FETCH_COMMUNICATIONS = "fetchCommunications";
 export const ADD_COMMENT = "addComment";
 export const FETCH_COMMUNICATION = "fetchCommunication";
-export const FETCH_STATUS = "fetchStatus";
 export const FETCH_DOCS = "fetchDocs";

@@ -40,33 +40,13 @@
           </ul>
 
           <div class="text-center">
-            <!-- <ul class="social-icons">
-              <li class="title">Share on</li>
-              <li>
-                <a class="facebook" href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li>
-                <a class="google-plus" href="#">
-                  <i class="fa fa-google-plus"></i>
-                </a>
-              </li>
-              <li>
-                <a class="twitter" href="#">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a class="linkedin" href="#">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>-->
             <div class="action-buttons">
-              <!-- <a class="btn btn-primary" href="#">Apply with linkedin</a> -->
-              <router-link to="/application" class="btn btn-success">Apply now</router-link>
-              <!-- <router-link to="/application" class="btn btn-success">Apply now</router-link> -->
+              <router-link
+                :to="{name:'Application'}"
+                class="btn btn-success"
+                v-if="currentUser.register_status == 'blank'"
+              >Apply now</router-link>
+              <router-link :to="{name:'ReApplication'}" class="btn btn-success" v-else>Apply now</router-link>
             </div>
           </div>
         </div>
@@ -167,7 +147,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Membership"
+  name: "Membership",
+  computed: {
+    ...mapGetters(["currentUser"])
+  }
 };
 </script>

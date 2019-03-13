@@ -18,55 +18,58 @@
           <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
           <br>
           <h4>Date of application:</h4>
-          <p>{{ getFormattedDate(currentUser) }}</p>
+          <p>{{ getFormattedDate(currentUser.application_date) }}</p>
           <br>
           <h4>Status:</h4>
           <div
             class="alert alert-warning"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="status == 'rebutted'"
+            v-if="currentUser.register_status == 'rebutted'"
           >
-            <strong>Rebutted</strong>.
+            <strong>Mangesi ne dokumenta.</strong>.
           </div>
           <div
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="status == 'blank' || status == 'reapplying'"
+            v-if="currentUser.register_status == 'blank'"
           >
-            <strong>Not sent.</strong>
+            <strong>Nuk eshte derguar.</strong>
           </div>
           <div
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="status == 'applying'"
+            v-if="currentUser.register_status == 'applying' || currentUser.register_status == 'reapplying'"
           >
-            <strong>Sent.</strong>
+            <strong>Derguar.</strong>
           </div>
           <div
             class="alert alert-danger"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="status == 'rejected'"
+            v-if="currentUser.register_status == 'rejected'"
           >
-            <strong>Rejected.</strong>
+            <strong>Refuzuar.</strong>
           </div>
           <div
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="status == 'approved'"
+            v-if="currentUser.register_status == 'accepted'"
           >
-            <strong>Approved.</strong>
+            <strong>Pranuar.</strong>
           </div>
           <br>
-          <h4 v-if="currentUser.comment_from_administrator">Comment from secretary:</h4>
+          <h4 v-if="currentUser.comment_from_administrator">Koment nga administratori:</h4>
           <p>{{ currentUser.comment_from_administrator }}</p>
           <br>
-          <router-link :to="{ name: 'ReApplication' }" v-if="status == 'rebutted'">
-            <button type="submit" class="btn btn-primary">Fix application</button>
+          <router-link
+            :to="{ name: 'ReApplication' }"
+            v-if="currentUser.register_status == 'rebutted'"
+          >
+            <button type="submit" class="btn btn-primary">Rregullo aplikimin</button>
           </router-link>
         </div>
       </section>
@@ -78,7 +81,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { FETCH_STATUS } from "@/store/actions.type";
+import DateFilter from "@/common/date.filter";
 import store from "@/store";
 export default {
   name: "ApplicationStatus",
@@ -88,17 +91,12 @@ export default {
     };
   },
   methods: {
-    getFormattedDate(currentUser) {
-      let date_object = new Date(currentUser.application_date);
-      this.application_date = date_object.toISOString().split("T")[0];
-      return this.application_date;
+    getFormattedDate(time) {
+      return DateFilter(time);
     }
   },
   computed: {
-    ...mapGetters(["status", "currentUser"])
-  },
-  mounted() {
-    this.$store.dispatch(FETCH_STATUS);
+    ...mapGetters(["currentUser"])
   }
 };
 </script>
