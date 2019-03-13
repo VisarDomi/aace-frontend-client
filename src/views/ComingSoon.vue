@@ -6,23 +6,23 @@
       style="background-image: url(static/img/publication1.jpg)"
     >
       <div class="container no-shadow">
-        <h1 class="text-center">Coming soon&trade;.</h1>
+        <h1 class="text-center">Vjen se shpejti&trade;.</h1>
       </div>
       <div class="container no-shadow">
         <router-link :to="{ name: 'Home' }">
-          <h1 class="text-center" id="home">Go to homepage</h1>
-        </router-link>
-        <router-link :to="{ name: 'Membership' }">
-          <h3 class="text-center" id="home">Membership</h3>
-        </router-link>
-        <router-link :to="{ name: 'Directory' }">
-          <h3 class="text-center" id="home">Directory</h3>
+          <h1 class="text-center" id="home">Shko ne faqen kryesore</h1>
         </router-link>
         <router-link :to="{ name: 'Contact' }">
-          <h3 class="text-center" id="home">Contact us</h3>
+          <h3 class="text-center" id="home">Na kontaktoni</h3>
+        </router-link>
+        <router-link :to="{ name: 'Membership' }">
+          <h3 class="text-center" id="home">Behu anetar</h3>
+        </router-link>
+        <router-link :to="{ name: 'Directory' }">
+          <h3 class="text-center" id="home">Kerko anetaret</h3>
         </router-link>
         <router-link :to="{ name: 'MemberArea' }">
-          <h3 class="text-center" id="home">Member Area</h3>
+          <h3 class="text-center" id="home">Zona e anetareve</h3>
         </router-link>
       </div>
     </header>
@@ -32,9 +32,9 @@
       <div class="nav-on-header smart-nav" id="notfound">
         <div class="notfound">
           <div class="notfound-404">
-            <h3>Page coming soon.</h3>
+            <h3>Faqja vjen se shpejti</h3>
           </div>
-          <h2>We are sorry, but the page that was requested is coming soon.</h2>
+          <h2>Na vjen keq, por faqja qe kerkuat do vije se shpejti.</h2>
         </div>
       </div>
     </main>

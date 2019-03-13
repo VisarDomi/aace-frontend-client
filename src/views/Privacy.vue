@@ -12,7 +12,7 @@
       <section>
         <div class="container">
           <header class="section-header">
-            <span>ne kete dokument ndodhet polica e privacise</span>
+            <span>Ne kete dokument ndodhet polica e privacise</span>
             <h2>Polica e privacise</h2>
           </header>
 

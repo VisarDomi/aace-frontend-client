@@ -7,17 +7,12 @@
     >
       <div class="container">
         <div class="col-xs-12">
-          <h2>Engineering directory</h2>
-          <h5 class="font-alt">Use the search box to search for engineers</h5>
+          <h2>Kerkimi i anetareve</h2>
+          <h5 class="font-alt">Kerko te gjithe anetaret e shoqates ose filtro sipas emrit</h5>
 
           <form class="header-job-search" @submit.prevent="search(name)">
             <div class="input-keyword" style="width:80%;">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Name and surname"
-                v-model="name"
-              />
+              <input type="text" class="form-control" placeholder="Name and surname" v-model="name">
             </div>
             <!-- <div class="input-location">
                         <input type="text" class="form-control" placeholder="City, state or zip">
@@ -37,28 +32,17 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <br />
+              <br>
               <h5>
-                We found
-                <strong>{{ searchResult.length }}</strong> matches.
+                U gjenden
+                <strong>{{ searchResult.length }}</strong> anetare.
               </h5>
             </div>
             <!-- Resume detail -->
-            <div
-              class="col-xs-12"
-              v-for="(user, index) in searchResult"
-              :key="user.id"
-            >
-              <router-link
-                class="item-block"
-                :to="{ name: 'Profile', params: { id: user.id } }"
-              >
+            <div class="col-xs-12" v-for="(user, index) in searchResult" :key="user.id">
+              <router-link class="item-block" :to="{ name: 'Profile', params: { id: user.id } }">
                 <header>
-                  <img
-                    class="resume-avatar"
-                    :src="profilePictures[index]"
-                    alt="Profile Picture"
-                  />
+                  <img class="resume-avatar" :src="profilePictures[index]" alt="Profile Picture">
 
                   <div class="hgroup">
                     <h4>{{ user.first_name }} {{ user.last_name }}</h4>
@@ -101,7 +85,7 @@
           </div>
 
           <!-- Page navigation -->
-          <nav class="text-center">
+          <!-- <nav class="text-center">
             <ul class="pagination">
               <li>
                 <a href="#" aria-label="Previous">
@@ -126,7 +110,7 @@
                 </a>
               </li>
             </ul>
-          </nav>
+          </nav>-->
           <!-- END Page navigation -->
         </div>
       </section>

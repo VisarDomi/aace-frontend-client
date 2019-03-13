@@ -5,10 +5,10 @@
       style="background-image: url(static/img/bg-banner2.jpg)"
     >
       <div class="container no-shadow">
-        <h1 class="text-center">Contact us</h1>
-        <p class="lead text-center">
-          Say hi, drop a letter, and we'll get back to you right away.
-        </p>
+        <h1 class="text-center">Na kontaktoni</h1>
+        <p
+          class="lead text-center"
+        >Thoni pershendetje, na shkruani nje leter, dhe ne do you kontaktojm sa me shpejt te jete e mundur.</p>
       </div>
     </header>
 
@@ -18,53 +18,35 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12 col-md-8">
-              <h4>Contact form</h4>
+              <h4>Forma e kontaktit</h4>
               <form>
                 <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control input-lg"
-                    placeholder="Name"
-                  />
+                  <input type="text" class="form-control input-lg" placeholder="Name">
                 </div>
 
                 <div class="form-group">
-                  <input
-                    type="email"
-                    class="form-control input-lg"
-                    placeholder="Email"
-                  />
+                  <input type="email" class="form-control input-lg" placeholder="Email">
                 </div>
 
                 <div class="form-group">
-                  <textarea
-                    class="form-control"
-                    rows="5"
-                    placeholder="Message"
-                  ></textarea>
+                  <textarea class="form-control" rows="5" placeholder="Message"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary">Dergo</button>
               </form>
             </div>
 
             <div class="col-sm-12 col-md-4">
-              <h4>Information</h4>
+              <h4>Informacion</h4>
               <div class="highlighted-block">
-                <p>
-                  All additional information can be obtained by contacting the
-                  Congress Coordinator.
-                </p>
+                <p>Te gjitha informacionet shtese mund te merren duke kontaktuar me koordinatoren e kongresit.</p>
 
-                <p>
-                  Ms. Ira Kadare (Albanian, English, Italian) through the
-                  following contact details:
-                </p>
+                <p>Zj. Ira Kadare (Shqip, Anglisht, Italisht) nepermjet kontaktit te meposhtem:</p>
                 <dl class="icon-holder">
                   <dt>
                     <i class="fa fa-map-marker"></i>
                   </dt>
-                  <dd>Rr. Qemal Stafa, P.132, Ap.21060 Tirana, Albania</dd>
+                  <dd>Rr. Qemal Stafa, P.132, Ap.21060 Tirane, Shqiperi</dd>
 
                   <dt>
                     <i class="fa fa-phone"></i>
@@ -78,9 +60,9 @@
                 </dl>
               </div>
 
-              <br />
+              <br>
 
-              <ul class="social-icons size-sm text-center">
+              <!-- <ul class="social-icons size-sm text-center">
                 <li>
                   <a class="facebook" href="#">
                     <i class="fa fa-facebook"></i>
@@ -96,7 +78,7 @@
                     <i class="fa fa-instagram"></i>
                   </a>
                 </li>
-              </ul>
+              </ul>-->
             </div>
           </div>
         </div>

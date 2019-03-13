@@ -7,19 +7,19 @@
     >
       <div class="container no-shadow">
         <router-link :to="{ name: 'Home' }">
-          <h1 class="text-center" id="home">Go to homepage</h1>
-        </router-link>
-        <router-link :to="{ name: 'Membership' }">
-          <h3 class="text-center" id="home">Membership</h3>
-        </router-link>
-        <router-link :to="{ name: 'Directory' }">
-          <h3 class="text-center" id="home">Directory</h3>
+          <h1 class="text-center" id="home">Shko ne faqen kryesore</h1>
         </router-link>
         <router-link :to="{ name: 'Contact' }">
-          <h3 class="text-center" id="home">Contact us</h3>
+          <h3 class="text-center" id="home">Na kontaktoni</h3>
+        </router-link>
+        <router-link :to="{ name: 'Membership' }">
+          <h3 class="text-center" id="home">Behu anetar</h3>
+        </router-link>
+        <router-link :to="{ name: 'Directory' }">
+          <h3 class="text-center" id="home">Kerko anetaret</h3>
         </router-link>
         <router-link :to="{ name: 'MemberArea' }">
-          <h3 class="text-center" id="home">Member Area</h3>
+          <h3 class="text-center" id="home">Zona e anetareve</h3>
         </router-link>
       </div>
     </header>
@@ -29,14 +29,14 @@
       <div class="nav-on-header smart-nav" id="notfound">
         <div class="notfound">
           <div class="notfound-404">
-            <h3>Page not found</h3>
+            <h3>Faqja nuk u gjend</h3>
             <h1>
               <span>4</span>
               <span>0</span>
               <span>4</span>
             </h1>
           </div>
-          <h2>We are sorry, but the page that was requested was not found</h2>
+          <h2>Na vjen keq, por faqja qe kerkuat nuk u gjet</h2>
         </div>
       </div>
     </main>

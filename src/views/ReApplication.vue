@@ -4,24 +4,18 @@
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
-          <h1 class="text-center">Add your resume</h1>
-          <p class="lead text-center">
-            Create your application and it send to the board.
-          </p>
+          <h1 class="text-center">Rregullo aplikimin</h1>
+          <p
+            class="lead text-center"
+          >Rregulloni aplikimin sipas udhezimit te komentit te administratorit.</p>
         </div>
 
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input
-                  type="file"
-                  ref="profile_file"
-                  @change="handleFileUploadProfile"
-                />
-                <span class="help-block"
-                  >Please choose a 4:6 profile picture.</span
-                >
+                <input type="file" ref="profile_file" @change="handleFileUploadProfile">
+                <span class="help-block">Ju lutem zgjidhni foto profili (4:6).</span>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -29,17 +23,17 @@
                 <input
                   type="text"
                   class="form-control input-lg"
-                  placeholder="First Name"
+                  placeholder="Emri"
                   v-model="first_name"
-                />
+                >
               </div>
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control input-lg"
-                  placeholder="Last Name"
+                  placeholder="Mbiemri"
                   v-model="last_name"
-                />
+                >
               </div>
               <div class="form-group">
                 <select
@@ -51,8 +45,7 @@
                     v-for="option in profession_options"
                     v-bind:value="option.id"
                     :key="option.id"
-                    >{{ option.text }}</option
-                  >>
+                  >{{ option.text }}</option>>
                 </select>
                 <div class="form-group col-sm-6">
                   <input
@@ -61,7 +54,7 @@
                     class="form-control"
                     v-model="profession"
                     :placeholder="profession_other"
-                  />
+                  >
                 </div>
               </div>
 
@@ -71,8 +64,7 @@
                     v-for="option in sex_options"
                     v-bind:value="option.text"
                     :key="option.id"
-                    >{{ option.text }}</option
-                  >
+                  >{{ option.text }}</option>
                 </select>
               </div>
 
@@ -80,12 +72,12 @@
                 <textarea
                   class="form-control"
                   rows="3"
-                  placeholder="Short description about you"
+                  placeholder="Pershkrim i shkurter rreth jush"
                   v-model="summary"
                 ></textarea>
               </div>
 
-              <hr class="hr-lg" />
+              <hr class="hr-lg">
 
               <h6>Basic information</h6>
               <div class="row">
@@ -99,7 +91,7 @@
                       class="form-control"
                       placeholder="Vendlindja"
                       v-model="country"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -108,12 +100,7 @@
                     <span class="input-group-addon">
                       <i class="fa fa-map-marker"></i>
                     </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Address, e.g. Rruga Pleurat Xhuvani"
-                      v-model="address"
-                    />
+                    <input type="text" class="form-control" placeholder="Adresa" v-model="address">
                   </div>
                 </div>
 
@@ -125,9 +112,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Website address"
+                      placeholder="Faqja juaj e internetit"
                       v-model="website"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -141,7 +128,7 @@
                       class="form-control"
                       placeholder="Datelindja"
                       v-model="birthday"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -153,9 +140,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Phone number"
+                      placeholder="Numri telefonit"
                       v-model="phone"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -164,12 +151,7 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      :placeholder="email"
-                      disabled
-                    />
+                    <input type="text" class="form-control" :placeholder="email" disabled>
                   </div>
                 </div>
               </div>
@@ -183,14 +165,10 @@
         <section>
           <div class="container">
             <header class="section-header">
-              <h2>Comment from Administrator</h2>
+              <h2>Udhezime nga administratori</h2>
               <p>{{ comment_from_administrator }}</p>
             </header>
-            <header
-              class="section-header"
-              :key="education.id"
-              v-for="education in educationInputs"
-            >
+            <header class="section-header" :key="education.id" v-for="education in educationInputs">
               <p>{{ education }}</p>
             </header>
             <header
@@ -206,8 +184,8 @@
         <section class="bg-alt">
           <div class="container">
             <header class="section-header">
-              <span>Latest degrees</span>
-              <h2>Education</h2>
+              <span>Diplomat me te fundit</span>
+              <h2>Arsimimi</h2>
             </header>
 
             <div class="row">
@@ -239,32 +217,27 @@
                                 index
                               )
                             "
-                          />
-                          <span class="help-block">
-                            Please choose a square logo of your educational
-                            institution
-                          </span>
+                          >
+                          <span
+                            class="help-block"
+                          >Ngarkoni dokumentin perkates per kete arsimim ne qofte se udhezohet nga administratori</span>
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <label class="col-sm-6">Vendos tipin e edukimit*</label>
+                        <label class="col-sm-6">Tipi i arsimimit</label>
                         <div class="form-group">
-                          <select
-                            class="form-control"
-                            v-model="education_type_id[index]"
-                          >
+                          <select class="form-control" v-model="education_type_id[index]">
                             <option
                               v-for="option in education_type_options"
                               v-bind:value="option.id"
                               :key="option.id"
-                              >{{ option.text }}</option
-                            >
+                            >{{ option.text }}</option>
                           </select>
                         </div>
 
                         <div class="form-group">
-                          <label class="col-sm-2">Degree</label>
+                          <label class="col-sm-2">Tipi i diplomes</label>
                           <div class="form-group col-sm-5">
                             <select
                               class="form-control"
@@ -279,8 +252,7 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
@@ -290,12 +262,12 @@
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="..."
-                            />
+                            >
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label class="col-sm-2">Major</label>
+                          <label class="col-sm-2">Dega</label>
                           <div class="form-group col-sm-5">
                             <select
                               class="form-control"
@@ -310,8 +282,7 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
@@ -321,7 +292,7 @@
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="..."
-                            />
+                            >
                           </div>
                         </div>
 
@@ -331,25 +302,25 @@
                             class="form-control"
                             v-model="educationInput.school"
                             placeholder="School name, e.g. Massachusetts Institute of Technology"
-                          />
+                          >
                         </div>
                         <div class="form-group">
                           <div class="input-group">
-                            <span class="input-group-addon">Date from</span>
+                            <span class="input-group-addon">Nga</span>
                             <input
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
-                            />
-
-                            <span class="input-group-addon">Date to</span>
+                            >
+                            
+                            <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2016"
                               v-model="educationInput.to_date"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group">
@@ -367,14 +338,8 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br />
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  @click="onAddEducation"
-                >
-                  Add education
-                </button>
+                <br>
+                <button class="btn btn-primary" type="button" @click="onAddEducation">Shto arsimim</button>
               </div>
             </div>
           </div>
@@ -384,8 +349,8 @@
         <section>
           <div class="container">
             <header class="section-header">
-              <span>Past positions</span>
-              <h2>Work Experience</h2>
+              <span>Pozicionet e meparshme</span>
+              <h2>Pervoje pune</h2>
             </header>
 
             <div class="row">
@@ -417,10 +382,10 @@
                                 index
                               )
                             "
-                          />
-                          <span class="help-block"
-                            >Please choose a square logo of the company</span
                           >
+                          <span
+                            class="help-block"
+                          >Ngarkoni dokumentin perkates per kete pervoje pune ne qofte se udhezohet nga administratori</span>
                         </div>
                       </div>
 
@@ -429,18 +394,18 @@
                           <input
                             type="text"
                             class="form-control"
-                            v-model="experienceInput.employer"
-                            placeholder="Emri i punedhenesit"
-                          />
+                            v-model="experienceInput.title"
+                            placeholder="Titulli qe keni mbajtur ne pune"
+                          >
                         </div>
 
                         <div class="form-group">
                           <input
                             type="text"
                             class="form-control"
-                            v-model="experienceInput.company"
-                            placeholder="Company"
-                          />
+                            v-model="experienceInput.employer"
+                            placeholder="Emri i punedhenesit"
+                          >
                         </div>
 
                         <div class="form-group">
@@ -448,26 +413,26 @@
                             type="text"
                             class="form-control"
                             v-model="experienceInput.location"
-                            placeholder="Location"
-                          />
+                            placeholder="Vendi ku keni punuar"
+                          >
                         </div>
 
                         <div class="form-group">
                           <div class="input-group">
-                            <span class="input-group-addon">Date from</span>
+                            <span class="input-group-addon">Nga</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
-                            />
-                            <span class="input-group-addon">Date to</span>
+                            >
+                            <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -476,7 +441,7 @@
                             class="form-control"
                             rows="3"
                             v-model="experienceInput.description"
-                            placeholder="Short description"
+                            placeholder="Pershkrim i shkurter"
                           ></textarea>
                         </div>
                       </div>
@@ -486,14 +451,12 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br />
+                <br>
                 <button
                   class="btn btn-primary btn-duplicator"
                   type="button"
                   @click="onAddExperience"
-                >
-                  Add experience
-                </button>
+                >Shto pervoje pune</button>
               </div>
             </div>
           </div>
@@ -503,7 +466,7 @@
         <section class="bg-alt">
           <div class="container">
             <header class="section-header">
-              <span>Expertise Areas</span>
+              <span>Arritje profesionale</span>
               <h2>Kualifikime/Arritje profesionale</h2>
             </header>
 
@@ -533,10 +496,10 @@
                             @change="
                               handleFileUploadSkill(skillInput.randomid, index)
                             "
-                          />
-                          <span class="help-block"
-                            >Please choose a photo of your skill</span
                           >
+                          <span
+                            class="help-block"
+                          >Ngarkoni dokumentin perkates per kete kualifikim ne qofte se udhezohet nga administratori</span>
                         </div>
                       </div>
 
@@ -547,7 +510,7 @@
                             class="form-control"
                             v-model="skillInput.releaser"
                             placeholder="Leshuesi i kualifikimit"
-                          />
+                          >
                         </div>
                         <div class="form-group">
                           <input
@@ -555,31 +518,31 @@
                             class="form-control"
                             v-model="skillInput.name"
                             placeholder="Emri i kualifikimit"
-                          />
+                          >
                         </div>
                         <div class="form-group">
                           <div class="input-group">
-                            <span class="input-group-addon">Date from</span>
+                            <span class="input-group-addon">Nga</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="skillInput.from_date"
                               placeholder="e.g. 2012"
-                            />
-                            <span class="input-group-addon">Date to</span>
+                            >
+                            <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="skillInput.to_date"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group">
                           <textarea
                             class="form-control"
                             rows="3"
-                            placeholder="Short description"
+                            placeholder="Pershkrim i shkurter"
                             v-model="skillInput.description"
                           ></textarea>
                         </div>
@@ -590,14 +553,12 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br />
+                <br>
                 <button
                   class="btn btn-primary btn-duplicator"
                   @click="onAddSkill"
                   type="button"
-                >
-                  Add skill
-                </button>
+                >Shto kualifikim</button>
               </div>
             </div>
           </div>
@@ -608,18 +569,16 @@
           <!-- class="bg-img" style="background-image: url(static/img/newsletter_plc.jpg);" -->
           <div class="container">
             <header class="section-header">
-              <span>Are you done?</span>
-              <h2>Submit application</h2>
+              <span>Perfunduat?</span>
+              <h2>Dergo aplikimin</h2>
               <p>
-                Please review your information once more and press the below
-                button to send your application for review.
+                Ju lutem rishikoni te dhenat edhe nje here dhe shtypni butonin e
+                meposhtem per te derguar aplikimin per rivleresim.
               </p>
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">
-                Submit your application
-              </button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
             </p>
           </div>
         </section>
@@ -667,7 +626,6 @@ export default {
       website: "",
       email: "",
       comment_from_administrator: "",
-      // comment_from_administrator: "",
 
       //--------------- Image Files -------
       profile_picture_file: "",

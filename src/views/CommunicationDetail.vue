@@ -37,7 +37,7 @@
                           :key="document.id"
                           @click="downloadDoc(document.id, document.filename)"
                         >
-                          <i class="fa fa-file-zip-o"></i>Download Document
+                          <i class="fa fa-file-zip-o"></i>Shkarko Dokumentin
                         </a>
                       </div>
                     </div>
@@ -49,15 +49,9 @@
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
-              <textarea
-                class="form-control"
-                rows="5"
-                v-model="comment"
-              ></textarea>
-              <br />
-              <a class="btn btn-primary" href="#" @click="sendComment"
-                >Dergo koment</a
-              >
+              <textarea class="form-control" rows="5" v-model="comment"></textarea>
+              <br>
+              <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
             </form>
           </div>
         </div>

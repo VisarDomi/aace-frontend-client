@@ -12,8 +12,8 @@
       <section style="padding-top:0px; padding-bottom:50px;">
         <div class="container">
           <header class="section-header">
-            <span>Official Communications</span>
-            <h2>Communications</h2>
+            <span>Komunikime zyrtare</span>
+            <h2>Komunikime</h2>
           </header>
 
           <div
@@ -30,7 +30,7 @@
             >
               <h6>{{ communication.name }}</h6>
               <p>{{ communication.description }}</p>
-              <br />
+              <br>
               <p>
                 <strong>{{ getFormattedDate(communication.time) }}</strong>
               </p>

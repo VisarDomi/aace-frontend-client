@@ -2,14 +2,11 @@
   <div>
     <!-- Page header -->
     <!-- Page header -->
-    <header
-      class="page-header bg-img"
-      style="background-image: url(static/img/bg-banner1.jpg)"
-    >
+    <header class="page-header bg-img" style="background-image: url(static/img/bg-banner1.jpg)">
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-4">
-            <img :src="profilePicture" alt />
+            <img :src="profilePicture" alt>
           </div>
 
           <div class="col-xs-12 col-sm-8 header-detail">
@@ -17,7 +14,7 @@
               <h1>{{ profile.first_name + " " + profile.last_name }}</h1>
               <h3>{{ profile.profession }}</h3>
             </div>
-            <hr />
+            <hr>
             <p class="lead">{{ profile.summary }}</p>
 
             <ul class="details cols-2">
@@ -38,9 +35,7 @@
 
               <li>
                 <i class="fa fa-money"></i>
-                <span>
-                  {{ profile.years_of_experience + " years of experience" }}
-                </span>
+                <span>{{ profile.years_of_experience + " years of experience" }}</span>
               </li>
 
               <li>
@@ -60,46 +55,6 @@
             </ul>
           </div>
         </div>
-
-        <!-- <div class="button-group">
-          <ul class="social-icons">
-            <li>
-              <a class="facebook" href="#">
-                <i class="fa fa-facebook"></i>
-              </a>
-            </li>
-            <li>
-              <a class="twitter" href="#">
-                <i class="fa fa-twitter"></i>
-              </a>
-            </li>
-            <li>
-              <a class="dribbble" href="#">
-                <i class="fa fa-dribbble"></i>
-              </a>
-            </li>
-            <li>
-              <a class="linkedin" href="#">
-                <i class="fa fa-linkedin"></i>
-              </a>
-            </li>
-            <li>
-              <a class="instagram" href="#">
-                <i class="fa fa-instagram"></i>
-              </a>
-            </li>
-          </ul>
-
-          <div class="action-buttons">
-            <a class="btn btn-gray" href="#">Download CV</a>
-            <a
-              class="btn btn-success"
-              data-toggle="modal"
-              data-target="#modal-contact"
-              href="#"
-            >Contact me</a>
-          </div>
-        </div>-->
       </div>
     </header>
     <!-- END Page header -->
@@ -109,16 +64,12 @@
       <section>
         <div class="container">
           <header class="section-header">
-            <span>Latest degrees</span>
-            <h2>Education</h2>
+            <span>Diplomat me te fundit</span>
+            <h2>Arsimimi</h2>
           </header>
 
           <div class="row">
-            <div
-              class="col-xs-12"
-              :key="education.id"
-              v-for="education in educations"
-            >
+            <div class="col-xs-12" :key="education.id" v-for="education in educations">
               <div class="item-block">
                 <header>
                   <div class="hgroup">
@@ -128,9 +79,7 @@
                     </h4>
                     <h5>{{ education.school }}</h5>
                   </div>
-                  <h6 class="time">
-                    {{ education.from_date }} - {{ education.to_date }}
-                  </h6>
+                  <h6 class="time">{{ education.from_date }} - {{ education.to_date }}</h6>
                 </header>
                 <div class="item-body">
                   <p>{{ education.description }}</p>
@@ -145,16 +94,12 @@
       <section class="bg-alt">
         <div class="container">
           <header class="section-header">
-            <span>Past positions</span>
-            <h2>Work Experience</h2>
+            <span>Pozicionet e meparshme</span>
+            <h2>Pervoje pune</h2>
           </header>
 
           <div class="row">
-            <div
-              class="col-xs-12"
-              :key="experience.id"
-              v-for="experience in experiences"
-            >
+            <div class="col-xs-12" :key="experience.id" v-for="experience in experiences">
               <div class="item-block">
                 <header>
                   <div class="hgroup">
@@ -163,9 +108,7 @@
                     <h5>{{ experience.company }}</h5>
                     <h5>{{ experience.location }}</h5>
                   </div>
-                  <h6 class="time">
-                    {{ experience.from_date }} - {{ experience.to_date }}
-                  </h6>
+                  <h6 class="time">{{ experience.from_date }} - {{ experience.to_date }}</h6>
                 </header>
                 <div class="item-body">
                   <p>{{ experience.description }}</p>
@@ -180,8 +123,8 @@
       <section class="bg-alt">
         <div class="container">
           <header class="section-header">
-            <span>Past certifications</span>
-            <h2>Skills</h2>
+            <span>Arritje profesionale</span>
+            <h2>Kualifikime/Arritje profesionale</h2>
           </header>
 
           <div class="row">
@@ -192,9 +135,7 @@
                     <h4>{{ skill.name }}</h4>
                     <h5>{{ skill.releaser }}</h5>
                   </div>
-                  <h6 class="time">
-                    {{ skill.from_date }} - {{ skill.to_date }}
-                  </h6>
+                  <h6 class="time">{{ skill.from_date }} - {{ skill.to_date }}</h6>
                 </header>
                 <div class="item-body">
                   <p>{{ skill.description }}</p>

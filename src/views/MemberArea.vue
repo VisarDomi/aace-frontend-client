@@ -11,9 +11,9 @@
       <section class="bg-alt">
         <div class="container">
           <header class="section-header">
-            <span>Services</span>
-            <h2>Member Services</h2>
-            <p>Access your services as a registered user of AACE</p>
+            <span>Sherbime</span>
+            <h2>Sherbime per anetaret</h2>
+            <p>Merr sherbime si perdorues i regjistruar</p>
           </header>
 
           <div class="category-grid">
@@ -23,8 +23,8 @@
               v-if="currentUser.register_status == 'blank'"
             >
               <i class="fa fa-file-excel-o"></i>
-              <h6>Application Form</h6>
-              <p>Apply for membership in AACE</p>
+              <h6>Forma e aplikimit</h6>
+              <p>Apliko per anetaresi</p>
             </router-link>
 
             <router-link
@@ -36,26 +36,20 @@
               "
             >
               <i class="fa fa-file-excel-o"></i>
-              <h6>ReApplication Form</h6>
-              <p>ReApply for membership in AACE</p>
+              <h6>Forma e riaplikimit</h6>
+              <p>Rregullo te dhenat qe jan gabim ose qe mungojne</p>
             </router-link>
 
-            <router-link
-              :to="{ name: 'ApplicationStatus' }"
-              style="height: 295px;"
-            >
+            <router-link :to="{ name: 'ApplicationStatus' }" style="height: 295px;">
               <i class="fa fa-info"></i>
-              <h6>Application Status</h6>
-              <p>See the status of your application</p>
+              <h6>Statusi i aplikimit</h6>
+              <p>Shiko statusin e aplikimit</p>
             </router-link>
 
-            <router-link
-              :to="{ name: 'Communications' }"
-              style="height: 295px;"
-            >
+            <router-link :to="{ name: 'Communications' }" style="height: 295px;">
               <i class="fa fa-send-o"></i>
-              <h6>Communications</h6>
-              <p>Access association wide and personal communications</p>
+              <h6>Komunikime zyrtare</h6>
+              <p>Shiko komunikimet me te fundit qe jan derguar nga shoqata</p>
             </router-link>
 
             <router-link
@@ -63,25 +57,20 @@
               style="height: 295px;"
             >
               <i class="fa fa-vcard-o"></i>
-              <h6>Profile</h6>
-              <p>See how your profile looks publicly</p>
+              <h6>Profili</h6>
+              <p>Shiko sesi duket profili juaj nga publiku</p>
             </router-link>
 
             <router-link :to="{ name: 'ComingSoon' }" style="height: 295px;">
               <i class="fa fa-bullhorn"></i>
-              <h6>Polls</h6>
-              <p>Engage in polling</p>
+              <h6>Votime</h6>
+              <p>Merr pjese ne votime</p>
             </router-link>
 
-            <a
-              href="#"
-              style="height: 295px;"
-              @click="logout"
-              v-if="isAuthenticated"
-            >
+            <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
               <i class="fa fa-sign-out"></i>
-              <h6>Log-out</h6>
-              <p>Log out of the platform</p>
+              <h6>Dil</h6>
+              <p>Dil nga platforma</p>
             </a>
           </div>
         </div>
