@@ -76,10 +76,16 @@
                 <router-link :to="{ name: 'Profile', params: { id: currentUser.id } } ">Profile</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'Application' }">Application Form</router-link>
+                <router-link
+                  :to="{ name: 'Application' }"
+                  v-if="currentUser.register_status == 'blank'"
+                >Application Form</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'ReApplication' }">ReApplication Form</router-link>
+                <router-link
+                  :to="{ name: 'ReApplication' } "
+                  v-if="currentUser.register_status == 'rebutted' || currentUser.register_status == 'accepted'"
+                >ReApplication Form</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'ApplicationStatus' }">Application Status</router-link>

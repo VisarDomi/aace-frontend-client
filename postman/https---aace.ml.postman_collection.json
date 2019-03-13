@@ -30,7 +30,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"fname\": \"k\",\n\t\"lname\": \"\"\n}"
+							"raw": "{\n\t\"name\": \"v\"\n}"
 						},
 						"description": ""
 					},
@@ -56,6 +56,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW5AYWFjZS5hbDpwYXNzd29yZA==",
 								"description": ""
 							}
 						],
@@ -92,7 +97,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@aace.al\",\r\n    \"password\": \"password\"\r\n}"
+							"raw": "{\r\n    \"email\": \"onegoodtest@aace.al\",\r\n    \"password\": \"password\"\r\n}"
 						},
 						"description": "user1"
 					},
@@ -126,7 +131,7 @@
 				{
 					"name": "{{url}}/api/user/1",
 					"request": {
-						"url": "{{url}}/api/user/4",
+						"url": "{{url}}/api/user/30",
 						"method": "GET",
 						"header": [
 							{
@@ -151,7 +156,7 @@
 				{
 					"name": "{{url}}/api/user/1",
 					"request": {
-						"url": "{{url}}/api/user/16",
+						"url": "{{url}}/api/user/49",
 						"method": "PUT",
 						"header": [
 							{
@@ -166,13 +171,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"Alexander\",\n    \"last_name\": \"Digu\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga dom bosko\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"skam\",\n    \"application_date\": \"2019-03-06\",\n    \"register_status\": \"applying\"\n}"
+							"raw": "{\n    \"first_name\": \"One\",\n    \"last_name\": \"GoodTest\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2019-03-06\",\n    \"reapplication_date\": \"2020-03-02\",\n    \"register_status\": \"applying\"\n}"
 						},
 						"description": "Put"
 					},
@@ -181,7 +186,7 @@
 				{
 					"name": "{{url}}/api/user/2",
 					"request": {
-						"url": "{{url}}/api/user/3",
+						"url": "{{url}}/api/user/2",
 						"method": "DELETE",
 						"header": [
 							{
@@ -196,7 +201,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer rDzPbXuL7zCDHxWUpZPKCYTt5c+6vHC3",
+								"value": "bearer Bfp+1Oxqdxftn/Rm968eW+hTbXbCDuaQ",
 								"description": ""
 							}
 						],
@@ -232,13 +237,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"anetaret\",\r\n    \"description\": \"anetaret e shoqates\"\r\n}"
+							"raw": "{\r\n    \"name\": \"bordi\",\r\n    \"description\": \"bordi i shoqates\"\r\n}"
 						},
 						"description": "user1"
 					},
@@ -287,7 +292,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -302,7 +307,7 @@
 				{
 					"name": "{{url}}/api/organizationgroup/1",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/1",
+						"url": "{{url}}/api/organizationgroup/4",
 						"method": "GET",
 						"header": [
 							{
@@ -327,7 +332,7 @@
 				{
 					"name": "{{url}}/api/organizationgroup/1",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/2",
+						"url": "{{url}}/api/organizationgroup/4",
 						"method": "PUT",
 						"header": [
 							{
@@ -342,13 +347,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti esht ktu\"\r\n}"
+							"raw": "{\r\n    \"name\": \"koordinatori\",\r\n    \"description\": \"koordinatori i shoqates\"\r\n}"
 						},
 						"description": ""
 					},
@@ -412,7 +417,7 @@
 				{
 					"name": "{{url}}/api/organizationgroup/1/user/6",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/2/user/26",
+						"url": "{{url}}/api/organizationgroup/1/user/49",
 						"method": "PUT",
 						"header": [
 							{
@@ -487,13 +492,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ids\": [19,20,21,22]\n}"
+							"raw": "{\n\t\"ids\": [55,56,57]\n}"
 						},
 						"description": ""
 					},
@@ -517,13 +522,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"ids\": [20,21,22]\n}"
+							"raw": "{\n\t\"ids\": [55,56]\n}"
 						},
 						"description": ""
 					},
@@ -553,13 +558,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Komunikim zyrtar\",\r\n    \"description\": \"Rreth takimit te neserm3\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser.3\"\r\n}"
+							"raw": "{\r\n    \"name\": \"Komunikim zyrtar per anetaret\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser ne oren 3\"\r\n}"
 						},
 						"description": "user1"
 					},
@@ -583,7 +588,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
@@ -598,7 +603,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3",
+						"url": "{{url}}/api/officialcommunication/1",
 						"method": "GET",
 						"header": [
 							{
@@ -613,7 +618,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer Ew/IgGqGTC/7xAtSwXW8G1bT0cwFedLq",
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
 								"description": ""
 							}
 						],
@@ -688,7 +693,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/1/organizationgroup/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/organizationgroup/all",
+						"url": "{{url}}/api/officialcommunication/4/organizationgroup/all",
 						"method": "GET",
 						"header": [
 							{
@@ -703,7 +708,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -718,7 +723,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/organizationgroup/6",
+						"url": "{{url}}/api/officialcommunication/5/organizationgroup/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -733,7 +738,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -778,7 +783,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/1/email",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1/email",
+						"url": "{{url}}/api/officialcommunication/6/email",
 						"method": "POST",
 						"header": [
 							{
@@ -793,7 +798,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -814,7 +819,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment",
+						"url": "{{url}}/api/officialcommunication/5/officialcomment",
 						"method": "POST",
 						"header": [
 							{
@@ -829,13 +834,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"Komment nga alexandri.\"\r\n}"
+							"raw": "{\r\n    \"body\": \"Komment nga One GoodTest vetem per komunikimin zyrtar me id 5 qe eshte ne oren 3.\"\r\n}"
 						},
 						"description": "user1"
 					},
@@ -844,7 +849,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment/all",
+						"url": "{{url}}/api/officialcommunication/5/officialcomment/all",
 						"method": "GET",
 						"header": [
 							{
@@ -859,7 +864,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
@@ -874,7 +879,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3",
+						"url": "{{url}}/api/officialcommunication/1/officialcomment/1",
 						"method": "GET",
 						"header": [
 							{
@@ -889,7 +894,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer Ew/IgGqGTC/7xAtSwXW8G1bT0cwFedLq",
+								"value": "bearer pmk+KbCsXqcm5ucBh9xrQ+FzuS3M7GZ7",
 								"description": ""
 							}
 						],
@@ -904,7 +909,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3",
+						"url": "{{url}}/api/officialcommunication/3/officialcomment/5",
 						"method": "PUT",
 						"header": [
 							{
@@ -919,13 +924,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
+								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Takim3\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser.\"\r\n}"
+							"raw": "{\r\n    \"body\": \"Komment nga indriti, edituar.\"\r\n}"
 						},
 						"description": ""
 					},
@@ -934,7 +939,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1",
+						"url": "{{url}}/api/officialcommunication/3/officialcomment/5",
 						"method": "DELETE",
 						"header": [
 							{
@@ -949,7 +954,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
+								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT",
 								"description": ""
 							}
 						],
@@ -970,7 +975,7 @@
 				{
 					"name": "{{url}}/api/user/1/education",
 					"request": {
-						"url": "{{url}}/api/user/2/education",
+						"url": "{{url}}/api/user/49/education",
 						"method": "POST",
 						"header": [
 							{
@@ -985,13 +990,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer rzE7hj7jqMqX0L3pz9sXF4n1hih3PmcH",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"education_type\": \"larte\",\n\t\"degree\": \"bachelor2\",\n\t\"field_of_study\": \"computer science\",\n\t\"school\": \"universiteti i tiranes\",\n\t\"from_date\": \"1990-12-24\",\n\t\"to_date\": \"2001-04-01\",\n\t\"description\": \"shkoll koti\"\n}"
+							"raw": "{\n\t\"education_type\": \"larte\",\n\t\"degree\": \"bachelor\",\n\t\"field_of_study\": \"computer science\",\n\t\"school\": \"universiteti i bolzanos\",\n\t\"from_date\": \"2013-10-01\",\n\t\"to_date\": \"2016-10-01\",\n\t\"description\": \"shkoll e mir shum\"\n}"
 						},
 						"description": null
 					},
@@ -1000,7 +1005,7 @@
 				{
 					"name": "{{url}}/api/user/1/education/all",
 					"request": {
-						"url": "{{url}}/api/user/3/education/all",
+						"url": "{{url}}/api/user/49/education/all",
 						"method": "GET",
 						"header": [
 							{
@@ -1025,7 +1030,7 @@
 				{
 					"name": "{{url}}/api/user/1/education/1",
 					"request": {
-						"url": "{{url}}/api/user/2/education/1",
+						"url": "{{url}}/api/user/23/education/2",
 						"method": "GET",
 						"header": [
 							{
@@ -1116,7 +1121,7 @@
 				{
 					"name": "{{url}}/api/user/4/experience",
 					"request": {
-						"url": "{{url}}/api/user/9/experience",
+						"url": "{{url}}/api/user/49/experience",
 						"method": "POST",
 						"header": [
 							{
@@ -1131,13 +1136,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer f2XLm6cm86dLwsSrDzazg5nKeQMhaBFM",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"employer\": \"adriatiku\",\n\t\"company\": \"arredim\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work\"\n}"
+							"raw": "{\n\t\"title\": \"menaxher\",\n\t\"employer\": \"albstar\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"2009-04-15\",\n\t\"to_date\": \"2015-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was good\"\n}"
 						},
 						"description": ""
 					},
@@ -1217,7 +1222,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"employer\": \"uhstri\",\n\t\"company\": \"arredim\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work not\"\n}"
+							"raw": "{\n\t\"title\": \"ushtar\",\n\t\"employer\": \"uhstri\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work not\"\n}"
 						},
 						"description": ""
 					},
@@ -1262,7 +1267,7 @@
 				{
 					"name": "{{url}}/api/user/1/skill",
 					"request": {
-						"url": "{{url}}/api/user/2/skill",
+						"url": "{{url}}/api/user/49/skill",
 						"method": "POST",
 						"header": [
 							{
@@ -1277,13 +1282,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer VjIyUFwwVVdYKj+xU80dQpV/HkzHyiZW",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"releaser\": \"shoshik\",\n\t\"name\": \"certifikim ne dysheme\",\n\t\"from_date\": \"1999-12-13\",\n\t\"to_date\": \"2000-01-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
+							"raw": "{\n\t\"releaser\": \"ministria e shendetit\",\n\t\"name\": \"certifikim ne zemer\",\n\t\"from_date\": \"2008-02-13\",\n\t\"to_date\": \"2008-04-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
 						},
 						"description": null
 					},
@@ -1292,7 +1297,7 @@
 				{
 					"name": "{{url}}/api/user/1/skill/all",
 					"request": {
-						"url": "{{url}}/api/user/4/skill/all",
+						"url": "{{url}}/api/user/49/skill/all",
 						"method": "GET",
 						"header": [
 							{
@@ -1408,7 +1413,7 @@
 				{
 					"name": "{{url}}/api/admin/user/5",
 					"request": {
-						"url": "{{url}}/api/admin/user/4",
+						"url": "{{url}}/api/admin/user/17",
 						"method": "GET",
 						"header": [
 							{
@@ -1423,7 +1428,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1438,7 +1443,7 @@
 				{
 					"name": "{{url}}/api/admin/user/5",
 					"request": {
-						"url": "{{url}}/api/admin/user/4",
+						"url": "{{url}}/api/admin/user/50",
 						"method": "PUT",
 						"header": [
 							{
@@ -1459,16 +1464,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"register_status\": \"rebutted\",\n    \"comment_from_administrator\": \"fut websitin\",\n    \"accepted_date\": \"1999-12-31\"\n}"
+							"raw": "{\n    \"register_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
 						},
 						"description": null
 					},
 					"response": []
 				},
 				{
-					"name": "{{url}}/api/admin/user/approved",
+					"name": "{{url}}/api/admin/user/accepted",
 					"request": {
-						"url": "{{url}}/api/admin/user/approved",
+						"url": "{{url}}/api/admin/user/accepted",
 						"method": "GET",
 						"header": [
 							{
@@ -1483,7 +1488,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1513,7 +1518,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1543,7 +1548,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1573,7 +1578,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1603,7 +1608,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1633,7 +1638,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer QPPv3PLkWVv2jfLdx38EJ+9lmJGnBZx2",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1663,7 +1668,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -1678,7 +1683,7 @@
 				{
 					"name": "{{url}}/api/admin/user/5/email",
 					"request": {
-						"url": "{{url}}/api/admin/user/17/email",
+						"url": "{{url}}/api/admin/user/27/email",
 						"method": "POST",
 						"header": [
 							{
@@ -1693,13 +1698,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"subject\": \"test from admin\",\n    \"text_body\": \"this is one test\"\n}"
+							"raw": "{\n    \"subject\": \"email from postman with migadu with no link\",\n    \"text_body\": \"this is one test to user visardomi4@gmail.com with no tls\"\n}"
 						},
 						"description": ""
 					},
@@ -1724,7 +1729,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer QPPv3PLkWVv2jfLdx38EJ+9lmJGnBZx2",
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
 								"description": ""
 							},
 							{
@@ -1744,7 +1749,7 @@
 				{
 					"name": "{{url}}/api/admin/media_experience/5",
 					"request": {
-						"url": "{{url}}/api/admin/media_experience/4",
+						"url": "{{url}}/api/admin/media_experience/1",
 						"method": "GET",
 						"header": [
 							{
@@ -1754,7 +1759,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer QPPv3PLkWVv2jfLdx38EJ+9lmJGnBZx2",
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
 								"description": ""
 							},
 							{
@@ -1810,7 +1815,7 @@
 				{
 					"name": "{{url}}/api/media/media_officialcommunication/1",
 					"request": {
-						"url": "{{url}}/api/media/media_officialcommunication/1",
+						"url": "{{url}}/api/media/media_officialcommunication/9",
 						"method": "GET",
 						"header": [
 							{
@@ -1846,7 +1851,7 @@
 				{
 					"name": "{{url}}/api/user/4/media",
 					"request": {
-						"url": "{{url}}/api/user/8/media",
+						"url": "{{url}}/api/user/49/media",
 						"method": "POST",
 						"header": [
 							{
@@ -1856,7 +1861,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer cqy/lut2wYqe0JnGYPxMrvBwkeip0qvN",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
@@ -1867,7 +1872,7 @@
 									"key": "file",
 									"description": "",
 									"type": "file",
-									"src": "default_profile_image.jpg"
+									"src": "vlcsnap-2019-01-31-05h56m04s015.png"
 								}
 							]
 						},
@@ -1905,7 +1910,7 @@
 				{
 					"name": "{{url}}/api/user/4/media/all",
 					"request": {
-						"url": "{{url}}/api/user/2/media/all",
+						"url": "{{url}}/api/user/1/media/all",
 						"method": "GET",
 						"header": [
 							{
@@ -2002,7 +2007,7 @@
 				{
 					"name": "{{url}}/api/user/4/education/1/media",
 					"request": {
-						"url": "{{url}}/api/user/4/education/1/media",
+						"url": "{{url}}/api/user/49/education/58/media",
 						"method": "POST",
 						"header": [
 							{
@@ -2012,7 +2017,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
@@ -2021,9 +2026,9 @@
 							"formdata": [
 								{
 									"key": "file",
-									"value": "",
 									"description": "",
-									"type": "file"
+									"type": "file",
+									"src": "awer.pdf"
 								}
 							]
 						},
@@ -2034,7 +2039,7 @@
 				{
 					"name": "{{url}}/api/user/4/education/5/media/all",
 					"request": {
-						"url": "{{url}}/api/user/4/education/1/media/all",
+						"url": "{{url}}/api/user/30/education/39/media/all",
 						"method": "GET",
 						"header": [
 							{
@@ -2044,7 +2049,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
+								"value": "bearer cGDpM8o5U3HxyIiaDS+81cd/wIcz3KEC",
 								"description": ""
 							},
 							{
@@ -2178,7 +2183,7 @@
 				{
 					"name": "{{url}}/api/user/4/experience/2/media",
 					"request": {
-						"url": "{{url}}/api/user/4/experience/3/media",
+						"url": "{{url}}/api/user/49/experience/27/media",
 						"method": "POST",
 						"header": [
 							{
@@ -2188,7 +2193,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
@@ -2199,7 +2204,7 @@
 									"key": "file",
 									"description": "",
 									"type": "file",
-									"src": "awer - Copy (4).pdf"
+									"src": "Eco Riciklim Teknologjia3.jpg"
 								}
 							]
 						},
@@ -2344,7 +2349,7 @@
 				{
 					"name": "{{url}}/api/user/4/skill/2/media",
 					"request": {
-						"url": "{{url}}/api/user/4/skill/1/media",
+						"url": "{{url}}/api/user/49/skill/27/media",
 						"method": "POST",
 						"header": [
 							{
@@ -2354,7 +2359,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
 								"description": ""
 							}
 						],
@@ -2365,7 +2370,7 @@
 									"key": "file",
 									"description": "",
 									"type": "file",
-									"src": "awer - Copy.pdf"
+									"src": "iphone-5s-white.png"
 								}
 							]
 						},
@@ -2666,7 +2671,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/3/media",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3/media",
+						"url": "{{url}}/api/officialcommunication/1/media",
 						"method": "POST",
 						"header": [
 							{
@@ -2676,7 +2681,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -2687,7 +2692,7 @@
 									"key": "file",
 									"description": "",
 									"type": "file",
-									"src": "Eco Riciklim Quote2.jpg"
+									"src": "awer.pdf"
 								}
 							]
 						},
@@ -2781,9 +2786,9 @@
 							"formdata": [
 								{
 									"key": "file",
-									"value": "",
 									"description": "",
-									"type": "file"
+									"type": "file",
+									"src": "Eco Riciklim Hero1.jpg"
 								}
 							]
 						},
@@ -2794,7 +2799,7 @@
 				{
 					"name": "{{url}}/apiofficialcommunication/2/media/2",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1/media/3",
+						"url": "{{url}}/api/officialcommunication/1/media/8",
 						"method": "DELETE",
 						"header": [
 							{
@@ -2804,7 +2809,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
 								"description": ""
 							}
 						],
@@ -2832,7 +2837,7 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment/3/media",
+						"url": "{{url}}/api/officialcommunication/3/officialcomment/5/media",
 						"method": "POST",
 						"header": [
 							{
@@ -2842,7 +2847,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
+								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT",
 								"description": ""
 							}
 						],
@@ -2851,9 +2856,9 @@
 							"formdata": [
 								{
 									"key": "file",
-									"value": "",
 									"description": "",
-									"type": "file"
+									"type": "file",
+									"src": "Eco Riciklim Quote2.jpg"
 								}
 							]
 						},
@@ -2903,6 +2908,11 @@
 								"key": "Secure-Api-Key",
 								"value": "{{Secure-Api-Key}}",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
+								"description": ""
 							}
 						],
 						"body": {
@@ -2933,7 +2943,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
 								"description": ""
 							}
 						],
@@ -2942,9 +2952,9 @@
 							"formdata": [
 								{
 									"key": "file",
-									"value": "",
 									"description": "",
-									"type": "file"
+									"type": "file",
+									"src": "AACE Database design_1.pdf"
 								}
 							]
 						},
@@ -3008,13 +3018,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 9ul2GfIpUVhiG2QALJR1zHL6hB786AQ8",
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
 								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Civil Engineer3\",\r\n    \"description\": \"This is an engineers group\"\r\n}"
+							"raw": "{\r\n    \"name\": \"Civil Engineer\",\r\n    \"description\": \"This is an engineers group\"\r\n}"
 						},
 						"description": null
 					},
@@ -3178,7 +3188,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
 								"description": ""
 							}
 						],
