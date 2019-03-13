@@ -42,21 +42,26 @@
                 />
               </div>
               <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control input-lg"
-                  placeholder="Profesioni"
+                <select
+                  class="form-control"
                   v-model="profession"
-                />
+                >
+                    <option value="Inxhinier Ndertimi"> Inxhinier Ndertimi </option>
+                    <option value="Inxhinier Civil"> Inxhinier Civil </option>
+                    <option value="Inxhinier Mekanik"> Inxhinier Mekanik </option>
+                  >
+                </select>
               </div>
 
               <div class="form-group">
-                <input
-                  type="text"
+                <select
                   class="form-control"
-                  placeholder="Gjinia"
                   v-model="sex"
-                />
+                >
+                    <option value="Mashkull"> Mashkull </option>
+                    <option value="Femer"> Femer </option>
+                  >
+                </select>
               </div>
 
               <div class="form-group">
