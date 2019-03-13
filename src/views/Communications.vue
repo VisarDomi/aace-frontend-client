@@ -32,7 +32,7 @@
               <p>{{ communication.description }}</p>
               <br>
               <p>
-                <strong>{{ getFormattedDate(communication) }}</strong>
+                <strong>{{ getFormattedDate(communication.time) }}</strong>
               </p>
             </router-link>
           </div>
@@ -47,19 +47,13 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
+import DateFilter from "@/common/date.filter";
 import { FETCH_COMMUNICATIONS } from "@/store/actions.type";
 export default {
   name: "Communications",
-  data() {
-    return {
-      time: ""
-    };
-  },
   methods: {
-    getFormattedDate(communication) {
-      let date_object = new Date(communication.time);
-      this.time = date_object.toISOString().split("T")[0];
-      return this.time;
+    getFormattedDate(time) {
+      return DateFilter(time);
     }
   },
   computed: {
