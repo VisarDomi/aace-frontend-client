@@ -11,8 +11,8 @@ export const SET_EDUCATION = "setEducation";
 export const SET_EXPERIENCE = "setExperience";
 export const SET_SKILL = "setSkill";
 export const SET_PICTURE = "setPicture";
-export const SET_COMM = "setComm";
-export const SET_COMMS = "setComms";
-export const SET_COMM_DOCS = "setCommDocs";
+export const SET_COMMUNICATION = "setComm";
+export const SET_COMMUNICATIONS = "setComms";
+export const SET_COMMUNICATION_DOCS = "setCommDocs";
 
 export const POST_COMMENT = "postComment";

@@ -12,12 +12,12 @@
       <section style="padding-top:0px; padding-bottom:50px;">
         <div class="container">
           <header class="section-header">
-            <h2>{{ comm.name }}</h2>
+            <h2>{{ communication.name }}</h2>
           </header>
 
           <div class="container" style=" white-space: pre-line;">
             <div class="row">
-              <div class="col-md-9">{{ comm.body }}</div>
+              <div class="col-md-9">{{ communication.body }}</div>
               <div class="col-md-3" style="padding-top: 37px;">
                 <ul class="pricing">
                   <li style="width: 100%; border: none;">
@@ -49,15 +49,9 @@
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
-              <textarea
-                class="form-control"
-                rows="5"
-                v-model="comment"
-              ></textarea>
-              <br />
-              <a class="btn btn-primary" href="#" @click="sendComment"
-                >Dergo koment</a
-              >
+              <textarea class="form-control" rows="5" v-model="comment"></textarea>
+              <br>
+              <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
             </form>
           </div>
         </div>
@@ -84,15 +78,22 @@ export default {
   data() {
     return {
       comment: "",
-      commentId: ""
+      commentId: "",
+      extension: ".jpg",
+      document_filename: "iphone5s.jpg"
       // ket commentId e bejm computed
-      //suppozohet ta kem available , po ta bej {{comm.id}} m'del ne html
+      //suppozohet ta kem available , po ta bej {{communication.id}} m'del ne html
     };
   },
   methods: {
+    getExtension(document_filename) {
+      this.extension = document_filename.split(".")[1];
+      console.log(this.extension);
+      return this.extension;
+    },
     sendComment() {
       this.$store.dispatch(ADD_COMMENT, {
-        id: this.comm.id,
+        id: this.communication.id,
         comment: this.comment
       });
     },
@@ -118,7 +119,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["comm", "communicationDocuments"])
+    ...mapGetters(["communication", "communicationDocuments"])
   },
   watch: {
     $route(to) {

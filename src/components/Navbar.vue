@@ -32,11 +32,16 @@
           <router-link :to="{ name: 'Login' }" class="btn btn-sm btn-primary">Login</router-link>or
           <router-link :to="{ name: 'Register' }">Register</router-link>
         </div>
-        <div v-else class="pull-right user-login go-to-profile">
-          <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">
-            <i class="fa fa-user fa-2x profile-icon become-inline"></i>
-            <div class="become-inline">Profile</div>
-          </router-link>
+        <div class="pull-right user-login" v-else>
+          <div class="become-inline">
+            <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">
+              <i class="fa fa-user fa-2x profile-icon become-inline"></i>
+              <div class="become-inline become-margin-right">Profile</div>
+            </router-link>
+          </div>
+          <div @click="logout" class="become-inline">
+            <div class="btn btn-sm btn-primary">Log-out</div>
+          </div>
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
@@ -85,9 +90,9 @@
               <li>
                 <router-link :to="{ name: 'ComingSoon' }">Polls</router-link>
               </li>
-              <li @click="logout" v-if="isAuthenticated">
+              <!-- <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Log-out</a>
-              </li>
+              </li>-->
               <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
             </ul>
           </li>
@@ -119,7 +124,7 @@ export default {
 
 <style scoped>
 /* go to profile margin */
-.go-to-profile {
+.become-margin-top {
   margin-top: 10px;
 }
 
@@ -131,14 +136,18 @@ export default {
   display: inline-block;
 }
 
+.become-margin-right {
+  margin-right: 10px;
+}
+
 /* show only small logo on small screens */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 620px) {
   .show-logo-1 {
     display: none !important;
   }
 }
 /* dont show big logo on small screens */
-@media screen and (min-width: 0px) and (max-width: 600px) {
+@media screen and (min-width: 0px) and (max-width: 619px) {
   .show-logo-2 {
     display: none !important;
   }

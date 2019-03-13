@@ -1,11 +1,19 @@
 // import ApiService from "@/common/api.service";
 import { CommunicationService } from "@/common/api.service";
-import { FETCH_COMMS, FETCH_COMM, ADD_COMMENT } from "./actions.type";
-import { SET_COMM, SET_COMMS, POST_COMMENT } from "./mutations.type";
+import {
+  FETCH_COMMUNICATIONS,
+  FETCH_COMMUNICATION,
+  ADD_COMMENT
+} from "./actions.type";
+import {
+  SET_COMMUNICATION,
+  SET_COMMUNICATIONS,
+  POST_COMMENT
+} from "./mutations.type";
 
 const initialState = {
   communications: [],
-  comm: {}
+  communication: {}
 };
 
 export const state = { ...initialState };
@@ -14,20 +22,20 @@ const getters = {
   communications(state) {
     return state.communications;
   },
-  comm(state) {
-    return state.comm;
+  communication(state) {
+    return state.communication;
   }
 };
 
 export const actions = {
-  async [FETCH_COMMS](context) {
+  async [FETCH_COMMUNICATIONS](context) {
     const { data } = await CommunicationService.getCommunications();
-    context.commit(SET_COMMS, data);
+    context.commit(SET_COMMUNICATIONS, data);
   },
-  async [FETCH_COMM](context, commId) {
+  async [FETCH_COMMUNICATION](context, commId) {
     const { id } = commId;
     const { data } = await CommunicationService.getCommunication(id);
-    context.commit(SET_COMM, data);
+    context.commit(SET_COMMUNICATION, data);
   },
   async [ADD_COMMENT](context, payload) {
     console.log("action");
@@ -48,11 +56,11 @@ export const actions = {
 };
 
 export const mutations = {
-  [SET_COMMS](state, communications) {
+  [SET_COMMUNICATIONS](state, communications) {
     state.communications = communications;
   },
-  [SET_COMM](state, communication) {
-    state.comm = communication;
+  [SET_COMMUNICATION](state, communication) {
+    state.communication = communication;
   },
   [POST_COMMENT](state, payload) {}
 };

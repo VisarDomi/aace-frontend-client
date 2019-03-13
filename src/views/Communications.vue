@@ -30,9 +30,9 @@
             >
               <h6>{{ communication.name }}</h6>
               <p>{{ communication.description }}</p>
-              <br />
+              <br>
               <p>
-                <strong>{{ communication.time }}</strong>
+                <strong>{{ getFormattedDate(communication) }}</strong>
               </p>
             </router-link>
           </div>
@@ -50,6 +50,18 @@ import store from "@/store";
 import { FETCH_COMMS } from "@/store/actions.type";
 export default {
   name: "Communications",
+  data() {
+    return {
+      time: ""
+    };
+  },
+  methods: {
+    getFormattedDate(communication) {
+      let date_object = new Date(communication.time);
+      this.time = date_object.toISOString().split("T")[0];
+      return this.time;
+    }
+  },
   computed: {
     ...mapGetters(["communications"])
   },
