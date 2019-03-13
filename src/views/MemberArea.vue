@@ -30,20 +30,29 @@
             <router-link
               :to="{ name: 'ReApplication' }"
               style="height: 295px;"
-              v-if="currentUser.register_status == 'rebutted' || currentUser.register_status == 'accepted'"
+              v-if="
+                currentUser.register_status == 'rebutted' ||
+                  currentUser.register_status == 'accepted'
+              "
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>ReApplication Form</h6>
               <p>ReApply for membership in AACE</p>
             </router-link>
 
-            <router-link :to="{ name: 'ApplicationStatus' }" style="height: 295px;">
+            <router-link
+              :to="{ name: 'ApplicationStatus' }"
+              style="height: 295px;"
+            >
               <i class="fa fa-info"></i>
               <h6>Application Status</h6>
               <p>See the status of your application</p>
             </router-link>
 
-            <router-link :to="{ name: 'Communications' }" style="height: 295px;">
+            <router-link
+              :to="{ name: 'Communications' }"
+              style="height: 295px;"
+            >
               <i class="fa fa-send-o"></i>
               <h6>Communications</h6>
               <p>Access association wide and personal communications</p>
@@ -64,7 +73,12 @@
               <p>Engage in polling</p>
             </router-link>
 
-            <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
+            <a
+              href="#"
+              style="height: 295px;"
+              @click="logout"
+              v-if="isAuthenticated"
+            >
               <i class="fa fa-sign-out"></i>
               <h6>Log-out</h6>
               <p>Log out of the platform</p>

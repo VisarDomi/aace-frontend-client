@@ -22,16 +22,16 @@
             Articles of Association for AACE Group Ltd provide further
             information regarding its mandate of operation.
           </p>
-          <br>
-          <br>
+          <br />
+          <br />
           <div class="row">
             <div class="col text-center">
               <!-- <img src="static/img/non-profit-chart.png" alt /> -->
             </div>
           </div>
 
-          <br>
-          <br>
+          <br />
+          <br />
           <header class="section-header">
             <span>board</span>
             <h2>Board of Directors</h2>
@@ -57,8 +57,8 @@
             role as defined by the Board or the membership and set out in the
             Articles of Association.
           </p>
-          <br>
-          <br>
+          <br />
+          <br />
           <div class="row">
             <div class="col-sm-4">
               <div class="team-members">

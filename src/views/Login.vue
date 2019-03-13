@@ -5,9 +5,11 @@
       style="background-image: url(static/img/home_banner_grayed_short.jpg); margin-bottom: 0px;"
     >
       <div class="login-page">
-        <main style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;">
+        <main
+          style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;"
+        >
           <div class="login-block">
-            <img src="static/img/logo_partial2.png" alt="AACE logo">
+            <img src="static/img/logo_partial2.png" alt="AACE logo" />
             <h1>Hyr ne llogarine e juaj</h1>
 
             <form @submit.prevent="onSubmit(username, password)">
@@ -21,11 +23,11 @@
                     class="form-control"
                     placeholder="Email-i juaj"
                     v-model="username"
-                  >
+                  />
                 </div>
               </div>
 
-              <hr class="hr-xs">
+              <hr class="hr-xs" />
 
               <div class="form-group">
                 <div class="input-group">
@@ -37,13 +39,15 @@
                     class="form-control"
                     placeholder="Fjalekalimi juaj"
                     v-model="password"
-                  >
+                  />
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-block" type="submit">Hyr</button>
+              <button class="btn btn-primary btn-block" type="submit">
+                Hyr
+              </button>
 
-              <hr class="hr-xs">
+              <hr class="hr-xs" />
               <!-- <div class="form-group">{{ loading }}</div> -->
             </form>
             <ul v-if="errors" class="error-messages">
@@ -52,8 +56,14 @@
           </div>
 
           <div class="login-links">
-            <a href="#" class="pull-left btn btn-light">Keni harruar fjalekalimin?</a>
-            <router-link to="/register" class="pull-right btn btn-light go-to-pull-left">Regjistrohu</router-link>
+            <a href="#" class="pull-left btn btn-light"
+              >Keni harruar fjalekalimin?</a
+            >
+            <router-link
+              to="/register"
+              class="pull-right btn btn-light go-to-pull-left"
+              >Regjistrohu</router-link
+            >
           </div>
         </main>
       </div>

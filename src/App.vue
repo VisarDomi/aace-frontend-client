@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="nav-on-header smart-nav" id="body">
-      <app-navbar/>
-      <router-view/>
-      <app-footer/>
+      <app-navbar />
+      <router-view />
+      <app-footer />
       <!-- Back to top button -->
       <a id="scroll-up" href="#">
         <i class="ti-angle-up"></i>

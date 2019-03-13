@@ -7,7 +7,7 @@
     >
       <div class="container">
         <div class="header-detail">
-          <img class="logo" src="static/img/logo_partial.png" alt>
+          <img class="logo" src="static/img/logo_partial.png" alt />
           <div class="hgroup">
             <h1>Kerkese per Anetaresi</h1>
             <h3>
@@ -15,13 +15,13 @@
             </h3>
           </div>
           <!-- <time datetime="2016-03-03 20:00">2 days ago</time> -->
-          <hr>
+          <hr />
           <h4>Hapat per tu bere anetar:</h4>
           <p>Te jesh inxhinier i diplomuar.</p>
           <p>Te pranosh statutin e SHOSHIK.</p>
           <p>Te paguhet kuota vjetore e anetaresimit.</p>
           <p>Te mos kesh kufizime ligjore per ushtrimin e profesionit.</p>
-          <br>
+          <br />
           <h5>Requirements:</h5>
           <ul class="details cols-3">
             <li>
@@ -42,15 +42,20 @@
           <div class="text-center">
             <div class="action-buttons">
               <router-link
-                :to="{name:'Application'}"
+                :to="{ name: 'Application' }"
                 class="btn btn-success"
                 v-if="currentUser.register_status == 'blank'"
-              >Apply now</router-link>
+                >Apply now</router-link
+              >
               <router-link
-                :to="{name:'ReApplication'}"
+                :to="{ name: 'ReApplication' }"
                 class="btn btn-success"
-                v-if="currentUser.register_status == 'rebutted' || currentUser.register_status == 'accepted'"
-              >Apply now</router-link>
+                v-if="
+                  currentUser.register_status == 'rebutted' ||
+                    currentUser.register_status == 'accepted'
+                "
+                >Apply now</router-link
+              >
             </div>
           </div>
         </div>
@@ -77,7 +82,7 @@
             member with full rights of this prestigious organization.
           </p>
 
-          <br>
+          <br />
           <h2>Benefits of a membership</h2>
           <p>
             AACE plays an instrumental role in bringing industry and Government
@@ -125,7 +130,9 @@
             </p>
 
             <li>
-              <strong>Increase your brand's exposure in relevant markets.</strong>
+              <strong
+                >Increase your brand's exposure in relevant markets.</strong
+              >
             </li>
             <p>
               We offer you valuable exposure via our stakeholder networks,
@@ -134,7 +141,7 @@
             </p>
           </ul>
 
-          <br>
+          <br />
           <h4>Minimum qualifications</h4>
           <ul>
             <li>

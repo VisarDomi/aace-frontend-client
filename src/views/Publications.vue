@@ -22,8 +22,13 @@
           >
             <div class="col-md-5 col-lg-5">
               <div class="post-media">
-                <router-link :to="{name: 'PublicationDetail', params: { id: publication.id }}">
-                  <img :src="publication.src" alt="Foto e publikimit">
+                <router-link
+                  :to="{
+                    name: 'PublicationDetail',
+                    params: { id: publication.id }
+                  }"
+                >
+                  <img :src="publication.src" alt="Foto e publikimit" />
                 </router-link>
               </div>
             </div>
@@ -32,11 +37,15 @@
               <header style="display:inline;">
                 <h2>
                   <router-link
-                    :to="{name: 'PublicationDetail', params: { id: publication.id }}"
-                  >{{ publication.title }}</router-link>
+                    :to="{
+                      name: 'PublicationDetail',
+                      params: { id: publication.id }
+                    }"
+                    >{{ publication.title }}</router-link
+                  >
                 </h2>
                 <time datetime="2016-04-04 20:00">{{ publication.date }}</time>
-                <br>
+                <br />
               </header>
 
               <div class="blog-content">
@@ -44,9 +53,13 @@
               </div>
               <p class="read-more">
                 <router-link
-                  :to="{name: 'PublicationDetail', params: { id: publication.id }}"
+                  :to="{
+                    name: 'PublicationDetail',
+                    params: { id: publication.id }
+                  }"
                   class="btn btn-primary btn-outline"
-                >Vazhdo leximin</router-link>
+                  >Vazhdo leximin</router-link
+                >
               </p>
             </div>
           </article>
@@ -54,9 +67,7 @@
           <nav>
             <ul class="pager">
               <li class="previous">
-                <a href="#">
-                  <i class="ti-arrow-left"></i> Older posts
-                </a>
+                <a href="#"> <i class="ti-arrow-left"></i> Older posts </a>
               </li>
               <li class="next">
                 <a href="#">

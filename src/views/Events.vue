@@ -14,23 +14,24 @@
     <main class="container blog-page">
       <div class="row">
         <div class="col-lg-6 mt-6" :key="event.id" v-for="event in events">
-          <router-link :to="{name: 'EventDetail', params: { id: event.id }}">
+          <router-link :to="{ name: 'EventDetail', params: { id: event.id } }">
             <div class="card text-center">
-              <img class="card-img-top" :src="event.src" alt="Card image cap">
+              <img class="card-img-top" :src="event.src" alt="Card image cap" />
               <div class="card-body">
-                <h5 class="card-title">{{event.title}}</h5>
+                <h5 class="card-title">{{ event.title }}</h5>
               </div>
               <div class="card-footer text-muted">
-                <h5 class="card-date">{{event.date}}</h5>
-                <div class="card-body-text">{{event.description}}</div>
+                <h5 class="card-date">{{ event.date }}</h5>
+                <div class="card-body-text">{{ event.description }}</div>
               </div>
             </div>
           </router-link>
           <p class="read-more">
             <router-link
-              :to="{name: 'EventDetail', params: { id: event.id }}"
+              :to="{ name: 'EventDetail', params: { id: event.id } }"
               class="btn btn-primary btn-outline"
-            >Vazhdo leximin</router-link>
+              >Vazhdo leximin</router-link
+            >
           </p>
         </div>
       </div>

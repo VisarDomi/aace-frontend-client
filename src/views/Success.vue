@@ -13,10 +13,14 @@
           <h3>Aplikimi juaj eshte derguar me sukses</h3>
           <ul class="list-group">
             <li class="list-group-item">
-              <router-link :to="{name: 'Home'}">Shko ne faqen kryesore</router-link>
+              <router-link :to="{ name: 'Home' }"
+                >Shko ne faqen kryesore</router-link
+              >
             </li>
             <li class="list-group-item">
-              <router-link :to="{name: 'ApplicationStatus'}">Shiko statusin e aplikimit</router-link>
+              <router-link :to="{ name: 'ApplicationStatus' }"
+                >Shiko statusin e aplikimit</router-link
+              >
             </li>
           </ul>
         </div>
