@@ -76,7 +76,7 @@ import store from "@/store";
 export default {
   name: "CommunicationDetail",
   mounted() {
-    this.$store.dispatch(FETCH_COMM, this.$route.params);
+    this.$store.dispatch(FETCH_COMMUNICATION, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);
   },
   data() {
