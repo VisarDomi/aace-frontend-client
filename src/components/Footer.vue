@@ -45,8 +45,8 @@
               </li>
               <li>
                 <router-link :to="{ name: 'Publications' }">Publications</router-link>
-              </li>
-              <li> -->
+              </li>-->
+              <li>
                 <router-link :to="{ name: 'Contact' }">Contact us</router-link>
               </li>
             </ul>
