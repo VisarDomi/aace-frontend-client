@@ -27,7 +27,7 @@
             style="width:33%; margin:auto;"
             v-if="currentUser.register_status == 'rebutted'"
           >
-            <strong>Mangesi ne dokumenta.</strong>.
+            <strong>Mangesi ne dokumenta.</strong>
           </div>
           <div
             class="alert alert-info"

@@ -46,7 +46,11 @@
                 class="btn btn-success"
                 v-if="currentUser.register_status == 'blank'"
               >Apply now</router-link>
-              <router-link :to="{name:'ReApplication'}" class="btn btn-success" v-else>Apply now</router-link>
+              <router-link
+                :to="{name:'ReApplication'}"
+                class="btn btn-success"
+                v-if="currentUser.register_status == 'rebutted' || currentUser.register_status == 'accepted'"
+              >Apply now</router-link>
             </div>
           </div>
         </div>

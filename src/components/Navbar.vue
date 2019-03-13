@@ -84,7 +84,7 @@
               <li>
                 <router-link
                   :to="{ name: 'ReApplication' } "
-                  v-if="currentUser.register_status == 'rebutted'"
+                  v-if="currentUser.register_status == 'rebutted' || currentUser.register_status == 'accepted'"
                 >ReApplication Form</router-link>
               </li>
               <li>

@@ -30,7 +30,7 @@
             <router-link
               :to="{ name: 'ReApplication' }"
               style="height: 295px;"
-              v-if="currentUser.register_status == 'rebutted'"
+              v-if="currentUser.register_status == 'rebutted' || currentUser.register_status == 'accepted'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>ReApplication Form</h6>
