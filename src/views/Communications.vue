@@ -32,7 +32,7 @@
               <p>{{ communication.description }}</p>
               <br>
               <p>
-                <strong>{{ getFormattedDate(communication.time) }}</strong>
+                <strong>{{ getFormattedDate(communication.timestamp) }}</strong>
               </p>
             </router-link>
           </div>

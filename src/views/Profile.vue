@@ -105,7 +105,6 @@
                   <div class="hgroup">
                     <h4>{{ experience.title }}</h4>
                     <h5>{{ experience.employer }}</h5>
-                    <h5>{{ experience.company }}</h5>
                     <h5>{{ experience.location }}</h5>
                   </div>
                   <h6 class="time">{{ experience.from_date }} - {{ experience.to_date }}</h6>
