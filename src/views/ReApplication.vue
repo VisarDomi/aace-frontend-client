@@ -196,13 +196,6 @@
               >
                 <div class="item-block">
                   <div class="item-form">
-                    <button
-                      class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteEducation(educationInput.id)"
-                      type="button"
-                    >
-                      <i class="ti-close"></i>
-                    </button>
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
@@ -268,7 +261,7 @@
 
                         <div class="form-group">
                           <label class="col-sm-2">Dega</label>
-                          <div class="form-group col-sm-5">
+                          <div class="form-group col-sm-4">
                             <select
                               class="form-control"
                               v-model="education_major_id[index]"
@@ -285,7 +278,7 @@
                               >{{ option.text }}</option>
                             </select>
                           </div>
-                          <div class="form-group col-sm-5">
+                          <div class="form-group col-sm-4">
                             <input
                               type="text"
                               :disabled="!education_major_other[index]"
@@ -337,10 +330,6 @@
                 </div>
               </div>
 
-              <div class="col-xs-12 text-center">
-                <br>
-                <button class="btn btn-primary" type="button" @click="onAddEducation">Shto arsimim</button>
-              </div>
             </div>
           </div>
         </section>
@@ -361,13 +350,6 @@
               >
                 <div class="item-block">
                   <div class="item-form">
-                    <button
-                      class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteExperience(experienceInput.id)"
-                      type="button"
-                    >
-                      <i class="ti-close"></i>
-                    </button>
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
@@ -450,14 +432,6 @@
                 </div>
               </div>
 
-              <div class="col-xs-12 text-center">
-                <br>
-                <button
-                  class="btn btn-primary btn-duplicator"
-                  type="button"
-                  @click="onAddExperience"
-                >Shto pervoje pune</button>
-              </div>
             </div>
           </div>
         </section>
@@ -473,18 +447,11 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="skillInput.randomid"
+                :key="skillInput.id"
                 v-for="(skillInput, index) in skillInputs"
               >
                 <div class="item-block">
                   <div class="item-form">
-                    <button
-                      class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteSkill(skillInput.randomid)"
-                      type="button"
-                    >
-                      <i class="ti-close"></i>
-                    </button>
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
@@ -494,7 +461,7 @@
                             ref="skill"
                             multiple
                             @change="
-                              handleFileUploadSkill(skillInput.randomid, index)
+                              handleFileUploadSkill(skillInput.id, index)
                             "
                           >
                           <span
@@ -552,14 +519,6 @@
                 </div>
               </div>
 
-              <div class="col-xs-12 text-center">
-                <br>
-                <button
-                  class="btn btn-primary btn-duplicator"
-                  @click="onAddSkill"
-                  type="button"
-                >Shto kualifikim</button>
-              </div>
             </div>
           </div>
         </section>
@@ -665,10 +624,12 @@ export default {
       },
       //---------------- Experience -------
       experienceInputs: [],
+      resExperienceIds: [],
       experience_files_index: 0,
 
       //---------------- Skill -------
       skillInputs: [],
+      resSkillIds: [],
       skill_files_index: 0
     };
   },
@@ -729,76 +690,25 @@ export default {
         education => education.id === id
       )[0].files = files;
     },
-    onAddEducation() {
-      const newEducation = {
-        id: Math.random() * Math.random() * 1000,
-        degree: "",
-        field_of_study: "",
-        school: "",
-        from_date: "",
-        to_date: "",
-        description: ""
-      };
-      this.educationInputs.push(newEducation);
-    },
-    onDeleteEducation(id) {
-      this.educationInputs = this.educationInputs.filter(
-        education => education.id !== id
-      );
-    },
     // ------- Experience -------
-    handleFileUploadExperience(randomid, index) {
+    handleFileUploadExperience(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
         files.push(this.$refs.experience[index].files[i]);
       }
       this.experienceInputs.filter(
-        experience => experience.randomid === randomid
+        experience => experience.id === id
       )[0].files = files;
     },
-    onAddExperience() {
-      const newExperience = {
-        randomid: Math.random() * Math.random() * 1000,
-        employer: "",
-        title: "",
-        location: "",
-        from_date: "",
-        to_date: "",
-        is_currently_work_here: false,
-        description: ""
-      };
-      this.experienceInputs.push(newExperience);
-    },
-    onDeleteExperience(randomid) {
-      this.experienceInputs = this.experienceInputs.filter(
-        experience => experience.randomid !== randomid
-      );
-    },
     // ------- Skill -------
-    handleFileUploadSkill(randomid, index) {
+    handleFileUploadSkill(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
         files.push(this.$refs.skill[index].files[i]);
       }
       this.skillInputs.filter(
-        skill => skill.randomid === randomid
+        skill => skill.id === id
       )[0].files = files;
-    },
-    onAddSkill() {
-      const newSkill = {
-        randomid: Math.random() * Math.random() * 1000,
-        releaser: "",
-        name: "",
-        from_date: "",
-        to_date: "",
-        description: ""
-      };
-      this.skillInputs.push(newSkill);
-    },
-    onDeleteSkill(randomid) {
-      this.skillInputs = this.skillInputs.filter(
-        skill => skill.randomid !== randomid
-      );
     },
 
     send_experiences() {
@@ -806,10 +716,32 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resExperienceInputs = [];
+      
+      for (var i = 0; i < this.experienceInputs.length; i++) {
+        resExperienceInputs.push({});
+        // list of education ids
+        this.resExperienceIds.push(this.experienceInputs[i].id);
+        for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
+          if (
+            Object.keys(this.experienceInputs[i])[j] != "id" &&
+            Object.keys(this.experienceInputs[i])[j] != "user_id" &&
+            Object.keys(this.experienceInputs[i])[j] != "timestamp"
+          ) {
+            resExperienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ] = this.experienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.experienceInputs = resExperienceInputs;
+
       for (var i = 0; i < this.experienceInputs.length; i++) {
         axios
-          .post(
-            "https://aace.ml/api/user/" + USER_ID + "/experience",
+          .put(
+            "https://aace.ml/api/user/" + USER_ID + "/experience/" + this.resExperienceIds[i],
             this.experienceInputs[i],
             {
               // "Content-Type": "multipart/form-data",
@@ -819,7 +751,7 @@ export default {
             }
           )
           .then(res => {
-            console.log("post experience");
+            console.log("put experience");
             let EXPERIENCE_ID = res.data.id;
 
             let formDataExperience = new FormData();
@@ -869,10 +801,32 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resSkillInputs = [];
+      
+      for (var i = 0; i < this.skillInputs.length; i++) {
+        resSkillInputs.push({});
+        // list of education ids
+        this.resSkillIds.push(this.skillInputs[i].id);
+        for (var j = 0; j < Object.keys(this.skillInputs[i]).length; j++) {
+          if (
+            Object.keys(this.skillInputs[i])[j] != "id" &&
+            Object.keys(this.skillInputs[i])[j] != "user_id" &&
+            Object.keys(this.skillInputs[i])[j] != "timestamp"
+          ) {
+            resSkillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ] = this.skillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.skillInputs = resSkillInputs;
+
       for (var i = 0; i < this.skillInputs.length; i++) {
         axios
-          .post(
-            "https://aace.ml/api/user/" + USER_ID + "/skill",
+          .put(
+            "https://aace.ml/api/user/" + USER_ID + "/skill/" + this.resSkillIds[i],
             this.skillInputs[i],
             {
               "Content-Type": "multipart/form-data",
@@ -882,7 +836,7 @@ export default {
             }
           )
           .then(res => {
-            console.log("post skill");
+            console.log("put skill");
             let SKILL_ID = res.data.id;
 
             let formDataSkill = new FormData();
@@ -923,7 +877,8 @@ export default {
                 })
                 .catch(err => console.log(err));
             }
-          });
+        });
+
       }
     },
     send_educations() {
@@ -1041,9 +996,9 @@ export default {
       };
 
       // ------- Experience file and post -------
-      // this.send_experiences();
+      this.send_experiences();
       // ------- Skill file and post -------
-      // this.send_skills();
+      this.send_skills();
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
