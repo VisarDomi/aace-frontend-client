@@ -218,9 +218,10 @@
                               )
                             "
                           >
-                          <span
-                            class="help-block"
-                          >Ngarkoni dokumentin perkates per kete arsimim ne qofte se udhezohet nga administratori</span>
+                          <span class="help-block">
+                            Ngarkoni dokumentin perkates per kete arsimim ne
+                            qofte se udhezohet nga administratori
+                          </span>
                         </div>
                       </div>
 
@@ -383,9 +384,10 @@
                               )
                             "
                           >
-                          <span
-                            class="help-block"
-                          >Ngarkoni dokumentin perkates per kete pervoje pune ne qofte se udhezohet nga administratori</span>
+                          <span class="help-block">
+                            Ngarkoni dokumentin perkates per kete pervoje pune
+                            ne qofte se udhezohet nga administratori
+                          </span>
                         </div>
                       </div>
 
@@ -497,9 +499,10 @@
                               handleFileUploadSkill(skillInput.randomid, index)
                             "
                           >
-                          <span
-                            class="help-block"
-                          >Ngarkoni dokumentin perkates per kete kualifikim ne qofte se udhezohet nga administratori</span>
+                          <span class="help-block">
+                            Ngarkoni dokumentin perkates per kete kualifikim ne
+                            qofte se udhezohet nga administratori
+                          </span>
                         </div>
                       </div>
 

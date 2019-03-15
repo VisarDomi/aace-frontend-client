@@ -7,15 +7,19 @@
     >
       <div class="container">
         <div class="col-md-5">
-          <br>
-          <br>
+          <br />
+          <br />
           <h4>Mireseerdhet ne SHOSHIK.</h4>
-          <br>
-          <h6 class="font-alt">Shoqata shqiptare e inxhiniereve konsulente: pershkrim</h6>
-          <br>
-          <br>
+          <br />
+          <h6 class="font-alt">
+            Shoqata shqiptare e inxhiniereve konsulente: pershkrim
+          </h6>
+          <br />
+          <br />
           <router-link :to="{ name: 'Membership' }">
-            <button class="btn btn-primary" type="submit">Behu pjese e shoqates</button>
+            <button class="btn btn-primary" type="submit">
+              Behu pjese e shoqates
+            </button>
           </router-link>
         </div>
       </div>
@@ -35,21 +39,24 @@
             <p class="lead">pershkrim</p>
             <p>edhe ktu</p>
 
-            <br>
-            <br>
-            <router-link
-              :to="{ name: 'About' }"
-              class="btn btn-primary"
-            >Lexo me shume rreth shoqates</router-link>
+            <br />
+            <br />
+            <router-link :to="{ name: 'About' }" class="btn btn-primary"
+              >Lexo me shume rreth shoqates</router-link
+            >
           </div>
 
           <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <img class="center-block" src="/static/img/aboutus_plc.png" alt="how it works">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <img
+              class="center-block"
+              src="/static/img/aboutus_plc.png"
+              alt="how it works"
+            />
           </div>
         </div>
       </section>
@@ -62,23 +69,17 @@
         <div class="container">
           <div class="row">
             <div class="counter col-md-4 col-sm-8">
-              <p>
-                <span data-from="0" data-to="2"></span>+
-              </p>
+              <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Publikime</h6>
             </div>
 
             <div class="counter col-md-4 col-sm-8">
-              <p>
-                <span data-from="0" data-to="20"></span>+
-              </p>
+              <p><span data-from="0" data-to="20"></span>+</p>
               <h6>Anetare</h6>
             </div>
 
             <div class="counter col-md-4 col-sm-8">
-              <p>
-                <span data-from="0" data-to="2"></span>+
-              </p>
+              <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Evente</h6>
             </div>
 

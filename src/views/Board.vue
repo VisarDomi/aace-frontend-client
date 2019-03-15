@@ -17,16 +17,16 @@
           </header>
 
           <p>pershkrim</p>
-          <br>
-          <br>
+          <br />
+          <br />
           <div class="row">
             <div class="col text-center">
               <!-- <img src="static/img/non-profit-chart.png" alt /> -->
             </div>
           </div>
 
-          <br>
-          <br>
+          <br />
+          <br />
           <header class="section-header">
             <span>Bordi</span>
             <h2>Bordi i drejtoreve</h2>
@@ -34,8 +34,8 @@
           <p>pershkrim</p>
 
           <p>edhe ktu</p>
-          <br>
-          <br>
+          <br />
+          <br />
           <div class="row">
             <div class="col-sm-4">
               <div class="team-members">

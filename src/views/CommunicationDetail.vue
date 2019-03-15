@@ -38,9 +38,12 @@
                           :key="document.id"
                           @click="downloadDoc(document.id, document.filename)"
                         >
-                          <i :class="'fa fa-file-'+iconType(document.filename)+'-o'"></i>
+                          <i
+                            :class="
+                              'fa fa-file-' + iconType(document.filename) + '-o'
+                            "
+                          ></i>
                           Shkarko Dokumentin
-                          {{getExtension(document.filename)}}
                         </a>
                       </div>
                     </div>
@@ -49,6 +52,7 @@
               </div>
             </div>
           </div>
+          <!-- <div class="col-md-12" :key="comment.id" v-for="comment in comments">{{ comment.body }}</div> -->
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
@@ -73,7 +77,7 @@ import JwtService from "@/common/jwt.service";
 import {
   FETCH_COMMUNICATION,
   FETCH_DOCS,
-  ADD_COMMENT
+  MAKE_COMMENT
 } from "@/store/actions.type";
 import store from "@/store";
 export default {
@@ -98,7 +102,6 @@ export default {
   methods: {
     getExtension(document_filename) {
       let extension = document_filename.split(".").pop();
-      console.log(extension);
       return extension.toLowerCase();
     },
     iconType(document_filename) {
@@ -116,9 +119,10 @@ export default {
       return iconType;
     },
     sendComment() {
-      this.$store.dispatch(ADD_COMMENT, {
-        id: this.communication.id,
-        comment: this.comment
+      console.log("communication.id", this.communication.id);
+      this.$store.dispatch(MAKE_COMMENT, {
+        communicationId: this.communication.id,
+        body: this.comment
       });
     },
     downloadDoc(docID, docName) {

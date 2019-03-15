@@ -7,21 +7,21 @@
     >
       <div class="container">
         <div class="header-detail">
-          <img class="logo" src="static/img/logo_partial.png" alt>
+          <img class="logo" src="static/img/logo_partial.png" alt />
           <div class="hgroup">
             <h1>Kerkese per Anetaresi</h1>
             <h3>
-              <router-link :to="{name: 'About'}">SHOSHIK</router-link>
+              <router-link :to="{ name: 'About' }">SHOSHIK</router-link>
             </h3>
           </div>
           <!-- <time datetime="2016-03-03 20:00">2 days ago</time> -->
-          <hr>
+          <hr />
           <h4>Hapat per tu bere anetar:</h4>
           <p>Te jesh inxhinier i diplomuar.</p>
           <p>Te pranosh statutin e SHOSHIK.</p>
           <p>Te paguhet kuota vjetore e anetaresimit.</p>
           <p>Te mos kesh kufizime ligjore per ushtrimin e profesionit.</p>
-          <br>
+          <br />
           <h5>Kerkesat:</h5>
           <ul class="details cols-3">
             <li>
@@ -45,7 +45,8 @@
                 :to="{ name: 'Application' }"
                 class="btn btn-success"
                 v-if="currentUser.register_status == 'blank'"
-              >Apliko tani</router-link>
+                >Apliko tani</router-link
+              >
               <router-link
                 :to="{ name: 'ReApplication' }"
                 class="btn btn-success"
@@ -53,7 +54,8 @@
                   currentUser.register_status == 'rebutted' ||
                     currentUser.register_status == 'accepted'
                 "
-              >Apliko tani</router-link>
+                >Apliko tani</router-link
+              >
             </div>
           </div>
         </div>
@@ -68,7 +70,7 @@
           <p class="lead">Pershkrim per SHOSHIK</p>
           <p class="lead">Edhe ktu</p>
 
-          <br>
+          <br />
           <h2>Perfitimet e te qenurit anetar</h2>
           <p>pershkrim</p>
           <ul :key="benefit.id" v-for="benefit in benefits">
@@ -78,10 +80,13 @@
             <p>{{ benefit.description }}</p>
           </ul>
 
-          <br>
+          <br />
           <h4>Kualifikimet minimale</h4>
           <ul>
-            <li>Diplome ne fushat teknike ose me pervoje praktike te barazvlefshme.</li>
+            <li>
+              Diplome ne fushat teknike ose me pervoje praktike te
+              barazvlefshme.
+            </li>
           </ul>
         </div>
       </section>

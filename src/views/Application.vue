@@ -343,10 +343,9 @@
                               )
                             "
                           >
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete pervoje
-                            pune
-                          </span>
+                          <span
+                            class="help-block"
+                          >Ngarkoni dokumentin perkates per kete pervoje pune</span>
                         </div>
                       </div>
 
@@ -458,10 +457,7 @@
                               handleFileUploadSkill(skillInput.randomid, index)
                             "
                           >
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete
-                            kualifikim
-                          </span>
+                          <span class="help-block">Ngarkoni dokumentin perkates per kete kualifikim</span>
                         </div>
                       </div>
 

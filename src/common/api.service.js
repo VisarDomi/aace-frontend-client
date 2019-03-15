@@ -104,10 +104,16 @@ export const CommunicationService = {
   getCommunication(id) {
     return ApiService.get("officialcommunication", id);
   },
-  postCommunication(communicationId, comment) {
+  makeComment(communicationId, comment) {
     return ApiService.post(
-      `officialcommunication/${communicationId}/comment`,
+      `officialcommunication/${communicationId}/officialcomment`,
       comment
+    );
+  },
+  getComments(communicationId) {
+    return ApiService.get(
+      `officialcommunication/${communicationId}/officialcomment`,
+      "all"
     );
   }
 };

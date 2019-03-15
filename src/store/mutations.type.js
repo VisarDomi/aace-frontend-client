@@ -13,5 +13,4 @@ export const SET_PICTURE = "setPicture";
 export const SET_COMMUNICATION = "setCommunication";
 export const SET_COMMUNICATIONS = "setCommunications";
 export const SET_COMMUNICATION_DOCS = "setCommunicationDocs";
-
-export const POST_COMMENT = "postComment";
+export const SET_COMMENTS = "setComments";

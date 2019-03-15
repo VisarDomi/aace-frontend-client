@@ -3,17 +3,19 @@ import { CommunicationService } from "@/common/api.service";
 import {
   FETCH_COMMUNICATIONS,
   FETCH_COMMUNICATION,
-  ADD_COMMENT
+  FETCH_COMMENTS,
+  MAKE_COMMENT
 } from "./actions.type";
 import {
   SET_COMMUNICATION,
   SET_COMMUNICATIONS,
-  POST_COMMENT
+  SET_COMMENTS
 } from "./mutations.type";
 
 const initialState = {
   communications: [],
-  communication: {}
+  communication: {},
+  comments: {}
 };
 
 export const state = { ...initialState };
@@ -24,6 +26,9 @@ const getters = {
   },
   communication(state) {
     return state.communication;
+  },
+  comments(state) {
+    return state.comments;
   }
 };
 
@@ -37,20 +42,19 @@ export const actions = {
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMMUNICATION, data);
   },
-  async [ADD_COMMENT](context, payload) {
-    console.log("action");
-    const { id, comment } = payload;
-    console.log("id");
-    console.log(id);
-    console.log("comment");
-    console.log(comment);
-
-    return new Promise(resolve => {
-      CommunicationService.postCommunication(id, comment)
-        .then(({ data }) => {
-          resolve(data);
-        })
-        .catch(({ response }) => {});
+  async [FETCH_COMMENTS](context, communicationId) {
+    const { id } = communicationId;
+    const { data } = await CommunicationService.getComments(id);
+    context.commit(SET_COMMENTS, data);
+  },
+  async [MAKE_COMMENT](context, payload) {
+    const { communicationId, body, files } = payload;
+    console.log("starting make comment calls");
+    console.log("communicationId", communicationId);
+    console.log("body", body);
+    console.log("files", files);
+    await CommunicationService.makeComment(communicationId, {
+      body: body
     });
   }
 };
@@ -62,7 +66,9 @@ export const mutations = {
   [SET_COMMUNICATION](state, communication) {
     state.communication = communication;
   },
-  [POST_COMMENT](state, payload) {}
+  [SET_COMMENTS](state, comments) {
+    state.comments = comments;
+  }
 };
 
 export default {

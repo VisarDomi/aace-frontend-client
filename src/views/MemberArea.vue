@@ -40,13 +40,19 @@
               <p>Rregullo te dhenat qe jan gabim ose qe mungojne</p>
             </router-link>
 
-            <router-link :to="{ name: 'ApplicationStatus' }" style="height: 295px;">
+            <router-link
+              :to="{ name: 'ApplicationStatus' }"
+              style="height: 295px;"
+            >
               <i class="fa fa-info"></i>
               <h6>Statusi i aplikimit</h6>
               <p>Shiko statusin e aplikimit</p>
             </router-link>
 
-            <router-link :to="{ name: 'Communications' }" style="height: 295px;">
+            <router-link
+              :to="{ name: 'Communications' }"
+              style="height: 295px;"
+            >
               <i class="fa fa-send-o"></i>
               <h6>Komunikime zyrtare</h6>
               <p>Shiko komunikimet me te fundit qe jan derguar nga shoqata</p>
@@ -67,7 +73,12 @@
               <p>Merr pjese ne votime</p>
             </router-link>
 
-            <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
+            <a
+              href="#"
+              style="height: 295px;"
+              @click="logout"
+              v-if="isAuthenticated"
+            >
               <i class="fa fa-sign-out"></i>
               <h6>Dil</h6>
               <p>Dil nga platforma</p>

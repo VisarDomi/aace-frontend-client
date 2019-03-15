@@ -7,12 +7,12 @@
         <div class="row">
           <div class="col-sm-24 col-md-12">
             <router-link :to="{ name: 'Home' }" class="logo">
-              <img src="/static/img/logo_full.png" alt="logo">
+              <img src="/static/img/logo_full.png" alt="logo" />
             </router-link>
           </div>
         </div>
 
-        <hr>
+        <hr />
       </div>
       <!-- END Topper section -->
       <!-- Top section -->
@@ -30,7 +30,9 @@
                 <router-link :to="{ name: 'About' }">Rreth nesh</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'Directory' }">Kerko per anetare</router-link>
+                <router-link :to="{ name: 'Directory' }"
+                  >Kerko per anetare</router-link
+                >
               </li>
               <!-- <li>
                 <router-link :to="{ name: 'Events' }">Events</router-link>
@@ -39,7 +41,9 @@
                 <router-link :to="{ name: 'Publications' }">Publications</router-link>
               </li>-->
               <li>
-                <router-link :to="{ name: 'Contact' }">Na kontaktoni</router-link>
+                <router-link :to="{ name: 'Contact' }"
+                  >Na kontaktoni</router-link
+                >
               </li>
             </ul>
           </div>
@@ -48,7 +52,9 @@
             <h6>Faqe te dobishme</h6>
             <ul class="footer-links">
               <li>
-                <router-link :to="{ name: 'Membership' }">Si te behem anetar</router-link>
+                <router-link :to="{ name: 'Membership' }"
+                  >Si te behem anetar</router-link
+                >
               </li>
               <li>
                 <router-link :to="{ name: 'Login' }">Hyr</router-link>
@@ -66,7 +72,7 @@
           </div>
         </div>
 
-        <hr>
+        <hr />
       </div>
       <!-- END Top section -->
       <!-- Bottom section -->
@@ -75,10 +81,7 @@
           <div class="col-md-8 col-sm-6 col-xs-12">
             <p class="copyright-text">
               Copyrights &copy; 2019 All Rights Reserved by
-              <a
-                href="https://forcewing.com"
-                target="_blank"
-              >FORCEWING</a>.
+              <a href="https://forcewing.com" target="_blank">FORCEWING</a>.
             </p>
           </div>
 
