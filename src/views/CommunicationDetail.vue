@@ -52,11 +52,22 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-12" :key="comment.id" v-for="comment in comments">{{ comment.body }}</div> -->
+          <div class="col-md-12" :key="comment.id" v-for="comment in comments">
+            {{ createUpdatedComments(comment.id, comment.author_id) }}
+            <div>{{ comment.body }}</div>
+            <div>{{ comment.author_id }}</div>
+            <div>{{ comment.author_name }}</div>
+            <div>{{ getFormattedDate(comment.timestamp) }}</div>
+          </div>
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
-              <textarea class="form-control" rows="5" v-model="comment"></textarea>
+              <textarea
+                class="form-control"
+                rows="5"
+                v-model="comment_body"
+                placeholder="Shkruaj nje koment..."
+              ></textarea>
               <br>
               <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
             </form>
@@ -71,25 +82,43 @@
 
 <script>
 import axios from "axios";
+import DateFilter from "@/common/date.filter";
 const FileSaver = require("file-saver");
 import { mapGetters } from "vuex";
 import JwtService from "@/common/jwt.service";
 import {
   FETCH_COMMUNICATION,
   FETCH_DOCS,
+  FETCH_COMMENTS,
   MAKE_COMMENT
 } from "@/store/actions.type";
+import MemberService from "@/common/api.service";
 import store from "@/store";
 export default {
   name: "CommunicationDetail",
   mounted() {
     this.$store.dispatch(FETCH_COMMUNICATION, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);
+    this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
   },
   data() {
     return {
-      comment: "",
-      commentId: "",
+      comment_body: "",
+      updated_comments: [
+        // {
+        //   id: 1,
+        //   author_id: 2,
+        //   body: "text bodyadfasdf",
+        //   author_name: "name of author"
+        // },
+        // {
+        //   id: 2,
+        //   author_id: 3,
+        //   body: "text bodyadfasdf3223",
+        //   author_name: "name of author2"
+        // }
+      ],
+      // commentId: "",
       word_extensions: ["doc", "docx"],
       excel_extensions: ["xls", "xlsx"],
       image_extensions: ["jpg", "png"],
@@ -100,6 +129,30 @@ export default {
     };
   },
   methods: {
+    getFormattedDate(time) {
+      let dateTime = time.split(".")[0];
+      dateTime = dateTime.replace("T", " ") + " UTC";
+      return dateTime;
+    },
+    createUpdatedComments(comment_id, author_id) {
+      console.log("author_id", author_id);
+      let self = this;
+      axios
+        .get("https://aace.ml/api/user/" + author_id, { responseType: "json" })
+        .then(res => {
+          console.log("res.data.first_name", res.data.first_name);
+          const name = res.data.first_name + " " + res.data.last_name;
+          self.comments.forEach(function(comment) {
+            console.log("comment.author_id", comment.author_id);
+            if (comment.id == comment_id) {
+              console.log("comment.author_id", comment.author_id);
+              comment["author_name"] = name;
+              console.log("comment", comment);
+            }
+            console.log("self.comments", self.comments);
+          });
+        });
+    },
     getExtension(document_filename) {
       let extension = document_filename.split(".").pop();
       return extension.toLowerCase();
@@ -122,7 +175,7 @@ export default {
       console.log("communication.id", this.communication.id);
       this.$store.dispatch(MAKE_COMMENT, {
         communicationId: this.communication.id,
-        body: this.comment
+        body: this.comment_body
       });
     },
     downloadDoc(docID, docName) {
@@ -147,12 +200,13 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["communication", "communicationDocuments"])
+    ...mapGetters(["comments", "communication", "communicationDocuments"])
   },
   watch: {
     $route(to) {
       this.$store.dispatch(FETCH_COMMUNICATION, to.params);
-      this.$store.dispatch(FETCH_DOCS, this.$route.params);
+      // this.$store.dispatch(FETCH_DOCS, this.$route.params);
+      // this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
     }
   }
 };

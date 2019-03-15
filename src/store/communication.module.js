@@ -39,11 +39,13 @@ export const actions = {
   },
   async [FETCH_COMMUNICATION](context, communicationId) {
     const { id } = communicationId;
+    console.log("FETCH_COMMUNICATION", id);
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMMUNICATION, data);
   },
   async [FETCH_COMMENTS](context, communicationId) {
     const { id } = communicationId;
+    console.log("FETCH_COMMENTS", id);
     const { data } = await CommunicationService.getComments(id);
     context.commit(SET_COMMENTS, data);
   },
@@ -68,6 +70,7 @@ export const mutations = {
   },
   [SET_COMMENTS](state, comments) {
     state.comments = comments;
+    console.log("SET_COMMENTS", state.comments);
   }
 };
 
