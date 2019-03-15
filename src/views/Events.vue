@@ -16,7 +16,7 @@
         <div class="col-lg-6 mt-6" :key="event.id" v-for="event in events">
           <router-link :to="{ name: 'EventDetail', params: { id: event.id } }">
             <div class="card text-center">
-              <img class="card-img-top" :src="event.src" alt="Card image cap">
+              <img class="card-img-top" :src="event.src" alt="Card image cap" />
               <div class="card-body">
                 <h5 class="card-title">{{ event.title }}</h5>
               </div>
@@ -30,7 +30,8 @@
             <router-link
               :to="{ name: 'EventDetail', params: { id: event.id } }"
               class="btn btn-primary btn-outline"
-            >Vazhdo leximin</router-link>
+              >Vazhdo leximin</router-link
+            >
           </p>
         </div>
       </div>

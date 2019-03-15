@@ -49,9 +49,15 @@
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
-              <textarea class="form-control" rows="5" v-model="comment"></textarea>
-              <br>
-              <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
+              <textarea
+                class="form-control"
+                rows="5"
+                v-model="comment"
+              ></textarea>
+              <br />
+              <a class="btn btn-primary" href="#" @click="sendComment"
+                >Dergo koment</a
+              >
             </form>
           </div>
         </div>
