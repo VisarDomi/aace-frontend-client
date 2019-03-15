@@ -13,6 +13,7 @@
         <div class="container">
           <header class="section-header">
             <h2>{{ communication.name }}</h2>
+            <h5>{{ communication.description }}</h5>
           </header>
 
           <div class="container" style=" white-space: pre-line;">
@@ -37,7 +38,9 @@
                           :key="document.id"
                           @click="downloadDoc(document.id, document.filename)"
                         >
-                          <i class="fa fa-file-zip-o"></i>Shkarko Dokumentin
+                          <i :class="'fa fa-file-'+iconType(document.filename)+'-o'"></i>
+                          Shkarko Dokumentin
+                          {{getExtension(document.filename)}}
                         </a>
                       </div>
                     </div>
@@ -83,17 +86,34 @@ export default {
     return {
       comment: "",
       commentId: "",
-      extension: ".jpg",
-      document_filename: "iphone5s.jpg"
+      word_extensions: ["doc", "docx"],
+      excel_extensions: ["xls", "xlsx"],
+      image_extensions: ["jpg", "png"],
+      pdf_extensions: ["pdf"]
+
       // ket commentId e bejm computed
       //suppozohet ta kem available , po ta bej {{communication.id}} m'del ne html
     };
   },
   methods: {
     getExtension(document_filename) {
-      this.extension = document_filename.split(".")[1];
-      console.log(this.extension);
-      return this.extension;
+      let extension = document_filename.split(".").pop();
+      console.log(extension);
+      return extension.toLowerCase();
+    },
+    iconType(document_filename) {
+      let extension = this.getExtension(document_filename);
+      let iconType = "zip";
+      if (this.word_extensions.includes(extension)) {
+        iconType = "word";
+      } else if (this.excel_extensions.includes(extension)) {
+        iconType = "excel";
+      } else if (this.image_extensions.includes(extension)) {
+        iconType = "image";
+      } else if (this.pdf_extensions.includes(extension)) {
+        iconType = "pdf";
+      }
+      return iconType;
     },
     sendComment() {
       this.$store.dispatch(ADD_COMMENT, {

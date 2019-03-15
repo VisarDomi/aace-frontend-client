@@ -61,33 +61,33 @@
       >
         <div class="container">
           <div class="row">
-            <div class="counter col-md-3 col-sm-6">
+            <div class="counter col-md-4 col-sm-8">
               <p>
-                <span data-from="0" data-to="68"></span>+
+                <span data-from="0" data-to="2"></span>+
               </p>
               <h6>Publikime</h6>
             </div>
 
-            <div class="counter col-md-3 col-sm-6">
+            <div class="counter col-md-4 col-sm-8">
               <p>
-                <span data-from="0" data-to="1200"></span>+
+                <span data-from="0" data-to="20"></span>+
               </p>
               <h6>Anetare</h6>
             </div>
 
-            <div class="counter col-md-3 col-sm-6">
+            <div class="counter col-md-4 col-sm-8">
               <p>
-                <span data-from="0" data-to="36"></span>+
+                <span data-from="0" data-to="2"></span>+
               </p>
               <h6>Evente</h6>
             </div>
 
-            <div class="counter col-md-3 col-sm-6">
+            <!-- <div class="counter col-md-3 col-sm-6">
               <p>
                 <span data-from="0" data-to="15"></span>+
               </p>
               <h6>Partnere</h6>
-            </div>
+            </div>-->
           </div>
         </div>
       </section>
