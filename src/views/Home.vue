@@ -87,6 +87,23 @@
               <p>
                 <span data-from="0" data-to="15"></span>+
               </p>
+            <div class="counter col-md-3 col-sm-6">
+              <p><span data-from="0" data-to="68"></span>+</p>
+              <h6>Publikime</h6>
+            </div>
+
+            <div class="counter col-md-3 col-sm-6">
+              <p><span data-from="0" data-to="1200"></span>+</p>
+              <h6>Anetare</h6>
+            </div>
+
+            <div class="counter col-md-3 col-sm-6">
+              <p><span data-from="0" data-to="36"></span>+</p>
+              <h6>Evente</h6>
+            </div>
+
+            <div class="counter col-md-3 col-sm-6">
+              <p><span data-from="0" data-to="15"></span>+</p>
               <h6>Partnere</h6>
             </div>-->
           </div>

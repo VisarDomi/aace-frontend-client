@@ -68,8 +68,10 @@
                 v-model="comment_body"
                 placeholder="Shkruaj nje koment..."
               ></textarea>
-              <br>
-              <a class="btn btn-primary" href="#" @click="sendComment">Dergo koment</a>
+              <br />
+              <a class="btn btn-primary" href="#" @click="sendComment"
+                >Dergo koment</a
+              >
             </form>
           </div>
         </div>

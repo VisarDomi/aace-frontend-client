@@ -5,17 +5,23 @@
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Rregullo aplikimin</h1>
-          <p
-            class="lead text-center"
-          >Rregulloni aplikimin sipas udhezimit te komentit te administratorit.</p>
+          <p class="lead text-center">
+            Rregulloni aplikimin sipas udhezimit te komentit te administratorit.
+          </p>
         </div>
 
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input type="file" ref="profile_file" @change="handleFileUploadProfile">
-                <span class="help-block">Ju lutem zgjidhni foto profili (4:6).</span>
+                <input
+                  type="file"
+                  ref="profile_file"
+                  @change="handleFileUploadProfile"
+                />
+                <span class="help-block"
+                  >Ju lutem zgjidhni foto profili (4:6).</span
+                >
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -25,7 +31,7 @@
                   class="form-control input-lg"
                   placeholder="Emri"
                   v-model="first_name"
-                >
+                />
               </div>
               <div class="form-group">
                 <input
@@ -33,7 +39,7 @@
                   class="form-control input-lg"
                   placeholder="Mbiemri"
                   v-model="last_name"
-                >
+                />
               </div>
               <div class="form-group">
                 <select
@@ -45,7 +51,8 @@
                     v-for="option in profession_options"
                     v-bind:value="option.id"
                     :key="option.id"
-                  >{{ option.text }}</option>>
+                    >{{ option.text }}</option
+                  >>
                 </select>
                 <div class="form-group col-sm-6">
                   <input
@@ -54,7 +61,7 @@
                     class="form-control"
                     v-model="profession"
                     :placeholder="profession_other"
-                  >
+                  />
                 </div>
               </div>
 
@@ -64,7 +71,8 @@
                     v-for="option in sex_options"
                     v-bind:value="option.text"
                     :key="option.id"
-                  >{{ option.text }}</option>
+                    >{{ option.text }}</option
+                  >
                 </select>
               </div>
 
@@ -77,7 +85,7 @@
                 ></textarea>
               </div>
 
-              <hr class="hr-lg">
+              <hr class="hr-lg" />
 
               <h6>Basic information</h6>
               <div class="row">
@@ -91,7 +99,7 @@
                       class="form-control"
                       placeholder="Vendlindja"
                       v-model="country"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -100,7 +108,12 @@
                     <span class="input-group-addon">
                       <i class="fa fa-map-marker"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Adresa" v-model="address">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Adresa"
+                      v-model="address"
+                    />
                   </div>
                 </div>
 
@@ -114,7 +127,7 @@
                       class="form-control"
                       placeholder="Faqja juaj e internetit"
                       v-model="website"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -128,7 +141,7 @@
                       class="form-control"
                       placeholder="Datelindja"
                       v-model="birthday"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -142,7 +155,7 @@
                       class="form-control"
                       placeholder="Numri telefonit"
                       v-model="phone"
-                    >
+                    />
                   </div>
                 </div>
 
@@ -151,7 +164,12 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input type="text" class="form-control" :placeholder="email" disabled>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :placeholder="email"
+                      disabled
+                    />
                   </div>
                 </div>
               </div>
@@ -168,7 +186,11 @@
               <h2>Udhezime nga administratori</h2>
               <p>{{ comment_from_administrator }}</p>
             </header>
-            <header class="section-header" :key="education.id" v-for="education in educationInputs">
+            <header
+              class="section-header"
+              :key="education.id"
+              v-for="education in educationInputs"
+            >
               <p>{{ education }}</p>
             </header>
             <header
@@ -196,14 +218,6 @@
               >
                 <div class="item-block">
                   <div class="item-form">
-                    <button
-                      class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteEducation(educationInput.id)"
-                      type="button"
-                    >
-                      <i class="ti-close"></i>
-                    </button>
-
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="form-group">
@@ -217,23 +231,34 @@
                                 index
                               )
                             "
+                          />
+                          <span class="help-block"
+                            >Ngarkoni dokumentin perkates per kete arsimim ne
+                            qofte se udhezohet nga administratori</span
                           >
+                          <<<<<<< HEAD
                           <span class="help-block">
                             Ngarkoni dokumentin perkates per kete arsimim ne
                             qofte se udhezohet nga administratori
                           </span>
+                          ======= >>>>>>>
+                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
                         <label class="col-sm-6">Tipi i arsimimit</label>
                         <div class="form-group">
-                          <select class="form-control" v-model="education_type_id[index]">
+                          <select
+                            class="form-control"
+                            v-model="education_type_id[index]"
+                          >
                             <option
                               v-for="option in education_type_options"
                               v-bind:value="option.id"
                               :key="option.id"
-                            >{{ option.text }}</option>
+                              >{{ option.text }}</option
+                            >
                           </select>
                         </div>
 
@@ -253,7 +278,8 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
@@ -263,13 +289,13 @@
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="..."
-                            >
+                            />
                           </div>
                         </div>
 
                         <div class="form-group">
                           <label class="col-sm-2">Dega</label>
-                          <div class="form-group col-sm-5">
+                          <div class="form-group col-sm-4">
                             <select
                               class="form-control"
                               v-model="education_major_id[index]"
@@ -283,17 +309,18 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
-                          <div class="form-group col-sm-5">
+                          <div class="form-group col-sm-4">
                             <input
                               type="text"
                               :disabled="!education_major_other[index]"
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="..."
-                            >
+                            />
                           </div>
                         </div>
 
@@ -303,7 +330,7 @@
                             class="form-control"
                             v-model="educationInput.school"
                             placeholder="School name, e.g. Massachusetts Institute of Technology"
-                          >
+                          />
                         </div>
                         <div class="form-group">
                           <div class="input-group">
@@ -313,15 +340,15 @@
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
-                            >
-                            
+                            />
+
                             <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2016"
                               v-model="educationInput.to_date"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group">
@@ -336,11 +363,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="col-xs-12 text-center">
-                <br>
-                <button class="btn btn-primary" type="button" @click="onAddEducation">Shto arsimim</button>
               </div>
             </div>
           </div>
@@ -362,14 +384,6 @@
               >
                 <div class="item-block">
                   <div class="item-form">
-                    <button
-                      class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteExperience(experienceInput.id)"
-                      type="button"
-                    >
-                      <i class="ti-close"></i>
-                    </button>
-
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="form-group">
@@ -383,11 +397,18 @@
                                 index
                               )
                             "
+                          />
+                          <span class="help-block"
+                            >Ngarkoni dokumentin perkates per kete pervoje pune
+                            ne qofte se udhezohet nga administratori</span
                           >
+                          <<<<<<< HEAD
                           <span class="help-block">
                             Ngarkoni dokumentin perkates per kete pervoje pune
                             ne qofte se udhezohet nga administratori
                           </span>
+                          ======= >>>>>>>
+                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
@@ -398,7 +419,7 @@
                             class="form-control"
                             v-model="experienceInput.title"
                             placeholder="Titulli qe keni mbajtur ne pune"
-                          >
+                          />
                         </div>
 
                         <div class="form-group">
@@ -407,7 +428,7 @@
                             class="form-control"
                             v-model="experienceInput.employer"
                             placeholder="Emri i punedhenesit"
-                          >
+                          />
                         </div>
 
                         <div class="form-group">
@@ -416,7 +437,7 @@
                             class="form-control"
                             v-model="experienceInput.location"
                             placeholder="Vendi ku keni punuar"
-                          >
+                          />
                         </div>
 
                         <div class="form-group">
@@ -427,14 +448,14 @@
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
-                            >
+                            />
                             <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -451,15 +472,6 @@
                   </div>
                 </div>
               </div>
-
-              <div class="col-xs-12 text-center">
-                <br>
-                <button
-                  class="btn btn-primary btn-duplicator"
-                  type="button"
-                  @click="onAddExperience"
-                >Shto pervoje pune</button>
-              </div>
             </div>
           </div>
         </section>
@@ -475,19 +487,11 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="skillInput.randomid"
+                :key="skillInput.id"
                 v-for="(skillInput, index) in skillInputs"
               >
                 <div class="item-block">
                   <div class="item-form">
-                    <button
-                      class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteSkill(skillInput.randomid)"
-                      type="button"
-                    >
-                      <i class="ti-close"></i>
-                    </button>
-
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="form-group">
@@ -496,13 +500,20 @@
                             ref="skill"
                             multiple
                             @change="
-                              handleFileUploadSkill(skillInput.randomid, index)
+                              handleFileUploadSkill(skillInput.id, index)
                             "
+                          />
+                          <span class="help-block"
+                            >Ngarkoni dokumentin perkates per kete kualifikim ne
+                            qofte se udhezohet nga administratori</span
                           >
+                          <<<<<<< HEAD
                           <span class="help-block">
                             Ngarkoni dokumentin perkates per kete kualifikim ne
                             qofte se udhezohet nga administratori
                           </span>
+                          ======= >>>>>>>
+                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
@@ -513,7 +524,7 @@
                             class="form-control"
                             v-model="skillInput.releaser"
                             placeholder="Leshuesi i kualifikimit"
-                          >
+                          />
                         </div>
                         <div class="form-group">
                           <input
@@ -521,7 +532,7 @@
                             class="form-control"
                             v-model="skillInput.name"
                             placeholder="Emri i kualifikimit"
-                          >
+                          />
                         </div>
                         <div class="form-group">
                           <div class="input-group">
@@ -531,14 +542,14 @@
                               class="form-control"
                               v-model="skillInput.from_date"
                               placeholder="e.g. 2012"
-                            >
+                            />
                             <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="skillInput.to_date"
                               placeholder="e.g. 2016"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group">
@@ -553,15 +564,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="col-xs-12 text-center">
-                <br>
-                <button
-                  class="btn btn-primary btn-duplicator"
-                  @click="onAddSkill"
-                  type="button"
-                >Shto kualifikim</button>
               </div>
             </div>
           </div>
@@ -581,7 +583,9 @@
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">
+                Dergo aplikimin
+              </button>
             </p>
           </div>
         </section>
@@ -668,10 +672,12 @@ export default {
       },
       //---------------- Experience -------
       experienceInputs: [],
+      resExperienceIds: [],
       experience_files_index: 0,
 
       //---------------- Skill -------
       skillInputs: [],
+      resSkillIds: [],
       skill_files_index: 0
     };
   },
@@ -732,76 +738,23 @@ export default {
         education => education.id === id
       )[0].files = files;
     },
-    onAddEducation() {
-      const newEducation = {
-        id: Math.random() * Math.random() * 1000,
-        degree: "",
-        field_of_study: "",
-        school: "",
-        from_date: "",
-        to_date: "",
-        description: ""
-      };
-      this.educationInputs.push(newEducation);
-    },
-    onDeleteEducation(id) {
-      this.educationInputs = this.educationInputs.filter(
-        education => education.id !== id
-      );
-    },
     // ------- Experience -------
-    handleFileUploadExperience(randomid, index) {
+    handleFileUploadExperience(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
         files.push(this.$refs.experience[index].files[i]);
       }
       this.experienceInputs.filter(
-        experience => experience.randomid === randomid
+        experience => experience.id === id
       )[0].files = files;
     },
-    onAddExperience() {
-      const newExperience = {
-        randomid: Math.random() * Math.random() * 1000,
-        employer: "",
-        title: "",
-        location: "",
-        from_date: "",
-        to_date: "",
-        is_currently_work_here: false,
-        description: ""
-      };
-      this.experienceInputs.push(newExperience);
-    },
-    onDeleteExperience(randomid) {
-      this.experienceInputs = this.experienceInputs.filter(
-        experience => experience.randomid !== randomid
-      );
-    },
     // ------- Skill -------
-    handleFileUploadSkill(randomid, index) {
+    handleFileUploadSkill(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
         files.push(this.$refs.skill[index].files[i]);
       }
-      this.skillInputs.filter(
-        skill => skill.randomid === randomid
-      )[0].files = files;
-    },
-    onAddSkill() {
-      const newSkill = {
-        randomid: Math.random() * Math.random() * 1000,
-        releaser: "",
-        name: "",
-        from_date: "",
-        to_date: "",
-        description: ""
-      };
-      this.skillInputs.push(newSkill);
-    },
-    onDeleteSkill(randomid) {
-      this.skillInputs = this.skillInputs.filter(
-        skill => skill.randomid !== randomid
-      );
+      this.skillInputs.filter(skill => skill.id === id)[0].files = files;
     },
 
     send_experiences() {
@@ -809,10 +762,35 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resExperienceInputs = [];
+
+      for (var i = 0; i < this.experienceInputs.length; i++) {
+        resExperienceInputs.push({});
+        // list of education ids
+        this.resExperienceIds.push(this.experienceInputs[i].id);
+        for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
+          if (
+            Object.keys(this.experienceInputs[i])[j] != "id" &&
+            Object.keys(this.experienceInputs[i])[j] != "user_id" &&
+            Object.keys(this.experienceInputs[i])[j] != "timestamp"
+          ) {
+            resExperienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ] = this.experienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.experienceInputs = resExperienceInputs;
+
       for (var i = 0; i < this.experienceInputs.length; i++) {
         axios
-          .post(
-            "https://aace.ml/api/user/" + USER_ID + "/experience",
+          .put(
+            "https://aace.ml/api/user/" +
+              USER_ID +
+              "/experience/" +
+              this.resExperienceIds[i],
             this.experienceInputs[i],
             {
               // "Content-Type": "multipart/form-data",
@@ -822,7 +800,7 @@ export default {
             }
           )
           .then(res => {
-            console.log("post experience");
+            console.log("put experience");
             let EXPERIENCE_ID = res.data.id;
 
             let formDataExperience = new FormData();
@@ -872,10 +850,33 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resSkillInputs = [];
+
+      for (var i = 0; i < this.skillInputs.length; i++) {
+        resSkillInputs.push({});
+        // list of education ids
+        this.resSkillIds.push(this.skillInputs[i].id);
+        for (var j = 0; j < Object.keys(this.skillInputs[i]).length; j++) {
+          if (
+            Object.keys(this.skillInputs[i])[j] != "id" &&
+            Object.keys(this.skillInputs[i])[j] != "user_id" &&
+            Object.keys(this.skillInputs[i])[j] != "timestamp"
+          ) {
+            resSkillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ] = this.skillInputs[i][Object.keys(this.skillInputs[i])[j]];
+          }
+        }
+      }
+      this.skillInputs = resSkillInputs;
+
       for (var i = 0; i < this.skillInputs.length; i++) {
         axios
-          .post(
-            "https://aace.ml/api/user/" + USER_ID + "/skill",
+          .put(
+            "https://aace.ml/api/user/" +
+              USER_ID +
+              "/skill/" +
+              this.resSkillIds[i],
             this.skillInputs[i],
             {
               "Content-Type": "multipart/form-data",
@@ -885,7 +886,7 @@ export default {
             }
           )
           .then(res => {
-            console.log("post skill");
+            console.log("put skill");
             let SKILL_ID = res.data.id;
 
             let formDataSkill = new FormData();
@@ -1044,9 +1045,9 @@ export default {
       };
 
       // ------- Experience file and post -------
-      // this.send_experiences();
+      this.send_experiences();
       // ------- Skill file and post -------
-      // this.send_skills();
+      this.send_skills();
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
