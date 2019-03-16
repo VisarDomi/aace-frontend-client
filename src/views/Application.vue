@@ -15,14 +15,20 @@
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input
+                <!-- <input  data-default-file="public/img/avatar.jpg"
                   type="file"
                   ref="profile_file"
                   @change="handleFileUploadProfile"
                 />
                 <span class="help-block"
                   >Ju lutem zgjidhni foto profili (4:6).</span
-                >
+                > -->
+
+                <div class="input-file-container">  
+                  <input class="input-file" ref="profile_file" id="my-file" type="file" @change="handleFileUploadProfile">
+                  <label tabindex="0" for="my-file" class="input-file-trigger">Zgjidhni nje foto...</label>
+                </div>
+                <p class="file-return">{{profile_picture_file.name}}</p>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -44,6 +50,7 @@
               </div>
               <div class="form-group">
                 <select class="form-control" v-model="user_data.profession">
+                  <option value="">Zgjidhni profesionin</option>
                   <option value="Inxhinier Ndertimi">Inxhinier Ndertimi</option>
                   <option value="Inxhinier Civil">Inxhinier Civil</option>
                   <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
@@ -53,6 +60,7 @@
 
               <div class="form-group">
                 <select class="form-control" v-model="user_data.sex">
+                  <option value="">Gjinia</option>
                   <option value="Mashkull">Mashkull</option>
                   <option value="Femer">Femer</option
                   >>
@@ -208,12 +216,14 @@
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <label class="col-sm-6">Tipi i arsimimit</label>
+                        
                         <div class="form-group">
+                          <label class="col-sm-6">Lloji i arsimimit</label>
                           <select
                             class="form-control"
                             v-model="education_type_id[index]"
                           >
+
                             <option
                               v-for="option in education_type_options"
                               v-bind:value="option.id"
@@ -594,6 +604,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
@@ -708,6 +719,7 @@ export default {
     },
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
+      
     },
     // ------- Education -------
     handleFileUploadEducation(randomid, index) {
@@ -1076,6 +1088,65 @@ export default {
   
   }
 };
+
+//input file 
+document.querySelector("html").classList.add('js');
+
+var fileInput  = document.querySelector( ".input-file" ),  
+    button     = document.querySelector( ".input-file-trigger" ),
+    the_return = document.querySelector(".file-return");
+
+//---------------
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.input-file-container {
+  position: relative;
+  width: 225px;
+} 
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Fotoja e zgjedhur: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+
+</style>

@@ -5,7 +5,7 @@
       <div class="container">
         <!-- Logo -->
         <div class="pull-left">
-          <a href="#" data-toggle="offcanvas" class="navbar-toggle">
+          <a href="#" data-toggle="offcanvas" class="navbar-toggle" style="padding-top:20px;">
             <i class="ti-menu"></i>
           </a>
 
@@ -179,7 +179,7 @@ export default {
 }
 
 #loginButton{
-  margin-bottom: 11px;
+  /* margin-bottom: 11px; */
 }
 }
 /* dont show big logo on small screens */
@@ -190,6 +190,9 @@ export default {
 }
 
 
+.navbar .logo-alt img, .navbar .logo img {
 
+    margin-top: 0px;
+}
 
 </style>

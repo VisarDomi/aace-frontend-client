@@ -20,7 +20,8 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <h6>Rreth nesh</h6>
-            <p class="text-justify">pershkrim</p>
+            <p class="text-justify">SHOSHIK eshte qendra e te gjithe inxhiniereve qe operojne ne Shqiperi gjithashtu dhe qendra e mendimit shkencor shqiptar qe kontribuon ne zhvillimin e vendit.
+            Inxhinieret konsulete lokal apo te huaj qe punojne ne Shqiperi jane te mirepritur t'i bashkohen Shoqates ne menyre qe t'japin kontributin e tyre.</p>
           </div>
 
           <div class="col-xs-6 col-md-3">
