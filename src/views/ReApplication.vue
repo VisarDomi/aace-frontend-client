@@ -236,13 +236,6 @@
                             >Ngarkoni dokumentin perkates per kete arsimim ne
                             qofte se udhezohet nga administratori</span
                           >
-                          <<<<<<< HEAD
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete arsimim ne
-                            qofte se udhezohet nga administratori
-                          </span>
-                          ======= >>>>>>>
-                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
@@ -402,13 +395,6 @@
                             >Ngarkoni dokumentin perkates per kete pervoje pune
                             ne qofte se udhezohet nga administratori</span
                           >
-                          <<<<<<< HEAD
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete pervoje pune
-                            ne qofte se udhezohet nga administratori
-                          </span>
-                          ======= >>>>>>>
-                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
@@ -507,13 +493,6 @@
                             >Ngarkoni dokumentin perkates per kete kualifikim ne
                             qofte se udhezohet nga administratori</span
                           >
-                          <<<<<<< HEAD
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete kualifikim ne
-                            qofte se udhezohet nga administratori
-                          </span>
-                          ======= >>>>>>>
-                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 

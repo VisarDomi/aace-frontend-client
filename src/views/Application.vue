@@ -1,5 +1,6 @@
 <template>
   <div class="nav-on-header smart-nav">
+    <!-- <form-summary :validator="$v.first_name"/> -->
     <form @submit.prevent="apply">
       <!-- Page header -->
       <header class="page-header">
@@ -30,19 +31,21 @@
                   type="text"
                   class="form-control input-lg"
                   placeholder="Emri"
-                  v-model="first_name"
+                  v-model="user_data.first_name"
+                  @input='$v.user_data.first_name.$touch()'
                 />
+                <p v-if='$v.user_data.first_name.$error'>Please provide a first name</p>
               </div>
               <div class="form-group">
                 <input
                   type="text"
                   class="form-control input-lg"
                   placeholder="Mbiemri"
-                  v-model="last_name"
+                  v-model="user_data.last_name"
                 />
               </div>
               <div class="form-group">
-                <select class="form-control" v-model="profession">
+                <select class="form-control" v-model="user_data.profession">
                   <option value="Inxhinier Ndertimi">Inxhinier Ndertimi</option>
                   <option value="Inxhinier Civil">Inxhinier Civil</option>
                   <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
@@ -51,7 +54,7 @@
               </div>
 
               <div class="form-group">
-                <select class="form-control" v-model="sex">
+                <select class="form-control" v-model="user_data.sex">
                   <option value="Mashkull">Mashkull</option>
                   <option value="Femer">Femer</option
                   >>
@@ -63,7 +66,7 @@
                   class="form-control"
                   rows="3"
                   placeholder="Pershkrim i shkurter rreth jush"
-                  v-model="summary"
+                  v-model="user_data.summary"
                 ></textarea>
               </div>
 
@@ -80,7 +83,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Vendlindja"
-                      v-model="country"
+                      v-model="user_data.country"
                     />
                   </div>
                 </div>
@@ -94,7 +97,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Adresa"
-                      v-model="address"
+                      v-model="user_data.address"
                     />
                   </div>
                 </div>
@@ -108,7 +111,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Faqja juaj e internetit"
-                      v-model="website"
+                      v-model="user_data.website"
                     />
                   </div>
                 </div>
@@ -122,7 +125,7 @@
                       type="date"
                       class="form-control"
                       placeholder="Datelindja"
-                      v-model="birthday"
+                      v-model="user_data.birthday"
                     />
                   </div>
                 </div>
@@ -136,7 +139,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Numri telefonit"
-                      v-model="phone"
+                      v-model="user_data.phone"
                     />
                   </div>
                 </div>
@@ -149,7 +152,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      :placeholder="email"
+                      :placeholder="user_data.email"
                       disabled
                     />
                   </div>
@@ -580,6 +583,10 @@
                 Dergo aplikimin
               </button>
             </p>
+            <form-summary 
+              :validator="$v.user_data">
+              <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
+            </form-summary>
           </div>
         </section>
         <!-- END Submit -->
@@ -591,7 +598,8 @@
 
 <script>
 import axios from "axios";
-
+import { required, email } from "vuelidate/lib/validators";
+import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
 
 export default {
@@ -599,21 +607,21 @@ export default {
   data() {
     return {
       //--------------- User -------
-
-      first_name: "",
-      last_name: "",
-      profession: "",
-      sex: "",
-      summary: "",
-      country: "",
-      industry: "",
-      phone: "",
-      address: "",
-      birthday: "",
-      website: "",
-      email: "",
-      comment_from_administrator: "",
-
+      user_data: {
+        first_name: "",
+        last_name: "",
+        profession: "",
+        sex: "",
+        summary: "",
+        country: "",
+        industry: "",
+        phone: "",
+        address: "",
+        birthday: "",
+        website: "",
+        email: "",
+        comment_from_administrator: ""
+      },
       //--------------- Image Files -------
       profile_picture_file: "",
 
@@ -657,6 +665,9 @@ export default {
       skillInputs: [],
       skill_files_index: 0
     };
+  },
+  components: {
+    formSummary: templates.multiErrorExtractor.foundation6
   },
   methods: {
     handleEducationOptionDegreeChange(e, i) {
@@ -961,6 +972,11 @@ export default {
       }
     },
     apply() {
+      this.$v.user_data.$touch();
+      if (this.$v.user_data.$pending || this.$v.user_data.$error){
+        console.log('errors')
+        return;
+      } 
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
@@ -972,75 +988,69 @@ export default {
       let formDataUser = new FormData();
       formDataUser.append("file", this.profile_picture_file);
       let user_string = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        profession: this.profession,
-        sex: this.sex,
-        summary: this.summary,
-        country: this.country,
-        phone: this.phone,
-        address: this.address,
-        birthday: this.birthday,
-        website: this.website
+        first_name: this.user_data.first_name,
+        last_name: this.user_data.last_name,
+        profession: this.user_data.profession,
+        sex: this.user_data.sex,
+        summary: this.user_data.summary,
+        country: this.user_data.country,
+        phone: this.user_data.phone,
+        address: this.user_data.address,
+        birthday: this.user_data.birthday,
+        website: this.user_data.website
       };
 
       // ------- Experience file and post -------
-      this.send_experiences();
+      // this.send_experiences();
       // ------- Skill file and post -------
-      this.send_skills();
+      // this.send_skills();
       // ------- Education file and post -------
-      this.send_educations();
+      // this.send_educations();
       // ------- User file and put -------
-      axios
-        .all([
-          axios.post(
-            "https://aace.ml/api/user/" + USER_ID + "/media",
-            formDataUser,
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + TOKEN
-              }
-            }
-          ),
-          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-            headers: {
-              Authorization: "Bearer " + TOKEN
-            }
-          })
-        ])
-        .then(
-          axios.spread((profileRes, stringRes) => {
-            if (profileRes.status == 200) {
-              // console.log("Profile picture updated successfully.");
-            } else {
-              // console.log("profile picture bad response");
-            }
+      // axios
+      //   .all([
+      //     axios.post(
+      //       "https://aace.ml/api/user/" + USER_ID + "/media",
+      //       formDataUser,
+      //       {
+      //         "Content-Type": "multipart/form-data",
+      //         headers: {
+      //           Authorization: "Bearer " + TOKEN
+      //         }
+      //       }
+      //     ),
+      //     axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+      //       headers: {
+      //         Authorization: "Bearer " + TOKEN
+      //       }
+      //     })
+      //   ])
+      //   .then(
+      //     axios.spread((profileRes, stringRes) => {
+      //       if (profileRes.status == 200) {
+      //         // console.log("Profile picture updated successfully.");
+      //       } else {
+      //         // console.log("profile picture bad response");
+      //       }
 
-            if (stringRes.status == 200) {
-              // console.log("Strings sent successfully.");
-              localStorage.setItem("user", JSON.stringify(stringRes.data));
-              this.$router.push({
-                name: "Success"
-              });
-            } else {
-              // console.log("String sent unsuccessfuly");
-            }
-          })
-        );
+      //       if (stringRes.status == 200) {
+      //         // console.log("Strings sent successfully.");
+      //         localStorage.setItem("user", JSON.stringify(stringRes.data));
+      //         this.$router.push({
+      //           name: "Success"
+      //         });
+      //       } else {
+      //         // console.log("String sent unsuccessfuly");
+      //       }
+      //     })
+      // );
     }
   },
-  mounted() {
-    let AACE_URL_USER = "https://aace.ml/api/user/";
-    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-    axios
-      .get(AACE_URL_USER + USER_ID, {
-        responseType: "json"
-      })
-      .then(res => {
-        this.email = res.data.email;
-      });
-  }
+  validations: {
+    user_data: {
+      first_name: { required }
+    }
+  },
 };
 </script>
 

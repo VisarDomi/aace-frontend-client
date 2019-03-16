@@ -53,11 +53,13 @@
             </div>
           </div>
           <div class="col-md-12" :key="comment.id" v-for="comment in comments">
+            <br>
             {{ createUpdatedComments(comment.id, comment.author_id) }}
             <div>{{ comment.body }}</div>
             <div>{{ comment.author_id }}</div>
             <div>{{ comment.author_name }}</div>
             <div>{{ getFormattedDate(comment.timestamp) }}</div>
+            <br>
           </div>
           <div class="container" style="margin-top: 50px;">
             <form action>
@@ -136,25 +138,6 @@ export default {
       dateTime = dateTime.replace("T", " ") + " UTC";
       return dateTime;
     },
-    createUpdatedComments(comment_id, author_id) {
-      console.log("author_id", author_id);
-      let self = this;
-      axios
-        .get("https://aace.ml/api/user/" + author_id, { responseType: "json" })
-        .then(res => {
-          console.log("res.data.first_name", res.data.first_name);
-          const name = res.data.first_name + " " + res.data.last_name;
-          self.comments.forEach(function(comment) {
-            console.log("comment.author_id", comment.author_id);
-            if (comment.id == comment_id) {
-              console.log("comment.author_id", comment.author_id);
-              comment["author_name"] = name;
-              console.log("comment", comment);
-            }
-            console.log("self.comments", self.comments);
-          });
-        });
-    },
     getExtension(document_filename) {
       let extension = document_filename.split(".").pop();
       return extension.toLowerCase();
@@ -203,6 +186,29 @@ export default {
 
   computed: {
     ...mapGetters(["comments", "communication", "communicationDocuments"])
+  },
+
+  mounted(){
+    // createUpdatedComments(comment_id, author_id) {
+    comment_id = 
+    console.log("author_id", author_id);
+    let self = this;
+    axios
+      .get("https://aace.ml/api/user/" + author_id, { responseType: "json" })
+      .then(res => {
+        console.log("res.data.first_name", res.data.first_name);
+        const name = res.data.first_name + " " + res.data.last_name;
+        self.comments.forEach(function(comment) {
+          console.log("comment.author_id", comment.author_id);
+          if (comment.id == comment_id) {
+            console.log("comment.author_id", comment.author_id);
+            comment["author_name"] = name;
+            console.log("comment", comment);
+          }
+          console.log("self.comments", self.comments);
+        });
+      });
+    // }
   },
   watch: {
     $route(to) {
