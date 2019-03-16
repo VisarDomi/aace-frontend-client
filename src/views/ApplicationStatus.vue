@@ -25,7 +25,7 @@
             class="alert alert-warning"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.register_status == 'rebutted'"
+            v-if="this.status == 'rebutted'"
           >
             <strong>Mangesi ne dokumenta.</strong>
           </div>
@@ -33,7 +33,7 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.register_status == 'blank'"
+            v-if="this.status == 'blank'"
           >
             <strong>Nuk eshte derguar.</strong>
           </div>
@@ -42,8 +42,8 @@
             role="alert"
             style="width:33%; margin:auto;"
             v-if="
-              currentUser.register_status == 'applying' ||
-                currentUser.register_status == 'reapplying'
+              this.status == 'applying' ||
+                this.status == 'reapplying'
             "
           >
             <strong>Derguar.</strong>
@@ -52,7 +52,7 @@
             class="alert alert-danger"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.register_status == 'rejected'"
+            v-if="this.status == 'rejected'"
           >
             <strong>Refuzuar.</strong>
           </div>
@@ -60,7 +60,7 @@
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.register_status == 'accepted'"
+            v-if="this.status == 'accepted'"
           >
             <strong>Pranuar.</strong>
           </div>
@@ -72,10 +72,18 @@
           <br />
           <router-link
             :to="{ name: 'ReApplication' }"
-            v-if="currentUser.register_status == 'rebutted'"
+            v-if="this.status == 'rebutted'"
           >
             <button type="submit" class="btn btn-primary">
               Rregullo aplikimin
+            </button>
+          </router-link>
+          <router-link
+            :to="{ name: 'Application' }"
+            v-if="this.status == 'blank'"
+          >
+            <button type="submit" class="btn btn-primary">
+              Apliko
             </button>
           </router-link>
         </div>
@@ -90,17 +98,32 @@
 import { mapGetters } from "vuex";
 import DateFilter from "@/common/date.filter";
 import store from "@/store";
+import axios from "axios";
+
 export default {
   name: "ApplicationStatus",
   data() {
     return {
-      application_date: ""
+      application_date: "",
+      status: "",
     };
   },
   methods: {
     getFormattedDate(time) {
       return DateFilter(time);
     }
+  },
+  mounted(){
+    let AACE_URL_USER = "https://aace.ml/api/user/";
+    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+    axios
+      .get(AACE_URL_USER + USER_ID, {
+        responseType: "json"
+      })
+      .then(res => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        this.status = res.data.register_status 
+      });
   },
   computed: {
     ...mapGetters(["currentUser"])

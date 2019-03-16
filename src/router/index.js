@@ -240,9 +240,16 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         if (localStorage.getItem("id_token")) {
+          let user = JSON.parse(localStorage.getItem("user"))
+          if(user["register_status"] == undefined || user["register_status"] == "blank"){
+            next();
+          }else{
+            console.log('redirect')
+            next("/application_status");
+          }
           //is there a way to get this using the new structure functionality?
-          next();
         } else {
+          console.log('redirect')
           next("/login");
         }
       }
@@ -266,9 +273,17 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         if (localStorage.getItem("id_token")) {
+          let user = JSON.parse(localStorage.getItem("user"))
+          console.log('status', user["register_status"])
+          if(user["register_status"] == "rebutted"){
+            next();
+          }else{
+            console.log('redirect')
+            next("/application_status");
+          }
           //is there a way to get this using the new structure functionality?
-          next();
         } else {
+          console.log('redirect')
           next("/login");
         }
       }
@@ -361,6 +376,16 @@ export default new Router({
             content: "The success page of AACE."
           }
         ]
+      },
+      beforeEnter(to, from, next) { 
+        console.log(to.name)
+        console.log(from.name)
+        if(from.name == 'ReApplication' || from.name == 'Application')
+          next();
+        else{
+          console.log('redirect')
+          next("/application_status");
+        }
       }
     },
     // {

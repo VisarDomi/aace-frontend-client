@@ -151,6 +151,7 @@
                       type="text"
                       class="form-control"
                       v-model="user_data.email"
+                      disabled
                     />
                   </div>
                 </div>
@@ -1005,6 +1006,7 @@ export default {
       // ------- Education file and post -------
       // this.send_educations();
       // ------- User file and put -------
+      console.log('outside')
       axios
         .all([
           axios.post(
@@ -1025,6 +1027,7 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
+            console.log('inside')
             if (profileRes.status == 200) {
               // console.log("Profile picture updated successfully.");
             } else {
@@ -1060,6 +1063,18 @@ export default {
       email: { required, email }
     }
   },
+  mounted() {
+    let AACE_URL_USER = "https://aace.ml/api/user/";
+    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+    axios
+      .get(AACE_URL_USER + USER_ID, {
+        responseType: "json"
+      })
+      .then(res => {
+        this.user_data.email = res.data.email;
+      });
+  
+  }
 };
 </script>
 

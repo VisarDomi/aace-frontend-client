@@ -1030,49 +1030,49 @@ export default {
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
-      // axios
-      //     .all([
-      //     axios.post(
-      //         "https://aace.ml/api/user/" + USER_ID + "/media",
-      //         formDataUser,
-      //         {
-      //         "Content-Type": "multipart/form-data",
-      //         headers: {
-      //             Authorization: "Bearer " + TOKEN
-      //         }
-      //         }
-      //     ),
-      //     axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-      //         headers: {
-      //         Authorization: "Bearer " + TOKEN
-      //         }
-      //     })
-      //     ])
-      //     .then(
-      //     axios.spread((profileRes, stringRes) => {
-      //         // console.log(
-      //         //   "res.statuses are: ",
-      //         //   profileRes.status,
-      //         //   stringRes.status
-      //         // );
+      axios
+          .all([
+          axios.post(
+              "https://aace.ml/api/user/" + USER_ID + "/media",
+              formDataUser,
+              {
+              "Content-Type": "multipart/form-data",
+              headers: {
+                  Authorization: "Bearer " + TOKEN
+              }
+              }
+          ),
+          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+              headers: {
+              Authorization: "Bearer " + TOKEN
+              }
+          })
+          ])
+          .then(
+          axios.spread((profileRes, stringRes) => {
+              // console.log(
+              //   "res.statuses are: ",
+              //   profileRes.status,
+              //   stringRes.status
+              // );
 
-      //         if (profileRes.status == 200) {
-      //         // console.log("Profile picture updated successfully.");
-      //         } else {
-      //         // console.log("profile picture bad response");
-      //         }
+              if (profileRes.status == 200) {
+              // console.log("Profile picture updated successfully.");
+              } else {
+              // console.log("profile picture bad response");
+              }
 
-      //         if (stringRes.status == 200) {
-      //         // console.log("Strings sent successfully.");
-      //         localStorage.setItem("user", JSON.stringify(stringRes.data));
-      //         this.$router.push({
-      //             name: "Success"
-      //         });
-      //         } else {
-      //         // console.log("String sent unsuccessfuly");
-      //         }
-      //     })
-      //     );
+              if (stringRes.status == 200) {
+              // console.log("Strings sent successfully.");
+              localStorage.setItem("user", JSON.stringify(stringRes.data));
+              this.$router.push({
+                  name: "Success"
+              });
+              } else {
+              // console.log("String sent unsuccessfuly");
+              }
+          })
+          );
     }
   },
   mounted() {

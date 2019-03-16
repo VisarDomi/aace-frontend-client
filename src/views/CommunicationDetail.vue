@@ -187,29 +187,7 @@ export default {
   computed: {
     ...mapGetters(["comments", "communication", "communicationDocuments"])
   },
-
-  mounted(){
-    // createUpdatedComments(comment_id, author_id) {
-    comment_id = 
-    console.log("author_id", author_id);
-    let self = this;
-    axios
-      .get("https://aace.ml/api/user/" + author_id, { responseType: "json" })
-      .then(res => {
-        console.log("res.data.first_name", res.data.first_name);
-        const name = res.data.first_name + " " + res.data.last_name;
-        self.comments.forEach(function(comment) {
-          console.log("comment.author_id", comment.author_id);
-          if (comment.id == comment_id) {
-            console.log("comment.author_id", comment.author_id);
-            comment["author_name"] = name;
-            console.log("comment", comment);
-          }
-          console.log("self.comments", self.comments);
-        });
-      });
-    // }
-  },
+  
   watch: {
     $route(to) {
       this.$store.dispatch(FETCH_COMMUNICATION, to.params);
