@@ -32,9 +32,7 @@
                   class="form-control input-lg"
                   placeholder="Emri"
                   v-model="user_data.first_name"
-                  @input='$v.user_data.first_name.$touch()'
                 />
-                <p v-if='$v.user_data.first_name.$error'>Please provide a first name</p>
               </div>
               <div class="form-group">
                 <input
@@ -152,8 +150,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      :placeholder="user_data.email"
-                      disabled
+                      v-model="user_data.email"
                     />
                   </div>
                 </div>
@@ -614,7 +611,7 @@ export default {
         sex: "",
         summary: "",
         country: "",
-        industry: "",
+        // industry: "",
         phone: "",
         address: "",
         birthday: "",
@@ -997,7 +994,8 @@ export default {
         phone: this.user_data.phone,
         address: this.user_data.address,
         birthday: this.user_data.birthday,
-        website: this.user_data.website
+        website: this.user_data.website,
+        email: this.user_data.email
       };
 
       // ------- Experience file and post -------
@@ -1007,48 +1005,59 @@ export default {
       // ------- Education file and post -------
       // this.send_educations();
       // ------- User file and put -------
-      // axios
-      //   .all([
-      //     axios.post(
-      //       "https://aace.ml/api/user/" + USER_ID + "/media",
-      //       formDataUser,
-      //       {
-      //         "Content-Type": "multipart/form-data",
-      //         headers: {
-      //           Authorization: "Bearer " + TOKEN
-      //         }
-      //       }
-      //     ),
-      //     axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-      //       headers: {
-      //         Authorization: "Bearer " + TOKEN
-      //       }
-      //     })
-      //   ])
-      //   .then(
-      //     axios.spread((profileRes, stringRes) => {
-      //       if (profileRes.status == 200) {
-      //         // console.log("Profile picture updated successfully.");
-      //       } else {
-      //         // console.log("profile picture bad response");
-      //       }
+      axios
+        .all([
+          axios.post(
+            "https://aace.ml/api/user/" + USER_ID + "/media",
+            formDataUser,
+            {
+              "Content-Type": "multipart/form-data",
+              headers: {
+                Authorization: "Bearer " + TOKEN
+              }
+            }
+          ),
+          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          })
+        ])
+        .then(
+          axios.spread((profileRes, stringRes) => {
+            if (profileRes.status == 200) {
+              // console.log("Profile picture updated successfully.");
+            } else {
+              // console.log("profile picture bad response");
+            }
 
-      //       if (stringRes.status == 200) {
-      //         // console.log("Strings sent successfully.");
-      //         localStorage.setItem("user", JSON.stringify(stringRes.data));
-      //         this.$router.push({
-      //           name: "Success"
-      //         });
-      //       } else {
-      //         // console.log("String sent unsuccessfuly");
-      //       }
-      //     })
-      // );
+            if (stringRes.status == 200) {
+              // console.log("Strings sent successfully.");
+              localStorage.setItem("user", JSON.stringify(stringRes.data));
+              this.$router.push({
+                name: "Success"
+              });
+            } else {
+              // console.log("String sent unsuccessfuly");
+            }
+          })
+      );
     }
   },
   validations: {
     user_data: {
-      first_name: { required }
+      first_name: { required },
+      last_name: { required },
+      profession: { required },
+      sex: { required },
+      summary: { required },
+      country: { required },
+      // industry: { required },
+      phone: { required },
+      address: { required },
+      birthday: { required },
+      website: { required },
+      email: { required, email }
     }
   },
 };

@@ -17,9 +17,21 @@ Vue.use(VuelidateErrorExtractor, {
   // Define common validation messages.
   messages: {
     required: "{attribute} is required!",
+    email: "{attribute} must be a proper email!"
   },
   attributes: {
-    first_name: "Name",
+    first_name: "First Name",
+    last_name: "Last Name",
+    profession: "Profession",
+    sex: "Sex",
+    summary: "Summary",
+    country: "Country",
+    industry: "Industry",
+    phone: "Phone",
+    address: "Address",
+    birthday: "Birthday",
+    website: "Website",
+    email: "Email"
   }
 });
 
