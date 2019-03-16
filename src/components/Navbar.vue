@@ -29,7 +29,7 @@
         <!-- END Logo -->
         <!-- User account -->
         <div class="pull-right user-login" v-if="!isAuthenticated">
-          <router-link :to="{ name: 'Login' }" class="btn btn-sm btn-primary"
+          <router-link :to="{ name: 'Login' }" class="btn btn-sm btn-primary" id="loginButton"
             >Hyr</router-link
           >ose
           <router-link :to="{ name: 'Register' }">Regjistrohu</router-link>
@@ -173,6 +173,14 @@ export default {
   .show-logo-1 {
     display: none !important;
   }
+
+  .navbar-toggle{
+  margin-top: 10px;
+}
+
+#loginButton{
+  margin-bottom: 11px;
+}
 }
 /* dont show big logo on small screens */
 @media screen and (min-width: 0px) and (max-width: 619px) {
@@ -180,4 +188,8 @@ export default {
     display: none !important;
   }
 }
+
+
+
+
 </style>

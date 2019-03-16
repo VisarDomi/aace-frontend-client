@@ -125,7 +125,7 @@ export default {
         this.status = res.data.register_status 
       });
   },
-  computed: {
+  computed: { 
     ...mapGetters(["currentUser"])
   }
 };

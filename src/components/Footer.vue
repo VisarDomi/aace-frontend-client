@@ -5,7 +5,7 @@
       <!-- Topper section -->
       <div class="container">
         <div class="row">
-          <div class="col-sm-24 col-md-12">
+          <div class="col-sm-12 col-md-7">
             <router-link :to="{ name: 'Home' }" class="logo">
               <img src="/static/img/logo_full.png" alt="logo" />
             </router-link>
