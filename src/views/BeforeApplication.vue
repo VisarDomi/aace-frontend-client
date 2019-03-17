@@ -16,56 +16,26 @@
           </div>
           <!-- <time datetime="2016-03-03 20:00">2 days ago</time> -->
           <hr />
-          <h4>Hapat per tu bere anetar:</h4>
-          <p>Te jesh inxhinier i diplomuar.</p>
-          <p>Te pranosh statutin e SHOSHIK.</p>
-          <p>Te paguhet kuota vjetore e anetaresimit.</p>
-          <p>Te mos kesh kufizime ligjore per ushtrimin e profesionit.</p>
+          <h4>
+            Perpara se te aplikoni, duhet te krijoni nje llogari te re ose te
+            futeni ne llogarine e juaj egzistuese
+          </h4>
           <br />
-          <h5>Kerkesat:</h5>
-          <ul class="details cols-3">
-            <li>
-              <i class="fa fa-briefcase"></i>
-              <span>Kohezgjatja: 1 vit</span>
-            </li>
-
-            <li>
-              <i class="fa fa-money"></i>
-              <span>Pagesa vjetore:</span>
-            </li>
-            <li>
-              <i class="fa fa-certificate"></i>
-              <span>Profesioni: Inxhinier</span>
-            </li>
-          </ul>
 
           <div class="text-center">
+            <hr />
             <div class="action-buttons">
-              <div v-if="!isAuthenticated">
-                <router-link
-                  :to="{ name: 'BeforeApplication' }"
-                  class="btn btn-success"
-                  >Apliko tani</router-link
-                >
-              </div>
-              <div v-else>
-                <router-link
-                  :to="{ name: 'Application' }"
-                  class="btn btn-success"
-                  v-if="currentUser.register_status == 'blank'"
-                  >Apliko tani</router-link
-                >
-                <router-link
-                  :to="{ name: 'ReApplication' }"
-                  class="btn btn-success"
-                  v-if="
-                    currentUser.register_status == 'rebutted' ||
-                      currentUser.register_status == 'accepted'
-                  "
-                  >Apliko tani</router-link
-                >
-              </div>
+              <router-link :to="{ name: 'Register' }" class="btn btn-success"
+                >Krijoni nje llogari te re</router-link
+              >
             </div>
+            <hr />
+            <div class="action-buttons">
+              <router-link :to="{ name: 'Login' }" class="btn btn-success"
+                >Futuni ne llogarine e juaj egzistuese</router-link
+              >
+            </div>
+            <hr />
           </div>
         </div>
       </div>
@@ -106,10 +76,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
-  name: "Membership",
+  name: "BeforeApplication",
   data() {
     return {
       benefits: [
@@ -130,9 +98,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    ...mapGetters(["currentUser", "isAuthenticated"])
   }
 };
 </script>

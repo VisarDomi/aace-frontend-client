@@ -9,11 +9,16 @@
         <div class="col-md-5">
           <br />
           <br />
-          <h4>Mireseerdhet ne Shoqaten Shqiptare te Inxhiniereve Konsulente.</h4>
+          <h4>
+            Mireseerdhet ne Shoqaten Shqiptare te Inxhiniereve Konsulente.
+          </h4>
           <br />
           <h6 class="font-alt">
-            SHOSHIK eshte qendra e te gjithe inxhiniereve qe operojne ne Shqiperi gjithashtu dhe qendra e mendimit shkencor shqiptar qe kontribuon ne zhvillimin e vendit.
-            Inxhinieret konsulete lokal apo te huaj qe punojne ne Shqiperi jane te mirepritur t'i bashkohen Shoqates ne menyre qe t'japin kontributin e tyre.
+            SHOSHIK eshte qendra e te gjithe inxhiniereve qe operojne ne
+            Shqiperi gjithashtu dhe qendra e mendimit shkencor shqiptar qe
+            kontribuon ne zhvillimin e vendit. Inxhinieret konsulete lokal apo
+            te huaj qe punojne ne Shqiperi jane te mirepritur t'i bashkohen
+            Shoqates ne menyre qe t'japin kontributin e tyre.
           </h6>
           <br />
           <br />
@@ -38,12 +43,19 @@
             </header>
 
             <p class="lead">
-              Per 15 vite, Shoqata Shqipetare e Inxhinereve Konsulete ka perfaqesuar zerin e sektorin ne nivel lokal dhe nderkombetar. Gjate kesaj kohe, evenimente internacionale na kane ndihmuar te krijojme kontakt me zhvillimet me t'fundit te shkences dhe teknologjise, nderkohe ne mbledhjet lokale, seminaret, dhe konferencat na kane dhene nje kontribut te sjellim keto eksperienca te fituara te inxhinieret shqiptare.
-
-              
-
-</p>
-            <p>Misioni yne eshte te mbajme nje nivel standarti dhe profesionalizmi ne projektim dhe zbatimin e projekteve ne Shqiperi duke dhene mbeshtetje shkencore mbi zgjidhje te qendrueshme.</p>
+              Per 15 vite, Shoqata Shqipetare e Inxhinereve Konsulete ka
+              perfaqesuar zerin e sektorin ne nivel lokal dhe nderkombetar.
+              Gjate kesaj kohe, evenimente internacionale na kane ndihmuar te
+              krijojme kontakt me zhvillimet me t'fundit te shkences dhe
+              teknologjise, nderkohe ne mbledhjet lokale, seminaret, dhe
+              konferencat na kane dhene nje kontribut te sjellim keto
+              eksperienca te fituara te inxhinieret shqiptare.
+            </p>
+            <p>
+              Misioni yne eshte te mbajme nje nivel standarti dhe
+              profesionalizmi ne projektim dhe zbatimin e projekteve ne Shqiperi
+              duke dhene mbeshtetje shkencore mbi zgjidhje te qendrueshme.
+            </p>
 
             <br />
             <br />
@@ -74,21 +86,20 @@
       >
         <div class="container">
           <div class="row">
-            <div class="counter col-md-4 col-sm-8">
+            <!-- <div class="counter col-md-3 col-sm-6">
               <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Publikime</h6>
-            </div>
+            </div>-->
 
             <div class="counter col-md-4 col-sm-8">
               <p><span data-from="0" data-to="50"></span>+</p>
               <h6>Anetare</h6>
             </div>
 
-            <div class="counter col-md-4 col-sm-8">
+            <!-- <div class="counter col-md-3 col-sm-6">
               <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Evente</h6>
-            </div>
-
+            </div>-->
             <!-- <div class="counter col-md-3 col-sm-6">
               <p>
                 <span data-from="0" data-to="15"></span>+
@@ -126,34 +137,26 @@
           </header>
 
           <div class="category-grid">
-            <!-- <router-link :to="{ name: 'Events' }" style="height: 295px;">
-              <i class="fa fa-calendar"></i>
-              <h6>Events</h6>
-              <p>Attend events organized by members and directors</p>
-            </router-link>-->
             <router-link :to="{ name: 'Directory' }" style="height: 295px;">
               <i class="fa fa-clipboard"></i>
               <h6>Kerko</h6>
               <p>Kerko indeksin e antareve sipas emrit</p>
             </router-link>
-
-            <!-- <router-link :to="{ name: 'Publications' }" style="height: 295px;">
-              <i class="fa fa-newspaper-o"></i>
-              <h6>Publications</h6>
-              <p>Read about our latest developments</p>
-            </router-link>-->
             <router-link :to="{ name: 'Membership' }" style="height: 295px;">
               <i class="fa fa-users"></i>
               <h6>Apliko</h6>
               <p>Meso mbi procesin e aplikimit te antarsise ne SHOSHIK</p>
             </router-link>
-
-            <!-- <router-link :to="{ name: 'Board' }" style="height: 295px;">
-              <i class="fa fa-sitemap"></i>
-              <h6>Board of directors</h6>
-              <p>Get to know our board of directors</p>
-            </router-link>-->
-            <router-link :to="{ name: 'Login' }" style="height: 295px;">
+            <router-link
+              :to="{ name: 'MemberArea' }"
+              style="height: 295px;"
+              v-if="isAuthenticated"
+            >
+              <i class="fa fa-sign-in"></i>
+              <h6>Zona e anetareve</h6>
+              <p>Rrjeti social i anetareve te shoqates</p>
+            </router-link>
+            <router-link :to="{ name: 'Login' }" style="height: 295px;" v-else>
               <i class="fa fa-sign-in"></i>
               <h6>Zona e anetareve</h6>
               <p>Sherbimet e platformes te rezervuara per anetaret</p>
@@ -191,8 +194,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Home"
+  name: "Home",
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  }
 };
 </script>
 

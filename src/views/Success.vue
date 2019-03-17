@@ -36,25 +36,8 @@ export default {
   mounted() {
     let USER = JSON.parse(localStorage.getItem("user"));
     let TOKEN = localStorage.getItem("id_token");
-    console.log('user status, ', USER.register_status)
-    if(USER.register_status == 'rebutted'){
-      axios
-      .put(
-        "https://aace.ml/api/user/" + USER.id,
-        {
-          register_status: "reapplying"
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + TOKEN
-          }
-        }
-      )
-      .then(res => {
-        localStorage.setItem("user", JSON.stringify(res.data));
-        console.log(res);
-      });
-    }else{
+    console.log("user status, ", USER.register_status);
+    if (USER.register_status == "blank") {
       axios
         .put(
           "https://aace.ml/api/user/" + USER.id,
@@ -71,7 +54,24 @@ export default {
           localStorage.setItem("user", JSON.stringify(res.data));
           console.log(res);
         });
-      }
+    } else {
+      axios
+        .put(
+          "https://aace.ml/api/user/" + USER.id,
+          {
+            register_status: "reapplying"
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          }
+        )
+        .then(res => {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          console.log(res);
+        });
+    }
   }
 };
 </script>

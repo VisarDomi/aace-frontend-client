@@ -15,75 +15,89 @@
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <!-- <input  data-default-file="public/img/avatar.jpg"
-                  type="file"
-                  ref="profile_file"
-                  @change="handleFileUploadProfile"
-                />
-                <span class="help-block"
-                  >Ju lutem zgjidhni foto profili (4:6).</span
-                > -->
-
-                <div class="input-file-container">  
-                  <input class="input-file" ref="profile_file" id="my-file" type="file" @change="handleFileUploadProfile">
-                  <label tabindex="0" for="my-file" class="input-file-trigger">Zgjidhni nje foto...</label>
+                <div class="input-file-container">
+                  <input
+                    class="input-file"
+                    ref="profile_file"
+                    id="my-file"
+                    type="file"
+                    @change="handleFileUploadProfile"
+                  />
+                  <label tabindex="0" for="my-file" class="input-file-trigger"
+                    >Zgjidhni nje foto...</label
+                  >
                 </div>
-                <p class="file-return">{{profile_picture_file.name}}</p>
+                <p class="file-return">{{ profile_picture_file.name }}</p>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control input-lg"
-                  placeholder="Emri"
-                  v-model="user_data.first_name"
-                />
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Emri</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control input-lg"
+                    placeholder="Emri"
+                    v-model="user_data.first_name"
+                  />
+                </div>
               </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control input-lg"
-                  placeholder="Mbiemri"
-                  v-model="user_data.last_name"
-                />
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Mbiemri</label>
+                <div class="col-sm-9">
+                  <input
+                    type="text"
+                    class="form-control input-lg"
+                    placeholder="Mbiemri"
+                    v-model="user_data.last_name"
+                  />
+                </div>
               </div>
-              <div class="form-group">
-                <select class="form-control" v-model="user_data.profession">
-                  <option value="">Zgjidhni profesionin</option>
-                  <option value="Inxhinier Ndertimi">Inxhinier Ndertimi</option>
-                  <option value="Inxhinier Civil">Inxhinier Civil</option>
-                  <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
-                  >>
-                </select>
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Profesioni</label>
+                <div class="col-sm-9">
+                  <select class="form-control" v-model="user_data.profession">
+                    <option value="Inxhinier Ndertimi"
+                      >Inxhinier Ndertimi</option
+                    >
+                    <option value="Inxhinier Civil">Inxhinier Civil</option>
+                    <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
+                    >>
+                  </select>
+                </div>
               </div>
 
-              <div class="form-group">
-                <select class="form-control" v-model="user_data.sex">
-                  <option value="">Gjinia</option>
-                  <option value="Mashkull">Mashkull</option>
-                  <option value="Femer">Femer</option
-                  >>
-                </select>
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Gjinia</label>
+                <div class="col-sm-9">
+                  <select class="form-control" v-model="user_data.sex">
+                    <option value="Mashkull">Mashkull</option>
+                    <option value="Femer">Femer</option
+                    >>
+                  </select>
+                </div>
               </div>
 
-              <div class="form-group">
-                <textarea
-                  class="form-control"
-                  rows="3"
-                  placeholder="Pershkrim i shkurter rreth jush"
-                  v-model="user_data.summary"
-                ></textarea>
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Pershkrim</label>
+                <div class="col-sm-9">
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    placeholder="Pershkrim i shkurter rreth jush"
+                    v-model="user_data.summary"
+                  ></textarea>
+                </div>
               </div>
 
               <hr class="hr-lg" />
 
-              <h6>Informacion i pergjithshem</h6>
-              <div class="row">
-                <div class="form-group col-xs-12 col-sm-6">
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Vendlindja</label>
+                <div class="col-sm-9">
                   <div class="input-group input-group-sm">
                     <span class="input-group-addon">
-                      <i class="fa fa-map-marker"></i>
+                      <i class="fa fa-map-pin"></i>
                     </span>
                     <input
                       type="text"
@@ -93,36 +107,11 @@
                     />
                   </div>
                 </div>
+              </div>
 
-                <div class="form-group col-xs-12 col-sm-6">
-                  <div class="input-group input-group-sm">
-                    <span class="input-group-addon">
-                      <i class="fa fa-map-marker"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Adresa"
-                      v-model="user_data.address"
-                    />
-                  </div>
-                </div>
-
-                <div class="form-group col-xs-12 col-sm-6">
-                  <div class="input-group input-group-sm">
-                    <span class="input-group-addon">
-                      <i class="fa fa-globe"></i>
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Faqja juaj e internetit"
-                      v-model="user_data.website"
-                    />
-                  </div>
-                </div>
-
-                <div class="form-group col-xs-12 col-sm-6">
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Ditelindja</label>
+                <div class="col-sm-9">
                   <div class="input-group input-group-sm">
                     <span class="input-group-addon">
                       <i class="fa fa-birthday-cake"></i>
@@ -135,8 +124,45 @@
                     />
                   </div>
                 </div>
+              </div>
 
-                <div class="form-group col-xs-12 col-sm-6">
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Adresa</label>
+                <div class="col-sm-9">
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-addon">
+                      <i class="fa fa-map-marker"></i>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Adresa"
+                      v-model="user_data.address"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Faqja e internetit</label>
+                <div class="col-sm-9">
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-addon">
+                      <i class="fa fa-globe"></i>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Faqja juaj e internetit"
+                      v-model="user_data.website"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Numri i telefonit</label>
+                <div class="col-sm-9">
                   <div class="input-group input-group-sm">
                     <span class="input-group-addon">
                       <i class="fa fa-phone"></i>
@@ -149,8 +175,11 @@
                     />
                   </div>
                 </div>
+              </div>
 
-                <div class="form-group col-xs-12 col-sm-6">
+              <div class="form-group col-sm-12">
+                <label class="col-sm-3">Emaili</label>
+                <div class="col-sm-9">
                   <div class="input-group input-group-sm">
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
@@ -209,33 +238,34 @@
                               )
                             "
                           />
-                          <span class="help-block"
-                            >Ngarkoni dokumentin perkates per kete arsimim</span
+                          <label
+                            >Ngarkoni dokumentin perkates per kete
+                            arsimim</label
                           >
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        
-                        <div class="form-group">
-                          <label class="col-sm-6">Lloji i arsimimit</label>
-                          <select
-                            class="form-control"
-                            v-model="education_type_id[index]"
-                          >
-
-                            <option
-                              v-for="option in education_type_options"
-                              v-bind:value="option.id"
-                              :key="option.id"
-                              >{{ option.text }}</option
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Lloji i arsimimit</label>
+                          <div class="col-sm-9">
+                            <select
+                              class="form-control"
+                              v-model="education_type_id[index]"
                             >
-                          </select>
+                              <option
+                                v-for="option in education_type_options"
+                                v-bind:value="option.id"
+                                :key="option.id"
+                                >{{ option.text }}</option
+                              >
+                            </select>
+                          </div>
                         </div>
 
-                        <div class="form-group">
-                          <label class="col-sm-2">Tipi i diplomes</label>
-                          <div class="form-group col-sm-5">
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Tipi i diplomes</label>
+                          <div class="col-sm-4">
                             <select
                               class="form-control"
                               v-model="education_degree_id[index]"
@@ -253,7 +283,7 @@
                               >
                             </select>
                           </div>
-                          <div class="form-group col-sm-5">
+                          <div class="col-sm-5">
                             <input
                               type="text"
                               :disabled="!education_degree_other[index]"
@@ -264,9 +294,9 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <label class="col-sm-2">Dega</label>
-                          <div class="form-group col-sm-5">
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Dega</label>
+                          <div class="col-sm-4">
                             <select
                               class="form-control"
                               v-model="education_major_id[index]"
@@ -284,7 +314,7 @@
                               >
                             </select>
                           </div>
-                          <div class="form-group col-sm-5">
+                          <div class="col-sm-5">
                             <input
                               type="text"
                               :disabled="!education_major_other"
@@ -295,25 +325,33 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="educationInput.school"
-                            placeholder="Emri i shkolles, psh Universiteti Politeknik i Tiranes"
-                          />
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Emri i shkolles</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              v-model="educationInput.school"
+                              placeholder="Emri i shkolles, psh Universiteti Politeknik i Tiranes"
+                            />
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <span class="input-group-addon">Nga</span>
+
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Nga</label>
+                          <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
                             />
+                          </div>
+                        </div>
 
-                            <span class="input-group-addon">Deri ne</span>
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Deri ne</label>
+                          <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
@@ -322,13 +360,17 @@
                             />
                           </div>
                         </div>
-                        <div class="form-group">
-                          <textarea
-                            class="form-control"
-                            rows="3"
-                            placeholder="Pershkrim i shkurter"
-                            v-model="educationInput.description"
-                          ></textarea>
+
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Pershkrim i arsimit</label>
+                          <div class="col-sm-9">
+                            <textarea
+                              class="form-control"
+                              rows="3"
+                              placeholder="Pershkrim i shkurter"
+                              v-model="educationInput.description"
+                            ></textarea>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -388,50 +430,65 @@
                               )
                             "
                           />
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete pervoje pune
-                          </span>
+                          <label
+                            >Ngarkoni dokumentin perkates per kete pervoje
+                            pune</label
+                          >
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="experienceInput.title"
-                            placeholder="Titulli qe keni mbajtur ne pune"
-                          />
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Titulli</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              v-model="experienceInput.title"
+                              placeholder="Titulli qe keni mbajtur ne pune"
+                            />
+                          </div>
                         </div>
 
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="experienceInput.employer"
-                            placeholder="Emri i punedhenesit"
-                          />
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Punedhenesi</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              v-model="experienceInput.employer"
+                              placeholder="Emri i punedhenesit"
+                            />
+                          </div>
                         </div>
 
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="experienceInput.location"
-                            placeholder="Vendi ku keni punuar"
-                          />
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Vendndodhja</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              v-model="experienceInput.location"
+                              placeholder="Vendi ku keni punuar"
+                            />
+                          </div>
                         </div>
 
-                        <div class="form-group">
-                          <div class="input-group">
-                            <span class="input-group-addon">Nga</span>
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Nga</label>
+                          <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
                             />
-                            <span class="input-group-addon">Deri ne</span>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Deri ne</label>
+                          <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
@@ -441,13 +498,16 @@
                           </div>
                         </div>
 
-                        <div class="form-group">
-                          <textarea
-                            class="form-control"
-                            rows="3"
-                            v-model="experienceInput.description"
-                            placeholder="Pershkrim i shkurter"
-                          ></textarea>
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Pershkrim i punes</label>
+                          <div class="col-sm-9">
+                            <textarea
+                              class="form-control"
+                              rows="3"
+                              v-model="experienceInput.description"
+                              placeholder="Pershkrim i shkurter"
+                            ></textarea>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -504,39 +564,53 @@
                               handleFileUploadSkill(skillInput.randomid, index)
                             "
                           />
-                          <span class="help-block">
-                            Ngarkoni dokumentin perkates per kete kualifikim
-                          </span>
+                          <label
+                            >Ngarkoni dokumentin perkates per kete
+                            kualifikim</label
+                          >
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="skillInput.releaser"
-                            placeholder="Leshuesi i kualifikimit"
-                          />
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Emri i kualifikimit</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              v-model="skillInput.name"
+                              placeholder="Emri i kualifikimit"
+                            />
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            class="form-control"
-                            v-model="skillInput.name"
-                            placeholder="Emri i kualifikimit"
-                          />
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3"
+                            >Leshuesi i kualifikimit</label
+                          >
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              v-model="skillInput.releaser"
+                              placeholder="Leshuesi i kualifikimit"
+                            />
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <div class="input-group">
-                            <span class="input-group-addon">Nga</span>
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Nga</label>
+                          <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
                               v-model="skillInput.from_date"
                               placeholder="e.g. 2012"
                             />
-                            <span class="input-group-addon">Deri ne</span>
+                          </div>
+                        </div>
+
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Deri ne</label>
+                          <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
@@ -545,13 +619,18 @@
                             />
                           </div>
                         </div>
-                        <div class="form-group">
-                          <textarea
-                            class="form-control"
-                            rows="3"
-                            placeholder="Pershkrim i shkurter"
-                            v-model="skillInput.description"
-                          ></textarea>
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3"
+                            >Pershkrim i kualifikimit</label
+                          >
+                          <div class="col-sm-9">
+                            <textarea
+                              class="form-control"
+                              rows="3"
+                              placeholder="Pershkrim i shkurter"
+                              v-model="skillInput.description"
+                            ></textarea>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -591,8 +670,7 @@
                 Dergo aplikimin
               </button>
             </p>
-            <form-summary 
-              :validator="$v.user_data">
+            <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
             </form-summary>
           </div>
@@ -603,7 +681,6 @@
     </form>
   </div>
 </template>
-
 
 <script>
 import axios from "axios";
@@ -659,7 +736,7 @@ export default {
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-        1: [{ text: "???", id: 1 }, { text: "???", id: 2 }],
+        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }],
         2: [
           { text: "Inxhinier Civil", id: 3 },
           { text: "Inxhinier Elektrik", id: 4 },
@@ -719,7 +796,6 @@ export default {
     },
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
-      
     },
     // ------- Education -------
     handleFileUploadEducation(randomid, index) {
@@ -983,10 +1059,10 @@ export default {
     },
     apply() {
       this.$v.user_data.$touch();
-      if (this.$v.user_data.$pending || this.$v.user_data.$error){
-        console.log('errors')
+      if (this.$v.user_data.$pending || this.$v.user_data.$error) {
+        console.log("errors");
         return;
-      } 
+      }
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
@@ -1018,7 +1094,7 @@ export default {
       // ------- Education file and post -------
       // this.send_educations();
       // ------- User file and put -------
-      console.log('outside')
+      console.log("outside");
       axios
         .all([
           axios.post(
@@ -1039,7 +1115,7 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
-            console.log('inside')
+            console.log("inside");
             if (profileRes.status == 200) {
               // console.log("Profile picture updated successfully.");
             } else {
@@ -1056,7 +1132,7 @@ export default {
               // console.log("String sent unsuccessfuly");
             }
           })
-      );
+        );
     }
   },
   validations: {
@@ -1085,38 +1161,37 @@ export default {
       .then(res => {
         this.user_data.email = res.data.email;
       });
-  
   }
 };
 
-//input file 
-document.querySelector("html").classList.add('js');
+//input file
+document.querySelector("html").classList.add("js");
 
-var fileInput  = document.querySelector( ".input-file" ),  
-    button     = document.querySelector( ".input-file-trigger" ),
-    the_return = document.querySelector(".file-return");
+var fileInput = document.querySelector(".input-file"),
+  button = document.querySelector(".input-file-trigger"),
+  the_return = document.querySelector(".file-return");
 
 //---------------
 </script>
 
 <style scoped>
-
 .input-file-container {
   position: relative;
   width: 225px;
-} 
+}
 .js .input-file-trigger {
   display: block;
   padding: 14px 45px;
-  background: #39D2B4;
+  background: #39d2b4;
   color: #fff;
   font-size: 1em;
-  transition: all .4s;
+  transition: all 0.4s;
   cursor: pointer;
 }
 .js .input-file {
   position: absolute;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 225px;
   opacity: 0;
   padding: 14px 0;
@@ -1126,8 +1201,8 @@ var fileInput  = document.querySelector( ".input-file" ),
 .js .input-file:focus + .input-file-trigger,
 .js .input-file-trigger:hover,
 .js .input-file-trigger:focus {
-  background: #34495E;
-  color: #39D2B4;
+  background: #34495e;
+  color: #39d2b4;
 }
 
 .file-return {
@@ -1138,7 +1213,7 @@ var fileInput  = document.querySelector( ".input-file" ),
 }
 .js .file-return {
   font-style: italic;
-  font-size: .9em;
+  font-size: 0.9em;
   font-weight: bold;
 }
 .js .file-return:not(:empty):before {
@@ -1146,7 +1221,4 @@ var fileInput  = document.querySelector( ".input-file" ),
   font-style: normal;
   font-weight: normal;
 }
-
-
-
 </style>

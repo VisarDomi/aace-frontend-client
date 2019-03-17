@@ -4,12 +4,12 @@
       class="page-header bg-img size-lg"
       style="background-image: url(static/img/bg-banner2.jpg)"
     >
-      <div class="container no-shadow">
+      <!-- <div class="container no-shadow">
         <h1 class="text-center">Na kontaktoni</h1>
         <p class="lead text-center">
           Na shkruani ne formularin e meposhtem.
         </p>
-      </div>
+      </div>-->
     </header>
 
     <!-- Main container -->
@@ -47,8 +47,7 @@
                 <button type="submit" class="btn btn-primary">Dergo</button>
               </form>
             </div>
-
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-24 col-md-12">
               <h4>Informacion</h4>
               <div class="highlighted-block">
                 <p>

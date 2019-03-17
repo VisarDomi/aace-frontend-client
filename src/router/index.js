@@ -132,6 +132,24 @@ export default new Router({
       }
     },
     {
+      path: "/before_application",
+      name: "BeforeApplication",
+      component: () => import("@/views/BeforeApplication"),
+      meta: {
+        title: "BeforeApplication",
+        metaTags: [
+          {
+            name: "description",
+            content: "The before_application page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The before_application page of AACE."
+          }
+        ]
+      }
+    },
+    {
       path: "/directory",
       name: "Directory",
       component: () => import("@/views/Directory"),
@@ -240,22 +258,25 @@ export default new Router({
       },
       beforeEnter(to, from, next) {
         if (localStorage.getItem("id_token")) {
-          let user = JSON.parse(localStorage.getItem("user"))
-          if(user["register_status"] == undefined || user["register_status"] == "blank"){
+          let user = JSON.parse(localStorage.getItem("user"));
+          if (
+            user["register_status"] == undefined ||
+            user["register_status"] == "blank"
+          ) {
             next();
-          }else{
-            console.log('redirect')
+          } else {
+            console.log("redirect");
             next("/application_status");
           }
           //is there a way to get this using the new structure functionality?
         } else {
-          console.log('redirect')
+          console.log("redirect");
           next("/login");
         }
       }
     },
     {
-      path: "/re-application",
+      path: "/reapplication",
       name: "ReApplication",
       component: () => import("@/views/ReApplication"),
       meta: {
@@ -263,27 +284,27 @@ export default new Router({
         metaTags: [
           {
             name: "description",
-            content: "The re-application page of AACE."
+            content: "The reapplication page of AACE."
           },
           {
             property: "og:description",
-            content: "The re-application page of AACE."
+            content: "The reapplication page of AACE."
           }
         ]
       },
       beforeEnter(to, from, next) {
         if (localStorage.getItem("id_token")) {
-          let user = JSON.parse(localStorage.getItem("user"))
-          console.log('status', user["register_status"])
-          if(user["register_status"] == "rebutted"){
+          let user = JSON.parse(localStorage.getItem("user"));
+          console.log("status", user["register_status"]);
+          if (user["register_status"] == "rebutted") {
             next();
-          }else{
-            console.log('redirect')
+          } else {
+            console.log("redirect");
             next("/application_status");
           }
           //is there a way to get this using the new structure functionality?
         } else {
-          console.log('redirect')
+          console.log("redirect");
           next("/login");
         }
       }
@@ -377,13 +398,12 @@ export default new Router({
           }
         ]
       },
-      beforeEnter(to, from, next) { 
-        console.log(to.name)
-        console.log(from.name)
-        if(from.name == 'ReApplication' || from.name == 'Application')
-          next();
-        else{
-          console.log('redirect')
+      beforeEnter(to, from, next) {
+        console.log(to.name);
+        console.log(from.name);
+        if (from.name == "ReApplication" || from.name == "Application") next();
+        else {
+          console.log("redirect");
           next("/application_status");
         }
       }

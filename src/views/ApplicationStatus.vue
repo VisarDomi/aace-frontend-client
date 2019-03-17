@@ -41,10 +41,7 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="
-              this.status == 'applying' ||
-                this.status == 'reapplying'
-            "
+            v-if="this.status == 'applying' || this.status == 'reapplying'"
           >
             <strong>Derguar.</strong>
           </div>
@@ -105,7 +102,7 @@ export default {
   data() {
     return {
       application_date: "",
-      status: "",
+      status: ""
     };
   },
   methods: {
@@ -113,7 +110,7 @@ export default {
       return DateFilter(time);
     }
   },
-  mounted(){
+  mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
     axios
@@ -122,10 +119,10 @@ export default {
       })
       .then(res => {
         localStorage.setItem("user", JSON.stringify(res.data));
-        this.status = res.data.register_status 
+        this.status = res.data.register_status;
       });
   },
-  computed: { 
+  computed: {
     ...mapGetters(["currentUser"])
   }
 };
