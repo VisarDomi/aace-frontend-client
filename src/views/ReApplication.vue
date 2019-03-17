@@ -186,20 +186,6 @@
               <h2>Udhezime nga administratori</h2>
               <p>{{ comment_from_administrator }}</p>
             </header>
-            <header
-              class="section-header"
-              :key="education.id"
-              v-for="education in educationInputs"
-            >
-              <p>{{ education }}</p>
-            </header>
-            <header
-              class="section-header"
-              :key="experience.id"
-              v-for="experience in experienceInputs"
-            >
-              <p>{{ experience }}</p>
-            </header>
           </div>
         </section>
         <!-- Education -->
@@ -630,23 +616,23 @@ export default {
       education_degree_id: [],
       education_degree_other: [false],
       education_degree_options: {
-        1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }],
+        1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }, { text: "Te tjera", id:3}],
         2: [
-          { text: "Bachelor", id: 3 },
-          { text: "Master", id: 4 },
-          { text: "Diplom", id: 5 },
-          { text: "Te tjera", id: 6 }
+          { text: "Bachelor", id: 4 },
+          { text: "Master", id: 5 },
+          { text: "Diplom", id: 6 },
+          { text: "Te tjera", id: 7 }
         ]
       },
 
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-        1: [{ text: "???", id: 1 }, { text: "????", id: 2 }],
+        1: [{ text: "???", id: 1 }, { text: "????", id: 2 }, { text: "Te tjera", id:3}],
         2: [
-          { text: "Inxhinier Civil", id: 3 },
-          { text: "Inxhinier Elektrik", id: 4 },
-          { text: "Te tjera", id: 5 }
+          { text: "Inxhinier Civil", id: 4 },
+          { text: "Inxhinier Elektrik", id: 5 },
+          { text: "Te tjera", id: 6 }
         ]
       },
       //---------------- Experience -------
@@ -662,7 +648,7 @@ export default {
   },
   methods: {
     changeProfession() {
-      if (event.target.value == 4) {
+      if (event.target.value == 5) {
         this.profession_other = true;
         this.profession = "Fut profesionin";
       } else {
@@ -672,7 +658,7 @@ export default {
     },
     handleEducationOptionDegreeChange(e, i) {
       let educationOptionId = e.target.value;
-      if (educationOptionId == 6) {
+      if (educationOptionId == 7) {
         this.education_degree_other[i] = true;
         this.educationInputs[i].degree = "Fut tipin e diplomes";
       } else {

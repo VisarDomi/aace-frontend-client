@@ -43,19 +43,37 @@
                 />
               </div>
               <div class="form-group">
-                <select class="form-control" v-model="user_data.profession">
-                  <option value="Inxhinier Ndertimi">Inxhinier Ndertimi</option>
-                  <option value="Inxhinier Civil">Inxhinier Civil</option>
-                  <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
+                <select
+                  class="form-control col-sm-6"
+                  v-model="profession_id"
+                  @change="changeProfession"
+                >
+                  <option
+                    v-for="option in profession_options"
+                    v-bind:value="option.id"
+                    :key="option.id"
+                    >{{ option.text }}</option
                   >>
                 </select>
+                <div class="form-group col-sm-6">
+                  <input
+                    type="text"
+                    :disabled="!profession_other"
+                    class="form-control"
+                    v-model="user_data.profession"
+                    :placeholder="profession_other"
+                  />
+                </div>
               </div>
 
               <div class="form-group">
                 <select class="form-control" v-model="user_data.sex">
-                  <option value="Mashkull">Mashkull</option>
-                  <option value="Femer">Femer</option
-                  >>
+                  <option
+                    v-for="option in sex_options"
+                    v-bind:value="option.text"
+                    :key="option.id"
+                    >{{ option.text }}</option
+                  >
                 </select>
               </div>
 
@@ -174,14 +192,14 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="educationInput.randomid"
+                :key="educationInput.id"
                 v-for="(educationInput, index) in educationInputs"
               >
                 <div class="item-block">
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteEducation(educationInput.randomid)"
+                      @click="onDeleteEducation(educationInput.id)"
                       type="button"
                     >
                       <i class="ti-close"></i>
@@ -196,7 +214,7 @@
                             multiple
                             @change="
                               handleFileUploadEducation(
-                                educationInput.randomid,
+                                educationInput.id,
                                 index
                               )
                             "
@@ -351,14 +369,14 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="experienceInput.randomid"
+                :key="experienceInput.id"
                 v-for="(experienceInput, index) in experienceInputs"
               >
                 <div class="item-block">
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteExperience(experienceInput.randomid)"
+                      @click="onDeleteExperience(experienceInput.id)"
                       type="button"
                     >
                       <i class="ti-close"></i>
@@ -373,7 +391,7 @@
                             multiple
                             @change="
                               handleFileUploadExperience(
-                                experienceInput.randomid,
+                                experienceInput.id,
                                 index
                               )
                             "
@@ -470,14 +488,14 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="skillInput.randomid"
+                :key="skillInput.id"
                 v-for="(skillInput, index) in skillInputs"
               >
                 <div class="item-block">
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteSkill(skillInput.randomid)"
+                      @click="onDeleteSkill(skillInput.id)"
                       type="button"
                     >
                       <i class="ti-close"></i>
@@ -491,7 +509,7 @@
                             ref="skill"
                             multiple
                             @change="
-                              handleFileUploadSkill(skillInput.randomid, index)
+                              handleFileUploadSkill(skillInput.id, index)
                             "
                           />
                           <span class="help-block">
@@ -608,8 +626,6 @@ export default {
       user_data: {
         first_name: "",
         last_name: "",
-        profession: "",
-        sex: "",
         summary: "",
         country: "",
         // industry: "",
@@ -618,8 +634,21 @@ export default {
         birthday: "",
         website: "",
         email: "",
-        comment_from_administrator: ""
+        comment_from_administrator: "",
+        profession: "",
+        sex: "",
       },
+      profession_other: false,
+      profession_id: "",
+      profession_options: [
+        { text: "Inxhinier Ndertimi", id: 1 },
+        { text: "Inxhinier Civil", id: 2 },
+        { text: "Inxhinier Mekanik", id: 3 },
+        { text: "Te tjere", id: 4 }
+      ],
+
+      sex_options: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }],
+
       //--------------- Image Files -------
       profile_picture_file: "",
 
@@ -636,23 +665,23 @@ export default {
       education_degree_id: [],
       education_degree_other: [false],
       education_degree_options: {
-        1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }],
+        1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }, {text: "Te tjere", id:3}],
         2: [
-          { text: "Bachelor", id: 3 },
-          { text: "Master", id: 4 },
-          { text: "Diplom", id: 5 },
-          { text: "Te tjera", id: 6 }
+          { text: "Bachelor", id: 4 },
+          { text: "Master", id: 5 },
+          { text: "Diplom", id: 6 },
+          { text: "Te tjera", id: 7 }
         ]
       },
 
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-        1: [{ text: "???", id: 1 }, { text: "???", id: 2 }],
+        1: [{ text: "??", id: 1 }, { text: "????", id: 2 }, {text:"Te tjere", id:3}],
         2: [
-          { text: "Inxhinier Civil", id: 3 },
-          { text: "Inxhinier Elektrik", id: 4 },
-          { text: "Te tjera", id: 5 }
+          { text: "Inxhinier Civil", id: 4 },
+          { text: "Inxhinier Elektrik", id: 5 },
+          { text: "Te tjera", id: 6 }
         ]
       },
       //---------------- Experience -------
@@ -668,10 +697,20 @@ export default {
     formSummary: templates.multiErrorExtractor.foundation6
   },
   methods: {
+    changeProfession() {
+      if (event.target.value == 5) {
+        this.profession_other = true;
+        this.user_data.profession = "Fut profesionin";
+      } else {
+        this.profession_other = false;
+        this.user_data.profession = this.profession_options[event.target.value - 1].text;
+      }
+    },
     handleEducationOptionDegreeChange(e, i) {
       let educationOptionId = e.target.value;
-      if (educationOptionId == 6) {
+      if (educationOptionId == 7 || educationOptionId == 3) {
         this.education_degree_other[i] = true;
+        this.educationInputs[i].degree = "Fut tipin e diplomes";
       } else {
         this.education_degree_other[i] = false;
         if (this.education_type_id[i] == 1)
@@ -683,14 +722,12 @@ export default {
             this.education_type_id[i]
           ][educationOptionId - 3].text;
       }
-      console.log(this.educationInputs[i].field_of_study);
-      console.log(this.educationInputs[i].degree);
-      console.log("");
     },
     handleEducationOptionMajorChange(e, i) {
       let educationOptionId = e.target.value;
-      if (educationOptionId == 5) {
+      if (educationOptionId == 6 || educationOptionId == 3) {
         this.education_major_other = true;
+        this.educationInputs[i].field_of_study = "Fut degen";
       } else {
         this.education_major_other = false;
         if (this.education_type_id[i] == 1)
@@ -701,27 +738,24 @@ export default {
           this.educationInputs[i].field_of_study = this.education_major_options[
             this.education_type_id[i]
           ][educationOptionId - 3].text;
-        console.log(this.educationInputs[i].field_of_study);
-        console.log(this.educationInputs[i].degree);
-        console.log("");
       }
     },
     handleFileUploadProfile(event) {
       this.profile_picture_file = this.$refs.profile_file.files[0];
     },
     // ------- Education -------
-    handleFileUploadEducation(randomid, index) {
+    handleFileUploadEducation(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.education[index].files.length; i++) {
         files.push(this.$refs.education[index].files[i]);
       }
       this.educationInputs.filter(
-        education => education.randomid === randomid
+        education => education.id === id
       )[0].files = files;
     },
     onAddEducation() {
       const newEducation = {
-        randomid: Math.random() * Math.random() * 1000,
+        id: Math.random() * Math.random() * 1000,
         education_type: "",
         degree: "",
         field_of_study: "",
@@ -732,24 +766,24 @@ export default {
       };
       this.educationInputs.push(newEducation);
     },
-    onDeleteEducation(randomid) {
+    onDeleteEducation(id) {
       this.educationInputs = this.educationInputs.filter(
-        education => education.randomid !== randomid
+        education => education.id !== id
       );
     },
     // ------- Experience -------
-    handleFileUploadExperience(randomid, index) {
+    handleFileUploadExperience(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
         files.push(this.$refs.experience[index].files[i]);
       }
       this.experienceInputs.filter(
-        experience => experience.randomid === randomid
+        experience => experience.id === id
       )[0].files = files;
     },
     onAddExperience() {
       const newExperience = {
-        randomid: Math.random() * Math.random() * 1000,
+        id: Math.random() * Math.random() * 1000,
         employer: "",
         title: "",
         location: "",
@@ -760,24 +794,24 @@ export default {
       };
       this.experienceInputs.push(newExperience);
     },
-    onDeleteExperience(randomid) {
+    onDeleteExperience(id) {
       this.experienceInputs = this.experienceInputs.filter(
-        experience => experience.randomid !== randomid
+        experience => experience.id !== id
       );
     },
     // ------- Skill -------
-    handleFileUploadSkill(randomid, index) {
+    handleFileUploadSkill(id, index) {
       let files = [];
       for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
         files.push(this.$refs.skill[index].files[i]);
       }
       this.skillInputs.filter(
-        skill => skill.randomid === randomid
+        skill => skill.id === id
       )[0].files = files;
     },
     onAddSkill() {
       const newSkill = {
-        randomid: Math.random() * Math.random() * 1000,
+        id: Math.random() * Math.random() * 1000,
         releaser: "",
         name: "",
         from_date: "",
@@ -786,9 +820,9 @@ export default {
       };
       this.skillInputs.push(newSkill);
     },
-    onDeleteSkill(randomid) {
+    onDeleteSkill(id) {
       this.skillInputs = this.skillInputs.filter(
-        skill => skill.randomid !== randomid
+        skill => skill.id !== id
       );
     },
 
@@ -1000,11 +1034,11 @@ export default {
       };
 
       // ------- Experience file and post -------
-      // this.send_experiences();
+      this.send_experiences();
       // ------- Skill file and post -------
-      // this.send_skills();
+      this.send_skills();
       // ------- Education file and post -------
-      // this.send_educations();
+      this.send_educations();
       // ------- User file and put -------
       console.log('outside')
       axios
@@ -1066,6 +1100,12 @@ export default {
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+    this.onAddExperience()
+    this.onAddEducation()
+    this.onAddSkill()
+    this.user_data.sex = "Mashkull"
+    this.user_data.profession = "Inxhinier Ndertimi"
+    this.profession_id = 1;
     axios
       .get(AACE_URL_USER + USER_ID, {
         responseType: "json"
