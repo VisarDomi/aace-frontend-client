@@ -66,7 +66,7 @@
             <h2>Arsimimi</h2>
           </header>
 
-          <div class="row">
+          <div class="row" v-if="experiences.length">
             <div
               class="col-xs-12"
               :key="education.id"
@@ -91,6 +91,9 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h3 class="text-center" style="color: #ff6666">S'ka arsimime</h3>
+          </div>
         </div>
       </section>
       <!-- END Education -->
@@ -102,7 +105,7 @@
             <h2>Pervoje pune</h2>
           </header>
 
-          <div class="row">
+          <div class="row" v-if="experiences.length">
             <div
               class="col-xs-12"
               :key="experience.id"
@@ -125,6 +128,9 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h3 class="text-center" style="color: #ff6666">S'ka pervoje pune</h3>
+          </div>
         </div>
       </section>
       <!-- END Work Experience -->
@@ -136,7 +142,7 @@
             <h2>Kualifikime/Arritje profesionale</h2>
           </header>
 
-          <div class="row">
+          <div class="row" v-if="skills.length">
             <div class="col-xs-12" :key="skill.id" v-for="skill in skills">
               <div class="item-block">
                 <header>
@@ -153,6 +159,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div v-else>
+            <h3 class="text-center" style="color: #ff6666">Ska kualifikime</h3>
           </div>
         </div>
       </section>
@@ -177,8 +186,7 @@ export default {
         iconType = "female";
       }
       return iconType;
-    },
-
+    }
   },
   mounted() {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);

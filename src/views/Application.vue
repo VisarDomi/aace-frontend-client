@@ -1,19 +1,33 @@
 <template>
   <div class="nav-on-header smart-nav">
+    <!-- <form-summary :validator="$v.first_name"/> -->
     <form @submit.prevent="apply">
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Krijoni nje aplikim</h1>
-          <p class="lead text-center">Krijoni nje aplikimin personal dhe dergojeni bordit.</p>
+          <p class="lead text-center">
+            Krijoni nje aplikimin personal dhe dergojeni bordit.
+          </p>
         </div>
 
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input name="file" type="file" ref="profile_file" @change="handleFileUploadProfile">
-                <label>Ju lutem zgjidhni foto profili (4:6)</label>
+                <div class="input-file-container">
+                  <input
+                    class="input-file"
+                    ref="profile_file"
+                    id="my-file"
+                    type="file"
+                    @change="handleFileUploadProfile"
+                  />
+                  <label tabindex="0" for="my-file" class="input-file-trigger"
+                    >Zgjidhni nje foto...</label
+                  >
+                </div>
+                <p class="file-return">{{ profile_picture_file.name }}</p>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -24,8 +38,8 @@
                     type="text"
                     class="form-control input-lg"
                     placeholder="Emri"
-                    v-model="first_name"
-                  >
+                    v-model="user_data.first_name"
+                  />
                 </div>
               </div>
               <div class="form-group col-sm-12">
@@ -35,17 +49,20 @@
                     type="text"
                     class="form-control input-lg"
                     placeholder="Mbiemri"
-                    v-model="last_name"
-                  >
+                    v-model="user_data.last_name"
+                  />
                 </div>
               </div>
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-9">
-                  <select class="form-control" v-model="profession">
-                    <option value="Inxhinier Ndertimi">Inxhinier Ndertimi</option>
+                  <select class="form-control" v-model="user_data.profession">
+                    <option value="Inxhinier Ndertimi"
+                      >Inxhinier Ndertimi</option
+                    >
                     <option value="Inxhinier Civil">Inxhinier Civil</option>
-                    <option value="Inxhinier Mekanik">Inxhinier Mekanik</option>>
+                    <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
+                    >>
                   </select>
                 </div>
               </div>
@@ -53,9 +70,10 @@
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Gjinia</label>
                 <div class="col-sm-9">
-                  <select class="form-control" v-model="sex">
+                  <select class="form-control" v-model="user_data.sex">
                     <option value="Mashkull">Mashkull</option>
-                    <option value="Femer">Femer</option>>
+                    <option value="Femer">Femer</option
+                    >>
                   </select>
                 </div>
               </div>
@@ -67,12 +85,12 @@
                     class="form-control"
                     rows="3"
                     placeholder="Pershkrim i shkurter rreth jush"
-                    v-model="summary"
+                    v-model="user_data.summary"
                   ></textarea>
                 </div>
               </div>
 
-              <hr class="hr-lg">
+              <hr class="hr-lg" />
 
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Vendlindja</label>
@@ -85,8 +103,8 @@
                       type="text"
                       class="form-control"
                       placeholder="Vendlindja"
-                      v-model="country"
-                    >
+                      v-model="user_data.country"
+                    />
                   </div>
                 </div>
               </div>
@@ -102,8 +120,8 @@
                       type="date"
                       class="form-control"
                       placeholder="Datelindja"
-                      v-model="birthday"
-                    >
+                      v-model="user_data.birthday"
+                    />
                   </div>
                 </div>
               </div>
@@ -115,7 +133,12 @@
                     <span class="input-group-addon">
                       <i class="fa fa-map-marker"></i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Adresa" v-model="address">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Adresa"
+                      v-model="user_data.address"
+                    />
                   </div>
                 </div>
               </div>
@@ -131,8 +154,8 @@
                       type="text"
                       class="form-control"
                       placeholder="Faqja juaj e internetit"
-                      v-model="website"
-                    >
+                      v-model="user_data.website"
+                    />
                   </div>
                 </div>
               </div>
@@ -147,9 +170,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Numri i telefonit"
-                      v-model="phone"
-                    >
+                      placeholder="Numri telefonit"
+                      v-model="user_data.phone"
+                    />
                   </div>
                 </div>
               </div>
@@ -161,7 +184,12 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input type="text" class="form-control" :placeholder="email" disabled>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="user_data.email"
+                      disabled
+                    />
                   </div>
                 </div>
               </div>
@@ -209,21 +237,28 @@
                                 index
                               )
                             "
+                          />
+                          <label
+                            >Ngarkoni dokumentin perkates per kete
+                            arsimim</label
                           >
-                          <label>Ngarkoni dokumentin perkates per kete arsimim</label>
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Tipi i arsimimit</label>
+                          <label class="col-sm-3">Lloji i arsimimit</label>
                           <div class="col-sm-9">
-                            <select class="form-control" v-model="education_type_id[index]">
+                            <select
+                              class="form-control"
+                              v-model="education_type_id[index]"
+                            >
                               <option
                                 v-for="option in education_type_options"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
                         </div>
@@ -244,7 +279,8 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
                           <div class="col-sm-5">
@@ -254,7 +290,7 @@
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="..."
-                            >
+                            />
                           </div>
                         </div>
 
@@ -274,7 +310,8 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                              >{{ option.text }}</option>
+                                >{{ option.text }}</option
+                              >
                             </select>
                           </div>
                           <div class="col-sm-5">
@@ -284,7 +321,7 @@
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="Dega"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -296,7 +333,7 @@
                               class="form-control"
                               v-model="educationInput.school"
                               placeholder="Emri i shkolles, psh Universiteti Politeknik i Tiranes"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -308,7 +345,7 @@
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -320,7 +357,7 @@
                               class="form-control"
                               placeholder="e.g. 2016"
                               v-model="educationInput.to_date"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -342,8 +379,14 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br>
-                <button class="btn btn-primary" type="button" @click="onAddEducation">Shto arsimim</button>
+                <br />
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  @click="onAddEducation"
+                >
+                  Shto arsimim
+                </button>
               </div>
             </div>
           </div>
@@ -386,8 +429,11 @@
                                 index
                               )
                             "
+                          />
+                          <label
+                            >Ngarkoni dokumentin perkates per kete pervoje
+                            pune</label
                           >
-                          <label>Ngarkoni dokumentin perkates per kete pervoje pune</label>
                         </div>
                       </div>
 
@@ -400,7 +446,7 @@
                               class="form-control"
                               v-model="experienceInput.title"
                               placeholder="Titulli qe keni mbajtur ne pune"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -412,7 +458,7 @@
                               class="form-control"
                               v-model="experienceInput.employer"
                               placeholder="Emri i punedhenesit"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -424,7 +470,7 @@
                               class="form-control"
                               v-model="experienceInput.location"
                               placeholder="Vendi ku keni punuar"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -436,7 +482,7 @@
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -448,7 +494,7 @@
                               class="form-control"
                               v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -470,12 +516,14 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br>
+                <br />
                 <button
                   class="btn btn-primary btn-duplicator"
                   type="button"
                   @click="onAddExperience"
-                >Shto pervoje pune</button>
+                >
+                  Shto pervoje pune
+                </button>
               </div>
             </div>
           </div>
@@ -515,8 +563,11 @@
                             @change="
                               handleFileUploadSkill(skillInput.randomid, index)
                             "
+                          />
+                          <label
+                            >Ngarkoni dokumentin perkates per kete
+                            kualifikim</label
                           >
-                          <label>Ngarkoni dokumentin perkates per kete kualifikim</label>
                         </div>
                       </div>
 
@@ -529,18 +580,20 @@
                               class="form-control"
                               v-model="skillInput.name"
                               placeholder="Emri i kualifikimit"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Leshuesi i kualifikimit</label>
+                          <label class="col-sm-3"
+                            >Leshuesi i kualifikimit</label
+                          >
                           <div class="col-sm-9">
                             <input
                               type="text"
                               class="form-control"
                               v-model="skillInput.releaser"
                               placeholder="Leshuesi i kualifikimit"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
@@ -551,7 +604,7 @@
                               class="form-control"
                               v-model="skillInput.from_date"
                               placeholder="e.g. 2012"
-                            >
+                            />
                           </div>
                         </div>
 
@@ -563,18 +616,20 @@
                               class="form-control"
                               v-model="skillInput.to_date"
                               placeholder="e.g. 2016"
-                            >
+                            />
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Pershkrim i kualifikimit</label>
+                          <label class="col-sm-3"
+                            >Pershkrim i kualifikimit</label
+                          >
                           <div class="col-sm-9">
-                          <textarea
-                            class="form-control"
-                            rows="3"
-                            placeholder="Pershkrim i shkurter"
-                            v-model="skillInput.description"
-                          ></textarea>
+                            <textarea
+                              class="form-control"
+                              rows="3"
+                              placeholder="Pershkrim i shkurter"
+                              v-model="skillInput.description"
+                            ></textarea>
                           </div>
                         </div>
                       </div>
@@ -584,12 +639,14 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br>
+                <br />
                 <button
                   class="btn btn-primary btn-duplicator"
                   @click="onAddSkill"
                   type="button"
-                >Shto kualifikim</button>
+                >
+                  Shto kualifikim
+                </button>
               </div>
             </div>
           </div>
@@ -609,8 +666,13 @@
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">
+                Dergo aplikimin
+              </button>
             </p>
+            <form-summary :validator="$v.user_data">
+              <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
+            </form-summary>
           </div>
         </section>
         <!-- END Submit -->
@@ -622,7 +684,8 @@
 
 <script>
 import axios from "axios";
-
+import { required, email } from "vuelidate/lib/validators";
+import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
 
 export default {
@@ -630,21 +693,21 @@ export default {
   data() {
     return {
       //--------------- User -------
-
-      first_name: "",
-      last_name: "",
-      profession: "",
-      sex: "",
-      summary: "",
-      country: "",
-      industry: "",
-      phone: "",
-      address: "",
-      birthday: "",
-      website: "",
-      email: "",
-      comment_from_administrator: "",
-
+      user_data: {
+        first_name: "",
+        last_name: "",
+        profession: "",
+        sex: "",
+        summary: "",
+        country: "",
+        // industry: "",
+        phone: "",
+        address: "",
+        birthday: "",
+        website: "",
+        email: "",
+        comment_from_administrator: ""
+      },
       //--------------- Image Files -------
       profile_picture_file: "",
 
@@ -688,6 +751,9 @@ export default {
       skillInputs: [],
       skill_files_index: 0
     };
+  },
+  components: {
+    formSummary: templates.multiErrorExtractor.foundation6
   },
   methods: {
     handleEducationOptionDegreeChange(e, i) {
@@ -992,6 +1058,11 @@ export default {
       }
     },
     apply() {
+      this.$v.user_data.$touch();
+      if (this.$v.user_data.$pending || this.$v.user_data.$error) {
+        console.log("errors");
+        return;
+      }
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
@@ -1003,25 +1074,27 @@ export default {
       let formDataUser = new FormData();
       formDataUser.append("file", this.profile_picture_file);
       let user_string = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        profession: this.profession,
-        sex: this.sex,
-        summary: this.summary,
-        country: this.country,
-        phone: this.phone,
-        address: this.address,
-        birthday: this.birthday,
-        website: this.website
+        first_name: this.user_data.first_name,
+        last_name: this.user_data.last_name,
+        profession: this.user_data.profession,
+        sex: this.user_data.sex,
+        summary: this.user_data.summary,
+        country: this.user_data.country,
+        phone: this.user_data.phone,
+        address: this.user_data.address,
+        birthday: this.user_data.birthday,
+        website: this.user_data.website,
+        email: this.user_data.email
       };
 
       // ------- Experience file and post -------
-      this.send_experiences();
+      // this.send_experiences();
       // ------- Skill file and post -------
-      this.send_skills();
+      // this.send_skills();
       // ------- Education file and post -------
-      this.send_educations();
+      // this.send_educations();
       // ------- User file and put -------
+      console.log("outside");
       axios
         .all([
           axios.post(
@@ -1042,6 +1115,7 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
+            console.log("inside");
             if (profileRes.status == 200) {
               // console.log("Profile picture updated successfully.");
             } else {
@@ -1061,6 +1135,22 @@ export default {
         );
     }
   },
+  validations: {
+    user_data: {
+      first_name: { required },
+      last_name: { required },
+      profession: { required },
+      sex: { required },
+      summary: { required },
+      country: { required },
+      // industry: { required },
+      phone: { required },
+      address: { required },
+      birthday: { required },
+      website: { required },
+      email: { required, email }
+    }
+  },
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
@@ -1069,11 +1159,66 @@ export default {
         responseType: "json"
       })
       .then(res => {
-        this.email = res.data.email;
+        this.user_data.email = res.data.email;
       });
   }
 };
+
+//input file
+document.querySelector("html").classList.add("js");
+
+var fileInput = document.querySelector(".input-file"),
+  button = document.querySelector(".input-file-trigger"),
+  the_return = document.querySelector(".file-return");
+
+//---------------
 </script>
 
 <style scoped>
+.input-file-container {
+  position: relative;
+  width: 225px;
+}
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39d2b4;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495e;
+  color: #39d2b4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Fotoja e zgjedhur: ";
+  font-style: normal;
+  font-weight: normal;
+}
 </style>

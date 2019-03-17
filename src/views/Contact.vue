@@ -7,8 +7,7 @@
       <!-- <div class="container no-shadow">
         <h1 class="text-center">Na kontaktoni</h1>
         <p class="lead text-center">
-          Thoni pershendetje, na shkruani nje leter, dhe ne do you kontaktojm sa
-          me shpejt te jete e mundur.
+          Na shkruani ne formularin e meposhtem.
         </p>
       </div>-->
     </header>
@@ -18,14 +17,14 @@
       <section>
         <div class="container">
           <div class="row">
-            <!-- <div class="col-sm-12 col-md-8">
-              <h4>Forma e kontaktit</h4>
+            <div class="col-sm-12 col-md-8">
+              <h4>Formulari i kontaktit</h4>
               <form>
                 <div class="form-group">
                   <input
                     type="text"
                     class="form-control input-lg"
-                    placeholder="Name"
+                    placeholder="Emri"
                   />
                 </div>
 
@@ -41,13 +40,13 @@
                   <textarea
                     class="form-control"
                     rows="5"
-                    placeholder="Message"
+                    placeholder="Mesazhi"
                   ></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Dergo</button>
               </form>
-            </div>-->
+            </div>
             <div class="col-sm-24 col-md-12">
               <h4>Informacion</h4>
               <div class="highlighted-block">

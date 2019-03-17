@@ -8,6 +8,33 @@ import ApiService from "./common/api.service";
 import DateFilter from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
 
+import Vuelidate from "vuelidate";
+import VuelidateErrorExtractor, { templates } from "vuelidate-error-extractor";
+
+Vue.use(Vuelidate);
+Vue.use(VuelidateErrorExtractor, {
+  i18n: false,
+  // Define common validation messages.
+  messages: {
+    required: "{attribute} is required!",
+    email: "{attribute} must be a proper email!"
+  },
+  attributes: {
+    first_name: "First Name",
+    last_name: "Last Name",
+    profession: "Profession",
+    sex: "Sex",
+    summary: "Summary",
+    country: "Country",
+    industry: "Industry",
+    phone: "Phone",
+    address: "Address",
+    birthday: "Birthday",
+    website: "Website",
+    email: "Email"
+  }
+});
+
 Vue.config.productionTip = false;
 Vue.filter("date", DateFilter);
 Vue.filter("error", ErrorFilter);

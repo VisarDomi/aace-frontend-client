@@ -44,11 +44,7 @@
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-4">
-                  <select
-                    class="form-control"
-                    v-model="profession_id"
-                    @change="changeProfession"
-                  >
+                  <select class="form-control" v-model="profession_id" @change="changeProfession">
                     <option
                       v-for="option in profession_options"
                       v-bind:value="option.id"
@@ -240,8 +236,10 @@
                               )
                             "
                           >
-                          <label>Ngarkoni dokumentin perkates per kete arsimim ne
-                            qofte se udhezohet nga administratori</label>
+                          <label>
+                            Ngarkoni dokumentin perkates per kete arsimim ne
+                            qofte se udhezohet nga administratori
+                          </label>
                         </div>
                       </div>
 
@@ -405,8 +403,10 @@
                               )
                             "
                           >
-                          <label>Ngarkoni dokumentin perkates per kete pervoje pune
-                            ne qofte se udhezohet nga administratori</label>
+                          <label>
+                            Ngarkoni dokumentin perkates per kete pervoje pune
+                            ne qofte se udhezohet nga administratori
+                          </label>
                         </div>
                       </div>
 
@@ -574,12 +574,12 @@
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Pershkrim i kualifikimit</label>
                           <div class="col-sm-9">
-                          <textarea
-                            class="form-control"
-                            rows="3"
-                            placeholder="Pershkrim i shkurter"
-                            v-model="skillInput.description"
-                          ></textarea>
+                            <textarea
+                              class="form-control"
+                              rows="3"
+                              placeholder="Pershkrim i shkurter"
+                              v-model="skillInput.description"
+                            ></textarea>
                           </div>
                         </div>
                       </div>
@@ -1071,49 +1071,49 @@ export default {
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
-      // axios
-      //     .all([
-      //     axios.post(
-      //         "https://aace.ml/api/user/" + USER_ID + "/media",
-      //         formDataUser,
-      //         {
-      //         "Content-Type": "multipart/form-data",
-      //         headers: {
-      //             Authorization: "Bearer " + TOKEN
-      //         }
-      //         }
-      //     ),
-      //     axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-      //         headers: {
-      //         Authorization: "Bearer " + TOKEN
-      //         }
-      //     })
-      //     ])
-      //     .then(
-      //     axios.spread((profileRes, stringRes) => {
-      //         // console.log(
-      //         //   "res.statuses are: ",
-      //         //   profileRes.status,
-      //         //   stringRes.status
-      //         // );
+      axios
+        .all([
+          axios.post(
+            "https://aace.ml/api/user/" + USER_ID + "/media",
+            formDataUser,
+            {
+              "Content-Type": "multipart/form-data",
+              headers: {
+                Authorization: "Bearer " + TOKEN
+              }
+            }
+          ),
+          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          })
+        ])
+        .then(
+          axios.spread((profileRes, stringRes) => {
+            // console.log(
+            //   "res.statuses are: ",
+            //   profileRes.status,
+            //   stringRes.status
+            // );
 
-      //         if (profileRes.status == 200) {
-      //         // console.log("Profile picture updated successfully.");
-      //         } else {
-      //         // console.log("profile picture bad response");
-      //         }
+            if (profileRes.status == 200) {
+              // console.log("Profile picture updated successfully.");
+            } else {
+              // console.log("profile picture bad response");
+            }
 
-      //         if (stringRes.status == 200) {
-      //         // console.log("Strings sent successfully.");
-      //         localStorage.setItem("user", JSON.stringify(stringRes.data));
-      //         this.$router.push({
-      //             name: "Success"
-      //         });
-      //         } else {
-      //         // console.log("String sent unsuccessfuly");
-      //         }
-      //     })
-      //     );
+            if (stringRes.status == 200) {
+              // console.log("Strings sent successfully.");
+              localStorage.setItem("user", JSON.stringify(stringRes.data));
+              this.$router.push({
+                name: "Success"
+              });
+            } else {
+              // console.log("String sent unsuccessfuly");
+            }
+          })
+        );
     }
   },
   mounted() {

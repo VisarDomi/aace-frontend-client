@@ -9,10 +9,16 @@
         <div class="col-md-5">
           <br />
           <br />
-          <h4>Mireseerdhet ne SHOSHIK.</h4>
+          <h4>
+            Mireseerdhet ne Shoqaten Shqiptare te Inxhiniereve Konsulente.
+          </h4>
           <br />
           <h6 class="font-alt">
-            Shoqata shqiptare e inxhiniereve konsulente: pershkrim
+            SHOSHIK eshte qendra e te gjithe inxhiniereve qe operojne ne
+            Shqiperi gjithashtu dhe qendra e mendimit shkencor shqiptar qe
+            kontribuon ne zhvillimin e vendit. Inxhinieret konsulete lokal apo
+            te huaj qe punojne ne Shqiperi jane te mirepritur t'i bashkohen
+            Shoqates ne menyre qe t'japin kontributin e tyre.
           </h6>
           <br />
           <br />
@@ -33,11 +39,23 @@
           <div class="col-sm-12 col-md-6">
             <header class="section-header text-left">
               <span>Rreth nesh</span>
-              <h2>Kush jemi ne</h2>
+              <h2>Kush jemi</h2>
             </header>
 
-            <p class="lead">pershkrim</p>
-            <p>edhe ktu</p>
+            <p class="lead">
+              Per 15 vite, Shoqata Shqipetare e Inxhinereve Konsulete ka
+              perfaqesuar zerin e sektorin ne nivel lokal dhe nderkombetar.
+              Gjate kesaj kohe, evenimente internacionale na kane ndihmuar te
+              krijojme kontakt me zhvillimet me t'fundit te shkences dhe
+              teknologjise, nderkohe ne mbledhjet lokale, seminaret, dhe
+              konferencat na kane dhene nje kontribut te sjellim keto
+              eksperienca te fituara te inxhinieret shqiptare.
+            </p>
+            <p>
+              Misioni yne eshte te mbajme nje nivel standarti dhe
+              profesionalizmi ne projektim dhe zbatimin e projekteve ne Shqiperi
+              duke dhene mbeshtetje shkencore mbi zgjidhje te qendrueshme.
+            </p>
 
             <br />
             <br />
@@ -72,10 +90,9 @@
               <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Publikime</h6>
             </div>-->
-            <div class="counter col-md-12 col-sm-24">
-              <p>
-                <span data-from="0" data-to="20"></span>
-              </p>
+
+            <div class="counter col-md-4 col-sm-8">
+              <p><span data-from="0" data-to="50"></span>+</p>
               <h6>Anetare</h6>
             </div>
 
@@ -115,20 +132,20 @@
         <div class="container">
           <header class="section-header">
             <span>Zbulo</span>
-            <h2>Lexo me shume rreth SHOSHIK</h2>
-            <p>Ketu jan kategorite me interesante</p>
+            <h2>Sherbimet e ofruara</h2>
+            <p>Ketu jane sherbimet e platformes</p>
           </header>
 
           <div class="category-grid">
             <router-link :to="{ name: 'Directory' }" style="height: 295px;">
               <i class="fa fa-clipboard"></i>
-              <h6>Kerkimi i anetareve</h6>
-              <p>Kerko te gjithe anetaret e shoqates ose filtro sipas emrit</p>
+              <h6>Kerko</h6>
+              <p>Kerko indeksin e antareve sipas emrit</p>
             </router-link>
             <router-link :to="{ name: 'Membership' }" style="height: 295px;">
               <i class="fa fa-users"></i>
-              <h6>Anetaresia</h6>
-              <p>Lexo rregulloren dhe si te behesh anetar</p>
+              <h6>Apliko</h6>
+              <p>Meso mbi procesin e aplikimit te antarsise ne SHOSHIK</p>
             </router-link>
             <router-link
               :to="{ name: 'MemberArea' }"
@@ -142,7 +159,7 @@
             <router-link :to="{ name: 'Login' }" style="height: 295px;" v-else>
               <i class="fa fa-sign-in"></i>
               <h6>Zona e anetareve</h6>
-              <p>Rrjeti social i anetareve te shoqates</p>
+              <p>Sherbimet e platformes te rezervuara per anetaret</p>
             </router-link>
           </div>
         </div>

@@ -34,24 +34,44 @@ import axios from "axios";
 export default {
   name: "Success",
   mounted() {
-    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+    let USER = JSON.parse(localStorage.getItem("user"));
     let TOKEN = localStorage.getItem("id_token");
-
-    axios
-      .put(
-        "https://aace.ml/api/user/" + USER_ID,
-        {
-          register_status: "applying"
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + TOKEN
+    console.log("user status, ", USER.register_status);
+    if (USER.register_status == "blank") {
+      axios
+        .put(
+          "https://aace.ml/api/user/" + USER.id,
+          {
+            register_status: "applying"
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
           }
-        }
-      )
-      .then(res => {
-        console.log(res);
-      });
+        )
+        .then(res => {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          console.log(res);
+        });
+    } else {
+      axios
+        .put(
+          "https://aace.ml/api/user/" + USER.id,
+          {
+            register_status: "reapplying"
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + TOKEN
+            }
+          }
+        )
+        .then(res => {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          console.log(res);
+        });
+    }
   }
 };
 </script>
