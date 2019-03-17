@@ -14,3 +14,4 @@ export const FETCH_COMMUNICATION = "fetchCommunication";
 export const FETCH_DOCS = "fetchDocs";
 export const FETCH_COMMENTS = "fetchComments";
 export const MAKE_COMMENT = "makeComment";
+export const FETCH_APPLICATION_INFO = "fetchApplicationInfo";

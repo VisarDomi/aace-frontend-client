@@ -37,14 +37,14 @@
             <li>
               <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">
                 <i class="fa fa-user fa-2x profile-icon become-inline"></i>
-                <div class="become-inline become-margin-right">Profili</div>
+                <div class="become-inline become-margin-right">{{currentUser.email}}</div>
               </router-link>
-              <ul>
+              <!-- <ul>
                 <li>{{ currentUser.email }}</li>
                 <li
                   v-if="currentUser.first_name"
                 >{{ currentUser.first_name + " " + currentUser.last_name }}</li>
-              </ul>
+              </ul> -->
             </li>
           </ul>
           <div @click="logout" class="user-login become-inline">
@@ -89,7 +89,7 @@
                 <router-link
                   :to="{ name: 'Application' }"
                   v-if="currentUser.register_status == 'blank'"
-                >Forma e aplikimit</router-link>
+                >Formulari i aplikimit</router-link>
               </li>
               <li>
                 <router-link
@@ -98,7 +98,7 @@
                     currentUser.register_status == 'rebutted' ||
                       currentUser.register_status == 'accepted'
                   "
-                >Forma e riaplikimit</router-link>
+                >Formulari per ri-aplikim</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
