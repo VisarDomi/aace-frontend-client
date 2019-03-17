@@ -22,25 +22,13 @@
 
             <ul class="details cols-2">
               <li>
-                <i class="fa"></i>
+                <i class="fa fa-male"></i>
                 <span>{{ profile.sex }}</span>
               </li>
 
               <li>
                 <i class="fa fa-map-marker"></i>
                 <span>{{ profile.country }}</span>
-              </li>
-
-              <li>
-                <i class="fa fa-globe"></i>
-                <a href="#">{{ profile.website }}</a>
-              </li>
-
-              <li>
-                <i class="fa fa-money"></i>
-                <span>{{
-                  profile.years_of_experience + " years of experience"
-                }}</span>
               </li>
 
               <li>
@@ -56,6 +44,11 @@
               <li>
                 <i class="fa fa-envelope"></i>
                 <a href="#">{{ profile.email }}</a>
+              </li>
+
+              <li v-if="!!profile.website">
+                <i class="fa fa-globe"></i>
+                <a href="#">{{ profile.website }}</a>
               </li>
             </ul>
           </div>

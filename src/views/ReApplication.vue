@@ -5,23 +5,17 @@
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Rregullo aplikimin</h1>
-          <p class="lead text-center">
-            Rregulloni aplikimin sipas udhezimit te komentit te administratorit.
-          </p>
+          <p
+            class="lead text-center"
+          >Rregulloni aplikimin sipas udhezimit te komentit te administratorit.</p>
         </div>
 
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
-                <input
-                  type="file"
-                  ref="profile_file"
-                  @change="handleFileUploadProfile"
-                />
-                <span class="help-block"
-                  >Ju lutem zgjidhni foto profili (4:6).</span
-                >
+                <input type="file" ref="profile_file" @change="handleFileUploadProfile">
+                <span class="help-block">Ju lutem zgjidhni foto profili (4:6).</span>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -31,7 +25,7 @@
                   class="form-control input-lg"
                   placeholder="Emri"
                   v-model="first_name"
-                />
+                >
               </div>
               <div class="form-group">
                 <input
@@ -39,7 +33,7 @@
                   class="form-control input-lg"
                   placeholder="Mbiemri"
                   v-model="last_name"
-                />
+                >
               </div>
               <div class="form-group">
                 <select
@@ -51,8 +45,7 @@
                     v-for="option in profession_options"
                     v-bind:value="option.id"
                     :key="option.id"
-                    >{{ option.text }}</option
-                  >>
+                  >{{ option.text }}</option>>
                 </select>
                 <div class="form-group col-sm-6">
                   <input
@@ -61,7 +54,7 @@
                     class="form-control"
                     v-model="profession"
                     :placeholder="profession_other"
-                  />
+                  >
                 </div>
               </div>
 
@@ -71,8 +64,7 @@
                     v-for="option in sex_options"
                     v-bind:value="option.text"
                     :key="option.id"
-                    >{{ option.text }}</option
-                  >
+                  >{{ option.text }}</option>
                 </select>
               </div>
 
@@ -85,7 +77,7 @@
                 ></textarea>
               </div>
 
-              <hr class="hr-lg" />
+              <hr class="hr-lg">
 
               <h6>Basic information</h6>
               <div class="row">
@@ -99,7 +91,7 @@
                       class="form-control"
                       placeholder="Vendlindja"
                       v-model="country"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -108,12 +100,7 @@
                     <span class="input-group-addon">
                       <i class="fa fa-map-marker"></i>
                     </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Adresa"
-                      v-model="address"
-                    />
+                    <input type="text" class="form-control" placeholder="Adresa" v-model="address">
                   </div>
                 </div>
 
@@ -127,7 +114,7 @@
                       class="form-control"
                       placeholder="Faqja juaj e internetit"
                       v-model="website"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -141,7 +128,7 @@
                       class="form-control"
                       placeholder="Datelindja"
                       v-model="birthday"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -155,7 +142,7 @@
                       class="form-control"
                       placeholder="Numri telefonit"
                       v-model="phone"
-                    />
+                    >
                   </div>
                 </div>
 
@@ -164,12 +151,7 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      :placeholder="email"
-                      disabled
-                    />
+                    <input type="text" class="form-control" :placeholder="email" disabled>
                   </div>
                 </div>
               </div>
@@ -186,11 +168,7 @@
               <h2>Udhezime nga administratori</h2>
               <p>{{ comment_from_administrator }}</p>
             </header>
-            <header
-              class="section-header"
-              :key="education.id"
-              v-for="education in educationInputs"
-            >
+            <header class="section-header" :key="education.id" v-for="education in educationInputs">
               <p>{{ education }}</p>
             </header>
             <header
@@ -231,34 +209,23 @@
                                 index
                               )
                             "
-                          />
-                          <span class="help-block"
-                            >Ngarkoni dokumentin perkates per kete arsimim ne
-                            qofte se udhezohet nga administratori</span
                           >
-                          <<<<<<< HEAD
                           <span class="help-block">
                             Ngarkoni dokumentin perkates per kete arsimim ne
                             qofte se udhezohet nga administratori
                           </span>
-                          ======= >>>>>>>
-                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
                         <label class="col-sm-6">Tipi i arsimimit</label>
                         <div class="form-group">
-                          <select
-                            class="form-control"
-                            v-model="education_type_id[index]"
-                          >
+                          <select class="form-control" v-model="education_type_id[index]">
                             <option
                               v-for="option in education_type_options"
                               v-bind:value="option.id"
                               :key="option.id"
-                              >{{ option.text }}</option
-                            >
+                            >{{ option.text }}</option>
                           </select>
                         </div>
 
@@ -278,8 +245,7 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-5">
@@ -289,7 +255,7 @@
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="..."
-                            />
+                            >
                           </div>
                         </div>
 
@@ -309,8 +275,7 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="form-group col-sm-4">
@@ -320,7 +285,7 @@
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="..."
-                            />
+                            >
                           </div>
                         </div>
 
@@ -330,7 +295,7 @@
                             class="form-control"
                             v-model="educationInput.school"
                             placeholder="School name, e.g. Massachusetts Institute of Technology"
-                          />
+                          >
                         </div>
                         <div class="form-group">
                           <div class="input-group">
@@ -340,15 +305,19 @@
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
-                            />
+                            >
+                          </div>
+                        </div>
 
+                        <div class="form-group">
+                          <div class="input-group">
                             <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2016"
                               v-model="educationInput.to_date"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group">
@@ -397,18 +366,11 @@
                                 index
                               )
                             "
-                          />
-                          <span class="help-block"
-                            >Ngarkoni dokumentin perkates per kete pervoje pune
-                            ne qofte se udhezohet nga administratori</span
                           >
-                          <<<<<<< HEAD
                           <span class="help-block">
                             Ngarkoni dokumentin perkates per kete pervoje pune
                             ne qofte se udhezohet nga administratori
                           </span>
-                          ======= >>>>>>>
-                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
@@ -419,7 +381,7 @@
                             class="form-control"
                             v-model="experienceInput.title"
                             placeholder="Titulli qe keni mbajtur ne pune"
-                          />
+                          >
                         </div>
 
                         <div class="form-group">
@@ -428,7 +390,7 @@
                             class="form-control"
                             v-model="experienceInput.employer"
                             placeholder="Emri i punedhenesit"
-                          />
+                          >
                         </div>
 
                         <div class="form-group">
@@ -437,7 +399,7 @@
                             class="form-control"
                             v-model="experienceInput.location"
                             placeholder="Vendi ku keni punuar"
-                          />
+                          >
                         </div>
 
                         <div class="form-group">
@@ -448,14 +410,19 @@
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
-                            />
+                            >
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="input-group">
                             <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -502,18 +469,11 @@
                             @change="
                               handleFileUploadSkill(skillInput.id, index)
                             "
-                          />
-                          <span class="help-block"
-                            >Ngarkoni dokumentin perkates per kete kualifikim ne
-                            qofte se udhezohet nga administratori</span
                           >
-                          <<<<<<< HEAD
                           <span class="help-block">
                             Ngarkoni dokumentin perkates per kete kualifikim ne
                             qofte se udhezohet nga administratori
                           </span>
-                          ======= >>>>>>>
-                          7dce003a025a5f803a71485725c76b22b661d5d8
                         </div>
                       </div>
 
@@ -524,7 +484,7 @@
                             class="form-control"
                             v-model="skillInput.releaser"
                             placeholder="Leshuesi i kualifikimit"
-                          />
+                          >
                         </div>
                         <div class="form-group">
                           <input
@@ -532,7 +492,7 @@
                             class="form-control"
                             v-model="skillInput.name"
                             placeholder="Emri i kualifikimit"
-                          />
+                          >
                         </div>
                         <div class="form-group">
                           <div class="input-group">
@@ -542,14 +502,19 @@
                               class="form-control"
                               v-model="skillInput.from_date"
                               placeholder="e.g. 2012"
-                            />
+                            >
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="input-group">
                             <span class="input-group-addon">Deri ne</span>
                             <input
                               type="date"
                               class="form-control"
                               v-model="skillInput.to_date"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group">
@@ -583,9 +548,7 @@
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">
-                Dergo aplikimin
-              </button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
             </p>
           </div>
         </section>
@@ -663,7 +626,7 @@ export default {
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-        1: [{ text: "???", id: 1 }, { text: "????", id: 2 }],
+        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }],
         2: [
           { text: "Inxhinier Civil", id: 3 },
           { text: "Inxhinier Elektrik", id: 4 },

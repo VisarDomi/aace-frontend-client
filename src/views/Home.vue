@@ -7,15 +7,19 @@
     >
       <div class="container">
         <div class="col-md-5">
-          <br>
-          <br>
+          <br />
+          <br />
           <h4>Mireseerdhet ne SHOSHIK.</h4>
-          <br>
-          <h6 class="font-alt">Shoqata shqiptare e inxhiniereve konsulente: pershkrim</h6>
-          <br>
-          <br>
+          <br />
+          <h6 class="font-alt">
+            Shoqata shqiptare e inxhiniereve konsulente: pershkrim
+          </h6>
+          <br />
+          <br />
           <router-link :to="{ name: 'Membership' }">
-            <button class="btn btn-primary" type="submit">Behu pjese e shoqates</button>
+            <button class="btn btn-primary" type="submit">
+              Behu pjese e shoqates
+            </button>
           </router-link>
         </div>
       </div>
@@ -35,21 +39,24 @@
             <p class="lead">pershkrim</p>
             <p>edhe ktu</p>
 
-            <br>
-            <br>
-            <router-link
-              :to="{ name: 'About' }"
-              class="btn btn-primary"
-            >Lexo me shume rreth shoqates</router-link>
+            <br />
+            <br />
+            <router-link :to="{ name: 'About' }" class="btn btn-primary"
+              >Lexo me shume rreth shoqates</router-link
+            >
           </div>
 
           <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <img class="center-block" src="/static/img/aboutus_plc.png" alt="how it works">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <img
+              class="center-block"
+              src="/static/img/aboutus_plc.png"
+              alt="how it works"
+            />
           </div>
         </div>
       </section>
@@ -123,7 +130,11 @@
               <h6>Anetaresia</h6>
               <p>Lexo rregulloren dhe si te behesh anetar</p>
             </router-link>
-            <router-link :to="{ name: 'MemberArea' }" style="height: 295px;" v-if="isAuthenticated">
+            <router-link
+              :to="{ name: 'MemberArea' }"
+              style="height: 295px;"
+              v-if="isAuthenticated"
+            >
               <i class="fa fa-sign-in"></i>
               <h6>Zona e anetareve</h6>
               <p>Rrjeti social i anetareve te shoqates</p>

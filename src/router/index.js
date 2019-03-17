@@ -132,6 +132,24 @@ export default new Router({
       }
     },
     {
+      path: "/before_application",
+      name: "BeforeApplication",
+      component: () => import("@/views/BeforeApplication"),
+      meta: {
+        title: "BeforeApplication",
+        metaTags: [
+          {
+            name: "description",
+            content: "The before_application page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The before_application page of AACE."
+          }
+        ]
+      }
+    },
+    {
       path: "/directory",
       name: "Directory",
       component: () => import("@/views/Directory"),
