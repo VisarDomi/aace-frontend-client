@@ -5,46 +5,60 @@
       <div class="container">
         <!-- Logo -->
         <div class="pull-left">
-          <a href="#" data-toggle="offcanvas" class="navbar-toggle" style="padding-top:20px;">
+          <a
+            href="#"
+            data-toggle="offcanvas"
+            class="navbar-toggle"
+            style="padding-top:20px;"
+          >
             <i class="ti-menu"></i>
           </a>
 
           <div class="logo-wrapper show-logo-1">
             <router-link :to="{ name: 'Home' }" class="logo">
-              <img src="/static/img/logo_partial.png" alt="logo">
+              <img src="/static/img/logo_partial.png" alt="logo" />
             </router-link>
             <router-link :to="{ name: 'Home' }" class="logo-alt">
-              <img src="/static/img/logo_partial_alt.png" alt="logo-alt">
+              <img src="/static/img/logo_partial_alt.png" alt="logo-alt" />
             </router-link>
           </div>
           <div class="logo-wrapper show-logo-2">
             <router-link :to="{ name: 'Home' }" class="logo">
-              <img src="/static/img/logo_full.png" alt="logo">
+              <img src="/static/img/logo_full.png" alt="logo" />
             </router-link>
             <router-link :to="{ name: 'Home' }" class="logo-alt">
-              <img src="/static/img/logo_full_alt.png" alt="logo-alt">
+              <img src="/static/img/logo_full_alt.png" alt="logo-alt" />
             </router-link>
           </div>
         </div>
         <!-- END Logo -->
         <!-- User account -->
         <div class="pull-right user-login" v-if="!isAuthenticated">
-          <router-link :to="{ name: 'Login' }" class="btn btn-sm btn-primary" id="loginButton">Hyr</router-link>ose
+          <router-link
+            :to="{ name: 'Login' }"
+            class="btn btn-sm btn-primary"
+            id="loginButton"
+            >Hyr</router-link
+          >ose
           <router-link :to="{ name: 'Register' }">Regjistrohu</router-link>
         </div>
         <div class="pull-right" v-else>
           <ul class="profile-menu become-inline">
             <li>
-              <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">
+              <router-link
+                :to="{ name: 'Profile', params: { id: currentUser.id } }"
+              >
                 <i class="fa fa-user fa-2x profile-icon become-inline"></i>
-                <div class="become-inline become-margin-right">{{currentUser.email}}</div>
+                <div class="become-inline become-margin-right">
+                  Profili
+                </div>
               </router-link>
-              <!-- <ul>
+              <ul>
                 <li>{{ currentUser.email }}</li>
                 <li
                   v-if="currentUser.first_name"
                 >{{ currentUser.first_name + " " + currentUser.last_name }}</li>
-              </ul> -->
+              </ul>
             </li>
           </ul>
           <div @click="logout" class="user-login become-inline">
@@ -64,7 +78,9 @@
                 <router-link :to="{ name: 'About' }">Rreth nesh</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'Contact' }">Na kontaktoni</router-link>
+                <router-link :to="{ name: 'Contact' }"
+                  >Na kontaktoni</router-link
+                >
               </li>
               <!-- <li>
                 <router-link :to="{name: 'Board'}">Board</router-link>
@@ -80,39 +96,48 @@
             >
           </li>
           <li>
-            <router-link :to="{ name: 'MemberArea' }" v-if="isAuthenticated">Zona e anetareve</router-link>
+            <router-link :to="{ name: 'MemberArea' }" v-if="isAuthenticated"
+              >Zona e anetareve</router-link
+            >
             <ul>
               <li v-if="currentUser.id">
-                <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">Profili</router-link>
+                <router-link
+                  :to="{ name: 'Profile', params: { id: currentUser.id } }"
+                  >Profili</router-link
+                >
               </li>
               <li>
                 <router-link
                   :to="{ name: 'Application' }"
                   v-if="applicationStatus == 'blank'"
-                >Formulari i aplikimit</router-link>
+                  >Formulari i aplikimit</router-link
+                >
               </li>
               <li>
                 <router-link
                   :to="{ name: 'ReApplication' }"
-                  v-if="
-                    applicationStatus == 'rebutted' 
-                  "
-                >Formulari per ri-aplikim</router-link>
+                  v-if="applicationStatus == 'rebutted'"
+                  >Formulari per ri-aplikim</router-link
+                >
               </li>
               <li>
-                <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
+                <router-link :to="{ name: 'ApplicationStatus' }"
+                  >Statusi i aplikimit</router-link
+                >
               </li>
               <li>
-                <router-link :to="{ name: 'Communications' }" v-if="
-                    applicationStatus == 'accepted' 
-                  ">Komunikime zyrtare</router-link>
+                <router-link
+                  :to="{ name: 'Communications' }"
+                  v-if="applicationStatus == 'accepted'"
+                  >Komunikime zyrtare</router-link
+                >
               </li>
               <li>
-                <router-link :to="{ name: 'ComingSoon' }"
-                v-if="
-                    applicationStatus == 'accepted' 
-                  "
-                >Votime</router-link>
+                <router-link
+                  :to="{ name: 'ComingSoon' }"
+                  v-if="applicationStatus == 'accepted'"
+                  >Votime</router-link
+                >
               </li>
               <!-- <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Log-out</a>
@@ -130,7 +155,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { LOGOUT,FETCH_APPLICATION_INFO } from "@/store/actions.type";
+import { LOGOUT, FETCH_APPLICATION_INFO } from "@/store/actions.type";
 export default {
   name: "AppNavbar",
   methods: {
@@ -144,7 +169,7 @@ export default {
     ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus"])
   },
   mounted() {
-    this.$store.dispatch(FETCH_APPLICATION_INFO)
+    this.$store.dispatch(FETCH_APPLICATION_INFO);
   }
 };
 </script>
@@ -168,7 +193,7 @@ export default {
 }
 
 /* show only small logo on small screens */
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1122px) {
   .show-logo-1 {
     display: none !important;
   }
@@ -182,7 +207,7 @@ export default {
   } */
 }
 /* dont show big logo on these screens */
-@media screen and (min-width: 992px) and (max-width: 1099px) {
+@media screen and (min-width: 992px) and (max-width: 1121px) {
   .show-logo-2 {
     display: none !important;
   }

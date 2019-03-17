@@ -9,13 +9,14 @@ import {
 import {
   SET_COMMUNICATION,
   SET_COMMUNICATIONS,
-  SET_COMMENTS
+  SET_COMMENTS,
+  SET_COMMENT
 } from "./mutations.type";
 
 const initialState = {
   communications: [],
   communication: {},
-  comments: {}
+  comments: []
 };
 
 export const state = { ...initialState };
@@ -55,9 +56,10 @@ export const actions = {
     console.log("communicationId", communicationId);
     console.log("body", body);
     console.log("files", files);
-    await CommunicationService.makeComment(communicationId, {
+    const { data } = await CommunicationService.makeComment(communicationId, {
       body: body
     });
+    context.commit(SET_COMMENT, data);
   }
 };
 
@@ -71,6 +73,11 @@ export const mutations = {
   [SET_COMMENTS](state, comments) {
     state.comments = comments;
     console.log("SET_COMMENTS", state.comments);
+  },
+  [SET_COMMENT](state, comment) {
+    console.log("state.comments", state.comments);
+    state.comments = state.comments.concat(comment);
+    console.log("SET_COMMENT", state.comments);
   }
 };
 

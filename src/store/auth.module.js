@@ -74,7 +74,7 @@ const actions = {
         })
         .catch(({ response }) => {
           // context.commit(SET_ERROR, response.data.errors);
-          console.log(response)
+          console.log(response);
         });
     } else {
       context.commit(PURGE_AUTH);

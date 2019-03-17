@@ -53,12 +53,12 @@
             </div>
           </div>
           <div class="col-md-12" :key="comment.id" v-for="comment in comments">
-            <br />
+            <br>
             <div>{{ comment.body }}</div>
             <div>{{ comment.author_id }}</div>
             <!-- <div>{{ comment.author_name }}</div> -->
             <div>{{ getFormattedDate(comment.timestamp) }}</div>
-            <br />
+            <br>
           </div>
           <div class="container" style="margin-top: 50px;">
             <form action>
@@ -69,10 +69,8 @@
                 v-model="comment_body"
                 placeholder="Shkruaj nje koment..."
               ></textarea>
-              <br />
-              <a class="btn btn-primary" href="#" @click="sendComment"
-                >Dergo koment</a
-              >
+              <br>
+              <div class="btn btn-primary" @click="sendComment">Dergo koment</div>
             </form>
           </div>
         </div>
@@ -157,10 +155,12 @@ export default {
     },
     sendComment() {
       console.log("communication.id", this.communication.id);
-      this.$store.dispatch(MAKE_COMMENT, {
-        communicationId: this.communication.id,
-        body: this.comment_body
-      });
+      this.$store
+        .dispatch(MAKE_COMMENT, {
+          communicationId: this.communication.id,
+          body: this.comment_body
+        })
+        .then(res => this.comment_body="");
     },
     downloadDoc(docID, docName) {
       axios

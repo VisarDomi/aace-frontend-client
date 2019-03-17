@@ -47,14 +47,14 @@ const getters = {
   skills(state) {
     return state.skills;
   },
-  applicationDate(state){
-    return state.applicationDate
+  applicationDate(state) {
+    return state.applicationDate;
   },
-  applicationStatus(state){
-    return state.applicationStatus
+  applicationStatus(state) {
+    return state.applicationStatus;
   },
-  commentFromAdmin(state){
-    return state.commentFromAdmin
+  commentFromAdmin(state) {
+    return state.commentFromAdmin;
   }
 };
 
@@ -98,7 +98,7 @@ const actions = {
       })
       .catch(() => {});
   },
-  [FETCH_APPLICATION_INFO](context){
+  [FETCH_APPLICATION_INFO](context) {
     MemberService.get(UserService.getUser().id)
       .then(({ data }) => {
         context.commit(SET_APPLICATION_STATUS, data.register_status);

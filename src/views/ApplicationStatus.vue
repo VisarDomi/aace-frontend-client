@@ -41,7 +41,10 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="applicationStatus == 'applying' || applicationStatus == 'reapplying'"
+            v-if="
+              applicationStatus == 'applying' ||
+                applicationStatus == 'reapplying'
+            "
           >
             <strong>Derguar.</strong>
           </div>
@@ -105,10 +108,15 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(FETCH_APPLICATION_INFO)
+    this.$store.dispatch(FETCH_APPLICATION_INFO);
   },
   computed: {
-    ...mapGetters(["currentUser", "applicationStatus", "applicationDate", "commentFromAdmin"])
+    ...mapGetters([
+      "currentUser",
+      "applicationStatus",
+      "applicationDate",
+      "commentFromAdmin"
+    ])
   }
 };
 </script>

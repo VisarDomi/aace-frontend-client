@@ -129,7 +129,9 @@
             </div>
           </div>
           <div v-else>
-            <h3 class="text-center" style="color: #ff6666">S'ka pervoje pune</h3>
+            <h3 class="text-center" style="color: #ff6666">
+              S'ka pervoje pune
+            </h3>
           </div>
         </div>
       </section>
