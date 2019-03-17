@@ -7,19 +7,15 @@
     >
       <div class="container">
         <div class="col-md-5">
-          <br />
-          <br />
+          <br>
+          <br>
           <h4>Mireseerdhet ne SHOSHIK.</h4>
-          <br />
-          <h6 class="font-alt">
-            Shoqata shqiptare e inxhiniereve konsulente: pershkrim
-          </h6>
-          <br />
-          <br />
+          <br>
+          <h6 class="font-alt">Shoqata shqiptare e inxhiniereve konsulente: pershkrim</h6>
+          <br>
+          <br>
           <router-link :to="{ name: 'Membership' }">
-            <button class="btn btn-primary" type="submit">
-              Behu pjese e shoqates
-            </button>
+            <button class="btn btn-primary" type="submit">Behu pjese e shoqates</button>
           </router-link>
         </div>
       </div>
@@ -39,24 +35,21 @@
             <p class="lead">pershkrim</p>
             <p>edhe ktu</p>
 
-            <br />
-            <br />
-            <router-link :to="{ name: 'About' }" class="btn btn-primary"
-              >Lexo me shume rreth shoqates</router-link
-            >
+            <br>
+            <br>
+            <router-link
+              :to="{ name: 'About' }"
+              class="btn btn-primary"
+            >Lexo me shume rreth shoqates</router-link>
           </div>
 
           <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <img
-              class="center-block"
-              src="/static/img/aboutus_plc.png"
-              alt="how it works"
-            />
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <img class="center-block" src="/static/img/aboutus_plc.png" alt="how it works">
           </div>
         </div>
       </section>
@@ -68,21 +61,21 @@
       >
         <div class="container">
           <div class="row">
-            <div class="counter col-md-4 col-sm-8">
+            <!-- <div class="counter col-md-3 col-sm-6">
               <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Publikime</h6>
-            </div>
-
-            <div class="counter col-md-4 col-sm-8">
-              <p><span data-from="0" data-to="20"></span>+</p>
+            </div>-->
+            <div class="counter col-md-12 col-sm-24">
+              <p>
+                <span data-from="0" data-to="20"></span>
+              </p>
               <h6>Anetare</h6>
             </div>
 
-            <div class="counter col-md-4 col-sm-8">
+            <!-- <div class="counter col-md-3 col-sm-6">
               <p><span data-from="0" data-to="2"></span>+</p>
               <h6>Evente</h6>
-            </div>
-
+            </div>-->
             <!-- <div class="counter col-md-3 col-sm-6">
               <p>
                 <span data-from="0" data-to="15"></span>+
@@ -120,34 +113,22 @@
           </header>
 
           <div class="category-grid">
-            <!-- <router-link :to="{ name: 'Events' }" style="height: 295px;">
-              <i class="fa fa-calendar"></i>
-              <h6>Events</h6>
-              <p>Attend events organized by members and directors</p>
-            </router-link>-->
             <router-link :to="{ name: 'Directory' }" style="height: 295px;">
               <i class="fa fa-clipboard"></i>
               <h6>Kerkimi i anetareve</h6>
               <p>Kerko te gjithe anetaret e shoqates ose filtro sipas emrit</p>
             </router-link>
-
-            <!-- <router-link :to="{ name: 'Publications' }" style="height: 295px;">
-              <i class="fa fa-newspaper-o"></i>
-              <h6>Publications</h6>
-              <p>Read about our latest developments</p>
-            </router-link>-->
             <router-link :to="{ name: 'Membership' }" style="height: 295px;">
               <i class="fa fa-users"></i>
               <h6>Anetaresia</h6>
               <p>Lexo rregulloren dhe si te behesh anetar</p>
             </router-link>
-
-            <!-- <router-link :to="{ name: 'Board' }" style="height: 295px;">
-              <i class="fa fa-sitemap"></i>
-              <h6>Board of directors</h6>
-              <p>Get to know our board of directors</p>
-            </router-link>-->
-            <router-link :to="{ name: 'Login' }" style="height: 295px;">
+            <router-link :to="{ name: 'MemberArea' }" style="height: 295px;" v-if="isAuthenticated">
+              <i class="fa fa-sign-in"></i>
+              <h6>Zona e anetareve</h6>
+              <p>Rrjeti social i anetareve te shoqates</p>
+            </router-link>
+            <router-link :to="{ name: 'Login' }" style="height: 295px;" v-else>
               <i class="fa fa-sign-in"></i>
               <h6>Zona e anetareve</h6>
               <p>Rrjeti social i anetareve te shoqates</p>
@@ -185,8 +166,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Home"
+  name: "Home",
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  }
 };
 </script>
 
