@@ -16,6 +16,7 @@ import {
   SET_SKILL,
   SET_APPLICATION_STATUS,
   SET_APPLICATION_DATE,
+  SET_REAPPLICATION_DATE,
   SET_COMMENT_ADMIN
 } from "./mutations.type";
 
@@ -28,6 +29,7 @@ const state = {
   skills: {},
   applicationStatus: "",
   applicationDate: "",
+  reapplicationDate: "",
   commentFromAdmin: ""
 };
 
@@ -49,6 +51,9 @@ const getters = {
   },
   applicationDate(state) {
     return state.applicationDate;
+  },
+  reapplicationDate(state) {
+    return state.reapplicationDate;
   },
   applicationStatus(state) {
     return state.applicationStatus;
@@ -103,6 +108,7 @@ const actions = {
       .then(({ data }) => {
         context.commit(SET_APPLICATION_STATUS, data.register_status);
         context.commit(SET_APPLICATION_DATE, data.application_date);
+        context.commit(SET_REAPPLICATION_DATE, data.reapplication_date);
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;
       })
@@ -132,6 +138,9 @@ const mutations = {
   },
   [SET_APPLICATION_DATE](state, date) {
     state.applicationDate = date;
+  },
+  [SET_REAPPLICATION_DATE](state, date) {
+    state.reapplicationDate = date;
   },
 
   [SET_EDUCATION](state, educations) {

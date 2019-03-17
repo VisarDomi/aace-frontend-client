@@ -17,4 +17,5 @@ export const SET_COMMENTS = "setComments";
 export const SET_COMMENT = "setComment";
 export const SET_APPLICATION_STATUS = "setApplicationStatus";
 export const SET_APPLICATION_DATE = "setApplicationDate";
+export const SET_REAPPLICATION_DATE = "setRepplicationDate";
 export const SET_COMMENT_ADMIN = "setCommentAdmin";
