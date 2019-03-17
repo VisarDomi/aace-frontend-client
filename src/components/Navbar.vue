@@ -74,7 +74,7 @@
           </li>
           <li>
             <router-link :to="{ name: 'Directory' }"
-              >Kerko per anetare</router-link
+              >Indeksi i inxhiniereve</router-link
             >
           </li>
           <li>
