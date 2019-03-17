@@ -22,7 +22,7 @@
 
             <ul class="details cols-2">
               <li>
-                <i class="fa fa-male"></i>
+                <i :class="'fa fa-' + iconType(profile.sex)"></i>
                 <span>{{ profile.sex }}</span>
               </li>
 
@@ -168,6 +168,18 @@ import { FETCH_PROFILE } from "@/store/actions.type";
 import store from "@/store";
 export default {
   name: "Profile",
+  methods: {
+    iconType(sex) {
+      let iconType = "male";
+      if (this.profile.sex == "Mashkull") {
+        iconType = "male";
+      } else if (this.currentUser.sex == "Mashkull") {
+        iconType = "female";
+      }
+      return iconType;
+    },
+
+  },
   mounted() {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },
