@@ -74,8 +74,6 @@
 
               <hr class="hr-lg">
 
-              <h6>Informacion i pergjithshem</h6>
-
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Vendlindja</label>
                 <div class="col-sm-9">
@@ -419,7 +417,7 @@
                         </div>
 
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Vendindodhja</label>
+                          <label class="col-sm-3">Vendndodhja</label>
                           <div class="col-sm-9">
                             <input
                               type="text"
