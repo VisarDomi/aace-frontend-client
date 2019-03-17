@@ -56,9 +56,9 @@
           </div>
 
           <div class="login-links">
-            <a href="#" class="pull-left btn btn-light"
+            <!-- <a href="#" class="pull-left btn btn-light"
               >Keni harruar fjalekalimin?</a
-            >
+            > -->
             <router-link
               to="/register"
               class="pull-right btn btn-light go-to-pull-left"

@@ -66,15 +66,16 @@ const actions = {
   [CHECK_AUTH](context) {
     if (JwtService.getToken()) {
       ApiService.setHeader();
-      context.commit(SET_AUTH_SECOND, UserService.getUser());
+      // context.commit(SET_AUTH_SECOND, UserService.getUser());
 
-      // ApiService.get("user", state.user.id)
-      //   .then(({ data }) => {
-      //     context.commit(SET_AUTH, data);
-      //   })
-      //   .catch(({ response }) => {
-      //     context.commit(SET_ERROR, response.data.errors);
-      //   });
+      ApiService.get("user", UserService.getUser().id)
+        .then(({ data }) => {
+          context.commit(SET_AUTH_SECOND, data);
+        })
+        .catch(({ response }) => {
+          // context.commit(SET_ERROR, response.data.errors);
+          console.log(response)
+        });
     } else {
       context.commit(PURGE_AUTH);
     }
@@ -112,7 +113,6 @@ const mutations = {
     state.isAuthenticated = true;
     state.user = user;
     state.errors = {};
-    console.log("saveToken", user.token);
     JwtService.saveToken(user.token);
     UserService.saveUser(user);
   },

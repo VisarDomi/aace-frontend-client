@@ -8,10 +8,10 @@ import ApiService from "./common/api.service";
 import DateFilter from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
 
-import Vuelidate from 'vuelidate'
+import Vuelidate from "vuelidate";
 import VuelidateErrorExtractor, { templates } from "vuelidate-error-extractor";
 
-Vue.use(Vuelidate)
+Vue.use(Vuelidate);
 Vue.use(VuelidateErrorExtractor, {
   i18n: false,
   // Define common validation messages.

@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col-xs-12">
               <br />
-              <h5>
+              <h5 v-if="isSearching">
                 U gjenden
                 <strong>{{ searchResult.length }}</strong> anetare.
               </h5>
@@ -152,13 +152,15 @@ export default {
   },
   data() {
     return {
-      name: ""
+      name: "",
+      isSearching: false
     };
   },
   methods: {
     search(name) {
       this.$store.dispatch(CLEAN_PICTURES);
       this.$store.dispatch(FETCH_MEMBER, { name: name });
+      this.isSearching = true;
     },
     open_user_profile(user) {}
   },

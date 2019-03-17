@@ -22,25 +22,13 @@
 
             <ul class="details cols-2">
               <li>
-                <i class="fa"></i>
+                <i :class="'fa fa-' + iconType(profile.sex)"></i>
                 <span>{{ profile.sex }}</span>
               </li>
 
               <li>
                 <i class="fa fa-map-marker"></i>
                 <span>{{ profile.country }}</span>
-              </li>
-
-              <li>
-                <i class="fa fa-globe"></i>
-                <a href="#">{{ profile.website }}</a>
-              </li>
-
-              <li>
-                <i class="fa fa-money"></i>
-                <span>{{
-                  profile.years_of_experience + " years of experience"
-                }}</span>
               </li>
 
               <li>
@@ -56,6 +44,11 @@
               <li>
                 <i class="fa fa-envelope"></i>
                 <a href="#">{{ profile.email }}</a>
+              </li>
+
+              <li v-if="!!profile.website">
+                <i class="fa fa-globe"></i>
+                <a href="#">{{ profile.website }}</a>
               </li>
             </ul>
           </div>
@@ -73,7 +66,7 @@
             <h2>Arsimimi</h2>
           </header>
 
-          <div class="row">
+          <div class="row" v-if="experiences.length">
             <div
               class="col-xs-12"
               :key="education.id"
@@ -98,6 +91,9 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h3 class="text-center" style="color: #ff6666">S'ka arsimime</h3>
+          </div>
         </div>
       </section>
       <!-- END Education -->
@@ -109,7 +105,7 @@
             <h2>Pervoje pune</h2>
           </header>
 
-          <div class="row">
+          <div class="row" v-if="experiences.length">
             <div
               class="col-xs-12"
               :key="experience.id"
@@ -132,6 +128,9 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h3 class="text-center" style="color: #ff6666">S'ka pervoje pune</h3>
+          </div>
         </div>
       </section>
       <!-- END Work Experience -->
@@ -143,7 +142,7 @@
             <h2>Kualifikime/Arritje profesionale</h2>
           </header>
 
-          <div class="row">
+          <div class="row" v-if="skills.length">
             <div class="col-xs-12" :key="skill.id" v-for="skill in skills">
               <div class="item-block">
                 <header>
@@ -161,6 +160,9 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h3 class="text-center" style="color: #ff6666">S'ka kualifikime</h3>
+          </div>
         </div>
       </section>
       <!-- END Skills -->
@@ -175,6 +177,17 @@ import { FETCH_PROFILE } from "@/store/actions.type";
 import store from "@/store";
 export default {
   name: "Profile",
+  methods: {
+    iconType(sex) {
+      let iconType = "male";
+      if (this.profile.sex == "Mashkull") {
+        iconType = "male";
+      } else if (this.currentUser.sex == "Femer") {
+        iconType = "female";
+      }
+      return iconType;
+    }
+  },
   mounted() {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
   },

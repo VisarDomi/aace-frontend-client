@@ -53,13 +53,12 @@
             </div>
           </div>
           <div class="col-md-12" :key="comment.id" v-for="comment in comments">
-            <br>
-            {{ createUpdatedComments(comment.id, comment.author_id) }}
+            <br />
             <div>{{ comment.body }}</div>
             <div>{{ comment.author_id }}</div>
-            <div>{{ comment.author_name }}</div>
+            <!-- <div>{{ comment.author_name }}</div> -->
             <div>{{ getFormattedDate(comment.timestamp) }}</div>
-            <br>
+            <br />
           </div>
           <div class="container" style="margin-top: 50px;">
             <form action>
@@ -187,7 +186,7 @@ export default {
   computed: {
     ...mapGetters(["comments", "communication", "communicationDocuments"])
   },
-  
+
   watch: {
     $route(to) {
       this.$store.dispatch(FETCH_COMMUNICATION, to.params);

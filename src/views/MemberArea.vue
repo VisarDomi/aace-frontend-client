@@ -20,19 +20,19 @@
             <router-link
               :to="{ name: 'Application' }"
               style="height: 295px;"
-              v-if="currentUser.register_status == 'blank'"
+              v-if="applicationStatus == 'blank'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>Forma e aplikimit</h6>
               <p>Apliko per anetaresi</p>
             </router-link>
 
+                  
             <router-link
               :to="{ name: 'ReApplication' }"
               style="height: 295px;"
               v-if="
-                currentUser.register_status == 'rebutted' ||
-                  currentUser.register_status == 'accepted'
+                applicationStatus == 'rebutted' 
               "
             >
               <i class="fa fa-file-excel-o"></i>
@@ -43,6 +43,9 @@
             <router-link
               :to="{ name: 'ApplicationStatus' }"
               style="height: 295px;"
+              v-if="
+                applicationStatus == 'rebutted' || applicationStatus == 'rejected' || applicationStatus == 'accepted' || applicationStatus == 'applying'
+              "
             >
               <i class="fa fa-info"></i>
               <h6>Statusi i aplikimit</h6>
@@ -52,6 +55,7 @@
             <router-link
               :to="{ name: 'Communications' }"
               style="height: 295px;"
+              v-if="applicationStatus == 'accepted'"
             >
               <i class="fa fa-send-o"></i>
               <h6>Komunikime zyrtare</h6>
@@ -61,13 +65,15 @@
             <router-link
               :to="{ name: 'Profile', params: { id: currentUser.id } }"
               style="height: 295px;"
+              v-if="applicationStatus == 'accepted'"
             >
               <i class="fa fa-vcard-o"></i>
               <h6>Profili</h6>
               <p>Shiko sesi duket profili juaj nga publiku</p>
             </router-link>
 
-            <router-link :to="{ name: 'ComingSoon' }" style="height: 295px;">
+            <router-link :to="{ name: 'ComingSoon' }" style="height: 295px;"
+            v-if="applicationStatus == 'accepted'">
               <i class="fa fa-bullhorn"></i>
               <h6>Votime</h6>
               <p>Merr pjese ne votime</p>
@@ -93,7 +99,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { LOGOUT } from "@/store/actions.type";
+import { LOGOUT,FETCH_APPLICATION_INFO } from "@/store/actions.type";
+import store from "@/store";
 
 export default {
   name: "MemberArea",
@@ -105,7 +112,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "isAuthenticated"])
+    ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus"])
+  },
+  mounted() {
+    this.$store.dispatch(FETCH_APPLICATION_INFO)
   }
 };
 </script>
