@@ -161,7 +161,7 @@
             </div>
           </div>
           <div v-else>
-            <h3 class="text-center" style="color: #ff6666">Ska kualifikime</h3>
+            <h3 class="text-center" style="color: #ff6666">S'ka kualifikime</h3>
           </div>
         </div>
       </section>
@@ -182,7 +182,7 @@ export default {
       let iconType = "male";
       if (this.profile.sex == "Mashkull") {
         iconType = "male";
-      } else if (this.currentUser.sex == "Mashkull") {
+      } else if (this.currentUser.sex == "Femer") {
         iconType = "female";
       }
       return iconType;

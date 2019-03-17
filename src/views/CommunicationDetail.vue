@@ -54,10 +54,9 @@
           </div>
           <div class="col-md-12" :key="comment.id" v-for="comment in comments">
             <br />
-            {{ createUpdatedComments(comment.id, comment.author_id) }}
             <div>{{ comment.body }}</div>
             <div>{{ comment.author_id }}</div>
-            <div>{{ comment.author_name }}</div>
+            <!-- <div>{{ comment.author_name }}</div> -->
             <div>{{ getFormattedDate(comment.timestamp) }}</div>
             <br />
           </div>
