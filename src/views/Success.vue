@@ -31,18 +31,21 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "Success",
   mounted() {
     let USER = JSON.parse(localStorage.getItem("user"));
     let TOKEN = localStorage.getItem("id_token");
     console.log("user status, ", USER.register_status);
+    let date = new Date();
     if (USER.register_status == "blank") {
       axios
         .put(
           "https://aace.ml/api/user/" + USER.id,
           {
-            register_status: "applying"
+            register_status: "applying",
+            application_date: date.toISOString()
           },
           {
             headers: {
@@ -59,7 +62,8 @@ export default {
         .put(
           "https://aace.ml/api/user/" + USER.id,
           {
-            register_status: "reapplying"
+            register_status: "reapplying",
+            reapplication_date: date.toISOString()
           },
           {
             headers: {
