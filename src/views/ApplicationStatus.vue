@@ -25,7 +25,7 @@
             class="alert alert-warning"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="this.applicationStatus == 'rebutted'"
+            v-if="applicationStatus == 'rebutted'"
           >
             <strong>Aplikimi jo i sakte.</strong>
           </div>
@@ -33,7 +33,7 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="this.applicationStatus == 'blank'"
+            v-if="applicationStatus == 'blank'"
           >
             <strong>Nuk eshte derguar.</strong>
           </div>
@@ -41,7 +41,7 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="this.applicationStatus == 'applying' || this.applicationStatus == 'reapplying'"
+            v-if="applicationStatus == 'applying' || applicationStatus == 'reapplying'"
           >
             <strong>Derguar.</strong>
           </div>
@@ -49,7 +49,7 @@
             class="alert alert-danger"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="this.applicationStatus == 'rejected'"
+            v-if="applicationStatus == 'rejected'"
           >
             <strong>Refuzuar.</strong>
           </div>
@@ -57,7 +57,7 @@
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="this.applicationStatus == 'accepted'"
+            v-if="applicationStatus == 'accepted'"
           >
             <strong>Pranuar.</strong>
           </div>
@@ -69,7 +69,7 @@
           <br />
           <router-link
             :to="{ name: 'ReApplication' }"
-            v-if="this.applicationStatus == 'rebutted'"
+            v-if="applicationStatus == 'rebutted'"
           >
             <button type="submit" class="btn btn-primary">
               Rregullo aplikimin
@@ -77,7 +77,7 @@
           </router-link>
           <router-link
             :to="{ name: 'Application' }"
-            v-if="this.applicationStatus == 'blank'"
+            v-if="applicationStatus == 'blank'"
           >
             <button type="submit" class="btn btn-primary">
               Apliko
