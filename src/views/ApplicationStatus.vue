@@ -62,7 +62,7 @@
             <strong>Pranuar.</strong>
           </div>
           <br />
-          <h4 v-if="commentFromAdmin!=''">
+          <h4 v-if="commentFromAdmin">
             Koment nga administratori:
           </h4>
           <p>{{ commentFromAdmin }}</p>

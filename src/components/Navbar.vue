@@ -88,15 +88,14 @@
               <li>
                 <router-link
                   :to="{ name: 'Application' }"
-                  v-if="currentUser.register_status == 'blank'"
+                  v-if="applicationStatus == 'blank'"
                 >Formulari i aplikimit</router-link>
               </li>
               <li>
                 <router-link
                   :to="{ name: 'ReApplication' }"
                   v-if="
-                    currentUser.register_status == 'rebutted' ||
-                      currentUser.register_status == 'accepted'
+                    applicationStatus == 'rebutted' 
                   "
                 >Formulari per ri-aplikim</router-link>
               </li>
@@ -104,10 +103,16 @@
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'Communications' }">Komunikime zyrtare</router-link>
+                <router-link :to="{ name: 'Communications' }" v-if="
+                    applicationStatus == 'accepted' 
+                  ">Komunikime zyrtare</router-link>
               </li>
               <li>
-                <router-link :to="{ name: 'ComingSoon' }">Votime</router-link>
+                <router-link :to="{ name: 'ComingSoon' }"
+                v-if="
+                    applicationStatus == 'accepted' 
+                  "
+                >Votime</router-link>
               </li>
               <!-- <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Log-out</a>
@@ -125,7 +130,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { LOGOUT } from "@/store/actions.type";
+import { LOGOUT,FETCH_APPLICATION_INFO } from "@/store/actions.type";
 export default {
   name: "AppNavbar",
   methods: {
@@ -136,7 +141,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "isAuthenticated"])
+    ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus"])
+  },
+  mounted() {
+    this.$store.dispatch(FETCH_APPLICATION_INFO)
   }
 };
 </script>
