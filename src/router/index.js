@@ -347,10 +347,7 @@ export default new Router({
     },
     {
       path: "*",
-      redirect: {
-        name: "NotFound",
-        params: { id: "1" }
-      },
+      name: "NotFound",
       component: () => import("@/views/NotFound"),
       meta: {
         title: "Not Found",

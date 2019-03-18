@@ -100,7 +100,7 @@
               >Zona e anetareve</router-link
             >
             <ul>
-              <li v-if="currentUser.id">
+              <li>
                 <router-link
                   :to="{ name: 'Profile', params: { id: currentUser.id } }"
                   >Profili</router-link
