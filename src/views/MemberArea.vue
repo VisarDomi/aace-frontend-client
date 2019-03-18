@@ -44,7 +44,8 @@
                 applicationStatus == 'rebutted' ||
                   applicationStatus == 'rejected' ||
                   applicationStatus == 'accepted' ||
-                  applicationStatus == 'applying'
+                  applicationStatus == 'applying' ||
+                  applicationStatus == 'reapplying'
               "
             >
               <i class="fa fa-info"></i>

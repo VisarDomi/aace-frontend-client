@@ -120,7 +120,13 @@
                   >Formulari per ri-aplikim</router-link
                 >
               </li>
-              <li>
+              <li v-if="
+                applicationStatus == 'rebutted' ||
+                  applicationStatus == 'rejected' ||
+                  applicationStatus == 'accepted' ||
+                  applicationStatus == 'applying' ||
+                  applicationStatus == 'reapplying'
+              ">
                 <router-link :to="{ name: 'ApplicationStatus' }"
                   >Statusi i aplikimit</router-link
                 >

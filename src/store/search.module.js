@@ -14,6 +14,15 @@ const initialState = {
 
 export const state = { ...initialState };
 
+const getters = {
+  searchResult() {
+    return state.searchResult;
+  },
+  profilePictures() {
+    return state.profilePictures;
+  }
+};
+
 export const actions = {
   async [FETCH_MEMBER](context, name) {
     const { data } = await MemberService.search(name);
@@ -43,15 +52,6 @@ export const mutations = {
   },
   [DELETE_PICTURES](state) {
     state.profilePictures = [];
-  }
-};
-
-const getters = {
-  searchResult() {
-    return state.searchResult;
-  },
-  profilePictures() {
-    return state.profilePictures;
   }
 };
 
