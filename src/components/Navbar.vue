@@ -67,7 +67,7 @@
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
-        <ul class="nav-menu">
+        <ul class="nav-menu" @click="closeNav()">
           <li>
             <router-link :to="{ name: 'Home' }">SHOSHIK</router-link>
             <ul>
@@ -165,6 +165,14 @@ import { LOGOUT, FETCH_APPLICATION_INFO } from "@/store/actions.type";
 export default {
   name: "AppNavbar",
   methods: {
+    closeNav() {
+      document.querySelector("#body").classList.remove('offcanvas-show')
+      document.querySelector("html").style.cssText += 'overflow: visible;';
+      let element = document.querySelectorAll(".offcanvas-backdrop");
+      Array.prototype.forEach.call( element, function( node ) {
+        node.parentNode.removeChild( node );
+      });
+    },
     logout() {
       this.$store.dispatch(LOGOUT).then(() => {
         this.$router.push({ name: "Home" });
