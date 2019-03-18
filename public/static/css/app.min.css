@@ -5796,6 +5796,15 @@ a.label:hover {
     background-color: #c9302c
 }
 
+.label-bordi {
+    background-color: #d94fc7
+}
+
+.label-bordi[href]:focus,
+.label-bordi[href]:hover {
+    background-color: #a03792
+}
+
 .badge {
     display: inline-block;
     min-width: 10px;
