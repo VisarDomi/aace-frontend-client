@@ -66,8 +66,8 @@
                   <header>
                     <img src="assets/img/logo-google.jpg" alt>
                     <div class="hgroup">
-                      <h4>{{ comment.author_id }} Emer Mbiemer</h4>
-                      <span class="label label-success">Anetar</span>
+                      <h4>{{ comment.author_first_name }} {{comment.author_last_name}}</h4>
+                      <span class="label label-success">{{comment.author_officialgroup}}</span>
                       <h5>{{ comment.body }}</h5>
                     </div>
                     <div class="header-meta">
