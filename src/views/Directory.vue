@@ -13,7 +13,7 @@
           </h5>
 
           <form class="header-job-search" @submit.prevent="search(name)">
-            <div class="input-keyword" style="width:80%;">
+            <div class="input-keyword become-width">
               <input
                 type="text"
                 class="form-control"
@@ -169,3 +169,15 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.become-width {
+  width:80%;
+}
+
+@media screen and (max-width: 767px) {
+  .become-width {
+    width:100%;
+  }
+}
+</style>
