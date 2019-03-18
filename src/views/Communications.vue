@@ -30,7 +30,7 @@
             >
               <h6>{{ communication.name }}</h6>
               <p>{{ communication.description }}</p>
-              <br />
+              <br>
               <p>
                 <strong>{{ getFormattedDate(communication.timestamp) }}</strong>
               </p>
@@ -57,8 +57,8 @@ export default {
       // console.log("time", time)
     },
     reverseCommunications(communications) {
-      let reversed_communications = this.communications.slice().reverse()
-      return reversed_communications
+      let reversed_communications = this.communications.slice().reverse();
+      return reversed_communications;
     }
   },
   computed: {

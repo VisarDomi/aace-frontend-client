@@ -22,7 +22,10 @@
               <div class="col-md-3" style="padding-top: 37px;">
                 <ul class="pricing">
                   <li style="width: 100%; border: none;">
-                    <h4 style="margin-bottom:0px;" v-if="communicationDocuments.length!=0">Dokumenta</h4>
+                    <h4
+                      style="margin-bottom:0px;"
+                      v-if="communicationDocuments.length != 0"
+                    >Dokumenta</h4>
 
                     <div class="row">
                       <div
@@ -54,7 +57,7 @@
           </div>
 
           <div class="container">
-            <header class="section-header" v-if="comments.length!=0">
+            <header class="section-header" v-if="comments.length != 0">
               <span>Komente</span>
               <h2>Komentet e fundit</h2>
             </header>
@@ -66,10 +69,13 @@
                   <header>
                     <img src="assets/img/logo-google.jpg" alt>
                     <div class="hgroup">
-                      <h4>{{ comment.author_first_name }} {{comment.author_last_name}}</h4>
+                      <h4>
+                        {{ comment.author_first_name }}
+                        {{ comment.author_last_name }}
+                      </h4>
                       <span
                         :class="returnLabel(comment.author_organizationgroup)"
-                      >{{comment.author_organizationgroup}}</span>
+                      >{{ comment.author_organizationgroup }}</span>
                       <h5>{{ comment.body }}</h5>
                     </div>
                     <div class="header-meta">
