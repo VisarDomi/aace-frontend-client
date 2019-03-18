@@ -16,15 +16,16 @@
             <h5>{{ communication.description }}</h5>
           </header>
 
-          <div class="container" style=" white-space: pre-line;">
+          <div class="container" style=" white-space: pre-line;" >
             <div class="row">
               <div class="col-md-9">{{ communication.body }}</div>
-              <div class="col-md-3" style="padding-top: 37px;">
+              <div class="col-md-3" style="padding-top: 37px;" >
                 <ul class="pricing">
                   <li style="width: 100%; border: none;">
-                    <h4 style="margin-bottom:0px;">Dokumenta</h4>
+                    <h4 style="margin-bottom:0px;" v-if="communicationDocuments.length!=0">Dokumenta</h4>
 
-                    <div class="row">
+                    <div class="row" >
+                      
                       <div
                         class="item-block"
                         v-for="document in communicationDocuments"
@@ -52,14 +53,46 @@
               </div>
             </div>
           </div>
-          <div class="col-md-12" :key="comment.id" v-for="comment in comments">
-            <br>
-            <div>{{ comment.body }}</div>
-            <div>{{ comment.author_id }}</div>
-            <!-- <div>{{ comment.author_name }}</div> -->
-            <div>{{ getFormattedDate(comment.timestamp) }}</div>
-            <br>
-          </div>
+
+
+<div class="container">
+                <header class="section-header" v-if="comments.length!=0">
+                    <span>Komente</span>
+                    <h2>Komentet e fundit</h2>
+                </header>
+
+                <div class="row item-blocks-connected">
+
+                    <!-- Job item -->
+
+
+                    
+                    <div class="col-xs-12" :key="comment.id" v-for="comment in comments" >
+                        <div class="item-block" >
+                            <header>
+                                <img src="assets/img/logo-google.jpg" alt="">
+                                <div class="hgroup">
+                                    <h4>{{ comment.author_id }} Emer Mbiemer</h4> <span class="label label-success">Anetar</span>
+                                    <h5>{{ comment.body }}</h5>
+                                </div>
+                                <div class="header-meta">
+                                    <!-- <span class="clock timeago"  > {{comment.timestamp}}</span> -->
+                                    
+                                    
+                                    <br>
+                                    <time-ago :datetime="comment.timestamp" locale="en" class="time" ></time-ago>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+                    <!-- END Job item -->
+
+
+                </div>
+
+            </div>
+
+
           <div class="container" style="margin-top: 50px;">
             <form action>
               <h5>Komento:</h5>
@@ -83,6 +116,9 @@
 
 <script>
 import axios from "axios";
+
+import TimeAgo from 'vue2-timeago'
+
 import DateFilter from "@/common/date.filter";
 const FileSaver = require("file-saver");
 import { mapGetters } from "vuex";
@@ -97,6 +133,9 @@ import MemberService from "@/common/api.service";
 import store from "@/store";
 export default {
   name: "CommunicationDetail",
+  components: {
+    TimeAgo,
+  },
   mounted() {
     this.$store.dispatch(FETCH_COMMUNICATION, this.$route.params);
     this.$store.dispatch(FETCH_DOCS, this.$route.params);

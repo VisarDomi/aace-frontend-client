@@ -18,7 +18,7 @@
 
           <div
             class="category-grid"
-            v-for="communication in communications"
+            v-for="communication in communications.reverse()"
             :key="communication.id"
           >
             <router-link
