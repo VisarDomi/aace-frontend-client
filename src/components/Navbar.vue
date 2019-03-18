@@ -156,7 +156,9 @@ export default {
     ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus"])
   },
   mounted() {
-    this.$store.dispatch(FETCH_APPLICATION_INFO);
+    if (this.isAuthenticated) {
+      this.$store.dispatch(FETCH_APPLICATION_INFO);
+    }
   }
 };
 </script>
