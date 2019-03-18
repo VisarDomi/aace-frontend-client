@@ -184,7 +184,7 @@ export default {
       let iconType = "male";
       if (this.profile.sex == "Mashkull") {
         iconType = "male";
-      } else if (this.currentUser.sex == "Femer") {
+      } else if (this.profile.sex == "Femer") {
         iconType = "female";
       }
       return iconType;
