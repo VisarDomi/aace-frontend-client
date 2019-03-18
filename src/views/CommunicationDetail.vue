@@ -67,7 +67,7 @@
                     <img src="assets/img/logo-google.jpg" alt>
                     <div class="hgroup">
                       <h4>{{ comment.author_first_name }} {{comment.author_last_name}}</h4>
-                      <span class="label label-success">{{comment.author_officialgroup}}</span>
+                      <span :class="returnLabel(comment.author_organizationgroup)">{{comment.author_organizationgroup}}</span>
                       <h5>{{ comment.body }}</h5>
                     </div>
                     <div class="header-meta">
@@ -158,6 +158,22 @@ export default {
     };
   },
   methods: {
+    returnLabel(group){
+      if(group=="anetaret"){
+        return "label label-success"
+      } else if(group=="presidenti"){
+        return "label label-primary"
+      } else if(group=="sekretari"){
+        return "label label-info"
+      } else if(group=="koordinatori"){
+        return "label label-warning"
+      } else if(group=="kryesia"){
+        return "label label-danger"
+      } else if(group=="bordi"){
+        return "label label-bordi"
+      }
+      
+    },
     getFormattedDate(time) {
       let dateTime = time.split(".")[0];
       dateTime = dateTime.replace("T", " ") + " UTC";
@@ -188,7 +204,9 @@ export default {
           communicationId: this.communication.id,
           body: this.comment_body
         })
-        .then(res => (this.comment_body = ""));
+        .then((res) => {
+          this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
+          (this.comment_body = "")});
     },
     downloadDoc(docID, docName) {
       axios
