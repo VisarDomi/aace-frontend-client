@@ -430,10 +430,12 @@
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
                             ref="experience"
+                            class="input-file"
+                            :id="experienceInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadExperience(
@@ -442,10 +444,14 @@
                               )
                             "
                           />
-                          <label
-                            >Ngarkoni dokumentin perkates per kete pervoje
-                            pune</label
-                          >
+                          <label tabindex="0" :for="experienceInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
+                        
+                        
+                        <p :key='i' 
+                        v-for='i in experienceInputs[index].files.length'
+                        class="file-return">{{ experienceInputs[index].files[i-1].name }}</p>
                         </div>
                       </div>
 
@@ -567,19 +573,24 @@
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
                             ref="skill"
+                            class="input-file"
+                            :id="skillInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadSkill(skillInput.id, index)
                             "
                           />
-                          <label
-                            >Ngarkoni dokumentin perkates per kete
-                            kualifikim</label
-                          >
+                          <label tabindex="0" :for="skillInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
+                        
+                        <p :key='i' 
+                        v-for='i in skillInputs[index].files.length'
+                        class="file-return">{{ skillInputs[index].files[i-1].name }}</p>
                         </div>
                       </div>
 
@@ -785,7 +796,6 @@ export default {
   methods: {
     changeProfession() {
       if (event.target.value == 4) {
-        console.log('hello!')
         this.profession_other = true;
         this.user_data.profession = "Fut profesionin";
       } else {
@@ -831,7 +841,7 @@ export default {
         else
           this.educationInputs[i].field_of_study = this.education_major_options[
             this.education_type_id[i]
-          ][educationOptionId - 3].text;
+          ][educationOptionId - 4].text;
       }
     },
     handleFileUploadProfile(event) {
@@ -885,7 +895,8 @@ export default {
         from_date: "",
         to_date: "",
         is_currently_work_here: false,
-        description: ""
+        description: "",
+        files: []
       };
       this.experienceInputs.push(newExperience);
     },
@@ -909,7 +920,8 @@ export default {
         name: "",
         from_date: "",
         to_date: "",
-        description: ""
+        description: "",
+        files: []
       };
       this.skillInputs.push(newSkill);
     },
@@ -921,6 +933,26 @@ export default {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
+
+      let resExperienceInputs = [];
+
+      // removes unnecesary keys, like (id) and (user_id)
+      for (var i = 0; i < this.experienceInputs.length; i++) {
+        resExperienceInputs.push({});
+        // list of education ids
+        for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
+          if (
+            Object.keys(this.experienceInputs[i])[j] != "id"
+          ) {
+            resExperienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ] = this.experienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.experienceInputs = resExperienceInputs;
 
       for (var i = 0; i < this.experienceInputs.length; i++) {
         axios
@@ -938,7 +970,7 @@ export default {
             let EXPERIENCE_ID = res.data.id;
 
             let formDataExperience = new FormData();
-            if (this.experienceInputs[this.experience_files_index].files) {
+            if (this.experienceInputs[this.experience_files_index].files.length) {
               for (
                 let j = 0;
                 j <
@@ -982,6 +1014,26 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resSkillInputs = [];
+
+      // removes unnecesary keys, like (id) and (user_id)
+      for (var i = 0; i < this.skillInputs.length; i++) {
+        resSkillInputs.push({});
+        // list of education ids
+        for (var j = 0; j < Object.keys(this.skillInputs[i]).length; j++) {
+          if (
+            Object.keys(this.skillInputs[i])[j] != "id"
+          ) {
+            resSkillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ] = this.skillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.skillInputs = resSkillInputs;
+
       for (var i = 0; i < this.skillInputs.length; i++) {
         axios
           .post(
@@ -999,7 +1051,7 @@ export default {
             let SKILL_ID = res.data.id;
 
             let formDataSkill = new FormData();
-            if (this.skillInputs[this.skill_files_index].files) {
+            if (this.skillInputs[this.skill_files_index].files.length) {
               for (
                 let j = 0;
                 j < this.skillInputs[this.skill_files_index].files.length;
@@ -1027,6 +1079,7 @@ export default {
                   }
                 )
                 .then(res => {
+                  console.log('media skill')
                   if (res.status == 200) {
                   }
                 })
@@ -1078,10 +1131,9 @@ export default {
             let EDUCATION_ID = res.data.id;
 
             let formDataEducation = new FormData();
-            if (this.educationInputs[this.education_files_index].files) {
-              for (
-                let j = 0;
-                j <
+            if (this.educationInputs[this.education_files_index].files.length) {
+              for (let j = 0;
+                j < 
                 this.educationInputs[this.education_files_index].files.length;
                 j++
               ) {
@@ -1147,9 +1199,9 @@ export default {
       };
 
       // ------- Experience file and post -------
-      // this.send_experiences();
+      this.send_experiences();
       // ------- Skill file and post -------
-      // this.send_skills();
+      this.send_skills();
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
@@ -1184,14 +1236,14 @@ export default {
             if (stringRes.status == 200) {
               // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
-              // this.$router.push({
-              //   name: "Success"
-              // });
+              this.$router.push({
+                name: "Success"
+              });
             } else {
               // console.log("String sent unsuccessfuly");
             }
           })
-        );
+      );
     }
   },
   validations: {
@@ -1209,6 +1261,22 @@ export default {
       // website: { required },
       email: { required, email }
     }
+  // },
+  // validations: {
+  //   user_data: {
+  //     first_name: {  },
+  //     last_name: {  },
+  //     profession: {  },
+  //     sex: {  },
+  //     // summary: { required },
+  //     country: {  },
+  //     // industry: { required },
+  //     phone: {  },
+  //     address: {  },
+  //     birthday: {  },
+  //     // website: { required },
+  //     email: { }
+  //   }
   },
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
