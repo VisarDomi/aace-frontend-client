@@ -56,14 +56,20 @@
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-9">
-                  <select class="form-control" v-model="user_data.profession">
-                    <option value="Inxhinier Ndertimi"
-                      >Inxhinier Ndertimi</option
-                    >
-                    <option value="Inxhinier Civil">Inxhinier Civil</option>
-                    <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
-                    >>
+                  <select class="form-control" v-model="profession_id" @change="changeProfession">
+                    <option v-for="option in profession_options" v-bind:value="option.id" :key="option.id">
+                      {{ option.text }}
+                    </option>
                   </select>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      :disabled="!profession_other"
+                      class="form-control"
+                      v-model="user_data.profession"
+                      :placeholder="profession_other"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -71,9 +77,12 @@
                 <label class="col-sm-3">Gjinia</label>
                 <div class="col-sm-9">
                   <select class="form-control" v-model="user_data.sex">
-                    <option value="Mashkull">Mashkull</option>
-                    <option value="Femer">Femer</option
-                    >>
+                    <option
+                      v-for="option in sex_options"
+                      v-bind:value="option.text"
+                      :key="option.id">
+                      {{ option.text }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -226,23 +235,25 @@
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <!-- <div class="form-group"> -->
+                        <div class="input-file-container">
                           <input
                             type="file"
+                            class='input-file'
+                            :id="educationInputs[index].id"
                             ref="education"
                             multiple
-                            @change="
-                              handleFileUploadEducation(
-                                educationInput.id,
-                                index
-                              )
+                            @change="handleFileUploadEducation(educationInput.id, index)
                             "
                           />
-                          <label
-                            >Ngarkoni dokumentin perkates per kete
-                            arsimim</label
-                          >
+                        <label tabindex="0" :for="educationInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
                         </div>
+                        
+                        <p :key='i' 
+                        v-for='i in educationInputs[index].files.length'
+                        class="file-return">{{ educationInputs[index].files[i-1].name }}</p>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
@@ -252,6 +263,7 @@
                             <select
                               class="form-control"
                               v-model="education_type_id[index]"
+                              @change="handleEducationTypeChange($event, index)"
                             >
                               <option
                                 v-for="option in education_type_options"
@@ -289,7 +301,7 @@
                               :disabled="!education_degree_other[index]"
                               class="form-control"
                               v-model="educationInput.degree"
-                              placeholder="..."
+                              placeholder="Tipi i diplomes"
                             />
                           </div>
                         </div>
@@ -317,7 +329,7 @@
                           <div class="col-sm-5">
                             <input
                               type="text"
-                              :disabled="!education_major_other"
+                              :disabled="!education_major_other[index]"
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="Dega"
@@ -418,10 +430,12 @@
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
                             ref="experience"
+                            class="input-file"
+                            :id="experienceInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadExperience(
@@ -430,10 +444,14 @@
                               )
                             "
                           />
-                          <label
-                            >Ngarkoni dokumentin perkates per kete pervoje
-                            pune</label
-                          >
+                          <label tabindex="0" :for="experienceInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
+                        
+                        
+                        <p :key='i' 
+                        v-for='i in experienceInputs[index].files.length'
+                        class="file-return">{{ experienceInputs[index].files[i-1].name }}</p>
                         </div>
                       </div>
 
@@ -555,19 +573,24 @@
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
                             ref="skill"
+                            class="input-file"
+                            :id="skillInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadSkill(skillInput.id, index)
                             "
                           />
-                          <label
-                            >Ngarkoni dokumentin perkates per kete
-                            kualifikim</label
-                          >
+                          <label tabindex="0" :for="skillInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
+                        
+                        <p :key='i' 
+                        v-for='i in skillInputs[index].files.length'
+                        class="file-return">{{ skillInputs[index].files[i-1].name }}</p>
                         </div>
                       </div>
 
@@ -751,7 +774,7 @@ export default {
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }],
+        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }, {text:"Te tjere", id:3}],
         2: [
           { text: "Inxhinier Civil", id: 4 },
           { text: "Inxhinier Elektrik", id: 5 },
@@ -772,7 +795,7 @@ export default {
   },
   methods: {
     changeProfession() {
-      if (event.target.value == 5) {
+      if (event.target.value == 4) {
         this.profession_other = true;
         this.user_data.profession = "Fut profesionin";
       } else {
@@ -781,6 +804,11 @@ export default {
           event.target.value - 1
         ].text;
       }
+    },
+    handleEducationTypeChange(e, i){
+      this.educationInputs[i].degree = ''
+      this.educationInputs[i].field_of_study = ''
+      this.educationInputs[i].education_type = this.education_type_options[e.target.value-1].text
     },
     handleEducationOptionDegreeChange(e, i) {
       let educationOptionId = e.target.value;
@@ -802,10 +830,10 @@ export default {
     handleEducationOptionMajorChange(e, i) {
       let educationOptionId = e.target.value;
       if (educationOptionId == 6 || educationOptionId == 3) {
-        this.education_major_other = true;
+        this.education_major_other[i] = true;
         this.educationInputs[i].field_of_study = "Fut degen";
       } else {
-        this.education_major_other = false;
+        this.education_major_other[i] = false;
         if (this.education_type_id[i] == 1)
           this.educationInputs[i].field_of_study = this.education_major_options[
             this.education_type_id[i]
@@ -813,7 +841,7 @@ export default {
         else
           this.educationInputs[i].field_of_study = this.education_major_options[
             this.education_type_id[i]
-          ][educationOptionId - 3].text;
+          ][educationOptionId - 4].text;
       }
     },
     handleFileUploadProfile(event) {
@@ -838,7 +866,8 @@ export default {
         school: "",
         from_date: "",
         to_date: "",
-        description: ""
+        description: "",
+        files: []
       };
       this.educationInputs.push(newEducation);
     },
@@ -866,7 +895,8 @@ export default {
         from_date: "",
         to_date: "",
         is_currently_work_here: false,
-        description: ""
+        description: "",
+        files: []
       };
       this.experienceInputs.push(newExperience);
     },
@@ -890,7 +920,8 @@ export default {
         name: "",
         from_date: "",
         to_date: "",
-        description: ""
+        description: "",
+        files: []
       };
       this.skillInputs.push(newSkill);
     },
@@ -902,6 +933,26 @@ export default {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
+
+      let resExperienceInputs = [];
+
+      // removes unnecesary keys, like (id) and (user_id)
+      for (var i = 0; i < this.experienceInputs.length; i++) {
+        resExperienceInputs.push({});
+        // list of education ids
+        for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
+          if (
+            Object.keys(this.experienceInputs[i])[j] != "id"
+          ) {
+            resExperienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ] = this.experienceInputs[i][
+              Object.keys(this.experienceInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.experienceInputs = resExperienceInputs;
 
       for (var i = 0; i < this.experienceInputs.length; i++) {
         axios
@@ -919,7 +970,7 @@ export default {
             let EXPERIENCE_ID = res.data.id;
 
             let formDataExperience = new FormData();
-            if (this.experienceInputs[this.experience_files_index].files) {
+            if (this.experienceInputs[this.experience_files_index].files.length) {
               for (
                 let j = 0;
                 j <
@@ -963,6 +1014,26 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resSkillInputs = [];
+
+      // removes unnecesary keys, like (id) and (user_id)
+      for (var i = 0; i < this.skillInputs.length; i++) {
+        resSkillInputs.push({});
+        // list of education ids
+        for (var j = 0; j < Object.keys(this.skillInputs[i]).length; j++) {
+          if (
+            Object.keys(this.skillInputs[i])[j] != "id"
+          ) {
+            resSkillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ] = this.skillInputs[i][
+              Object.keys(this.skillInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.skillInputs = resSkillInputs;
+
       for (var i = 0; i < this.skillInputs.length; i++) {
         axios
           .post(
@@ -980,7 +1051,7 @@ export default {
             let SKILL_ID = res.data.id;
 
             let formDataSkill = new FormData();
-            if (this.skillInputs[this.skill_files_index].files) {
+            if (this.skillInputs[this.skill_files_index].files.length) {
               for (
                 let j = 0;
                 j < this.skillInputs[this.skill_files_index].files.length;
@@ -1008,6 +1079,7 @@ export default {
                   }
                 )
                 .then(res => {
+                  console.log('media skill')
                   if (res.status == 200) {
                   }
                 })
@@ -1021,7 +1093,28 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resEducationInputs = [];
+
+      // removes unnecesary keys, like (id) and (user_id)
       for (var i = 0; i < this.educationInputs.length; i++) {
+        resEducationInputs.push({});
+        // list of education ids
+        for (var j = 0; j < Object.keys(this.educationInputs[i]).length; j++) {
+          if (
+            Object.keys(this.educationInputs[i])[j] != "id"
+          ) {
+            resEducationInputs[i][
+              Object.keys(this.educationInputs[i])[j]
+            ] = this.educationInputs[i][
+              Object.keys(this.educationInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.educationInputs = resEducationInputs;
+
+      for (var i = 0; i < this.educationInputs.length; i++) {
+        console.log(this.educationInputs[i])
         axios
           .post(
             "https://aace.ml/api/user/" + USER_ID + "/education",
@@ -1038,10 +1131,9 @@ export default {
             let EDUCATION_ID = res.data.id;
 
             let formDataEducation = new FormData();
-            if (this.educationInputs[this.education_files_index].files) {
-              for (
-                let j = 0;
-                j <
+            if (this.educationInputs[this.education_files_index].files.length) {
+              for (let j = 0;
+                j < 
                 this.educationInputs[this.education_files_index].files.length;
                 j++
               ) {
@@ -1067,6 +1159,7 @@ export default {
                   }
                 )
                 .then(res => {
+                  console.log('media education')
                   if (res.status == 200) {
                   }
                 })
@@ -1112,7 +1205,7 @@ export default {
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
-      console.log("outside");
+      console.log(user_string)
       axios
         .all([
           axios.post(
@@ -1133,7 +1226,7 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
-            console.log("inside");
+            console.log('user post')
             if (profileRes.status == 200) {
               // console.log("Profile picture updated successfully.");
             } else {
@@ -1150,7 +1243,7 @@ export default {
               // console.log("String sent unsuccessfuly");
             }
           })
-        );
+      );
     }
   },
   validations: {
@@ -1168,6 +1261,22 @@ export default {
       // website: { required },
       email: { required, email }
     }
+  // },
+  // validations: {
+  //   user_data: {
+  //     first_name: {  },
+  //     last_name: {  },
+  //     profession: {  },
+  //     sex: {  },
+  //     // summary: { required },
+  //     country: {  },
+  //     // industry: { required },
+  //     phone: {  },
+  //     address: {  },
+  //     birthday: {  },
+  //     // website: { required },
+  //     email: { }
+  //   }
   },
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
@@ -1191,9 +1300,9 @@ export default {
 //input file
 document.querySelector("html").classList.add("js");
 
-var fileInput = document.querySelector(".input-file"),
-  button = document.querySelector(".input-file-trigger"),
-  the_return = document.querySelector(".file-return");
+// var fileInput = document.querySelector(".input-file"),
+//   button = document.querySelector(".input-file-trigger"),
+//   the_return = document.querySelector(".file-return");
 
 //---------------
 </script>

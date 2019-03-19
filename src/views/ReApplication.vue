@@ -13,13 +13,19 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
-              <div class="form-group">
+              <div class="input-file-container">
                 <input
                   type="file"
+                  class="input-file"
                   ref="profile_file"
+                  id="my-file"
                   @change="handleFileUploadProfile"
                 />
-                <label>Ju lutem zgjidhni foto profili (4:6)</label>
+                  <label tabindex="0" for="my-file" class="input-file-trigger"
+                    >Zgjidhni nje foto...</label
+                  >
+                  
+                <p class="file-return">{{ profile_picture_file.name }}</p>
               </div>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -234,22 +240,24 @@
                   <div class="item-form">
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
+                            class='input-file'
+                            :id="educationInputs[index].id"
                             ref="education"
                             multiple
-                            @change="
-                              handleFileUploadEducation(
-                                educationInput.id,
-                                index
-                              )
+                            @change="handleFileUploadEducation(educationInput.id, index)
                             "
                           />
-                          <label>
-                            Ngarkoni dokumentin perkates per kete arsimim ne
-                            qofte se udhezohet nga administratori
-                          </label>
+                        <label tabindex="0" :for="educationInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
+                        
+                        <!-- <p
+                        :key='i' 
+                        v-for='i in educationInputs[index].files.length'
+                        class="file-return">{{ educationInputs[index].files[i-1].name }}</p> -->
                         </div>
                       </div>
 
@@ -260,6 +268,7 @@
                             <select
                               class="form-control"
                               v-model="education_type_id[index]"
+                              @change="handleEducationTypeChange($event, index)"
                             >
                               <option
                                 v-for="option in education_type_options"
@@ -407,10 +416,12 @@
                   <div class="item-form">
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
                             ref="experience"
+                            class="input-file"
+                            :id="experienceInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadExperience(
@@ -419,10 +430,9 @@
                               )
                             "
                           />
-                          <label>
-                            Ngarkoni dokumentin perkates per kete pervoje pune
-                            ne qofte se udhezohet nga administratori
-                          </label>
+                          <label tabindex="0" :for="experienceInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
                         </div>
                       </div>
 
@@ -525,19 +535,20 @@
                   <div class="item-form">
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <div class="input-file-container">
                           <input
                             type="file"
                             ref="skill"
+                            class="input-file"
+                            :id="skillInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadSkill(skillInput.id, index)
                             "
                           />
-                          <label>
-                            Ngarkoni dokumentin perkates per kete kualifikim ne
-                            qofte se udhezohet nga administratori
-                          </label>
+                          <label tabindex="0" :for="skillInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
                         </div>
                       </div>
 
@@ -733,7 +744,7 @@ export default {
   },
   methods: {
     changeProfession() {
-      if (event.target.value == 5) {
+      if (event.target.value == 4) {
         this.profession_other = true;
         this.profession = "Fut profesionin";
       } else {
@@ -741,9 +752,14 @@ export default {
         this.profession = this.profession_options[event.target.value - 1].text;
       }
     },
+    handleEducationTypeChange(e, i){
+      this.educationInputs[i].degree = ''
+      this.educationInputs[i].field_of_study = ''
+      this.educationInputs[i].education_type = this.education_type_options[e.target.value-1].text
+    },
     handleEducationOptionDegreeChange(e, i) {
       let educationOptionId = e.target.value;
-      if (educationOptionId == 7) {
+      if (educationOptionId == 7 || educationOptionId == 3) {
         this.education_degree_other[i] = true;
         this.educationInputs[i].degree = "Fut tipin e diplomes";
       } else {
@@ -755,12 +771,12 @@ export default {
         else
           this.educationInputs[i].degree = this.education_degree_options[
             this.education_type_id[i]
-          ][educationOptionId - 3].text;
+          ][educationOptionId - 4].text;
       }
     },
     handleEducationOptionMajorChange(e, i) {
       let educationOptionId = e.target.value;
-      if (educationOptionId == 5) {
+      if (educationOptionId == 6 || educationOptionId == 3) {
         this.education_major_other[i] = true;
         this.educationInputs[i].field_of_study = "Fut degen";
       } else {
@@ -772,7 +788,7 @@ export default {
         else
           this.educationInputs[i].field_of_study = this.education_major_options[
             this.education_type_id[i]
-          ][educationOptionId - 3].text;
+          ][educationOptionId - 4].text;
       }
     },
     handleFileUploadProfile(event) {
@@ -822,7 +838,8 @@ export default {
           if (
             Object.keys(this.experienceInputs[i])[j] != "id" &&
             Object.keys(this.experienceInputs[i])[j] != "user_id" &&
-            Object.keys(this.experienceInputs[i])[j] != "timestamp"
+            Object.keys(this.experienceInputs[i])[j] != "timestamp" &&
+            Object.keys(this.experienceInputs[i])[j] != "media_experience_ids"
           ) {
             resExperienceInputs[i][
               Object.keys(this.experienceInputs[i])[j]
@@ -833,7 +850,6 @@ export default {
         }
       }
       this.experienceInputs = resExperienceInputs;
-
       for (var i = 0; i < this.experienceInputs.length; i++) {
         axios
           .put(
@@ -910,7 +926,8 @@ export default {
           if (
             Object.keys(this.skillInputs[i])[j] != "id" &&
             Object.keys(this.skillInputs[i])[j] != "user_id" &&
-            Object.keys(this.skillInputs[i])[j] != "timestamp"
+            Object.keys(this.skillInputs[i])[j] != "timestamp" &&
+            Object.keys(this.skillInputs[i])[j] != "media_skill_ids"
           ) {
             resSkillInputs[i][
               Object.keys(this.skillInputs[i])[j]
@@ -996,7 +1013,8 @@ export default {
           if (
             Object.keys(this.educationInputs[i])[j] != "id" &&
             Object.keys(this.educationInputs[i])[j] != "user_id" &&
-            Object.keys(this.educationInputs[i])[j] != "timestamp"
+            Object.keys(this.educationInputs[i])[j] != "timestamp" &&
+            Object.keys(this.educationInputs[i])[j] != "media_education_ids"
           ) {
             resEducationInputs[i][
               Object.keys(this.educationInputs[i])[j]
@@ -1059,7 +1077,7 @@ export default {
                 )
                 .then(res => {
                   if (res.status == 200) {
-                    console.log("pdf updated sucessfully.");
+                    console.log("media education.");
                     // this.$router.push({
                     //   name: "Success"
                     // });
@@ -1136,9 +1154,9 @@ export default {
             if (stringRes.status == 200) {
               // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
-              this.$router.push({
-                name: "Success"
-              });
+              // this.$router.push({
+              //   name: "Success"
+              // });
             } else {
               // console.log("String sent unsuccessfuly");
             }
@@ -1157,64 +1175,61 @@ export default {
       })
       .then(res => {
         this.educationInputs = res.data;
-
         // autofill dropdowns
         for (var i = 0; i < this.educationInputs.length; i++) {
-          this.educationInputs[i].education_type = "asap";
-          // education type id ---------------------------
-          if (
-            this.educationInputs[i].degree ==
-            this.education_degree_options[1][0].text
-          )
-            this.education_type_id[i] = 1;
-          else if (
-            this.educationInputs[i].degree ==
-            this.education_degree_options[1][1].text
-          )
-            this.education_type_id[i] = 1;
-          else this.education_type_id[i] = 2;
 
+          // education type id ---------------------------
+          if (this.educationInputs[i].education_type == "Shkolle e mesme")
+            this.education_type_id[i] = 1;
+          else 
+            this.education_type_id[i] = 2;
           // degree --------------------------------------
-          for (let j = 0; j < this.education_degree_options[1].length; j++) {
-            if (
-              this.educationInputs[i].degree ==
-              this.education_degree_options[1][j].text
-            ) {
-              this.education_degree_id[i] = j + 1;
+
+          if(this.education_type_id[i] == 1){
+            for (let j = 0; j < this.education_degree_options[1].length; j++) {
+              if (this.educationInputs[i].degree == this.education_degree_options[1][j].text) {
+                this.education_degree_id[i] = j + 1;
+              }
+            }
+            if(!this.education_degree_id[i]){
+              this.education_degree_id[i] = 3
+              this.education_degree_other[i] = true;
             }
           }
-          for (let j = 0; j < this.education_degree_options[2].length; j++) {
-            if (
-              this.educationInputs[i].degree ==
-              this.education_degree_options[2][j].text
-            ) {
-              this.education_degree_id[i] = j + 3;
+
+          if(this.education_type_id[i] == 2){
+            for (let j = 0; j < this.education_degree_options[2].length; j++) {
+              if (this.educationInputs[i].degree == this.education_degree_options[2][j].text) {
+                this.education_degree_id[i] = j + 4;
+              }
             }
-          }
-          if (!this.education_degree_id[i]) {
-            this.education_degree_id[i] = 6;
-            this.education_degree_other[i] = true;
+            if(!this.education_degree_id[i]){
+              this.education_degree_id[i] = 7
+              this.education_degree_other[i] = true;
+            }
           }
           // major  --------------------------------------
-          for (let j = 0; j < this.education_major_options[1].length; j++) {
-            if (
-              this.educationInputs[i].field_of_study ==
-              this.education_major_options[1][j].text
-            ) {
-              this.education_major_id[i] = j + 1;
+          if(this.education_type_id[i] == 1){
+            for (let j = 0; j < this.education_major_options[1].length; j++) {
+              if (this.educationInputs[i].field_of_study == this.education_major_options[1][j].text) {
+                this.education_major_id[i] = j + 1;
+              }
+            }
+            if(!this.education_major_id[i]){
+              this.education_major_id[i] = 3
+              this.education_major_other[i] = true;
             }
           }
-          for (let j = 0; j < this.education_major_options[2].length; j++) {
-            if (
-              this.educationInputs[i].field_of_study ==
-              this.education_major_options[2][j].text
-            ) {
-              this.education_major_id[i] = j + 3;
+          if(this.education_type_id[i] == 2){
+            for (let j = 0; j < this.education_major_options[2].length; j++) {
+              if (this.educationInputs[i].field_of_study == this.education_major_options[2][j].text) {
+                this.education_major_id[i] = j + 4;
+              }
             }
-          }
-          if (!this.education_major_id[i]) {
-            this.education_major_id[i] = 5;
-            this.education_major_other[i] = true;
+            if(!this.education_major_id[i]){
+              this.education_major_id[i] = 6
+              this.education_major_other[i] = true;
+            }
           }
         }
       });
@@ -1273,6 +1288,56 @@ export default {
       });
   }
 };
+
+document.querySelector("html").classList.add("js");
+
 </script>
 
-<style scoped></style>
+<style scoped>
+.input-file-container {
+  position: relative;
+  width: 225px;
+}
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39d2b4;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495e;
+  color: #39d2b4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Fotoja e zgjedhur: ";
+  font-style: normal;
+  font-weight: normal;
+}
+</style>
