@@ -18,7 +18,7 @@
 
           <div
             class="category-grid"
-            v-for="communication in communications"
+            v-for="communication in reverseCommunications(communications)"
             :key="communication.id"
           >
             <router-link
@@ -30,7 +30,7 @@
             >
               <h6>{{ communication.name }}</h6>
               <p>{{ communication.description }}</p>
-              <br />
+              <br>
               <p>
                 <strong>{{ getFormattedDate(communication.timestamp) }}</strong>
               </p>
@@ -54,6 +54,11 @@ export default {
   methods: {
     getFormattedDate(time) {
       return DateFilter(time);
+      // console.log("time", time)
+    },
+    reverseCommunications(communications) {
+      let reversed_communications = this.communications.slice().reverse();
+      return reversed_communications;
     }
   },
   computed: {

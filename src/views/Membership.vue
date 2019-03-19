@@ -52,15 +52,15 @@
                 <router-link
                   :to="{ name: 'Application' }"
                   class="btn btn-success"
-                  v-if="currentUser.register_status == 'blank'"
+                  v-if="currentUser.application_status == 'blank'"
                   >Apliko tani</router-link
                 >
                 <router-link
                   :to="{ name: 'ReApplication' }"
                   class="btn btn-success"
                   v-if="
-                    currentUser.register_status == 'rebutted' ||
-                      currentUser.register_status == 'accepted'
+                    currentUser.application_status == 'rebutted' ||
+                      currentUser.application_status == 'accepted'
                   "
                   >Apliko tani</router-link
                 >

@@ -37,14 +37,14 @@ export default {
   mounted() {
     let USER = JSON.parse(localStorage.getItem("user"));
     let TOKEN = localStorage.getItem("id_token");
-    console.log("user status, ", USER.register_status);
+    console.log("user status, ", USER.application_status);
     let date = new Date();
-    if (USER.register_status == "blank") {
+    if (USER.application_status == "blank") {
       axios
         .put(
           "https://aace.ml/api/user/" + USER.id,
           {
-            register_status: "applying",
+            application_status: "applying",
             application_date: date.toISOString()
           },
           {
@@ -62,7 +62,7 @@ export default {
         .put(
           "https://aace.ml/api/user/" + USER.id,
           {
-            register_status: "reapplying",
+            application_status: "reapplying",
             reapplication_date: date.toISOString()
           },
           {

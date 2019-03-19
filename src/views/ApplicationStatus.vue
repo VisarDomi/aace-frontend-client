@@ -14,12 +14,20 @@
           <header class="section-header">
             <h2>Status i aplikimit</h2>
           </header>
-          <h4>Emri i aplikantit:</h4>
-          <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
-          <br />
-          <h4>Data e aplikimit:</h4>
-          <p>{{ getFormattedDate(applicationDate) }}</p>
-          <br />
+          <div>
+            <h4>Emri i aplikantit:</h4>
+            <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
+          </div>
+          <br>
+          <div v-if="applicationStatus == 'applying'">
+            <h4>Data e aplikimit:</h4>
+            <p>{{ getFormattedDate(applicationDate) }}</p>
+          </div>
+          <div v-else-if="applicationStatus != 'blank'">
+            <h4>Data e aplikimit:</h4>
+            <p>{{ getFormattedDate(reapplicationDate) }}</p>
+          </div>
+          <br>
           <h4>Status i aplikimit:</h4>
           <div
             class="alert alert-warning"
@@ -41,7 +49,10 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="applicationStatus == 'applying' || applicationStatus == 'reapplying'"
+            v-if="
+              applicationStatus == 'applying' ||
+                applicationStatus == 'reapplying'
+            "
           >
             <strong>Derguar.</strong>
           </div>
@@ -61,27 +72,15 @@
           >
             <strong>Pranuar.</strong>
           </div>
-          <br />
-          <h4 v-if="commentFromAdmin">
-            Koment nga administratori:
-          </h4>
+          <br>
+          <h4 v-if="commentFromAdmin">Koment nga administratori:</h4>
           <p>{{ commentFromAdmin }}</p>
-          <br />
-          <router-link
-            :to="{ name: 'ReApplication' }"
-            v-if="applicationStatus == 'rebutted'"
-          >
-            <button type="submit" class="btn btn-primary">
-              Rregullo aplikimin
-            </button>
+          <br>
+          <router-link :to="{ name: 'ReApplication' }" v-if="applicationStatus == 'rebutted'">
+            <button type="submit" class="btn btn-primary">Rregullo aplikimin</button>
           </router-link>
-          <router-link
-            :to="{ name: 'Application' }"
-            v-if="applicationStatus == 'blank'"
-          >
-            <button type="submit" class="btn btn-primary">
-              Apliko
-            </button>
+          <router-link :to="{ name: 'Application' }" v-if="applicationStatus == 'blank'">
+            <button type="submit" class="btn btn-primary">Apliko</button>
           </router-link>
         </div>
       </section>
@@ -105,10 +104,16 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch(FETCH_APPLICATION_INFO)
+    this.$store.dispatch(FETCH_APPLICATION_INFO);
   },
   computed: {
-    ...mapGetters(["currentUser", "applicationStatus", "applicationDate", "commentFromAdmin"])
+    ...mapGetters([
+      "currentUser",
+      "applicationStatus",
+      "applicationDate",
+      "reapplicationDate",
+      "commentFromAdmin"
+    ])
   }
 };
 </script>

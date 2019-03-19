@@ -260,8 +260,8 @@ export default new Router({
         if (localStorage.getItem("id_token")) {
           let user = JSON.parse(localStorage.getItem("user"));
           if (
-            user["register_status"] == undefined ||
-            user["register_status"] == "blank"
+            user["application_status"] == undefined ||
+            user["application_status"] == "blank"
           ) {
             next();
           } else {
@@ -295,8 +295,8 @@ export default new Router({
       beforeEnter(to, from, next) {
         if (localStorage.getItem("id_token")) {
           let user = JSON.parse(localStorage.getItem("user"));
-          console.log("status", user["register_status"]);
-          if (user["register_status"] == "rebutted") {
+          console.log("status", user["application_status"]);
+          if (user["application_status"] == "rebutted") {
             next();
           } else {
             console.log("redirect");

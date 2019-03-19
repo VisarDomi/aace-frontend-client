@@ -16,6 +16,7 @@ import {
   SET_SKILL,
   SET_APPLICATION_STATUS,
   SET_APPLICATION_DATE,
+  SET_REAPPLICATION_DATE,
   SET_COMMENT_ADMIN
 } from "./mutations.type";
 
@@ -28,6 +29,7 @@ const state = {
   skills: {},
   applicationStatus: "",
   applicationDate: "",
+  reapplicationDate: "",
   commentFromAdmin: ""
 };
 
@@ -47,14 +49,17 @@ const getters = {
   skills(state) {
     return state.skills;
   },
-  applicationDate(state){
-    return state.applicationDate
+  applicationDate(state) {
+    return state.applicationDate;
   },
-  applicationStatus(state){
-    return state.applicationStatus
+  reapplicationDate(state) {
+    return state.reapplicationDate;
   },
-  commentFromAdmin(state){
-    return state.commentFromAdmin
+  applicationStatus(state) {
+    return state.applicationStatus;
+  },
+  commentFromAdmin(state) {
+    return state.commentFromAdmin;
   }
 };
 
@@ -98,11 +103,12 @@ const actions = {
       })
       .catch(() => {});
   },
-  [FETCH_APPLICATION_INFO](context){
+  [FETCH_APPLICATION_INFO](context) {
     MemberService.get(UserService.getUser().id)
       .then(({ data }) => {
-        context.commit(SET_APPLICATION_STATUS, data.register_status);
+        context.commit(SET_APPLICATION_STATUS, data.application_status);
         context.commit(SET_APPLICATION_DATE, data.application_date);
+        context.commit(SET_REAPPLICATION_DATE, data.reapplication_date);
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;
       })
@@ -132,6 +138,9 @@ const mutations = {
   },
   [SET_APPLICATION_DATE](state, date) {
     state.applicationDate = date;
+  },
+  [SET_REAPPLICATION_DATE](state, date) {
+    state.reapplicationDate = date;
   },
 
   [SET_EDUCATION](state, educations) {

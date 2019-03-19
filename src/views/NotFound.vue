@@ -18,7 +18,7 @@
         <router-link :to="{ name: 'Directory' }">
           <h3 class="text-center" id="home">Kerko anetaret</h3>
         </router-link>
-        <router-link :to="{ name: 'MemberArea' }">
+        <router-link :to="{ name: 'MemberArea' }" v-if="isAuthenticated">
           <h3 class="text-center" id="home">Zona e anetareve</h3>
         </router-link>
       </div>
@@ -45,8 +45,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "NotFound"
+  name: "NotFound",
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  }
 };
 </script>
 

@@ -37,14 +37,14 @@
             <li>
               <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">
                 <i class="fa fa-user fa-2x profile-icon become-inline"></i>
-                <div class="become-inline become-margin-right">{{currentUser.email}}</div>
+                <div class="become-inline become-margin-right">Profili</div>
               </router-link>
-              <!-- <ul>
+              <ul>
                 <li>{{ currentUser.email }}</li>
                 <li
                   v-if="currentUser.first_name"
                 >{{ currentUser.first_name + " " + currentUser.last_name }}</li>
-              </ul> -->
+              </ul>
             </li>
           </ul>
           <div @click="logout" class="user-login become-inline">
@@ -53,7 +53,7 @@
         </div>
         <!-- END User account -->
         <!-- Navigation menu -->
-        <ul class="nav-menu">
+        <ul class="nav-menu" @click="closeNav()">
           <li>
             <router-link :to="{ name: 'Home' }">SHOSHIK</router-link>
             <ul>
@@ -75,48 +75,40 @@
             <router-link :to="{ name: 'Membership' }">Anetaresia</router-link>
           </li>
           <li>
-            <router-link :to="{ name: 'Directory' }"
-              >Indeksi i inxhiniereve</router-link
-            >
+            <router-link :to="{ name: 'Directory' }">Indeksi i inxhiniereve</router-link>
           </li>
-          <li>
-            <router-link :to="{ name: 'MemberArea' }" v-if="isAuthenticated">Zona e anetareve</router-link>
+          <li v-if="isAuthenticated">
+            <router-link :to="{ name: 'MemberArea' }">Zona e anetareve</router-link>
             <ul>
-              <li v-if="currentUser.id">
+              <li v-if="applicationStatus != 'blank'">
                 <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">Profili</router-link>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'Application' }"
-                  v-if="applicationStatus == 'blank'"
-                >Formulari i aplikimit</router-link>
+              <li v-if="applicationStatus == 'blank'">
+                <router-link :to="{ name: 'Application' }">Formulari i aplikimit</router-link>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'ReApplication' }"
-                  v-if="
-                    applicationStatus == 'rebutted' 
-                  "
-                >Formulari per ri-aplikim</router-link>
+              <li v-if="applicationStatus == 'rebutted'">
+                <router-link :to="{ name: 'ReApplication' }">Formulari per ri-aplikim</router-link>
               </li>
-              <li>
+              <li
+                v-if="
+                  applicationStatus == 'rebutted' ||
+                    applicationStatus == 'rejected' ||
+                    applicationStatus == 'accepted' ||
+                    applicationStatus == 'applying' ||
+                    applicationStatus == 'reapplying'
+                "
+              >
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
               </li>
-              <li>
-                <router-link :to="{ name: 'Communications' }" v-if="
-                    applicationStatus == 'accepted' 
-                  ">Komunikime zyrtare</router-link>
+              <li v-if="applicationStatus == 'accepted'">
+                <router-link :to="{ name: 'Communications' }">Komunikime zyrtare</router-link>
               </li>
-              <li>
-                <router-link :to="{ name: 'ComingSoon' }"
-                v-if="
-                    applicationStatus == 'accepted' 
-                  "
-                >Votime</router-link>
+              <li v-if="applicationStatus == 'accepted'">
+                <router-link :to="{ name: 'ComingSoon' }">Votime</router-link>
               </li>
               <!-- <li @click="logout" v-if="isAuthenticated">
-                <a href="#">Log-out</a>
-              </li>-->
+                <a href="#">Dil</a>
+              </li> -->
               <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
             </ul>
           </li>
@@ -130,10 +122,18 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { LOGOUT,FETCH_APPLICATION_INFO } from "@/store/actions.type";
+import { LOGOUT, FETCH_APPLICATION_INFO } from "@/store/actions.type";
 export default {
   name: "AppNavbar",
   methods: {
+    closeNav() {
+      document.querySelector("#body").classList.remove("offcanvas-show");
+      document.querySelector("html").style.cssText += "overflow: visible;";
+      let element = document.querySelectorAll(".offcanvas-backdrop");
+      Array.prototype.forEach.call(element, function(node) {
+        node.parentNode.removeChild(node);
+      });
+    },
     logout() {
       this.$store.dispatch(LOGOUT).then(() => {
         this.$router.push({ name: "Home" });
@@ -144,7 +144,9 @@ export default {
     ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus"])
   },
   mounted() {
-    this.$store.dispatch(FETCH_APPLICATION_INFO)
+    if (this.isAuthenticated) {
+      this.$store.dispatch(FETCH_APPLICATION_INFO);
+    }
   }
 };
 </script>
@@ -168,7 +170,7 @@ export default {
 }
 
 /* show only small logo on small screens */
-@media screen and (min-width: 1100px) {
+@media screen and (min-width: 1122px) {
   .show-logo-1 {
     display: none !important;
   }
@@ -182,7 +184,7 @@ export default {
   } */
 }
 /* dont show big logo on these screens */
-@media screen and (min-width: 992px) and (max-width: 1099px) {
+@media screen and (min-width: 992px) and (max-width: 1121px) {
   .show-logo-2 {
     display: none !important;
   }
@@ -197,6 +199,13 @@ export default {
 @media screen and (min-width: 0px) and (max-width: 638px) {
   .show-logo-2 {
     display: none !important;
+  }
+  .logo-alt {
+    margin-top: 11px;
+  }
+
+  .user-login {
+    margin-top: 11px;
   }
 }
 

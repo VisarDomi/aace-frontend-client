@@ -1,38 +1,42 @@
 {
-	"variables": [],
 	"info": {
-		"name": "https://aace.ml",
 		"_postman_id": "20a8c3fe-d625-482c-93fc-cd34703fdb65",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"name": "https://aace.ml",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "search",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/user/search",
 					"request": {
-						"url": "{{url}}/api/user/search",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"name\": \"v\"\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/user/search",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"search"
+							]
+						}
 					},
 					"response": []
 				}
@@ -40,33 +44,54 @@
 		},
 		{
 			"name": "auth",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/auth/login",
 					"request": {
-						"url": "{{url}}/api/auth/login",
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@aace.al",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "Basic YWRtaW5AYWFjZS5hbDpwYXNzd29yZA==",
-								"description": ""
+								"value": "Basic YWRtaW5AYWFjZS5hbDpwYXNzd29yZA=="
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
 						},
 						"description": "getting token"
 					},
@@ -76,28 +101,34 @@
 		},
 		{
 			"name": "user",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/user",
 					"request": {
-						"url": "{{url}}/api/user",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"email\": \"onegoodtest@aace.al\",\r\n    \"password\": \"password\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
 						},
 						"description": "user1"
 					},
@@ -105,24 +136,38 @@
 				},
 				{
 					"name": "{{url}}/api/user/all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"url": "{{url}}/api/user/all",
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"all"
+							]
 						},
 						"description": "get users with token"
 					},
@@ -130,54 +175,77 @@
 				},
 				{
 					"name": "{{url}}/api/user/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"url": "{{url}}/api/user/30",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
+						"url": {
+							"raw": "{{url}}/api/user/30",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"30"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/user/1",
 					"request": {
-						"url": "{{url}}/api/user/49",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"One\",\n    \"last_name\": \"GoodTest\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2019-03-06\",\n    \"reapplication_date\": \"2020-03-02\",\n    \"register_status\": \"applying\"\n}"
+							"raw": "{\n    \"first_name\": \"Test\",\n    \"last_name\": \"Fortyfour\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2018-03-06\",\n    \"reapplication_date\": \"2019-03-17\",\n    \"application_status\": \"applying\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/22",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"22"
+							]
 						},
 						"description": "Put"
 					},
@@ -186,30 +254,39 @@
 				{
 					"name": "{{url}}/api/user/2",
 					"request": {
-						"url": "{{url}}/api/user/2",
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer Bfp+1Oxqdxftn/Rm968eW+hTbXbCDuaQ",
-								"description": ""
+								"value": "bearer Bfp+1Oxqdxftn/Rm968eW+hTbXbCDuaQ"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
+						"url": {
+							"raw": "{{url}}/api/user/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2"
+							]
+						}
 					},
 					"response": []
 				}
@@ -217,33 +294,38 @@
 		},
 		{
 			"name": "organizationgroup",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/organizationgroup",
 					"request": {
-						"url": "{{url}}/api/organizationgroup",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"bordi\",\r\n    \"description\": \"bordi i shoqates\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/organizationgroup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup"
+							]
 						},
 						"description": "user1"
 					},
@@ -252,78 +334,31 @@
 				{
 					"name": "{{url}}/api/organizationgroup/all",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/all",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+							"raw": ""
 						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/organizationgroup/unassigned_users",
-					"request": {
-						"url": "{{url}}/api/organizationgroup/unassigned_users",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/organizationgroup/1",
-					"request": {
-						"url": "{{url}}/api/organizationgroup/4",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"all"
+							]
 						},
 						"description": "user1"
 					},
@@ -332,205 +367,2863 @@
 				{
 					"name": "{{url}}/api/organizationgroup/1",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/4",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/organizationgroup/1",
+					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"koordinatori\",\r\n    \"description\": \"koordinatori i shoqates\"\r\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"4"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/1",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/2",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/1/user/all",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/1/user/all",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/1/user/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"1",
+								"user",
+								"all"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/1/user/6",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/1/user/49",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/1/user/49",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"1",
+								"user",
+								"49"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/1/user/6",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/2/user/18",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/2/user/18",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"2",
+								"user",
+								"18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/organizationgroup/unassigned_users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/unassigned_users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"unassigned_users"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/1/user",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/1/user",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"ids\": [55,56,57]\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/1/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"1",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/1/user",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/1/user",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"ids\": [55,56]\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/1/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "education",
+			"item": [
+				{
+					"name": "{{url}}/api/user/1/education",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"education_type\": \"larte\",\n\t\"degree\": \"bachelor\",\n\t\"field_of_study\": \"computer science\",\n\t\"school\": \"universiteti i bolzanos\",\n\t\"from_date\": \"2013-10-01\",\n\t\"to_date\": \"2016-10-01\",\n\t\"description\": \"shkoll e mir shum\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/75/education",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"75",
+								"education"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/education/all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/49/education/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"49",
+								"education",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/education/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/23/education/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"23",
+								"education",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/education/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"education_type\": \"mesme\",\n\t\"degree\": \"mesme e pergjithshme\",\n\t\"field_of_study\": \"pergjithshme\",\n\t\"school\": \"universiteti i tiranes\",\n\t\"from_date\": \"1990-12-24\",\n\t\"to_date\": \"2001-04-01\",\n\t\"description\": \"shkoll koti\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/education/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"education",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/3/education/4",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"school\": \"blabla\",\n\t\"degree\": \"aace\",\n\t\"field_of_study\": \"Albania\",\n\t\"description\": \"I was a inxhiner there\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/education/6",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"education",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "experience",
+			"item": [
+				{
+					"name": "{{url}}/api/user/4/experience",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"menaxher\",\n\t\"employer\": \"albstar\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"2009-04-15\",\n\t\"to_date\": \"2015-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was good\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/75/experience",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"75",
+								"experience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/experience/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/experience/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/experience",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer qA/y/9q/3fgeN3hpJ9cTRLga+SxUmgXE"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"ushtar\",\n\t\"employer\": \"uhstri\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work not\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/7/experience/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"7",
+								"experience",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/experience",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"inxhinier zbatimi2\",\n\t\"company\": \"arredim\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work not\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "skill",
+			"item": [
+				{
+					"name": "{{url}}/api/user/1/skill",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"releaser\": \"ministria e shendetit\",\n\t\"name\": \"certifikim ne zemer\",\n\t\"from_date\": \"2008-02-13\",\n\t\"to_date\": \"2008-04-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/75/skill",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"75",
+								"skill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/skill/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/49/skill/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"49",
+								"skill",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/skill/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/skill/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer VjIyUFwwVVdYKj+xU80dQpV/HkzHyiZW"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"releaser\": \"shoshik2\",\n\t\"name\": \"certifikim ne dysheme\",\n\t\"from_date\": \"1999-12-13\",\n\t\"to_date\": \"2000-01-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/2/skill/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2",
+								"skill",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/3/skill/4",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"school\": \"blabla\",\n  \"degree\": \"aace\",\n  \"field_of_study\": \"Albania\",\n  \"description\": \"I was a inxhiner there\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "{{url}}/api/user/1/payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"pagesa1\",\n\t\"description\": \"u pagua ne tirane\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/payment/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/payment/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/payment/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"pagesa1\",\n\t\"description\": \"u pagua ne tirane editim\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/3/payment/4",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "{{url}}/api/admin/user/5",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/17",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/5",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/50",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/accepted",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/accepted",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"accepted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/applying",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/applying",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"applying"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/reapplying",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/reapplying",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"reapplying"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/applying_and_reapplying",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/applying_and_reapplying",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"applying_and_reapplying"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/rejected",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/rejected",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"rejected"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/rebutted",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/rebutted",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"rebutted"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/blank",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/blank",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"blank"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/5/email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": \"email from postman with migadu with no link\",\n    \"text_body\": \"this is one test to user visardomi4@gmail.com with no tls\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/27/email",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"27",
+								"email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media_user",
+			"item": [
+				{
+					"name": "{{url}}/api/user/4/media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/49/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"49",
+								"media"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/media/4",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/media/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"media",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/media/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/1/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"1",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/media/4",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/media/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"media",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/media/6",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 4q0hsLBOVreKCgQKtUJANjerM9jCLFFM"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/2/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media_education",
+			"item": [
+				{
+					"name": "{{url}}/api/user/4/education/1/media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/49/education/58/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"49",
+								"education",
+								"58",
+								"media"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/education/5/media/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer cGDpM8o5U3HxyIiaDS+81cd/wIcz3KEC"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/30/education/39/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"30",
+								"education",
+								"39",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/education/5/media/7",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/education/5/media/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"education",
+								"5",
+								"media",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/education/5/media/7",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/education/5/media/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"education",
+								"5",
+								"media",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/education/5/media/8",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/education/5/media/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"education",
+								"5",
+								"media",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media_experience",
+			"item": [
+				{
+					"name": "{{url}}/api/user/4/experience/2/media",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/49/experience/27/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"49",
+								"experience",
+								"27",
+								"media"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/experience/2/media/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/3/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"3",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/experience/2/media/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/2/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"2",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/experience/2/media/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/2/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"2",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/experience/2/media/2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/experience/2/media/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"experience",
+								"2",
+								"media",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media_skill",
+			"item": [
+				{
+					"name": "{{url}}/api/user/4/skill/2/media",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/75/skill/27/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"75",
+								"skill",
+								"27",
+								"media"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/skill/2/media/all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/1/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"1",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/skill/2/media/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/1/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"1",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/skill/2/media/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/1/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"1",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/skill/2/media/2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/1/media/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"1",
+								"media",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media_payment",
+			"item": [
+				{
+					"name": "{{url}}/api/user/4/payment/2/media",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1",
+								"media"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/payment/2/media/all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/payment/2/media/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/payment/2/media/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/4/payment/2/media/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bJrcAdtmVrK7i7BtpPqqsx0SUdHAjoSn",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/6/payment/1/media/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"6",
+								"payment",
+								"1",
+								"media",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "group",
+			"item": [
+				{
+					"name": "{{url}}/api/group",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Civil Engineer\",\r\n    \"description\": \"This is an engineers group\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/group",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"inxhinierat civil\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/group/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"inxhinierat civil\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/group/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 9ul2GfIpUVhiG2QALJR1zHL6hB786AQ8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"inxhinierat mekanik\",\r\n    \"description\": \"another description\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/group/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"inxhinierat mekanik\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/group/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/1/user/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/group/1/user/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"1",
+								"user",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/1/user/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 6\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/group/1/user/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"1",
+								"user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/group/1/user/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/group/1/user/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"group",
+								"1",
+								"user",
+								"4"
+							]
+						}
 					},
 					"response": []
 				}
@@ -538,33 +3231,38 @@
 		},
 		{
 			"name": "officialcommunication",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/officialcommunication",
 					"request": {
-						"url": "{{url}}/api/officialcommunication",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"Komunikim zyrtar per anetaret\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser ne oren 3\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication"
+							]
 						},
 						"description": "user1"
 					},
@@ -573,28 +3271,45 @@
 				{
 					"name": "{{url}}/api/officialcommunication/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/all",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"all"
+							]
 						},
 						"description": "user1"
 					},
@@ -603,28 +3318,41 @@
 				{
 					"name": "{{url}}/api/officialcommunication/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bKMfg8KKpjSftu1iQitAkocriMyJ2IJz",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1"
+							]
 						},
 						"description": "user1"
 					},
@@ -633,180 +3361,223 @@
 				{
 					"name": "{{url}}/api/officialcommunication/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"Takim3\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser.\"\r\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/1/organizationgroup/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/4/organizationgroup/all",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
-					"request": {
-						"url": "{{url}}/api/officialcommunication/5/organizationgroup/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/4/organizationgroup/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"4",
+								"organizationgroup",
+								"all"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/4/organizationgroup/5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/5/organizationgroup/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"5",
+								"organizationgroup",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
+					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/4/organizationgroup/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"4",
+								"organizationgroup",
+								"5"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/1/email",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/email",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/6/email",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"6",
+								"email"
+							]
+						}
 					},
 					"response": []
 				}
@@ -814,33 +3585,40 @@
 		},
 		{
 			"name": "officialcomment",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/5/officialcomment",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"body\": \"Komment nga One GoodTest vetem per komunikimin zyrtar me id 5 qe eshte ne oren 3.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/5/officialcomment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"5",
+								"officialcomment"
+							]
 						},
 						"description": "user1"
 					},
@@ -849,28 +3627,47 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/5/officialcomment/all",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/16/officialcomment/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"16",
+								"officialcomment",
+								"all"
+							]
 						},
 						"description": "user1"
 					},
@@ -879,28 +3676,43 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1/officialcomment/1",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer pmk+KbCsXqcm5ucBh9xrQ+FzuS3M7GZ7",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1/officialcomment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1",
+								"officialcomment",
+								"1"
+							]
 						},
 						"description": "user1"
 					},
@@ -909,804 +3721,82 @@
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3/officialcomment/5",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT",
-								"description": ""
+								"value": "application/json"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"Komment nga indriti, edituar.\"\r\n}"
+							"raw": "{\r\n    \"body\": \"Komment nga edituar.\"\r\n}"
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"officialcomment",
+								"5"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3/officialcomment/5",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT",
-								"description": ""
+								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "education",
-			"description": null,
-			"item": [
-				{
-					"name": "{{url}}/api/user/1/education",
-					"request": {
-						"url": "{{url}}/api/user/49/education",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"education_type\": \"larte\",\n\t\"degree\": \"bachelor\",\n\t\"field_of_study\": \"computer science\",\n\t\"school\": \"universiteti i bolzanos\",\n\t\"from_date\": \"2013-10-01\",\n\t\"to_date\": \"2016-10-01\",\n\t\"description\": \"shkoll e mir shum\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/education/all",
-					"request": {
-						"url": "{{url}}/api/user/49/education/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/education/1",
-					"request": {
-						"url": "{{url}}/api/user/23/education/2",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/education/1",
-					"request": {
-						"url": "{{url}}/api/user/4/education/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"education_type\": \"mesme\",\n\t\"degree\": \"mesme e pergjithshme\",\n\t\"field_of_study\": \"pergjithshme\",\n\t\"school\": \"universiteti i tiranes\",\n\t\"from_date\": \"1990-12-24\",\n\t\"to_date\": \"2001-04-01\",\n\t\"description\": \"shkoll koti\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/3/education/4",
-					"request": {
-						"url": "{{url}}/api/user/4/education/6",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"school\": \"blabla\",\n  \"degree\": \"aace\",\n  \"field_of_study\": \"Albania\",\n  \"description\": \"I was a inxhiner there\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "experience",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/user/4/experience",
-					"request": {
-						"url": "{{url}}/api/user/49/experience",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"menaxher\",\n\t\"employer\": \"albstar\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"2009-04-15\",\n\t\"to_date\": \"2015-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was good\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/experience/all",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/experience/1",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/experience",
-					"request": {
-						"url": "{{url}}/api/user/7/experience/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer qA/y/9q/3fgeN3hpJ9cTRLga+SxUmgXE",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"ushtar\",\n\t\"employer\": \"uhstri\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work not\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/experience",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/1",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"title\": \"inxhinier zbatimi2\",\n\t\"company\": \"arredim\",\n\t\"location\": \"albania\",\n\t\"from_date\": \"1999-12-31\",\n\t\"to_date\": \"2002-04-15\",\n\t\"is_currently_work_here\": false,\n\t\"description\": \"this was a good work not\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "skill",
-			"description": null,
-			"item": [
-				{
-					"name": "{{url}}/api/user/1/skill",
-					"request": {
-						"url": "{{url}}/api/user/49/skill",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"releaser\": \"ministria e shendetit\",\n\t\"name\": \"certifikim ne zemer\",\n\t\"from_date\": \"2008-02-13\",\n\t\"to_date\": \"2008-04-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/skill/all",
-					"request": {
-						"url": "{{url}}/api/user/49/skill/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/skill/1",
-					"request": {
-						"url": "{{url}}/api/user/4/skill/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/skill/1",
-					"request": {
-						"url": "{{url}}/api/user/2/skill/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer VjIyUFwwVVdYKj+xU80dQpV/HkzHyiZW",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"releaser\": \"shoshik2\",\n\t\"name\": \"certifikim ne dysheme\",\n\t\"from_date\": \"1999-12-13\",\n\t\"to_date\": \"2000-01-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/3/skill/4",
-					"request": {
-						"url": "{{url}}/api/user/4/skill/2",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"school\": \"blabla\",\n  \"degree\": \"aace\",\n  \"field_of_study\": \"Albania\",\n  \"description\": \"I was a inxhiner there\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "admin",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/admin/user/5",
-					"request": {
-						"url": "{{url}}/api/admin/user/17",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"role\": \"normal_user\",\n    \"register_status\": \"approved\"\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/5",
-					"request": {
-						"url": "{{url}}/api/admin/user/50",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"register_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/accepted",
-					"request": {
-						"url": "{{url}}/api/admin/user/accepted",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/applying",
-					"request": {
-						"url": "{{url}}/api/admin/user/applying",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/reapplying",
-					"request": {
-						"url": "{{url}}/api/admin/user/reapplying",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/applying_and_reapplying",
-					"request": {
-						"url": "{{url}}/api/admin/user/applying_and_reapplying",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/rejected",
-					"request": {
-						"url": "{{url}}/api/admin/user/rejected",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/rebutted",
-					"request": {
-						"url": "{{url}}/api/admin/user/rebutted",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/blank",
-					"request": {
-						"url": "{{url}}/api/admin/user/blank",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/5/email",
-					"request": {
-						"url": "{{url}}/api/admin/user/27/email",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"subject\": \"email from postman with migadu with no link\",\n    \"text_body\": \"this is one test to user visardomi4@gmail.com with no tls\"\n}"
-						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"officialcomment",
+								"5"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1714,95 +3804,121 @@
 		},
 		{
 			"name": "admin_download",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/admin/media_education/5",
 					"request": {
-						"url": "{{url}}/api/admin/media_education/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
-								"description": ""
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot"
 							},
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
+						"url": {
+							"raw": "{{url}}/api/admin/media_education/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"media_education",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/admin/media_experience/5",
 					"request": {
-						"url": "{{url}}/api/admin/media_experience/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot",
-								"description": ""
+								"value": "bearer UHPk83r1oRwNrq6do9nctJsHXUDxfsot"
 							},
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
+						"url": {
+							"raw": "{{url}}/api/admin/media_experience/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"media_experience",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/admin/media_skill/1",
 					"request": {
-						"url": "{{url}}/api/admin/media_skill/2",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QPPv3PLkWVv2jfLdx38EJ+9lmJGnBZx2",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
+						"url": {
+							"raw": "{{url}}/api/admin/media_skill/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"media_skill",
+								"2"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1810,699 +3926,41 @@
 		},
 		{
 			"name": "media_download",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/media/media_officialcommunication/1",
 					"request": {
-						"url": "{{url}}/api/media/media_officialcommunication/9",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
+								"value": "application/json"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							},
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "media_user",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/user/4/media",
-					"request": {
-						"url": "{{url}}/api/user/49/media",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "vlcsnap-2019-01-31-05h56m04s015.png"
-								}
+						"url": {
+							"raw": "{{url}}/api/media/media_officialcommunication/9",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"media",
+								"media_officialcommunication",
+								"9"
 							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/media/4",
-					"request": {
-						"url": "{{url}}/api/user/4/media/4",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/media/all",
-					"request": {
-						"url": "{{url}}/api/user/1/media/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/media/4",
-					"request": {
-						"url": "{{url}}/api/user/4/media/4",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/media/6",
-					"request": {
-						"url": "{{url}}/api/user/2/media/1",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 4q0hsLBOVreKCgQKtUJANjerM9jCLFFM",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "hjkl.png"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "media_education",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/user/4/education/1/media",
-					"request": {
-						"url": "{{url}}/api/user/49/education/58/media",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "awer.pdf"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/education/5/media/all",
-					"request": {
-						"url": "{{url}}/api/user/30/education/39/media/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer cGDpM8o5U3HxyIiaDS+81cd/wIcz3KEC",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/education/5/media/7",
-					"request": {
-						"url": "{{url}}/api/user/4/education/5/media/7",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/education/5/media/7",
-					"request": {
-						"url": "{{url}}/api/user/4/education/5/media/7",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/education/5/media/8",
-					"request": {
-						"url": "{{url}}/api/user/4/education/5/media/8",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 7TMZQk7YiYTfod8LY9qAgZRflflOkW1+",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "media_experience",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/user/4/experience/2/media",
-					"request": {
-						"url": "{{url}}/api/user/49/experience/27/media",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "Eco Riciklim Teknologjia3.jpg"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/experience/2/media/all",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/3/media/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/experience/2/media/1",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/2/media/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/experience/2/media/1",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/2/media/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/experience/2/media/2",
-					"request": {
-						"url": "{{url}}/api/user/4/experience/2/media/2",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "media_skill",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/user/4/skill/2/media",
-					"request": {
-						"url": "{{url}}/api/user/49/skill/27/media",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "iphone-5s-white.png"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/skill/2/media/all",
-					"request": {
-						"url": "{{url}}/api/user/4/skill/1/media/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/skill/2/media/1",
-					"request": {
-						"url": "{{url}}/api/user/4/skill/1/media/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/skill/2/media/1",
-					"request": {
-						"url": "{{url}}/api/user/4/skill/1/media/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "dyguy.png"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/4/skill/2/media/2",
-					"request": {
-						"url": "{{url}}/api/user/4/skill/1/media/3",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
+						}
 					},
 					"response": []
 				}
@@ -2510,23 +3968,19 @@
 		},
 		{
 			"name": "media_organizationgroup",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/organizationgroup/3/media",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/3/media",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
@@ -2534,85 +3988,98 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "",
 									"type": "file",
-									"src": "Eco Riciklim Teknologjia3.jpg"
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/3/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"3",
+								"media"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/3/media/all",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/3/media/all",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
+							"mode": "raw",
+							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/3/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"3",
+								"media",
+								"all"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/3/media/1",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/3/media/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
+							"mode": "raw",
+							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/3/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"3",
+								"media",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/organizationgroup/2/media/1",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/3/media/4",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
@@ -2620,31 +4087,39 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "",
 									"type": "file",
-									"src": "iphone-5s-white.png"
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/3/media/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"3",
+								"media",
+								"4"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}api/organizationgroup/2/media/2",
 					"request": {
-						"url": "{{url}}/api/organizationgroup/1/media/1",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
@@ -2652,13 +4127,24 @@
 							"formdata": [
 								{
 									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
+									"type": "file",
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/organizationgroup/1/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"organizationgroup",
+								"1",
+								"media",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -2666,23 +4152,19 @@
 		},
 		{
 			"name": "media_officialcommunication",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/officialcommunication/3/media",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1/media",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
@@ -2690,95 +4172,106 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "",
 									"type": "file",
-									"src": "awer.pdf"
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1",
+								"media"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/3/media/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1/media/all",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
-								"description": ""
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
+							"mode": "raw",
+							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1",
+								"media",
+								"all"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/3/media/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3/media/1",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
-								"description": ""
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
+							"mode": "raw",
+							"raw": ""
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"media",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/2/media/1",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3/media/1",
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
 							}
 						],
 						"body": {
@@ -2786,31 +4279,39 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "",
 									"type": "file",
-									"src": "Eco Riciklim Hero1.jpg"
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"media",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/apiofficialcommunication/2/media/2",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/1/media/8",
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x",
-								"description": ""
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
@@ -2818,13 +4319,24 @@
 							"formdata": [
 								{
 									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
+									"type": "file",
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1/media/8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1",
+								"media",
+								"8"
+							]
+						}
 					},
 					"response": []
 				}
@@ -2832,23 +4344,19 @@
 		},
 		{
 			"name": "media_officialcomment",
-			"description": "",
 			"item": [
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/3/officialcomment/5/media",
 						"method": "POST",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT",
-								"description": ""
+								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT"
 							}
 						],
 						"body": {
@@ -2856,377 +4364,181 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "",
 									"type": "file",
-									"src": "Eco Riciklim Quote2.jpg"
+									"src": ""
 								}
 							]
 						},
-						"description": ""
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5/media",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"officialcomment",
+								"5",
+								"media"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media/all",
 					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment/3/media/all",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
+								"value": "{{Secure-Api-Key}}"
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
-					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
-					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"description": "",
-									"type": "file",
-									"src": "AACE Database design_1.pdf"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/apiofficialcommunication/6/officialcomment/3/media/2",
-					"request": {
-						"url": "{{url}}/api/officialcommunication/6/officialcomment/3/media/4",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "file",
-									"value": "",
-									"description": "",
-									"type": "file"
-								}
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "group",
-			"description": "",
-			"item": [
-				{
-					"name": "{{url}}/api/group",
-					"request": {
-						"url": "{{url}}/api/group",
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Civil Engineer\",\r\n    \"description\": \"This is an engineers group\"\r\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/all",
-					"request": {
-						"url": "{{url}}/api/group/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"inxhinierat civil\"\r\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/1",
-					"request": {
-						"url": "{{url}}/api/group/1",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"inxhinierat civil\"\r\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/1",
-					"request": {
-						"url": "{{url}}/api/group/1",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 9ul2GfIpUVhiG2QALJR1zHL6hB786AQ8",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"inxhinierat mekanik\",\r\n    \"description\": \"another description\"\r\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/1",
-					"request": {
-						"url": "{{url}}/api/group/2",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"inxhinierat mekanik\"\r\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/1/user/all",
-					"request": {
-						"url": "{{url}}/api/group/1/user/all",
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"inxhinierat civil\"\r\n}"
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/1/user/1",
-					"request": {
-						"url": "{{url}}/api/group/1/user/4",
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC",
-								"description": ""
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user_id\": 6\r\n}"
-						},
-						"description": null
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/group/1/user/1",
-					"request": {
-						"url": "{{url}}/api/group/1/user/4",
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}",
-								"description": ""
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"description": ""
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer 5dlCn//fnHndiUbzr0rmPxsGO85GLnZz",
-								"description": ""
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN"
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
-						"description": null
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/6/officialcomment/3/media/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"6",
+								"officialcomment",
+								"3",
+								"media",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"6",
+								"officialcomment",
+								"3",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/6/officialcomment/3/media/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"6",
+								"officialcomment",
+								"3",
+								"media",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/apiofficialcommunication/6/officialcomment/3/media/2",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer +iD6HqP0fp07yEzeL+6ivbWmXempJWoN"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/6/officialcomment/3/media/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"6",
+								"officialcomment",
+								"3",
+								"media",
+								"4"
+							]
+						}
 					},
 					"response": []
 				}

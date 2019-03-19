@@ -718,7 +718,7 @@ export default {
         email: "",
         comment_from_administrator: "",
         profession: "",
-        sex: "",
+        sex: ""
       },
       profession_other: false,
       profession_id: "",
@@ -747,7 +747,11 @@ export default {
       education_degree_id: [],
       education_degree_other: [false],
       education_degree_options: {
-        1: [{ text: "Pergjithshme", id: 1 }, { text: "Teknike", id: 2 }, {text: "Te tjere", id:3}],
+        1: [
+          { text: "Pergjithshme", id: 1 },
+          { text: "Teknike", id: 2 },
+          { text: "Te tjere", id: 3 }
+        ],
         2: [
           { text: "Bachelor", id: 4 },
           { text: "Master", id: 5 },
@@ -786,7 +790,9 @@ export default {
         this.user_data.profession = "Fut profesionin";
       } else {
         this.profession_other = false;
-        this.user_data.profession = this.profession_options[event.target.value - 1].text;
+        this.user_data.profession = this.profession_options[
+          event.target.value - 1
+        ].text;
       }
     },
     handleEducationTypeChange(e, i){
@@ -808,7 +814,7 @@ export default {
         else
           this.educationInputs[i].degree = this.education_degree_options[
             this.education_type_id[i]
-          ][educationOptionId - 3].text;
+          ][educationOptionId - 4].text;
       }
     },
     handleEducationOptionMajorChange(e, i) {
@@ -894,9 +900,7 @@ export default {
       for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
         files.push(this.$refs.skill[index].files[i]);
       }
-      this.skillInputs.filter(
-        skill => skill.id === id
-      )[0].files = files;
+      this.skillInputs.filter(skill => skill.id === id)[0].files = files;
     },
     onAddSkill() {
       const newSkill = {
@@ -910,9 +914,7 @@ export default {
       this.skillInputs.push(newSkill);
     },
     onDeleteSkill(id) {
-      this.skillInputs = this.skillInputs.filter(
-        skill => skill.id !== id
-      );
+      this.skillInputs = this.skillInputs.filter(skill => skill.id !== id);
     },
 
     send_experiences() {
@@ -1198,24 +1200,24 @@ export default {
       last_name: { required },
       profession: { required },
       sex: { required },
-      summary: { required },
+      // summary: { required },
       country: { required },
       // industry: { required },
       phone: { required },
       address: { required },
       birthday: { required },
-      website: { required },
+      // website: { required },
       email: { required, email }
     }
   },
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-    this.onAddExperience()
-    this.onAddEducation()
-    this.onAddSkill()
-    this.user_data.sex = "Mashkull"
-    this.user_data.profession = "Inxhinier Ndertimi"
+    this.onAddExperience();
+    this.onAddEducation();
+    this.onAddSkill();
+    this.user_data.sex = "Mashkull";
+    this.user_data.profession = "Inxhinier Ndertimi";
     this.profession_id = 1;
     axios
       .get(AACE_URL_USER + USER_ID, {
