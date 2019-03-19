@@ -18,7 +18,7 @@
             <h4>Emri i aplikantit:</h4>
             <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
           </div>
-          <br>
+          <br />
           <div v-if="applicationStatus == 'applying'">
             <h4>Data e aplikimit:</h4>
             <p>{{ getFormattedDate(applicationDate) }}</p>
@@ -27,7 +27,7 @@
             <h4>Data e aplikimit:</h4>
             <p>{{ getFormattedDate(reapplicationDate) }}</p>
           </div>
-          <br>
+          <br />
           <h4>Status i aplikimit:</h4>
           <div
             class="alert alert-warning"
@@ -72,14 +72,22 @@
           >
             <strong>Pranuar.</strong>
           </div>
-          <br>
+          <br />
           <h4 v-if="commentFromAdmin">Koment nga administratori:</h4>
           <p>{{ commentFromAdmin }}</p>
-          <br>
-          <router-link :to="{ name: 'ReApplication' }" v-if="applicationStatus == 'rebutted'">
-            <button type="submit" class="btn btn-primary">Rregullo aplikimin</button>
+          <br />
+          <router-link
+            :to="{ name: 'ReApplication' }"
+            v-if="applicationStatus == 'rebutted'"
+          >
+            <button type="submit" class="btn btn-primary">
+              Rregullo aplikimin
+            </button>
           </router-link>
-          <router-link :to="{ name: 'Application' }" v-if="applicationStatus == 'blank'">
+          <router-link
+            :to="{ name: 'Application' }"
+            v-if="applicationStatus == 'blank'"
+          >
             <button type="submit" class="btn btn-primary">Apliko</button>
           </router-link>
         </div>
