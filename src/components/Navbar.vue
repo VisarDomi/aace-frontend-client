@@ -110,7 +110,7 @@
                 >
               </li>
               <li v-if="applicationStatus == 'rebutted'">
-                <router-link :to="{ name: 'ReApplication' }"
+                <router-link :to="{ name: 'Reapplication' }"
                   >Formulari per ri-aplikim</router-link
                 >
               </li>

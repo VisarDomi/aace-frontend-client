@@ -56,7 +56,7 @@
                   >Apliko tani</router-link
                 >
                 <router-link
-                  :to="{ name: 'ReApplication' }"
+                  :to="{ name: 'Reapplication' }"
                   class="btn btn-success"
                   v-if="
                     currentUser.application_status == 'rebutted' ||

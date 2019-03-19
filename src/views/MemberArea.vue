@@ -28,13 +28,33 @@
             </router-link>
 
             <router-link
-              :to="{ name: 'ReApplication' }"
+              :to="{ name: 'Reapplication' }"
               style="height: 295px;"
               v-if="applicationStatus == 'rebutted'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>Forma e riaplikimit</h6>
               <p>Rregullo te dhenat qe jan gabim ose qe mungojne</p>
+            </router-link>
+
+            <router-link
+              :to="{ name: 'SendingPayment' }"
+              style="height: 295px;"
+              v-if="paymentStatus == 'blank'"
+            >
+              <i class="fa fa-file-excel-o"></i>
+              <h6>Vertetimi i pageses</h6>
+              <p>Dergo vertetimin e pageses</p>
+            </router-link>
+
+            <router-link
+              :to="{ name: 'ResendingPayment' }"
+              style="height: 295px;"
+              v-if="paymentStatus == 'rebutted_payment'"
+            >
+              <i class="fa fa-file-excel-o"></i>
+              <h6>Vertetimi i pageses</h6>
+              <p>Dergo vertetimin e pageses edhe njehere</p>
             </router-link>
 
             <router-link

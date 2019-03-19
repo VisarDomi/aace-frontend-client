@@ -277,10 +277,10 @@ export default new Router({
     },
     {
       path: "/reapplication",
-      name: "ReApplication",
-      component: () => import("@/views/ReApplication"),
+      name: "Reapplication",
+      component: () => import("@/views/Reapplication"),
       meta: {
-        title: "ReApplication",
+        title: "Reapplication",
         metaTags: [
           {
             name: "description",
@@ -297,6 +297,77 @@ export default new Router({
           let user = JSON.parse(localStorage.getItem("user"));
           console.log("status", user["application_status"]);
           if (user["application_status"] == "rebutted") {
+            next();
+          } else {
+            console.log("redirect");
+            next("/application_status");
+          }
+          //is there a way to get this using the new structure functionality?
+        } else {
+          console.log("redirect");
+          next("/login");
+        }
+      }
+    },
+    {
+      path: "/sending_payment",
+      name: "SendingPayment",
+      component: () => import("@/views/SendingPayment"),
+      meta: {
+        title: "SendingPayment",
+        metaTags: [
+          {
+            name: "description",
+            content: "The sending_payment page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The sending_payment page of AACE."
+          }
+        ]
+      },
+      beforeEnter(to, from, next) {
+        if (localStorage.getItem("id_token")) {
+          let user = JSON.parse(localStorage.getItem("user"));
+          console.log("payment_status", user["payment_status"]);
+          if (
+            user["application_status"] == undefined ||
+            user["payment_status"] == "blank"
+          ) {
+            next();
+          } else {
+            console.log("redirect");
+            next("/application_status");
+          }
+          //is there a way to get this using the new structure functionality?
+        } else {
+          console.log("redirect");
+          next("/login");
+        }
+      }
+    },
+    {
+      path: "/resending_payment",
+      name: "ResendingPayment",
+      component: () => import("@/views/ResendingPayment"),
+      meta: {
+        title: "ResendingPayment",
+        metaTags: [
+          {
+            name: "description",
+            content: "The resending_payment page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The resending_payment page of AACE."
+          }
+        ]
+      },
+      beforeEnter(to, from, next) {
+        if (localStorage.getItem("id_token")) {
+          let user = JSON.parse(localStorage.getItem("user"));
+          console.log("payment_status", user["payment_status"]);
+          if (user["payment_status"] == "rebutted_payment") {
             next();
           } else {
             console.log("redirect");
@@ -401,7 +472,7 @@ export default new Router({
       beforeEnter(to, from, next) {
         console.log(to.name);
         console.log(from.name);
-        if (from.name == "ReApplication" || from.name == "Application") next();
+        if (from.name == "Reapplication" || from.name == "Application") next();
         else {
           console.log("redirect");
           next("/application_status");

@@ -77,7 +77,7 @@
           <p>{{ commentFromAdmin }}</p>
           <br />
           <router-link
-            :to="{ name: 'ReApplication' }"
+            :to="{ name: 'Reapplication' }"
             v-if="applicationStatus == 'rebutted'"
           >
             <button type="submit" class="btn btn-primary">

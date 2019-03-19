@@ -645,7 +645,7 @@ import DateFilter from "@/common/date.filter";
 import { EducationService } from "@/common/api.service";
 
 export default {
-  name: "ReApplication",
+  name: "Reapplication",
   data() {
     return {
       //--------------- User -------
