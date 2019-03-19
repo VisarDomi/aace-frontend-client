@@ -53,52 +53,23 @@
                   />
                 </div>
               </div>
-<<<<<<< HEAD
-              <div class="form-group">
-                <select
-                  class="form-control col-sm-6"
-                  v-model="profession_id"
-                  @change="changeProfession"
-                >
-                  <option
-                    v-for="option in profession_options"
-                    v-bind:value="option.id"
-                    :key="option.id"
-                    >{{ option.text }}</option
-                  >>
-                </select>
-                <div class="form-group col-sm-6">
-                  <input
-                    type="text"
-                    :disabled="!profession_other"
-                    class="form-control"
-                    v-model="user_data.profession"
-                    :placeholder="profession_other"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <select class="form-control" v-model="user_data.sex">
-                  <option
-                    v-for="option in sex_options"
-                    v-bind:value="option.text"
-                    :key="option.id"
-                    >{{ option.text }}</option
-                  >
-                </select>
-=======
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-9">
-                  <select class="form-control" v-model="user_data.profession">
-                    <option value="Inxhinier Ndertimi"
-                      >Inxhinier Ndertimi</option
-                    >
-                    <option value="Inxhinier Civil">Inxhinier Civil</option>
-                    <option value="Inxhinier Mekanik">Inxhinier Mekanik</option
-                    >>
+                  <select class="form-control" v-model="profession_id" @change="changeProfession">
+                    <option v-for="option in profession_options" v-bind:value="option.id" :key="option.id">
+                      {{ option.text }}
+                    </option>
                   </select>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      :disabled="!profession_other"
+                      class="form-control"
+                      v-model="user_data.profession"
+                      :placeholder="profession_other"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -106,12 +77,14 @@
                 <label class="col-sm-3">Gjinia</label>
                 <div class="col-sm-9">
                   <select class="form-control" v-model="user_data.sex">
-                    <option value="Mashkull">Mashkull</option>
-                    <option value="Femer">Femer</option
-                    >>
+                    <option
+                      v-for="option in sex_options"
+                      v-bind:value="option.text"
+                      :key="option.id">
+                      {{ option.text }}
+                    </option>
                   </select>
                 </div>
->>>>>>> aa313e888041d65783d511095d450e2d60ea43a6
               </div>
 
               <div class="form-group col-sm-12">
@@ -262,23 +235,25 @@
 
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
-                        <div class="form-group">
+                        <!-- <div class="form-group"> -->
+                        <div class="input-file-container">
                           <input
                             type="file"
+                            class='input-file'
+                            :id="educationInputs[index].id"
                             ref="education"
                             multiple
-                            @change="
-                              handleFileUploadEducation(
-                                educationInput.id,
-                                index
-                              )
+                            @change="handleFileUploadEducation(educationInput.id, index)
                             "
                           />
-                          <label
-                            >Ngarkoni dokumentin perkates per kete
-                            arsimim</label
-                          >
+                        <label tabindex="0" :for="educationInputs[index].id" class="input-file-trigger"
+                          >Zgjidhni nje foto...</label
+                        >
                         </div>
+                        
+                        <p :key='i' 
+                        v-for='i in educationInputs[index].files.length'
+                        class="file-return">{{ educationInputs[index].files[i-1].name }}</p>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
@@ -288,6 +263,7 @@
                             <select
                               class="form-control"
                               v-model="education_type_id[index]"
+                              @change="handleEducationTypeChange($event, index)"
                             >
                               <option
                                 v-for="option in education_type_options"
@@ -325,7 +301,7 @@
                               :disabled="!education_degree_other[index]"
                               class="form-control"
                               v-model="educationInput.degree"
-                              placeholder="..."
+                              placeholder="Tipi i diplomes"
                             />
                           </div>
                         </div>
@@ -353,7 +329,7 @@
                           <div class="col-sm-5">
                             <input
                               type="text"
-                              :disabled="!education_major_other"
+                              :disabled="!education_major_other[index]"
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="Dega"
@@ -783,11 +759,7 @@ export default {
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-<<<<<<< HEAD
-        1: [{ text: "??", id: 1 }, { text: "????", id: 2 }, {text:"Te tjere", id:3}],
-=======
-        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }],
->>>>>>> aa313e888041d65783d511095d450e2d60ea43a6
+        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }, {text:"Te tjere", id:3}],
         2: [
           { text: "Inxhinier Civil", id: 4 },
           { text: "Inxhinier Elektrik", id: 5 },
@@ -808,13 +780,19 @@ export default {
   },
   methods: {
     changeProfession() {
-      if (event.target.value == 5) {
+      if (event.target.value == 4) {
+        console.log('hello!')
         this.profession_other = true;
         this.user_data.profession = "Fut profesionin";
       } else {
         this.profession_other = false;
         this.user_data.profession = this.profession_options[event.target.value - 1].text;
       }
+    },
+    handleEducationTypeChange(e, i){
+      this.educationInputs[i].degree = ''
+      this.educationInputs[i].field_of_study = ''
+      this.educationInputs[i].education_type = this.education_type_options[e.target.value-1].text
     },
     handleEducationOptionDegreeChange(e, i) {
       let educationOptionId = e.target.value;
@@ -836,10 +814,10 @@ export default {
     handleEducationOptionMajorChange(e, i) {
       let educationOptionId = e.target.value;
       if (educationOptionId == 6 || educationOptionId == 3) {
-        this.education_major_other = true;
+        this.education_major_other[i] = true;
         this.educationInputs[i].field_of_study = "Fut degen";
       } else {
-        this.education_major_other = false;
+        this.education_major_other[i] = false;
         if (this.education_type_id[i] == 1)
           this.educationInputs[i].field_of_study = this.education_major_options[
             this.education_type_id[i]
@@ -872,7 +850,8 @@ export default {
         school: "",
         from_date: "",
         to_date: "",
-        description: ""
+        description: "",
+        files: []
       };
       this.educationInputs.push(newEducation);
     },
@@ -1059,7 +1038,28 @@ export default {
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
 
+      let resEducationInputs = [];
+
+      // removes unnecesary keys, like (id) and (user_id)
       for (var i = 0; i < this.educationInputs.length; i++) {
+        resEducationInputs.push({});
+        // list of education ids
+        for (var j = 0; j < Object.keys(this.educationInputs[i]).length; j++) {
+          if (
+            Object.keys(this.educationInputs[i])[j] != "id"
+          ) {
+            resEducationInputs[i][
+              Object.keys(this.educationInputs[i])[j]
+            ] = this.educationInputs[i][
+              Object.keys(this.educationInputs[i])[j]
+            ];
+          }
+        }
+      }
+      this.educationInputs = resEducationInputs;
+
+      for (var i = 0; i < this.educationInputs.length; i++) {
+        console.log(this.educationInputs[i])
         axios
           .post(
             "https://aace.ml/api/user/" + USER_ID + "/education",
@@ -1105,6 +1105,7 @@ export default {
                   }
                 )
                 .then(res => {
+                  console.log('media education')
                   if (res.status == 200) {
                   }
                 })
@@ -1144,13 +1145,13 @@ export default {
       };
 
       // ------- Experience file and post -------
-      this.send_experiences();
+      // this.send_experiences();
       // ------- Skill file and post -------
-      this.send_skills();
+      // this.send_skills();
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
-      console.log("outside");
+      console.log(user_string)
       axios
         .all([
           axios.post(
@@ -1171,7 +1172,7 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
-            console.log("inside");
+            console.log('user post')
             if (profileRes.status == 200) {
               // console.log("Profile picture updated successfully.");
             } else {
@@ -1181,9 +1182,9 @@ export default {
             if (stringRes.status == 200) {
               // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
-              this.$router.push({
-                name: "Success"
-              });
+              // this.$router.push({
+              //   name: "Success"
+              // });
             } else {
               // console.log("String sent unsuccessfuly");
             }
@@ -1229,9 +1230,9 @@ export default {
 //input file
 document.querySelector("html").classList.add("js");
 
-var fileInput = document.querySelector(".input-file"),
-  button = document.querySelector(".input-file-trigger"),
-  the_return = document.querySelector(".file-return");
+// var fileInput = document.querySelector(".input-file"),
+//   button = document.querySelector(".input-file-trigger"),
+//   the_return = document.querySelector(".file-return");
 
 //---------------
 </script>
