@@ -136,7 +136,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus"])
+    ...mapGetters(["currentUser", "isAuthenticated", "applicationStatus", "paymentStatus"])
   },
   mounted() {
     this.$store.dispatch(FETCH_APPLICATION_INFO);

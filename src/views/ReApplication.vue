@@ -1079,7 +1079,7 @@ export default {
                   if (res.status == 200) {
                     console.log("media education.");
                     // this.$router.push({
-                    //   name: "Success"
+                    //   name: "SuccessApplication"
                     // });
                   }
                 })
@@ -1155,7 +1155,7 @@ export default {
               // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               // this.$router.push({
-              //   name: "Success"
+              //   name: "SuccessApplication"
               // });
             } else {
               // console.log("String sent unsuccessfuly");

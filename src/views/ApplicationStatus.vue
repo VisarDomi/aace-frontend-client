@@ -23,7 +23,7 @@
             <h4>Data e aplikimit:</h4>
             <p>{{ getFormattedDate(applicationDate) }}</p>
           </div>
-          <div v-else-if="applicationStatus != 'blank'">
+          <div v-else-if="applicationStatus == 'reapplying'">
             <h4>Data e aplikimit:</h4>
             <p>{{ getFormattedDate(reapplicationDate) }}</p>
           </div>
@@ -72,6 +72,52 @@
           >
             <strong>Pranuar.</strong>
           </div>
+          <br>
+          <div v-if="paymentStatus == 'sending_payment'">
+            <h4>Data e dergimit te vertetimit te pageses:</h4>
+            <p>{{ getFormattedDate(sendPaymentDate) }}</p>
+          </div>
+          <div v-else-if="paymentStatus == 'resending_payment'">
+            <h4>Data e dergimit te vertetimit te pageses:</h4>
+            <p>{{ getFormattedDate(resendPaymentDate) }}</p>
+          </div>
+
+          <br>
+          <div
+            class="alert alert-warning"
+            role="alert"
+            style="width:33%; margin:auto;"
+            v-if="paymentStatus == 'rebutted_payment'"
+          >
+            <strong>Vertetimi i pageses jo i sakte.</strong>
+          </div>
+          <div
+            class="alert alert-info"
+            role="alert"
+            style="width:33%; margin:auto;"
+            v-if="paymentStatus == 'blank'"
+          >
+            <strong>Vertetimi i pageses nuk eshte derguar.</strong>
+          </div>
+          <div
+            class="alert alert-info"
+            role="alert"
+            style="width:33%; margin:auto;"
+            v-if="
+              paymentStatus == 'sending_payment' ||
+                paymentStatus == 'resending_payment'
+            "
+          >
+            <strong>Vertetimi i pageses eshte derguar.</strong>
+          </div>
+          <div
+            class="alert alert-success"
+            role="alert"
+            style="width:33%; margin:auto;"
+            v-if="paymentStatus == 'accepted_payment'"
+          >
+            <strong>Vertetimi i pageses eshte pranuar.</strong>
+          </div>
           <br />
           <h4 v-if="commentFromAdmin">Koment nga administratori:</h4>
           <p>{{ commentFromAdmin }}</p>
@@ -108,6 +154,8 @@ export default {
   name: "ApplicationStatus",
   methods: {
     getFormattedDate(time) {
+      console.log("sendPaymentDate is", this.sendPaymentDate)
+      console.log("time is", time)
       return DateFilter(time);
     }
   },
@@ -120,6 +168,9 @@ export default {
       "applicationStatus",
       "applicationDate",
       "reapplicationDate",
+      "paymentStatus",
+      "sendPaymentDate",
+      "resendPaymentDate",
       "commentFromAdmin"
     ])
   }

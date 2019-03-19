@@ -453,19 +453,19 @@ export default new Router({
       }
     },
     {
-      path: "/success",
-      name: "Success",
-      component: () => import("@/views/Success"),
+      path: "/success_application",
+      name: "SuccessApplication",
+      component: () => import("@/views/SuccessApplication"),
       meta: {
-        title: "Success",
+        title: "SuccessApplication",
         metaTags: [
           {
             name: "description",
-            content: "The success page of AACE."
+            content: "The success_application page of AACE."
           },
           {
             property: "og:description",
-            content: "The success page of AACE."
+            content: "The success_application page of AACE."
           }
         ]
       },
@@ -473,6 +473,33 @@ export default new Router({
         console.log(to.name);
         console.log(from.name);
         if (from.name == "Reapplication" || from.name == "Application") next();
+        else {
+          console.log("redirect");
+          next("/application_status");
+        }
+      }
+    },
+    {
+      path: "/success_payment",
+      name: "SuccessPayment",
+      component: () => import("@/views/SuccessPayment"),
+      meta: {
+        title: "SuccessPayment",
+        metaTags: [
+          {
+            name: "description",
+            content: "The success_payment page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The success_payment page of AACE."
+          }
+        ]
+      },
+      beforeEnter(to, from, next) {
+        console.log(to.name);
+        console.log(from.name);
+        if (from.name == "SendingPayment" || from.name == "ResendingPayment") next();
         else {
           console.log("redirect");
           next("/application_status");

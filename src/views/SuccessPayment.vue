@@ -33,19 +33,20 @@
 import axios from "axios";
 
 export default {
-  name: "Success",
+  name: "SuccessPayment",
   mounted() {
     let USER = JSON.parse(localStorage.getItem("user"));
     let TOKEN = localStorage.getItem("id_token");
-    console.log("user status, ", USER.application_status);
+    console.log("payment status, ", USER.payment_status);
     let date = new Date();
-    if (USER.application_status == "blank") {
+    console.log("date", date.toISOString())
+    if (USER.payment_status == "blank") {
       axios
         .put(
           "https://aace.ml/api/user/" + USER.id,
           {
-            application_status: "applying",
-            application_date: date.toISOString()
+            payment_status: "sending_payment",
+            send_payment_date: date.toISOString()
           },
           {
             headers: {
@@ -62,8 +63,8 @@ export default {
         .put(
           "https://aace.ml/api/user/" + USER.id,
           {
-            application_status: "reapplying",
-            reapplication_date: date.toISOString()
+            payment_status: "resending_payment",
+            resend_payment_date: date.toISOString()
           },
           {
             headers: {

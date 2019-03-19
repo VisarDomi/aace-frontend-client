@@ -1237,7 +1237,7 @@ export default {
               // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               this.$router.push({
-                name: "Success"
+                name: "SuccessApplication"
               });
             } else {
               // console.log("String sent unsuccessfuly");
@@ -1261,22 +1261,6 @@ export default {
       // website: { required },
       email: { required, email }
     }
-  // },
-  // validations: {
-  //   user_data: {
-  //     first_name: {  },
-  //     last_name: {  },
-  //     profession: {  },
-  //     sex: {  },
-  //     // summary: { required },
-  //     country: {  },
-  //     // industry: { required },
-  //     phone: {  },
-  //     address: {  },
-  //     birthday: {  },
-  //     // website: { required },
-  //     email: { }
-  //   }
   },
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
