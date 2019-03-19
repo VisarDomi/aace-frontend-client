@@ -7,12 +7,10 @@
     >
       <div class="container">
         <div class="col-md-5">
-          <br />
-          <br />
-          <h4>
-            Mireseerdhet ne Shoqaten Shqiptare te Inxhiniereve Konsulente.
-          </h4>
-          <br />
+          <br>
+          <br>
+          <h4>Mireseerdhet ne Shoqaten Shqiptare te Inxhiniereve Konsulente.</h4>
+          <br>
           <h6 class="font-alt">
             SHOSHIK eshte qendra e te gjithe inxhiniereve qe operojne ne
             Shqiperi gjithashtu dhe qendra e mendimit shkencor shqiptar qe
@@ -20,12 +18,10 @@
             te huaj qe punojne ne Shqiperi jane te mirepritur t'i bashkohen
             Shoqates ne menyre qe t'japin kontributin e tyre.
           </h6>
-          <br />
-          <br />
+          <br>
+          <br>
           <router-link :to="{ name: 'Membership' }">
-            <button class="btn btn-primary" type="submit">
-              Behu pjese e shoqates
-            </button>
+            <button class="btn btn-primary" type="submit">Behu pjese e shoqates</button>
           </router-link>
         </div>
       </div>
@@ -57,24 +53,21 @@
               duke dhene mbeshtetje shkencore mbi zgjidhje te qendrueshme.
             </p>
 
-            <br />
-            <br />
-            <router-link :to="{ name: 'About' }" class="btn btn-primary"
-              >Lexo me shume rreth shoqates</router-link
-            >
+            <br>
+            <br>
+            <router-link
+              :to="{ name: 'About' }"
+              class="btn btn-primary"
+            >Lexo me shume rreth shoqates</router-link>
           </div>
 
           <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <img
-              class="center-block"
-              src="/static/img/aboutus_plc.png"
-              alt="how it works"
-            />
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <img class="center-block" src="/static/img/aboutus_plc.png" alt="how it works">
           </div>
         </div>
       </section>
@@ -87,42 +80,32 @@
         <div class="container">
           <div class="row">
             <!-- <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="2"></span>+</p>
+              <p>
+                <span data-from="0" data-to="2"></span>+
+              </p>
               <h6>Publikime</h6>
-            </div>-->
+            </div> -->
 
-            <div class="counter col-md-4 col-sm-8">
-              <p><span data-from="0" data-to="50"></span>+</p>
+            <div class="counter col-md-3 col-sm-6">
+              <p>
+                <span data-from="0" data-to="50"></span>+
+              </p>
               <h6>Anetare</h6>
             </div>
 
             <!-- <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="2"></span>+</p>
+              <p>
+                <span data-from="0" data-to="2"></span>+
+              </p>
               <h6>Evente</h6>
-            </div>-->
-            <!-- <div class="counter col-md-3 col-sm-6">
+            </div>
+
+            <div class="counter col-md-3 col-sm-6">
               <p>
                 <span data-from="0" data-to="15"></span>+
               </p>
-            <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="68"></span>+</p>
-              <h6>Publikime</h6>
-            </div>
-
-            <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="1200"></span>+</p>
-              <h6>Anetare</h6>
-            </div>
-
-            <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="36"></span>+</p>
-              <h6>Evente</h6>
-            </div>
-
-            <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="15"></span>+</p>
               <h6>Partnere</h6>
-            </div>-->
+            </div> -->
           </div>
         </div>
       </section>
@@ -147,11 +130,7 @@
               <h6>Apliko</h6>
               <p>Meso mbi procesin e aplikimit te antarsise ne SHOSHIK</p>
             </router-link>
-            <router-link
-              :to="{ name: 'MemberArea' }"
-              style="height: 295px;"
-              v-if="isAuthenticated"
-            >
+            <router-link :to="{ name: 'MemberArea' }" style="height: 295px;" v-if="isAuthenticated">
               <i class="fa fa-sign-in"></i>
               <h6>Zona e anetareve</h6>
               <p>Rrjeti social i anetareve te shoqates</p>
@@ -204,4 +183,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+@media screen and (max-width: 767px) {
+  .col-sm-6 {
+  width: 50%;
+  float: left;
+  }
+}
+</style>
