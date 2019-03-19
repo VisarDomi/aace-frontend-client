@@ -1252,7 +1252,7 @@ export default {
         // this.years_of_experience = res.data.years_of_experience;
         this.email = res.data.email;
         this.comment_from_administrator = res.data.comment_from_administrator;
-        // this.register_status = res.data.register_status;
+        // this.application_status = res.data.application_status;
         this.phone = res.data.phone;
         this.address = res.data.address;
         this.birthday = DateFilter(res.data.birthday);

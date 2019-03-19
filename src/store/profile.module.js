@@ -106,7 +106,7 @@ const actions = {
   [FETCH_APPLICATION_INFO](context) {
     MemberService.get(UserService.getUser().id)
       .then(({ data }) => {
-        context.commit(SET_APPLICATION_STATUS, data.register_status);
+        context.commit(SET_APPLICATION_STATUS, data.application_status);
         context.commit(SET_APPLICATION_DATE, data.application_date);
         context.commit(SET_REAPPLICATION_DATE, data.reapplication_date);
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);

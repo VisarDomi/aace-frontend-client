@@ -234,7 +234,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"Test\",\n    \"last_name\": \"Fortyfour\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2018-03-06\",\n    \"reapplication_date\": \"2019-03-17\",\n    \"register_status\": \"applying\"\n}"
+							"raw": "{\n    \"first_name\": \"Test\",\n    \"last_name\": \"Fortyfour\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2018-03-06\",\n    \"reapplication_date\": \"2019-03-17\",\n    \"application_status\": \"applying\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/api/user/22",
@@ -1554,7 +1554,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"register_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
+							"raw": "{\n    \"application_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/api/admin/user/50",
