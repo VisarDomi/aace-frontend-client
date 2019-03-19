@@ -82,7 +82,7 @@
                     <h5>{{ education.school }}</h5>
                   </div>
                   <h6 class="time">
-                    {{ education.from_date }} - {{ education.to_date }}
+                    {{ education.from_date }} deri ne {{ education.to_date }}
                   </h6>
                 </header>
                 <div class="item-body">
@@ -119,7 +119,7 @@
                     <h5>{{ experience.location }}</h5>
                   </div>
                   <h6 class="time">
-                    {{ experience.from_date }} - {{ experience.to_date }}
+                    {{ experience.from_date }} deri ne {{ experience.to_date }}
                   </h6>
                 </header>
                 <div class="item-body">
@@ -153,7 +153,7 @@
                     <h5>{{ skill.releaser }}</h5>
                   </div>
                   <h6 class="time">
-                    {{ skill.from_date }} - {{ skill.to_date }}
+                    {{ skill.from_date }} deri ne {{ skill.to_date }}
                   </h6>
                 </header>
                 <div class="item-body">

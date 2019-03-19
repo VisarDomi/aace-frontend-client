@@ -83,7 +83,12 @@
               <p>Merr pjese ne votime</p>
             </router-link>
 
-            <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
+            <a
+              href="#"
+              style="height: 295px;"
+              @click="logout"
+              v-if="isAuthenticated"
+            >
               <i class="fa fa-sign-out"></i>
               <h6>Dil</h6>
               <p>Dil nga platforma</p>

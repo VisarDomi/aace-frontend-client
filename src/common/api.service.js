@@ -97,6 +97,12 @@ export const SkillService = {
   }
 };
 
+export const PaymentService = {
+  getPayment(slug) {
+    return ApiService.get("user", `${slug}/payment/all`);
+  }
+};
+
 export const CommunicationService = {
   getCommunications() {
     return ApiService.get("officialcommunication", "all");

@@ -5,18 +5,23 @@ import {
   MediaService,
   EducationService,
   ExperienceService,
-  SkillService
+  SkillService,
+  PaymentService
 } from "@/common/api.service";
 import { FETCH_PROFILE, FETCH_APPLICATION_INFO } from "./actions.type";
 import {
   SET_PROFILE,
   SET_PICTURE,
-  SET_EDUCATION,
-  SET_EXPERIENCE,
-  SET_SKILL,
+  SET_EDUCATIONS,
+  SET_EXPERIENCES,
+  SET_SKILLS,
+  SET_PAYMENTS,
   SET_APPLICATION_STATUS,
   SET_APPLICATION_DATE,
   SET_REAPPLICATION_DATE,
+  SET_PAYMENT_STATUS,
+  SET_SEND_PAYMENT_DATE,
+  SET_RESEND_PAYMENT_DATE,
   SET_COMMENT_ADMIN
 } from "./mutations.type";
 
@@ -27,9 +32,13 @@ const state = {
   educations: {},
   experiences: {},
   skills: {},
+  payments: {},
   applicationStatus: "",
   applicationDate: "",
   reapplicationDate: "",
+  paymentStatus: "",
+  sendPaymentDate: "",
+  resendPaymentDate: "",
   commentFromAdmin: ""
 };
 
@@ -49,14 +58,26 @@ const getters = {
   skills(state) {
     return state.skills;
   },
+  payments(state) {
+    return state.payments;
+  },
+  applicationStatus(state) {
+    return state.applicationStatus;
+  },
   applicationDate(state) {
     return state.applicationDate;
   },
   reapplicationDate(state) {
     return state.reapplicationDate;
   },
-  applicationStatus(state) {
-    return state.applicationStatus;
+  paymentStatus(state) {
+    return state.paymentStatus;
+  },
+  sendPaymentDate(state) {
+    return state.sendPaymentDate;
+  },
+  resendPaymentDate(state) {
+    return state.resendPaymentDate;
   },
   commentFromAdmin(state) {
     return state.commentFromAdmin;
@@ -88,18 +109,23 @@ const actions = {
 
     EducationService.getEducation(id)
       .then(({ data }) => {
-        context.commit(SET_EDUCATION, data);
+        context.commit(SET_EDUCATIONS, data);
       })
       .catch(() => {});
 
     ExperienceService.getExperience(id)
       .then(({ data }) => {
-        context.commit(SET_EXPERIENCE, data);
+        context.commit(SET_EXPERIENCES, data);
       })
       .catch(() => {});
     SkillService.getSkill(id)
       .then(({ data }) => {
-        context.commit(SET_SKILL, data);
+        context.commit(SET_SKILLS, data);
+      })
+      .catch(() => {});
+    PaymentService.getPayment(id)
+      .then(({ data }) => {
+        context.commit(SET_PAYMENTS, data);
       })
       .catch(() => {});
   },
@@ -109,6 +135,9 @@ const actions = {
         context.commit(SET_APPLICATION_STATUS, data.application_status);
         context.commit(SET_APPLICATION_DATE, data.application_date);
         context.commit(SET_REAPPLICATION_DATE, data.reapplication_date);
+        context.commit(SET_PAYMENT_STATUS, data.payment_status);
+        context.commit(SET_SEND_PAYMENT_DATE, data.send_payment_date);
+        context.commit(SET_RESEND_PAYMENT_DATE, data.resend_payment_date);
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;
       })
@@ -130,11 +159,11 @@ const mutations = {
   [SET_PICTURE](state, picture) {
     state.profilePicture = picture;
   },
-  [SET_APPLICATION_STATUS](state, status) {
-    state.applicationStatus = status;
-  },
   [SET_COMMENT_ADMIN](state, comment) {
     state.commentFromAdmin = comment;
+  },
+  [SET_APPLICATION_STATUS](state, application_status) {
+    state.applicationStatus = application_status;
   },
   [SET_APPLICATION_DATE](state, date) {
     state.applicationDate = date;
@@ -142,15 +171,27 @@ const mutations = {
   [SET_REAPPLICATION_DATE](state, date) {
     state.reapplicationDate = date;
   },
+  [SET_PAYMENT_STATUS](state, payment_status) {
+    state.paymentStatus = payment_status;
+  },
+  [SET_SEND_PAYMENT_DATE](state, send_payment_date) {
+    state.sendPaymentDate = send_payment_date;
+  },
+  [SET_RESEND_PAYMENT_DATE](state, resend_payment_date) {
+    state.resendPaymentDate = resend_payment_date;
+  },
 
-  [SET_EDUCATION](state, educations) {
+  [SET_EDUCATIONS](state, educations) {
     state.educations = educations;
   },
-  [SET_EXPERIENCE](state, experiences) {
+  [SET_EXPERIENCES](state, experiences) {
     state.experiences = experiences;
   },
-  [SET_SKILL](state, skills) {
+  [SET_SKILLS](state, skills) {
     state.skills = skills;
+  },
+  [SET_PAYMENTS](state, payments) {
+    state.payments = payments;
   }
 };
 

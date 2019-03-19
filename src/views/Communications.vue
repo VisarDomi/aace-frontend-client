@@ -30,7 +30,7 @@
             >
               <h6>{{ communication.name }}</h6>
               <p>{{ communication.description }}</p>
-              <br>
+              <br />
               <p>
                 <strong>{{ getFormattedDate(communication.timestamp) }}</strong>
               </p>
