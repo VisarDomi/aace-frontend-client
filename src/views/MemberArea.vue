@@ -66,6 +66,7 @@
             <router-link
               :to="{ name: 'Profile', params: { id: currentUser.id } }"
               style="height: 295px;"
+              v-if="applicationStatus != 'blank'"
             >
               <i class="fa fa-vcard-o"></i>
               <h6>Profili</h6>

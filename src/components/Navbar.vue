@@ -77,23 +77,17 @@
           <li>
             <router-link :to="{ name: 'Directory' }">Indeksi i inxhiniereve</router-link>
           </li>
-          <li>
-            <router-link :to="{ name: 'MemberArea' }" v-if="isAuthenticated">Zona e anetareve</router-link>
+          <li v-if="isAuthenticated">
+            <router-link :to="{ name: 'MemberArea' }">Zona e anetareve</router-link>
             <ul>
-              <li>
+              <li v-if="applicationStatus != 'blank'">
                 <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">Profili</router-link>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'Application' }"
-                  v-if="applicationStatus == 'blank'"
-                >Formulari i aplikimit</router-link>
+              <li v-if="applicationStatus == 'blank'">
+                <router-link :to="{ name: 'Application' }">Formulari i aplikimit</router-link>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'ReApplication' }"
-                  v-if="applicationStatus == 'rebutted'"
-                >Formulari per ri-aplikim</router-link>
+              <li v-if="applicationStatus == 'rebutted'">
+                <router-link :to="{ name: 'ReApplication' }">Formulari per ri-aplikim</router-link>
               </li>
               <li
                 v-if="
@@ -106,21 +100,15 @@
               >
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'Communications' }"
-                  v-if="applicationStatus == 'accepted'"
-                >Komunikime zyrtare</router-link>
+              <li v-if="applicationStatus == 'accepted'">
+                <router-link :to="{ name: 'Communications' }">Komunikime zyrtare</router-link>
               </li>
-              <li>
-                <router-link
-                  :to="{ name: 'ComingSoon' }"
-                  v-if="applicationStatus == 'accepted'"
-                >Votime</router-link>
+              <li v-if="applicationStatus == 'accepted'">
+                <router-link :to="{ name: 'ComingSoon' }">Votime</router-link>
               </li>
               <!-- <li @click="logout" v-if="isAuthenticated">
-                <a href="#">Log-out</a>
-              </li>-->
+                <a href="#">Dil</a>
+              </li> -->
               <!-- <li><router-link to="/board">Board of directors</router-link></li> -->
             </ul>
           </li>
