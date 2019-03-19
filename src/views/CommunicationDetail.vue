@@ -67,7 +67,6 @@
               <div class="col-xs-12" :key="comment.id" v-for="comment in comments">
                 <div class="item-block">
                   <header>
-                    <img src="assets/img/logo-google.jpg" alt>
                     <div class="hgroup">
                       <h4>
                         {{ comment.author_first_name }}
