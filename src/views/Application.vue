@@ -55,21 +55,21 @@
               </div>
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
-                <div class="col-sm-9">
+                <div class="col-sm-4">
                   <select class="form-control" v-model="profession_id" @change="changeProfession">
                     <option v-for="option in profession_options" v-bind:value="option.id" :key="option.id">
                       {{ option.text }}
                     </option>
                   </select>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      :disabled="!profession_other"
-                      class="form-control"
-                      v-model="user_data.profession"
-                      :placeholder="profession_other"
-                    />
-                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <input
+                    type="text"
+                    :disabled="!profession_other"
+                    class="form-control"
+                    v-model="user_data.profession"
+                    :placeholder="profession_other"
+                  />
                 </div>
               </div>
 
