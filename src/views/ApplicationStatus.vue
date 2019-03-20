@@ -35,7 +35,7 @@
             style="width:33%; margin:auto;"
             v-if="applicationStatus == 'rebutted'"
           >
-            <strong>Aplikimi jo i sakte.</strong>
+            <strong>Aplikimi ka nevoje per ndryshime, ndiqni udhezimet e administratorit.</strong>
           </div>
           <div
             class="alert alert-info"
@@ -91,14 +91,6 @@
           </div>
 
           <br>
-          <div
-            class="alert alert-warning"
-            role="alert"
-            style="width:33%; margin:auto;"
-            v-if="paymentStatus == 'rebutted_payment'"
-          >
-            <strong>Mandati i pageses jo i sakte.</strong>
-          </div>
           <div
             class="alert alert-info"
             role="alert"

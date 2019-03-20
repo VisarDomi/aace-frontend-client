@@ -21,6 +21,13 @@ const ApiService = {
     ] = `Bearer ${JwtService.getToken()}`;
   },
 
+  setHeaderMultipart() {
+    Vue.axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${JwtService.getToken()}`;
+    Vue.axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+  },
+
   query(resource, params) {
     return Vue.axios.get(resource, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
@@ -67,18 +74,6 @@ export const MemberService = {
   }
 };
 
-export const MediaService = {
-  getPicture(slug) {
-    return ApiService.get("user", `${slug}/media/all`);
-  },
-  getCommunicationDocuments(slug) {
-    return ApiService.get("officialcommunication", `${slug}/media/all`);
-  }
-  //setUserEducation(){},
-  //setUserExperience(){},
-  //setUserSkill(){}
-};
-
 export const EducationService = {
   getEducation(slug) {
     return ApiService.get("user", `${slug}/education/all`);
@@ -120,6 +115,24 @@ export const CommunicationService = {
     return ApiService.get(
       `officialcommunication/${communicationId}/officialcomment`,
       "all"
+    );
+  }
+};
+
+export const MediaService = {
+  getPicture(slug) {
+    return ApiService.get("user", `${slug}/media/all`);
+  },
+  getCommunicationDocuments(slug) {
+    return ApiService.get("officialcommunication", `${slug}/media/all`);
+  }
+};
+
+export const EducationMediaService = {
+  post(userId, educationId, media) {
+    return ApiService.post(
+      `user/${userId}/education/${educationId}/media`,
+      media
     );
   }
 };
