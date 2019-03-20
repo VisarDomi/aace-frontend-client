@@ -125,10 +125,7 @@
 
 <script>
 import axios from "axios";
-
 import TimeAgo from "vue2-timeago";
-
-import DateFilter from "@/common/date.filter";
 const FileSaver = require("file-saver");
 import { mapGetters } from "vuex";
 import JwtService from "@/common/jwt.service";
@@ -140,6 +137,7 @@ import {
 } from "@/store/actions.type";
 import MemberService from "@/common/api.service";
 import store from "@/store";
+
 export default {
   name: "CommunicationDetail",
   components: {
@@ -178,11 +176,6 @@ export default {
       } else if (group == "bordi") {
         return "label label-bordi";
       }
-    },
-    getFormattedDate(time) {
-      let dateTime = time.split(".")[0];
-      dateTime = dateTime.replace("T", " ") + " UTC";
-      return dateTime;
     },
     getExtension(document_filename) {
       let extension = document_filename.split(".").pop();

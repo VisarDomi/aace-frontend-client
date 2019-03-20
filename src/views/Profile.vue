@@ -33,7 +33,7 @@
 
               <li>
                 <i class="fa fa-birthday-cake"></i>
-                <span>{{ profile.birthday }}</span>
+                <span>{{ getFormattedDate(profile.birthday) }}</span>
               </li>
 
               <li>
@@ -177,6 +177,8 @@
 import { mapGetters } from "vuex";
 import { FETCH_PROFILE } from "@/store/actions.type";
 import store from "@/store";
+import DateFilter from "@/common/date.filter";
+
 export default {
   name: "Profile",
   methods: {
@@ -188,7 +190,13 @@ export default {
         iconType = "female";
       }
       return iconType;
-    }
+    },
+    getFormattedDate(date) {
+      let date_object = new Date(date);
+      let formatted_date = date_object.toISOString().split("T")[0]
+      return formatted_date
+    },
+
   },
   mounted() {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);
