@@ -5,7 +5,7 @@
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
-          <h1 class="text-center">Dergoni vertetimin</h1>
+          <h1 class="text-center">Dergoni mandat pagesen</h1>
           <p class="lead text-center">Ngarkoni dhe dergoni mandat pagesen.</p>
         </div>
 
@@ -68,11 +68,11 @@
           <div class="container">
             <header class="section-header">
               <span>Perfunduat?</span>
-              <!-- <h2>Dergo vertetimin</h2> -->
+              <!-- <h2>Dergo mandatin</h2> -->
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo vertetimin</button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo mandat pagesen</button>
             </p>
             <!-- <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
@@ -202,7 +202,7 @@ document.querySelector("html").classList.add("js");
   font-weight: bold;
 }
 .js .file-return:not(:empty):before {
-  content: "Fotoja e zgjedhur: ";
+  content: "Dokumenti i zgjedhur: ";
   font-style: normal;
   font-weight: normal;
 }

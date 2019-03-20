@@ -82,11 +82,11 @@
           </div>
           <br>
           <div v-if="paymentStatus == 'sending_payment'">
-            <h4>Data e dergimit te vertetimit te pageses:</h4>
+            <h4>Data e dergimit te mandatit te pageses:</h4>
             <p>{{ getFormattedDate(sendPaymentDate) }}</p>
           </div>
           <div v-else-if="paymentStatus == 'resending_payment'">
-            <h4>Data e dergimit te vertetimit te pageses:</h4>
+            <h4>Data e dergimit te mandatit te pageses:</h4>
             <p>{{ getFormattedDate(resendPaymentDate) }}</p>
           </div>
 
@@ -97,7 +97,7 @@
             style="width:33%; margin:auto;"
             v-if="paymentStatus == 'rebutted_payment'"
           >
-            <strong>Vertetimi i pageses jo i sakte.</strong>
+            <strong>Mandati i pageses jo i sakte.</strong>
           </div>
           <div
             class="alert alert-info"
@@ -105,7 +105,7 @@
             style="width:33%; margin:auto;"
             v-if="paymentStatus == 'blank'"
           >
-            <strong>Vertetimi i pageses nuk eshte derguar.</strong>
+            <strong>Mandati i pageses nuk eshte derguar.</strong>
           </div>
           <div
             class="alert alert-info"
@@ -116,7 +116,7 @@
                 paymentStatus == 'resending_payment'
             "
           >
-            <strong>Vertetimi i pageses eshte derguar.</strong>
+            <strong>Mandati i pageses eshte derguar.</strong>
           </div>
           <div
             class="alert alert-success"
@@ -124,7 +124,7 @@
             style="width:33%; margin:auto;"
             v-if="paymentStatus == 'accepted_payment'"
           >
-            <strong>Vertetimi i pageses eshte pranuar.</strong>
+            <strong>Mandati i pageses eshte pranuar.</strong>
           </div>
           <br />
           <h4 v-if="commentFromAdmin">Koment nga administratori:</h4>

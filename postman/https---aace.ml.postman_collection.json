@@ -691,6 +691,780 @@
 			]
 		},
 		{
+			"name": "officialcommunication",
+			"item": [
+				{
+					"name": "{{url}}/api/officialcommunication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Komunikim zyrtar per anetaret\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser ne oren 3\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication"
+							]
+						},
+						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "cmI1u/xeFekN4Jo6sgZBNI9Y2xKZZ9sv",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"all"
+							]
+						},
+						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "bKMfg8KKpjSftu1iQitAkocriMyJ2IJz",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1"
+							]
+						},
+						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Takim3\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/1",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/1/organizationgroup/all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "cmI1u/xeFekN4Jo6sgZBNI9Y2xKZZ9sv",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1/organizationgroup/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1",
+								"organizationgroup",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/5/organizationgroup/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"5",
+								"organizationgroup",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/4/organizationgroup/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"4",
+								"organizationgroup",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/1/email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/6/email",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"6",
+								"email"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "officialcomment",
+			"item": [
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"Komment nga One GoodTest vetem per komunikimin zyrtar me id 5 qe eshte ne oren 3.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/5/officialcomment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"5",
+								"officialcomment"
+							]
+						},
+						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment/all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/16/officialcomment/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"16",
+								"officialcomment",
+								"all"
+							]
+						},
+						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/1/officialcomment/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"1",
+								"officialcomment",
+								"1"
+							]
+						},
+						"description": "user1"
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"Komment nga edituar.\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"officialcomment",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"officialcommunication",
+								"3",
+								"officialcomment",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "skill",
+			"item": [
+				{
+					"name": "{{url}}/api/user/1/skill",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"releaser\": \"ministria e shendetit\",\n\t\"name\": \"certifikim ne zemer\",\n\t\"from_date\": \"2008-02-13\",\n\t\"to_date\": \"2008-04-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/75/skill",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"75",
+								"skill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/skill/all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/49/skill/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"49",
+								"skill",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/skill/1",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/1/skill/1",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer VjIyUFwwVVdYKj+xU80dQpV/HkzHyiZW"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"releaser\": \"shoshik2\",\n\t\"name\": \"certifikim ne dysheme\",\n\t\"from_date\": \"1999-12-13\",\n\t\"to_date\": \"2000-01-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/2/skill/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2",
+								"skill",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/user/3/skill/4",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"school\": \"blabla\",\n  \"degree\": \"aace\",\n  \"field_of_study\": \"Albania\",\n  \"description\": \"I was a inxhiner there\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/user/4/skill/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"4",
+								"skill",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "education",
 			"item": [
 				{
@@ -1086,130 +1860,11 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "skill",
-			"item": [
-				{
-					"name": "{{url}}/api/user/1/skill",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "3cNRksXdm7YpcwWk9n2PcCogZfsSGXQ7",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"releaser\": \"ministria e shendetit\",\n\t\"name\": \"certifikim ne zemer\",\n\t\"from_date\": \"2008-02-13\",\n\t\"to_date\": \"2008-04-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/user/75/skill",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"75",
-								"skill"
-							]
-						}
-					},
-					"response": []
 				},
 				{
-					"name": "{{url}}/api/user/1/skill/all",
+					"name": "{{url}}/api/admin/user/blank",
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/user/49/skill/all",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"49",
-								"skill",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/skill/1",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/user/4/skill/1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"4",
-								"skill",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/1/skill/1",
-					"request": {
-						"method": "PUT",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
@@ -1221,62 +1876,23 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "bearer VjIyUFwwVVdYKj+xU80dQpV/HkzHyiZW"
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"releaser\": \"shoshik2\",\n\t\"name\": \"certifikim ne dysheme\",\n\t\"from_date\": \"1999-12-13\",\n\t\"to_date\": \"2000-01-01\",\n\t\"description\": \"u morr ne tirane\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/api/user/2/skill/1",
+							"raw": "{{url}}/api/admin/user/blank",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
+								"admin",
 								"user",
-								"2",
-								"skill",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/user/3/skill/4",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer lNb4bLGv2vo5WG3XltwwhMHNi9s20mzK"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"school\": \"blabla\",\n  \"degree\": \"aace\",\n  \"field_of_study\": \"Albania\",\n  \"description\": \"I was a inxhiner there\"\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/user/4/skill/2",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"user",
-								"4",
-								"skill",
-								"2"
+								"blank"
 							]
 						}
 					},
@@ -1536,7 +2152,14 @@
 					"name": "{{url}}/api/admin/user/5",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "cmI1u/xeFekN4Jo6sgZBNI9Y2xKZZ9sv",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PUT",
 						"header": [
@@ -1547,18 +2170,14 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"register_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
+							"raw": "{\n    \"application_status\": \"accepted\",\n    \"payment_status\": \"blank\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\",\n    \"accepted_payment_date\": \"2019-03-20\",\n    \"rebutted_payment_date\": \"2019-03-19\"\n}"
 						},
 						"url": {
-							"raw": "{{url}}/api/admin/user/50",
+							"raw": "{{url}}/api/admin/user/2",
 							"host": [
 								"{{url}}"
 							],
@@ -1566,7 +2185,7 @@
 								"api",
 								"admin",
 								"user",
-								"50"
+								"2"
 							]
 						}
 					},
@@ -1801,43 +2420,6 @@
 					"response": []
 				},
 				{
-					"name": "{{url}}/api/admin/user/blank",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/admin/user/blank",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"user",
-								"blank"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "{{url}}/api/admin/user/rebutted_payment",
 					"request": {
 						"method": "GET",
@@ -1943,6 +2525,52 @@
 								"admin",
 								"user",
 								"accepted_application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/applying_and_reapplying",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "cmI1u/xeFekN4Jo6sgZBNI9Y2xKZZ9sv",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/applying_and_reapplying",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"applying_and_reapplying"
 							]
 						}
 					},
@@ -3296,579 +3924,6 @@
 								"1",
 								"user",
 								"4"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "officialcommunication",
-			"item": [
-				{
-					"name": "{{url}}/api/officialcommunication",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Komunikim zyrtar per anetaret\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser ne oren 3\"\r\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication"
-							]
-						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/all",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/all",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"all"
-							]
-						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/1",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "bKMfg8KKpjSftu1iQitAkocriMyJ2IJz",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"1"
-							]
-						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/1",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Takim3\",\r\n    \"description\": \"Rreth takimit te neserm\",\r\n    \"body\": \"Te dashur anetare, Ky njoftim behet qe kemi takim neser.\"\r\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/3",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/1",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer laKIzL8IR9EzMcpmbGyfiHBa5bqKRWBC"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/1/organizationgroup/all",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/4/organizationgroup/all",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"4",
-								"organizationgroup",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/5/organizationgroup/1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"5",
-								"organizationgroup",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/3/organizationgroup/1",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"presidenti\",\r\n    \"description\": \"vetem presidenti\"\r\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/4/organizationgroup/5",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"4",
-								"organizationgroup",
-								"5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/1/email",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/6/email",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"6",
-								"email"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "officialcomment",
-			"item": [
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"Komment nga One GoodTest vetem per komunikimin zyrtar me id 5 qe eshte ne oren 3.\"\r\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/5/officialcomment",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"5",
-								"officialcomment"
-							]
-						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment/all",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/16/officialcomment/all",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"16",
-								"officialcomment",
-								"all"
-							]
-						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/1/officialcomment/1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"1",
-								"officialcomment",
-								"1"
-							]
-						},
-						"description": "user1"
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "QA0zVmh5FDRpfSUtiwZfxE2vxvJeWRn9",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"body\": \"Komment nga edituar.\"\r\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"3",
-								"officialcomment",
-								"5"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/officialcommunication/6/officialcomment/1",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer tgRmAQ2lGEmIBY+oFAm2vto4BF4bWpbT"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/officialcommunication/3/officialcomment/5",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"officialcommunication",
-								"3",
-								"officialcomment",
-								"5"
 							]
 						}
 					},

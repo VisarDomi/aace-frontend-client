@@ -90,10 +90,10 @@
                 <router-link :to="{ name: 'Reapplication' }">Forma e riaplikimit</router-link>
               </li>
               <li v-if="paymentStatus == 'blank'">
-                <router-link :to="{ name: 'SendingPayment' }">Vertetimi i pageses</router-link>
+                <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
               </li>
               <li v-if="paymentStatus == 'rebutted_payment'">
-                <router-link :to="{ name: 'ResendingPayment' }">Vertetimi i pageses</router-link>
+                <router-link :to="{ name: 'ResendingPayment' }">Mandati i pageses</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>

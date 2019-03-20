@@ -43,8 +43,8 @@
               v-if="paymentStatus == 'blank'"
             >
               <i class="fa fa-file-excel-o"></i>
-              <h6>Vertetimi i pageses</h6>
-              <p>Dergo vertetimin e pageses</p>
+              <h6>Mandati i pageses</h6>
+              <p>Dergo mandatin e pageses</p>
             </router-link>
 
             <router-link
@@ -53,8 +53,8 @@
               v-if="paymentStatus == 'rebutted_payment'"
             >
               <i class="fa fa-file-excel-o"></i>
-              <h6>Vertetimi i pageses</h6>
-              <p>Dergo vertetimin e pageses edhe njehere</p>
+              <h6>Mandati i pageses</h6>
+              <p>Dergo mandatin e pageses edhe njehere</p>
             </router-link>
 
             <router-link

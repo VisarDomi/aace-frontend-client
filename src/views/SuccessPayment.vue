@@ -10,7 +10,7 @@
         </div>
         <div class="container abs text-center">
           <h1>Sukses!</h1>
-          <h3>Aplikimi juaj eshte derguar me sukses</h3>
+          <h3>Mandat pagesa u dergua me sukses</h3>
           <ul class="list-group">
             <li class="list-group-item">
               <router-link :to="{ name: 'Home' }"
