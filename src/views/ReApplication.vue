@@ -1154,9 +1154,9 @@ export default {
             if (stringRes.status == 200) {
               // console.log("Strings sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
-              // this.$router.push({
-              //   name: "SuccessApplication"
-              // });
+              this.$router.push({
+                name: "SuccessApplication"
+              });
             } else {
               // console.log("String sent unsuccessfuly");
             }
