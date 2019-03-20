@@ -68,7 +68,7 @@
           <div class="container">
             <header class="section-header">
               <span>Perfunduat?</span>
-              <h2>Dergo vertetimin</h2>
+              <!-- <h2>Dergo vertetimin</h2> -->
             </header>
 
             <p class="text-center">
