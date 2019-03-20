@@ -95,15 +95,7 @@
               <li v-if="paymentStatus == 'rebutted_payment'">
                 <router-link :to="{ name: 'ResendingPayment' }">Vertetimi i pageses</router-link>
               </li>
-              <li
-                v-if="
-                  applicationStatus == 'rebutted' ||
-                    applicationStatus == 'rejected' ||
-                    applicationStatus == 'accepted' ||
-                    applicationStatus == 'applying' ||
-                    applicationStatus == 'reapplying'
-                "
-              >
+              <li>
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
               </li>
               <li v-if="applicationStatus == 'accepted'">

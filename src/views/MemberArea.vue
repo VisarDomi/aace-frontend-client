@@ -60,13 +60,6 @@
             <router-link
               :to="{ name: 'ApplicationStatus' }"
               style="height: 295px;"
-              v-if="
-                applicationStatus == 'rebutted' ||
-                  applicationStatus == 'rejected' ||
-                  applicationStatus == 'accepted' ||
-                  applicationStatus == 'applying' ||
-                  applicationStatus == 'reapplying'
-              "
             >
               <i class="fa fa-info"></i>
               <h6>Statusi i aplikimit</h6>

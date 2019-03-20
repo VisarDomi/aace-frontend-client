@@ -14,7 +14,7 @@
           <header class="section-header">
             <h2>Status i aplikimit</h2>
           </header>
-          <div>
+          <div v-if="applicationStatus != 'blank'">
             <h4>Emri i aplikantit:</h4>
             <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
           </div>
