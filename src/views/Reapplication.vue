@@ -251,7 +251,7 @@
                             "
                           />
                         <label tabindex="0" :for="educationInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje foto...</label
+                          >Zgjidhni nje ose me shume dokumenta...</label
                         >
                         
                         <!-- <p
@@ -431,7 +431,7 @@
                             "
                           />
                           <label tabindex="0" :for="experienceInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje foto...</label
+                          >Zgjidhni nje ose me shume dokumenta...</label
                         >
                         </div>
                       </div>
@@ -547,7 +547,7 @@
                             "
                           />
                           <label tabindex="0" :for="skillInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje foto...</label
+                          >Zgjidhni nje ose me shume dokumenta...</label
                         >
                         </div>
                       </div>
