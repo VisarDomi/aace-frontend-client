@@ -66,7 +66,7 @@
             <h2>Arsimimi</h2>
           </header>
 
-          <div class="row" v-if="experiences.length">
+          <div class="row" v-if="educations.length">
             <div
               class="col-xs-12"
               :key="education.id"
