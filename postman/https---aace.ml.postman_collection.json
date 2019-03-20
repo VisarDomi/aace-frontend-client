@@ -234,7 +234,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"first_name\": \"Test\",\n    \"last_name\": \"Fortyfour\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2018-03-06\",\n    \"reapplication_date\": \"2019-03-17\",\n    \"application_status\": \"applying\"\n}"
+							"raw": "{\n    \"first_name\": \"Test\",\n    \"last_name\": \"Fortyfour\",\n    \"profession\": \"inxhinier ndertimi\",\n    \"sex\": \"male\",\n    \"summary\": \"jam inixhinier i zoti\",\n    \"country\": \"Albania\",\n    \"phone\": \"23490235\",\n    \"address\": \"rruga elbasani\",\n    \"birthday\": \"1980-03-23\",\n    \"website\": \"\",\n    \"application_date\": \"2018-03-06\",\n    \"reapplication_date\": \"2019-03-17\",\n    \"register_status\": \"applying\"\n}"
 						},
 						"url": {
 							"raw": "{{url}}/api/user/22",
@@ -1495,6 +1495,84 @@
 			"name": "admin",
 			"item": [
 				{
+					"name": "{{url}}/api/admin/user/5/email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": \"email from postman with migadu with no link\",\n    \"text_body\": \"this is one test to user visardomi4@gmail.com with no tls\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/27/email",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"27",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/5",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"register_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/50",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"50"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "{{url}}/api/admin/user/5",
 					"request": {
 						"method": "GET",
@@ -1526,46 +1604,6 @@
 								"admin",
 								"user",
 								"17"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "{{url}}/api/admin/user/5",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"application_status\": \"accepted\",\n    \"comment_from_administrator\": \"\",\n    \"accepted_date\": \"2019-03-12\",\n    \"rebutted_date\": \"2019-03-02\",\n    \"rejected_date\": \"2019-03-02\"\n}"
-						},
-						"url": {
-							"raw": "{{url}}/api/admin/user/50",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"user",
-								"50"
 							]
 						}
 					},
@@ -1689,43 +1727,6 @@
 					"response": []
 				},
 				{
-					"name": "{{url}}/api/admin/user/applying_and_reapplying",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Secure-Api-Key",
-								"value": "{{Secure-Api-Key}}"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/admin/user/applying_and_reapplying",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"admin",
-								"user",
-								"applying_and_reapplying"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "{{url}}/api/admin/user/rejected",
 					"request": {
 						"method": "GET",
@@ -1837,9 +1838,9 @@
 					"response": []
 				},
 				{
-					"name": "{{url}}/api/admin/user/5/email",
+					"name": "{{url}}/api/admin/user/rebutted_payment",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Secure-Api-Key",
@@ -1856,10 +1857,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"subject\": \"email from postman with migadu with no link\",\n    \"text_body\": \"this is one test to user visardomi4@gmail.com with no tls\"\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/api/admin/user/27/email",
+							"raw": "{{url}}/api/admin/user/rebutted_payment",
 							"host": [
 								"{{url}}"
 							],
@@ -1867,8 +1868,81 @@
 								"api",
 								"admin",
 								"user",
-								"27",
-								"email"
+								"rebutted_payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/accepted_payment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/accepted_payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"accepted_payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/admin/user/accepted_application",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Secure-Api-Key",
+								"value": "{{Secure-Api-Key}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "bearer JHG3bu68DhG3k0TY2YoSR5ECY1LZCN8x"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/admin/user/accepted_application",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"accepted_application"
 							]
 						}
 					},

@@ -68,9 +68,17 @@
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
+            v-if="applicationStatus == 'accepted_application'"
+          >
+            <strong>Aplikimi eshte pranuar.</strong>
+          </div>
+          <div
+            class="alert alert-success"
+            role="alert"
+            style="width:33%; margin:auto;"
             v-if="applicationStatus == 'accepted'"
           >
-            <strong>Pranuar.</strong>
+            <strong>Jeni pranuar si anetar i shoqates.</strong>
           </div>
           <br>
           <div v-if="paymentStatus == 'sending_payment'">
