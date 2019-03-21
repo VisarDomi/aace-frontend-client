@@ -717,7 +717,7 @@ import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
-import { SEND_EDUCATION_MEDIAS } from "@/store/application.module"
+import { SEND_EDUCATION_MEDIAS } from "@/store/actions.type"
 import { mapGetters } from 'vuex';
 
 export default {
@@ -870,7 +870,7 @@ export default {
     },
     onAddEducation() {
       const newEducation = {
-        id: Math.random() * Math.random() * 1000,
+        id: Math.random() * 1000000,
         education_type: "",
         degree: "",
         field_of_study: "",
@@ -899,7 +899,7 @@ export default {
     },
     onAddExperience() {
       const newExperience = {
-        id: Math.random() * Math.random() * 1000,
+        id: Math.random() * 1000000,
         employer: "",
         title: "",
         location: "",
@@ -926,7 +926,7 @@ export default {
     },
     onAddSkill() {
       const newSkill = {
-        id: Math.random() * Math.random() * 1000,
+        id: Math.random() * 1000000,
         releaser: "",
         name: "",
         from_date: "",
@@ -1103,10 +1103,8 @@ export default {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       //currentUser
       let user_id = this.currentUser.id;
-      // let user_id = JSON.parse(localStorage.getItem("user")).id;
       //currentToken needs to become active
       let token = this.currentToken;
-      // let token = localStorage.getItem("id_token");
 
       let resEducationInputs = [];
 
@@ -1154,16 +1152,15 @@ export default {
                 formDataEducation.append("file", eduInput.files[j]);
               }
               this.education_files_index++;
-              
+
               console.log("now uploading education, please wait");
-              console.log("user_id0", user_id)
-              console.log("education_id0", education_id)
-              console.log("formDataEducation0", formDataEducation)
-              this.$store.dispatch(SEND_EDUCATION_MEDIAS, {
-                user_id: user_id,
-                education_id: education_id,
-                formDataEducation: formDataEducation
-              })
+              console.log("user_id application", user_id)
+              console.log("education_id application", education_id)
+              console.log("formDataEducation application", formDataEducation)
+              let payload = { user_id, education_id, education_files: formDataEducation }
+              console.log("payload.education_files application", payload.education_files)
+
+              this.$store.dispatch(SEND_EDUCATION_MEDIAS, payload)
 
               // axios
               //   .post(
@@ -1206,8 +1203,8 @@ export default {
       let TOKEN = this.currentToken;
       // let TOKEN = localStorage.getItem("id_token");
 
-      console.log(TOKEN);
-      console.log(USER_ID);
+      console.log("token ",TOKEN);
+      console.log("user_id ", USER_ID);
       // ------- User -------
       let formDataUser = new FormData();
       formDataUser.append("file", this.profile_picture_file);
@@ -1224,7 +1221,7 @@ export default {
         website: this.user_data.website,
         email: this.user_data.email
       };
-      console.log(user_string)
+      console.log("user_string ", user_string)
 
       // ------- Experience file and post -------
       this.send_experiences();

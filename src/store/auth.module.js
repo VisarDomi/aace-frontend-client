@@ -64,7 +64,7 @@ const actions = {
     });
   },
   [CHECK_AUTH](context) {
-    if (state.isAuthenticated) {
+    if (context.state.isAuthenticated) {
       ApiService.setHeader();
       ApiService.get("user", UserService.getUser().id)
         .then(({ data }) => {
