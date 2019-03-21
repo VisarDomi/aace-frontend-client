@@ -17,3 +17,5 @@ export const SET_COMMUNICATION_DOCS = "setCommunicationDocs";
 export const SET_COMMENTS = "setComments";
 export const SET_COMMENT = "setComment";
 export const SET_COMMENT_ADMIN = "setCommentAdmin";
+export const SET_UPLOADING_STATUS = "setUploadingStatus";
+export const SET_FINISHED_STATUS = "setFinishedStatus";

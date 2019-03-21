@@ -696,7 +696,7 @@
             <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
             </form-summary>
-            <div class="card border-info mb-3" v-if="is_uploading">
+            <div class="card border-info mb-3" v-if="isUploading">
               <div class="card-header">Ngarkim dokumentash</div>
               <div class="card-body text-info">
                 <h5 class="card-title">Informacion</h5>
@@ -724,9 +724,6 @@ export default {
   name: "Application",
   data() {
     return {
-      // ---------------Uploading----------
-      is_uploading: false,
-      is_uploading_education: [],
       //--------------- User -------
       user_data: {
         first_name: "",
@@ -1153,12 +1150,7 @@ export default {
               }
               this.education_files_index++;
 
-              console.log("now uploading education, please wait");
-              console.log("user_id application", user_id)
-              console.log("education_id application", education_id)
-              console.log("formDataEducation application", formDataEducation)
-              let payload = { user_id, education_id, education_files: formDataEducation }
-              console.log("payload.education_files application", payload.education_files)
+              let payload = { user_id, education_id, formDataEducation }
 
               this.$store.dispatch(SEND_EDUCATION_MEDIAS, payload)
 
@@ -1231,7 +1223,7 @@ export default {
       this.send_educations();
       // ------- User file and put -------
 
-      this.is_uploading = true;
+      this.isUploading = true;
       axios
         .all([
           axios.post(
@@ -1258,7 +1250,7 @@ export default {
 
             if (stringRes.status == 200 && profileRes.status == 200) {
               console.log("Profile sent successfully.");
-              this.is_uploading = false
+              this.isUploading = false
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               console.log("usually, now the router would push")
               // this.$router.push({
@@ -1272,7 +1264,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "currentToken"])
+    ...mapGetters(["currentUser", "currentToken", "isUploading"])
   },
   validations: {
     user_data: {

@@ -131,9 +131,6 @@ export const MediaService = {
     );
   },
   postEducationMedia(userId, educationId, media) {
-    console.log("userId api.service", userId);
-    console.log("educationId api.service", educationId);
-    console.log("media api.service", media);
     return ApiService.post(
       `user/${userId}/education/${educationId}/media`,
       media
