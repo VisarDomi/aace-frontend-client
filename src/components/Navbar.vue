@@ -35,7 +35,11 @@
         <div class="pull-right" v-else>
           <ul class="profile-menu become-inline">
             <li>
-              <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">
+              <a href="#" v-if="applicationStatus == 'blank'">
+                <i class="fa fa-user fa-2x profile-icon become-inline"></i>
+                <div class="become-inline become-margin-right">Profili</div>
+              </a>
+              <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }" v-else>
                 <i class="fa fa-user fa-2x profile-icon become-inline"></i>
                 <div class="become-inline become-margin-right">Profili</div>
               </router-link>
