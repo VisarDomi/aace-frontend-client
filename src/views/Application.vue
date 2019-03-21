@@ -1146,7 +1146,9 @@ export default {
             let education_id = res.data.id;
 
             let formDataEducation = new FormData();
+            console.log("this.educationInputs :", this.educationInputs)
             let eduInput = this.educationInputs[this.education_files_index]
+            console.log("eduInput :", eduInput)
             if (eduInput.files.length) {
               for (let j = 0; j < eduInput.files.length; j++) {
                 formDataEducation.append("file", eduInput.files[j]);
@@ -1154,10 +1156,13 @@ export default {
               this.education_files_index++;
               
               console.log("now uploading education, please wait");
+              console.log("user_id0", user_id)
+              console.log("education_id0", education_id)
+              console.log("formDataEducation0", formDataEducation)
               this.$store.dispatch(SEND_EDUCATION_MEDIAS, {
-                user_id,
-                education_id,
-                formDataEducation
+                user_id: user_id,
+                education_id: education_id,
+                formDataEducation: formDataEducation
               })
 
               // axios
@@ -1258,9 +1263,10 @@ export default {
               console.log("Profile sent successfully.");
               this.is_uploading = false
               localStorage.setItem("user", JSON.stringify(stringRes.data));
-              this.$router.push({
-                name: "SuccessApplication"
-              });
+              console.log("usually, now the router would push")
+              // this.$router.push({
+              //   name: "SuccessApplication"
+              // });
             } else {
               // console.log("String sent unsuccessfuly");
             }
@@ -1300,7 +1306,20 @@ export default {
         responseType: "json"
       })
       .then(res => {
-        this.user_data.email = res.data.email;
+        // this.user_data.email = res.data.email;
+        this.user_data = {
+          first_name: "Test",
+          last_name: `Numer${res.data.id}`,
+          summary: "Pershkrim koti",
+          country: "Kukes",
+          phone: "0135345325",
+          address: "Rruga koti",
+          birthday: "1990-12-31",
+          website: "skam",
+          email: res.data.email,
+          profession: "Inxhinier Ndertimi",
+          sex: "Mashkull"
+      }
       });
   }
 };
