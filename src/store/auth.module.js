@@ -64,10 +64,8 @@ const actions = {
     });
   },
   [CHECK_AUTH](context) {
-    if (JwtService.getToken()) {
+    if (state.isAuthenticated) {
       ApiService.setHeader();
-      // context.commit(SET_AUTH_SECOND, UserService.getUser());
-
       ApiService.get("user", UserService.getUser().id)
         .then(({ data }) => {
           context.commit(SET_AUTH_SECOND, data);
@@ -108,13 +106,15 @@ const mutations = {
     state.errors = {};
     UserService.saveUser(user);
     state.user = user;
+    state.token = JwtService.getToken();
   },
   [SET_AUTH](state, user) {
     state.errors = {};
-    console.log(user.token)
+    console.log("token in set auth is", user.token);
     JwtService.saveToken(user.token);
     state.token = user.token;
     state.isAuthenticated = true;
+    console.log("user in set auth is", user);
     UserService.saveUser(user);
     state.user = user;
   },

@@ -16,22 +16,21 @@ Vue.use(VuelidateErrorExtractor, {
   i18n: false,
   // Define common validation messages.
   messages: {
-    required: "{attribute} is required!",
-    email: "{attribute} must be a proper email!"
+    required: "{attribute} duhet plotesuar!",
+    email: "{attribute} duhet te jete format emaili!"
   },
   attributes: {
-    first_name: "First Name",
-    last_name: "Last Name",
-    profession: "Profession",
-    sex: "Sex",
-    summary: "Summary",
-    country: "Country",
-    industry: "Industry",
-    phone: "Phone",
-    address: "Address",
-    birthday: "Birthday",
-    website: "Website",
-    email: "Email"
+    first_name: "Emri",
+    last_name: "Mbiemri",
+    profession: "Profesioni",
+    sex: "Gjinia",
+    summary: "Pershkrimi",
+    country: "Vendlindja",
+    phone: "Numri i telefonit",
+    address: "Adresa",
+    birthday: "Ditelindja",
+    website: "Faqja e internetit",
+    email: "Emaili"
   }
 });
 

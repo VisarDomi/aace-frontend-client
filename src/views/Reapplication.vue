@@ -99,7 +99,7 @@
               </div>
 
               <div class="form-group col-sm-12">
-                <label class="col-sm-3">Pershkrim</label>
+                <label class="col-sm-3">Pershkrimi</label>
                 <div class="col-sm-9">
                   <textarea
                     class="form-control"

@@ -88,7 +88,7 @@
               </div>
 
               <div class="form-group col-sm-12">
-                <label class="col-sm-3">Pershkrim</label>
+                <label class="col-sm-3">Pershkrimi</label>
                 <div class="col-sm-9">
                   <textarea
                     class="form-control"
@@ -696,6 +696,13 @@
             <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
             </form-summary>
+            <div class="card border-info mb-3" v-if="is_uploading">
+              <div class="card-header">Ngarkim dokumentash</div>
+              <div class="card-body text-info">
+                <h5 class="card-title">Informacion</h5>
+                <p class="card-text">Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.</p>
+              </div>
+            </div>
           </div>
         </section>
         <!-- END Submit -->
@@ -717,13 +724,15 @@ export default {
   name: "Application",
   data() {
     return {
+      // ---------------Uploading----------
+      is_uploading: false,
+      is_uploading_education: [],
       //--------------- User -------
       user_data: {
         first_name: "",
         last_name: "",
         summary: "",
         country: "",
-        // industry: "",
         phone: "",
         address: "",
         birthday: "",
@@ -1092,8 +1101,12 @@ export default {
     },
     send_educations() {
       let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
+      //currentUser
+      let user_id = this.currentUser.id;
+      // let user_id = JSON.parse(localStorage.getItem("user")).id;
+      //currentToken needs to become active
+      let token = this.currentToken;
+      // let token = localStorage.getItem("id_token");
 
       let resEducationInputs = [];
 
@@ -1116,56 +1129,59 @@ export default {
       this.educationInputs = resEducationInputs;
 
       for (var i = 0; i < this.educationInputs.length; i++) {
-        console.log(this.educationInputs[i])
+        console.log(`this.eduationInputs[${i}]`,this.educationInputs[i])
         axios
           .post(
-            "https://aace.ml/api/user/" + USER_ID + "/education",
+            "https://aace.ml/api/user/" + user_id + "/education",
             this.educationInputs[i],
             {
               "Content-Type": "multipart/form-data",
               headers: {
-                Authorization: "Bearer " + TOKEN
+                Authorization: "Bearer " + token
               }
             }
           )
           .then(res => {
-            console.log("post education");
-            let EDUCATION_ID = res.data.id;
+            console.log("post education res", res);
+            let education_id = res.data.id;
 
             let formDataEducation = new FormData();
-            if (this.educationInputs[this.education_files_index].files.length) {
-              for (let j = 0;
-                j < 
-                this.educationInputs[this.education_files_index].files.length;
-                j++
-              ) {
-                formDataEducation.append(
-                  "file",
-                  this.educationInputs[this.education_files_index].files[j]
-                );
+            let eduInput = this.educationInputs[this.education_files_index]
+            if (eduInput.files.length) {
+              for (let j = 0; j < eduInput.files.length; j++) {
+                formDataEducation.append("file", eduInput.files[j]);
               }
               this.education_files_index++;
-              axios
-                .post(
-                  "https://aace.ml/api/user/" +
-                    USER_ID +
-                    "/education/" +
-                    EDUCATION_ID +
-                    "/media",
-                  formDataEducation,
-                  {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                      Authorization: "Bearer " + TOKEN
-                    }
-                  }
-                )
-                .then(res => {
-                  console.log('media education')
-                  if (res.status == 200) {
-                  }
-                })
-                .catch(err => console.log(err));
+              
+              console.log("now uploading education, please wait");
+              this.$store.dispatch(SEND_EDUCATION_MEDIAS, {
+                user_id,
+                education_id,
+                formDataEducation
+              })
+
+              // axios
+              //   .post(
+              //     "https://aace.ml/api/user/" +
+              //       user_id +
+              //       "/education/" +
+              //       education_id +
+              //       "/media",
+              //     formDataEducation,
+              //     {
+              //       "Content-Type": "multipart/form-data",
+              //       headers: {
+              //         Authorization: "Bearer " + token
+              //       }
+              //     }
+              //   )
+              //   .then(res => {
+              //     console.log('media education res', res)
+              //     if (res.status == 200) {
+              //       console.log('success media education')
+              //     }
+              //   })
+              //   .catch(err => console.log(err));
             }
           });
       }
@@ -1179,11 +1195,11 @@ export default {
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       //currentUser
-      let USER_ID = currentUser.id;
+      let USER_ID = this.currentUser.id;
       // let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       //currentToken needs to become active
-      // let TOKEN = currentToken;
-      let TOKEN = localStorage.getItem("id_token");
+      let TOKEN = this.currentToken;
+      // let TOKEN = localStorage.getItem("id_token");
 
       console.log(TOKEN);
       console.log(USER_ID);
@@ -1203,6 +1219,7 @@ export default {
         website: this.user_data.website,
         email: this.user_data.email
       };
+      console.log(user_string)
 
       // ------- Experience file and post -------
       this.send_experiences();
@@ -1211,13 +1228,8 @@ export default {
       // ------- Education file and post -------
       this.send_educations();
       // ------- User file and put -------
-      console.log(user_string)
 
-      this.$store.dispatch(SEND_EDUCATION_MEDIAS, {
-        user_id,
-        education_id,
-        formDataEducation
-      })
+      this.is_uploading = true;
       axios
         .all([
           axios.post(
@@ -1239,14 +1251,12 @@ export default {
         .then(
           axios.spread((profileRes, stringRes) => {
             console.log('user post')
-            if (profileRes.status == 200) {
-              // console.log("Profile picture updated successfully.");
-            } else {
-              // console.log("profile picture bad response");
-            }
+            console.log('profileRes', profileRes)
+            console.log('stringRes', stringRes)
 
-            if (stringRes.status == 200) {
-              // console.log("Strings sent successfully.");
+            if (stringRes.status == 200 && profileRes.status == 200) {
+              console.log("Profile sent successfully.");
+              this.is_uploading = false
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               this.$router.push({
                 name: "SuccessApplication"
@@ -1269,7 +1279,6 @@ export default {
       sex: { required },
       // summary: { required },
       country: { required },
-      // industry: { required },
       phone: { required },
       address: { required },
       birthday: { required },
@@ -1280,9 +1289,9 @@ export default {
   mounted() {
     let AACE_URL_USER = "https://aace.ml/api/user/";
     let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-    this.onAddExperience();
-    this.onAddEducation();
-    this.onAddSkill();
+    // this.onAddExperience();
+    // this.onAddEducation();
+    // this.onAddSkill();
     this.user_data.sex = "Mashkull";
     this.user_data.profession = "Inxhinier Ndertimi";
     this.profession_id = 1;

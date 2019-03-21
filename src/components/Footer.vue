@@ -63,7 +63,7 @@
                 >
               </li>
               <li>
-                <router-link :to="{ name: 'Login' }">Hyr</router-link>
+                <router-link :to="{ name: 'Login' }" v-if="!isAuthenticated">Hyr</router-link>
               </li>
               <!-- <li>
                 <router-link :to="{name: 'Board'}">Contact the board</router-link>
@@ -129,7 +129,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: "AppFooter"
+  name: "AppFooter",
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  }
 };
 </script>

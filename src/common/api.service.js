@@ -16,13 +16,17 @@ const ApiService = {
   },
 
   setHeader() {
-    Vue.axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${JwtService.getToken()}`;
+    let token = JwtService.getToken();
+    Vue.axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    console.log("token in setHeader is", token);
   },
 
   setHeaderMultipart() {
     Vue.axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
+    console.log(
+      "header in set header multipart is ",
+      Vue.axios.defaults.headers.common["Content-Type"]
+    );
   },
 
   query(resource, params) {
