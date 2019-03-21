@@ -25,7 +25,7 @@
           </div>
           <div v-else-if="currentUser.application_status == 'reapplying'">
             <h4>Data e aplikimit:</h4>
-            <p>{{ getFormattedDate(recurrentUser.application_date) }}</p>
+            <p>{{ getFormattedDate(currentUser.reapplication_date) }}</p>
           </div>
           <br>
           <h4>Status i aplikimit:</h4>
@@ -87,7 +87,7 @@
           </div>
           <div v-else-if="currentUser.payment_status == 'resending_payment'">
             <h4>Data e dergimit te mandatit te pageses:</h4>
-            <p>{{ getFormattedDate(recurrentUser.send_payment_date) }}</p>
+            <p>{{ getFormattedDate(currentUser.resend_payment_date) }}</p>
           </div>
 
           <br>
