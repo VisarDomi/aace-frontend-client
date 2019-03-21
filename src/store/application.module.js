@@ -1,7 +1,6 @@
-// import ApiService from "@/common/api.service";
-import { EducationMediaService } from "@/common/api.service";
-import { SEND_EDUCATION_MEDIAS } from "./actions.type";
 import { ApiService } from "@/common/api.service";
+import { MediaService } from "@/common/api.service";
+import { SEND_EDUCATION_MEDIAS } from "./actions.type";
 
 const state = {};
 
@@ -11,7 +10,11 @@ const actions = {
   async [SEND_EDUCATION_MEDIAS](context, payload) {
     const { user_id, education_id, formDataEducation } = payload;
     ApiService.setHeaderMultipart();
-    await EducationMediaService.post(user_id, education_id, formDataEducation);
+    await MediaService.postEducationMedia(
+      user_id,
+      education_id,
+      formDataEducation
+    );
   }
 };
 

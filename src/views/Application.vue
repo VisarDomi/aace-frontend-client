@@ -710,6 +710,8 @@ import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
+import { SEND_EDUCATION_MEDIAS } from "@/store/application.module"
+import { mapGetters } from 'vuex';
 
 export default {
   name: "Application",
@@ -1176,7 +1178,11 @@ export default {
       }
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+      //currentUser
+      let USER_ID = currentUser.id;
+      // let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+      //currentToken needs to become active
+      // let TOKEN = currentToken;
       let TOKEN = localStorage.getItem("id_token");
 
       console.log(TOKEN);
@@ -1206,6 +1212,12 @@ export default {
       this.send_educations();
       // ------- User file and put -------
       console.log(user_string)
+
+      this.$store.dispatch(SEND_EDUCATION_MEDIAS, {
+        user_id,
+        education_id,
+        formDataEducation
+      })
       axios
         .all([
           axios.post(
@@ -1245,6 +1257,9 @@ export default {
           })
       );
     }
+  },
+  computed: {
+    ...mapGetters(["currentUser", "currentToken"])
   },
   validations: {
     user_data: {

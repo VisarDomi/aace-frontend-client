@@ -22,9 +22,6 @@ const ApiService = {
   },
 
   setHeaderMultipart() {
-    Vue.axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${JwtService.getToken()}`;
     Vue.axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
   },
 
@@ -66,8 +63,8 @@ const ApiService = {
 export default ApiService;
 
 export const MemberService = {
-  get(slug) {
-    return ApiService.get("user", slug);
+  get(userId) {
+    return ApiService.get("user", userId);
   },
   search(membername) {
     return ApiService.post("user/search", membername);
@@ -75,26 +72,26 @@ export const MemberService = {
 };
 
 export const EducationService = {
-  getEducation(slug) {
-    return ApiService.get("user", `${slug}/education/all`);
+  getEducation(userId) {
+    return ApiService.get("user", `${userId}/education/all`);
   }
 };
 
 export const ExperienceService = {
-  getExperience(slug) {
-    return ApiService.get("user", `${slug}/experience/all`);
+  getExperience(userId) {
+    return ApiService.get("user", `${userId}/experience/all`);
   }
 };
 
 export const SkillService = {
-  getSkill(slug) {
-    return ApiService.get("user", `${slug}/skill/all`);
+  getSkill(userId) {
+    return ApiService.get("user", `${userId}/skill/all`);
   }
 };
 
 export const PaymentService = {
-  getPayment(slug) {
-    return ApiService.get("user", `${slug}/payment/all`);
+  getPayment(userId) {
+    return ApiService.get("user", `${userId}/payment/all`);
   }
 };
 
@@ -102,8 +99,8 @@ export const CommunicationService = {
   getCommunications() {
     return ApiService.get("officialcommunication", "all");
   },
-  getCommunication(id) {
-    return ApiService.get("officialcommunication", id);
+  getCommunication(communicationId) {
+    return ApiService.get("officialcommunication", communicationId);
   },
   makeComment(communicationId, comment) {
     return ApiService.post(
@@ -120,16 +117,16 @@ export const CommunicationService = {
 };
 
 export const MediaService = {
-  getPicture(slug) {
-    return ApiService.get("user", `${slug}/media/all`);
+  getPicture(userId) {
+    return ApiService.get("user", `${userId}/media/all`);
   },
-  getCommunicationDocuments(slug) {
-    return ApiService.get("officialcommunication", `${slug}/media/all`);
-  }
-};
-
-export const EducationMediaService = {
-  post(userId, educationId, media) {
+  getCommunicationDocuments(communicationId) {
+    return ApiService.get(
+      "officialcommunication",
+      `${communicationId}/media/all`
+    );
+  },
+  postEducationMedia(userId, educationId, media) {
     return ApiService.post(
       `user/${userId}/education/${educationId}/media`,
       media

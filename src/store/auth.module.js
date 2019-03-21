@@ -73,7 +73,7 @@ const actions = {
           context.commit(SET_AUTH_SECOND, data);
         })
         .catch(({ response }) => {
-          // context.commit(SET_ERROR, response.data.errors);
+          context.commit(SET_ERROR, response.data.errors);
           console.log(response);
         });
     } else {
@@ -100,29 +100,31 @@ const actions = {
 };
 
 const mutations = {
-  [SET_ERROR](state, error) {
-    state.errors = error;
+  [SET_ERROR](state, errors) {
+    state.errors = errors;
   },
   [SET_AUTH_SECOND](state, user) {
     state.isAuthenticated = true;
-    state.user = user;
     state.errors = {};
     UserService.saveUser(user);
+    state.user = user;
   },
   [SET_AUTH](state, user) {
-    state.isAuthenticated = true;
-    state.user = user;
     state.errors = {};
+    console.log(user.token)
     JwtService.saveToken(user.token);
+    state.token = user.token;
+    state.isAuthenticated = true;
     UserService.saveUser(user);
-    ApiService.setHeader();
+    state.user = user;
   },
   [PURGE_AUTH](state) {
-    state.isAuthenticated = false;
-    state.user = {};
     state.errors = {};
     JwtService.destroyToken();
+    state.token = "";
+    state.isAuthenticated = false;
     UserService.destroyUser();
+    state.user = {};
   }
 };
 
