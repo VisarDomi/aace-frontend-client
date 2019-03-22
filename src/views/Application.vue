@@ -558,8 +558,8 @@
             <div class="row">
               <div
                 class="col-xs-12"
+                v-for="skill in getAppSkills"
                 :key="skill.skillId"
-                v-for="skill in getSkills"
               >
                 <div class="item-block">
                   <div class="item-form">
@@ -585,21 +585,17 @@
                           <label tabindex="0" :for="skill.skillId" class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label
                         >
-                        {{consoleLog("skill is       ", skill)}}
-                        {{consoleLog("skill.files is ", skill.files)}}
                         <p
-                        :key='file.name'
-                        v-for='file in skill.files'
+                        v-for='(file, index) in skill.files'
+                        :key='file.name + index'
                         class="file-return"
                         >
-                          {{consoleLog("file is      ", file)}}
-                          {{consoleLog("file.name is ", file.name)}}
                           {{ file.name }}
                         </p>
                         </div>
                       </div>
 
-                      <!-- <div class="col-xs-12 col-sm-8">
+                      <div class="col-xs-12 col-sm-8">
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Emri i kualifikimit</label>
                           <div class="col-sm-9">
@@ -660,7 +656,7 @@
                             ></textarea>
                           </div>
                         </div>
-                      </div> -->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -818,7 +814,7 @@ export default {
   methods: {
     consoleLog(message, param) {
       console.log(`message is: ${message}`);
-      console.log(`param is: ${param}`);
+      console.log(`param is:   ${param}`);
     },
     // All the functions bellow need to be integrated in the store
     // ------- Dropdown -------
@@ -1175,8 +1171,7 @@ export default {
       "getCurrentUser",
       "getCurrentToken",
       "isUploading",
-      "getSkills",
-      "getTotalSkills"
+      "getAppSkills"
     ])
   },
   validations: {

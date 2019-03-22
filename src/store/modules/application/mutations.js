@@ -17,18 +17,18 @@ export const mutations = {
       description: "",
       files: []
     };
-    state.totalSkills = state.skills.push(newSkill);
+    state.totalSkills = state.appSkills.push(newSkill);
     state.SkillId += 1;
   },
   [REMOVE_SKILL](state, skillId) {
-    state.skills = state.skills.filter(skill => skill.skillId !== skillId);
+    state.appSkills = state.appSkills.filter(skill => skill.skillId != skillId);
     state.totalSkills -= 1;
   },
   [SET_SKILL_FILES](state, { self, skillId }) {
     console.log("self.$refs.skills is", self.$refs.skills);
     for (let skill of self.$refs.skills) {
       console.log("skill.files of self.$refs.skills", skill.files);
-      let filteredSkill = state.skills.filter(
+      let filteredSkill = state.appSkills.filter(
         skill => skill.skillId == skillId
       )[0];
       console.log("filteredSkill", filteredSkill);
@@ -37,6 +37,7 @@ export const mutations = {
         console.log("file", file);
       }
     }
+    console.log("state.appSkills", state.appSkills);
   },
   [SET_UPLOADING_STATUS](state) {
     state.isUploading = true;
