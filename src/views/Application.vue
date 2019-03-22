@@ -585,13 +585,16 @@
                           <label tabindex="0" :for="skill.skillId" class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label
                         >
-
+                        {{consoleLog("skill is       ", skill)}}
+                        {{consoleLog("skill.files is ", skill.files)}}
                         <p
-                        :key='length'
-                        v-for='length in skill.files.length'
+                        :key='file.name'
+                        v-for='file in skill.files'
                         class="file-return"
                         >
-                          {{ skill.files[length-1].name }}
+                          {{consoleLog("file is      ", file)}}
+                          {{consoleLog("file.name is ", file.name)}}
+                          {{ file.name }}
                         </p>
                         </div>
                       </div>
@@ -1109,7 +1112,7 @@ export default {
     handleFileUploadSkill(skillId) {
       console.log("handling file upload skill")
       self = this
-      this.$store.commit(SET_SKILL_FILES, { self })
+      this.$store.commit(SET_SKILL_FILES, { self, skillId })
     },
     onAddSkill() {
       console.log("adding skill")

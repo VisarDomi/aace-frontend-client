@@ -24,12 +24,17 @@ export const mutations = {
     state.skills = state.skills.filter(skill => skill.skillId !== skillId);
     state.totalSkills -= 1;
   },
-  [SET_SKILL_FILES](state, { self }) {
+  [SET_SKILL_FILES](state, { self, skillId }) {
     console.log("self.$refs.skills is", self.$refs.skills);
     for (let skill of self.$refs.skills) {
       console.log("skill.files of self.$refs.skills", skill.files);
-      for (let file of skill.files) {
-        console.log("file of skill.files", file);
+      let filteredSkill = state.skills.filter(
+        skill => skill.skillId == skillId
+      )[0];
+      console.log("filteredSkill", filteredSkill);
+      filteredSkill.files = skill.files;
+      for (let file of filteredSkill.files) {
+        console.log("file", file);
       }
     }
   },
