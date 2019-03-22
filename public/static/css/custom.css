@@ -1,0 +1,11 @@
+.demo-btn-margin .btn {
+  margin-bottom: 6px;
+}
+
+.form-error {
+  color: red;
+}
+
+#body > div.nav-on-header.smart-nav > form > main > section:nth-child(4) > div > div > div {
+  text-align: center
+}
