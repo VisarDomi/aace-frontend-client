@@ -1,7 +1,7 @@
 import {
   ADD_SKILL,
   REMOVE_SKILL,
-  SET_UPLOADED_SKILL_FILES,
+  SET_SKILL_FILES,
   SET_UPLOADING_STATUS,
   SET_FINISHED_STATUS
 } from "../../mutations.type";
@@ -9,7 +9,7 @@ import {
 export const mutations = {
   [ADD_SKILL](state) {
     const newSkill = {
-      id: Math.random() * 1000000,
+      skillId: state.SkillId,
       releaser: "",
       name: "",
       from_date: "",
@@ -17,22 +17,21 @@ export const mutations = {
       description: "",
       files: []
     };
-    state.skillInputs.push(newSkill);
+    state.totalSkills = state.skills.push(newSkill);
+    state.SkillId += 1;
   },
-  [REMOVE_SKILL](state, skillInputId) {
-    state.skillInputs = state.skillInputs.filter(
-      skill => skill.id !== skillInputId
-    );
+  [REMOVE_SKILL](state, skillId) {
+    state.skills = state.skills.filter(skill => skill.skillId !== skillId);
+    state.totalSkills -= 1;
   },
-  [SET_UPLOADED_SKILL_FILES](state, { skillInputId, index }) {
-    // index of skillInput
-    let files = [];
-    for (let file of this.$refs.skill[index].files) {
-      files.push(file);
+  [SET_SKILL_FILES](state, { self }) {
+    console.log("self.$refs.skills is", self.$refs.skills);
+    for (let skill of self.$refs.skills) {
+      console.log("skill.files of self.$refs.skills", skill.files);
+      for (let file of skill.files) {
+        console.log("file of skill.files", file);
+      }
     }
-    // filter the skill by skillInputId, which is the key of v-for
-    let skill = state.skillInputs.filter(skill => skill.id === skillInputId)[0];
-    skill.files = files;
   },
   [SET_UPLOADING_STATUS](state) {
     state.isUploading = true;

@@ -2,11 +2,8 @@ export const getters = {
   isUploading(state) {
     return state.isUploading;
   },
-  getSkillInputs(state) {
-    return state.skillInputs;
-  },
-  getSkillFilesIndex(state) {
-    return state.skillFilesIndex;
+  getSkills(state) {
+    return state.skills;
   },
   getTotalSkills(state) {
     return state.totalSkills;

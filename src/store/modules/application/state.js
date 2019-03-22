@@ -1,5 +1,5 @@
 export const state = {
-  skillInputs: [],
-  skillFilesIndex: 0,
+  skills: [],
+  SkillId: 0,
   totalSkills: 0
 };

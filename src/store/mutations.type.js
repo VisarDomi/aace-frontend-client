@@ -1,7 +1,7 @@
 // application
 export const ADD_SKILL = "addSkill";
 export const REMOVE_SKILL = "removeSkill";
-export const SET_UPLOADED_SKILL_FILES = "setUploadedSkillFiles";
+export const SET_SKILL_FILES = "setSkillFiles";
 export const SET_UPLOADING_STATUS = "setUploadingStatus";
 export const SET_FINISHED_STATUS = "setFinishedStatus";
 
