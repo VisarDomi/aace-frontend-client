@@ -1,3 +1,4 @@
 export const state = {
-  isUploading: false
+  skillInputs: [],
+  skill_files_index: 0
 };

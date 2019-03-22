@@ -65,35 +65,47 @@ export const ApiService = {
 };
 
 export const MemberService = {
-  get(userId) {
+  getUser(userId) {
     return ApiService.get("user", userId);
   },
-  search(membername) {
-    return ApiService.post("user/search", membername);
+  searchUser(name) {
+    return ApiService.post("user/search", name);
   }
 };
 
 export const EducationService = {
   getEducation(userId) {
-    return ApiService.get("user", `${userId}/education/all`);
+    return ApiService.get(`user/${userId}/education`, "all");
+  },
+  postEducation(userId, education) {
+    return ApiService.post(`user/${userId}/education`, education);
   }
 };
 
 export const ExperienceService = {
   getExperience(userId) {
-    return ApiService.get("user", `${userId}/experience/all`);
+    return ApiService.get(`user/${userId}/experience`, "all");
+  },
+  postExperience(userId, experience) {
+    return ApiService.post(`user/${userId}/experience`, experience);
   }
 };
 
 export const SkillService = {
   getSkill(userId) {
-    return ApiService.get("user", `${userId}/skill/all`);
+    return ApiService.get(`user/${userId}/skill`, "all");
+  },
+  postSkill(userId, skill) {
+    return ApiService.post(`user/${userId}/skill`, skill);
   }
 };
 
 export const PaymentService = {
   getPayment(userId) {
-    return ApiService.get("user", `${userId}/payment/all`);
+    return ApiService.get(`user/${userId}/payment`, "all");
+  },
+  postPayment(userId, payment) {
+    return ApiService.post(`user/${userId}/payment`, payment);
   }
 };
 
@@ -104,7 +116,7 @@ export const CommunicationService = {
   getCommunication(communicationId) {
     return ApiService.get("officialcommunication", communicationId);
   },
-  makeComment(communicationId, comment) {
+  postComment(communicationId, comment) {
     return ApiService.post(
       `officialcommunication/${communicationId}/officialcomment`,
       comment
@@ -122,7 +134,7 @@ export const MediaService = {
   getPicture(userId) {
     return ApiService.get("user", `${userId}/media/all`);
   },
-  getCommunicationDocuments(communicationId) {
+  getCommunicationMedia(communicationId) {
     return ApiService.get(
       "officialcommunication",
       `${communicationId}/media/all`

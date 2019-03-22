@@ -8,7 +8,7 @@ import {
 
 export const actions = {
   async [FETCH_MEMBER](context, name) {
-    const { data } = await MemberService.search(name);
+    const { data } = await MemberService.searchUser(name);
     context.commit(SET_SEARCH_RESULT, data);
     for (var member in context.state.searchResult) {
       const { data } = await MediaService.getPicture(

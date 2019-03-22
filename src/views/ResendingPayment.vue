@@ -1,7 +1,7 @@
 <template>
   <div class="nav-on-header smart-nav">
     <!-- <form-summary :validator="$v.first_name"/> -->
-    <form @submit.prevent="apply">
+    <form @submit.prevent="onApply">
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
@@ -109,7 +109,7 @@ export default {
     handleFileUploadPayment(event) {
       this.payment_file = this.$refs.payment_file.files[0];
     },
-    apply() {
+    onApply() {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");

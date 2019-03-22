@@ -21,7 +21,7 @@ import {
 export const actions = {
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
-    MemberService.get(id)
+    MemberService.getUser(id)
       .then(({ data }) => {
         context.commit(SET_PROFILE, data);
         return data;
@@ -64,7 +64,7 @@ export const actions = {
       .catch(() => {});
   },
   [FETCH_APPLICATION_INFO](context) {
-    MemberService.get(UserService.getUser().id)
+    MemberService.getUser(UserService.getUser().id)
       .then(({ data }) => {
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;

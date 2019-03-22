@@ -2,6 +2,9 @@
 export const SEND_EDUCATION_MEDIAS = "sendEducationMedias";
 export const SEND_EXPERIENCE_MEDIAS = "sendExperienceMedias";
 export const SEND_SKILL_MEDIAS = "sendSkillMedias";
+export const SEND_EDUCATION = "sendEducation";
+export const SEND_EXPERIENCE = "sendExperience";
+export const SEND_SKILL = "sendSkill";
 
 // auth
 export const LOGIN = "login";
@@ -14,7 +17,7 @@ export const UPDATE_USER = "updateUser";
 export const FETCH_COMMUNICATIONS = "fetchCommunications";
 export const FETCH_COMMUNICATION = "fetchCommunication";
 export const FETCH_COMMENTS = "fetchComments";
-export const MAKE_COMMENT = "makeComment";
+export const MAKE_COMMENT = "postComment";
 
 // media
 export const FETCH_DOCS = "fetchDocs";

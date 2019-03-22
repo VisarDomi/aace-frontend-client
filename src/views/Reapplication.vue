@@ -1,6 +1,6 @@
 <template>
   <div class="nav-on-header smart-nav">
-    <form @submit.prevent="apply">
+    <form @submit.prevent="onApply">
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
@@ -268,7 +268,7 @@
                             <select
                               class="form-control"
                               v-model="education_type_id[index]"
-                              @change="handleEducationTypeChange($event, index)"
+                              @change="educationTypeChange($event, index)"
                             >
                               <option
                                 v-for="option in education_type_options"
@@ -287,7 +287,7 @@
                               class="form-control"
                               v-model="education_degree_id[index]"
                               @change="
-                                handleEducationOptionDegreeChange($event, index)
+                                educationDegreeChange($event, index)
                               "
                             >
                               <option
@@ -318,7 +318,7 @@
                               class="form-control"
                               v-model="education_major_id[index]"
                               @change="
-                                handleEducationOptionMajorChange($event, index)
+                                educationMajorChange($event, index)
                               "
                             >
                               <option
@@ -752,12 +752,12 @@ export default {
         this.profession = this.profession_options[event.target.value - 1].text;
       }
     },
-    handleEducationTypeChange(e, i){
+    educationTypeChange(e, i){
       this.educationInputs[i].degree = ''
       this.educationInputs[i].field_of_study = ''
       this.educationInputs[i].education_type = this.education_type_options[e.target.value-1].text
     },
-    handleEducationOptionDegreeChange(e, i) {
+    educationDegreeChange(e, i) {
       let educationOptionId = e.target.value;
       if (educationOptionId == 7 || educationOptionId == 3) {
         this.education_degree_other[i] = true;
@@ -774,7 +774,7 @@ export default {
           ][educationOptionId - 4].text;
       }
     },
-    handleEducationOptionMajorChange(e, i) {
+    educationMajorChange(e, i) {
       let educationOptionId = e.target.value;
       if (educationOptionId == 6 || educationOptionId == 3) {
         this.education_major_other[i] = true;
@@ -823,7 +823,7 @@ export default {
       this.skillInputs.filter(skill => skill.id === id)[0].files = files;
     },
 
-    send_experiences() {
+    sendExperiences() {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
@@ -911,7 +911,7 @@ export default {
           });
       }
     },
-    send_skills() {
+    sendSkills() {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
@@ -997,7 +997,7 @@ export default {
           });
       }
     },
-    send_educations() {
+    sendEducations() {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
@@ -1088,7 +1088,7 @@ export default {
           });
       }
     },
-    apply() {
+    onApply() {
       // ------- Basic
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
@@ -1113,11 +1113,11 @@ export default {
       };
 
       // ------- Experience file and post -------
-      this.send_experiences();
+      this.sendExperiences();
       // ------- Skill file and post -------
-      this.send_skills();
+      this.sendSkills();
       // ------- Education file and post -------
-      this.send_educations();
+      this.sendEducations();
       // ------- User file and put -------
       axios
         .all([
