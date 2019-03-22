@@ -133,5 +133,14 @@ export const MediaService = {
       `user/${userId}/education/${educationId}/media`,
       media
     );
+  },
+  postExperienceMedia(userId, experienceId, media) {
+    return ApiService.post(
+      `user/${userId}/experience/${experienceId}/media`,
+      media
+    );
+  },
+  postSkillMedia(userId, skillId, media) {
+    return ApiService.post(`user/${userId}/skill/${skillId}/media`, media);
   }
 };

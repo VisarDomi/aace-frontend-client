@@ -17,7 +17,7 @@ export const SET_COMMENT = "setComment";
 // media
 export const SET_COMMUNICATION_DOCS = "setCommunicationDocs";
 
-//profile
+// profile
 export const SET_PROFILE = "setProfile";
 export const SET_PICTURE = "setPicture";
 export const SET_COMMENT_ADMIN = "setCommentAdmin";
@@ -26,7 +26,7 @@ export const SET_EXPERIENCES = "setExperiences";
 export const SET_SKILLS = "setSkills";
 export const SET_PAYMENTS = "setPayments";
 
-//search
+// search
 export const SET_SEARCH_RESULT = "setSearchResult";
 export const SET_PICTURES = "setPictures";
 export const DELETE_PICTURES = "cleanPictures";

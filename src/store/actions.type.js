@@ -1,3 +1,17 @@
+// application
+export const SEND_EDUCATION_MEDIAS = "sendEducationMedias";
+export const SEND_EXPERIENCE_MEDIAS = "sendExperienceMedias";
+export const SEND_SKILL_MEDIAS = "sendSkillMedias";
+
+// auth
+
+// communication
+
+// media
+
+// profile
+
+// search
 export const CHECK_AUTH = "checkAuth";
 export const LOGIN = "login";
 export const LOGOUT = "logout";
@@ -15,4 +29,3 @@ export const FETCH_DOCS = "fetchDocs";
 export const FETCH_COMMENTS = "fetchComments";
 export const MAKE_COMMENT = "makeComment";
 export const FETCH_APPLICATION_INFO = "fetchApplicationInfo";
-export const SEND_EDUCATION_MEDIAS = "sendEducationMedias";

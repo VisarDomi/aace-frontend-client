@@ -717,7 +717,11 @@ import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
-import { SEND_EDUCATION_MEDIAS } from "@/store/actions.type"
+import {
+  SEND_EDUCATION_MEDIAS,
+  SEND_EXPERIENCE_MEDIAS,
+  SEND_SKILL_MEDIAS
+} from "@/store/actions.type"
 import { mapGetters } from 'vuex';
 
 export default {
@@ -938,9 +942,8 @@ export default {
     },
 
     send_experiences() {
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
+      let user_id = this.currentUser.id;
+      let token = this.currentToken;
 
       let resExperienceInputs = [];
 
@@ -965,62 +968,32 @@ export default {
       for (var i = 0; i < this.experienceInputs.length; i++) {
         axios
           .post(
-            "https://aace.ml/api/user/" + USER_ID + "/experience",
+            "https://aace.ml/api/user/" + user_id + "/experience",
             this.experienceInputs[i],
             {
               headers: {
-                Authorization: "Bearer " + TOKEN
+                Authorization: "Bearer " + token
               }
             }
           )
           .then(res => {
-            console.log("post experience");
-            let EXPERIENCE_ID = res.data.id;
-
+            let experience_id = res.data.id;
             let formDataExperience = new FormData();
-            if (this.experienceInputs[this.experience_files_index].files.length) {
-              for (
-                let j = 0;
-                j <
-                this.experienceInputs[this.experience_files_index].files.length;
-                j++
-              ) {
-                formDataExperience.append(
-                  "file",
-                  this.experienceInputs[this.experience_files_index].files[j]
-                );
+            let expInput = this.experienceInputs[this.experience_files_index]
+            if (expInput.files.length) {
+              for (let j = 0; j < expInput.files.length; j++) {
+                formDataExperience.append("file", expInput.files[j]);
               }
               this.experience_files_index++;
-
-              axios
-                .post(
-                  "https://aace.ml/api/user/" +
-                    USER_ID +
-                    "/experience/" +
-                    EXPERIENCE_ID +
-                    "/media",
-                  formDataExperience,
-                  {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                      Authorization: "Bearer " + TOKEN
-                    }
-                  }
-                )
-                .then(res => {
-                  if (res.status == 200) {
-                    console.log("pdf updated sucessfully experience.");
-                  }
-                })
-                .catch(err => console.log(err));
+              let payload = { user_id, experience_id, formDataExperience }
+              this.$store.dispatch(SEND_EXPERIENCE_MEDIAS, payload)
             }
           });
       }
     },
     send_skills() {
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
+      let user_id = this.currentUser.id;
+      let token = this.currentToken;
 
       let resSkillInputs = [];
 
@@ -1045,62 +1018,32 @@ export default {
       for (var i = 0; i < this.skillInputs.length; i++) {
         axios
           .post(
-            "https://aace.ml/api/user/" + USER_ID + "/skill",
+            "https://aace.ml/api/user/" + user_id + "/skill",
             this.skillInputs[i],
             {
               "Content-Type": "multipart/form-data",
               headers: {
-                Authorization: "Bearer " + TOKEN
+                Authorization: "Bearer " + token
               }
             }
           )
           .then(res => {
-            console.log("post skill");
-            let SKILL_ID = res.data.id;
-
+            let skill_id = res.data.id;
             let formDataSkill = new FormData();
-            if (this.skillInputs[this.skill_files_index].files.length) {
-              for (
-                let j = 0;
-                j < this.skillInputs[this.skill_files_index].files.length;
-                j++
-              ) {
-                formDataSkill.append(
-                  "file",
-                  this.skillInputs[this.skill_files_index].files[j]
-                );
+            let skiInput = this.skillInputs[this.skill_files_index]
+            if (skiInput.files.length) {
+              for (let j = 0; j < skiInput.files.length; j++) {
+                formDataSkill.append( "file", skiInput.files[j]);
               }
               this.skill_files_index++;
-              axios
-                .post(
-                  "https://aace.ml/api/user/" +
-                    USER_ID +
-                    "/skill/" +
-                    SKILL_ID +
-                    "/media",
-                  formDataSkill,
-                  {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                      Authorization: "Bearer " + TOKEN
-                    }
-                  }
-                )
-                .then(res => {
-                  console.log('media skill')
-                  if (res.status == 200) {
-                  }
-                })
-                .catch(err => console.log(err));
+              let payload = { user_id, skill_id, formDataSkill }
+              this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
             }
           });
       }
     },
     send_educations() {
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      //currentUser
       let user_id = this.currentUser.id;
-      //currentToken needs to become active
       let token = this.currentToken;
 
       let resEducationInputs = [];
@@ -1137,45 +1080,16 @@ export default {
             }
           )
           .then(res => {
-            console.log("post education res", res);
             let education_id = res.data.id;
-
             let formDataEducation = new FormData();
-            console.log("this.educationInputs :", this.educationInputs)
             let eduInput = this.educationInputs[this.education_files_index]
-            console.log("eduInput :", eduInput)
             if (eduInput.files.length) {
               for (let j = 0; j < eduInput.files.length; j++) {
                 formDataEducation.append("file", eduInput.files[j]);
               }
               this.education_files_index++;
-
               let payload = { user_id, education_id, formDataEducation }
-
               this.$store.dispatch(SEND_EDUCATION_MEDIAS, payload)
-
-              // axios
-              //   .post(
-              //     "https://aace.ml/api/user/" +
-              //       user_id +
-              //       "/education/" +
-              //       education_id +
-              //       "/media",
-              //     formDataEducation,
-              //     {
-              //       "Content-Type": "multipart/form-data",
-              //       headers: {
-              //         Authorization: "Bearer " + token
-              //       }
-              //     }
-              //   )
-              //   .then(res => {
-              //     console.log('media education res', res)
-              //     if (res.status == 200) {
-              //       console.log('success media education')
-              //     }
-              //   })
-              //   .catch(err => console.log(err));
             }
           });
       }
@@ -1186,17 +1100,13 @@ export default {
         console.log("errors");
         return;
       }
-      // ------- Basic
-      let AACE_URL_USER = "https://aace.ml/api/user/";
       //currentUser
-      let USER_ID = this.currentUser.id;
-      // let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      //currentToken needs to become active
-      let TOKEN = this.currentToken;
-      // let TOKEN = localStorage.getItem("id_token");
+      let user_id = this.currentUser.id;
+      //currentToken
+      let token = this.currentToken;
 
-      console.log("token ",TOKEN);
-      console.log("user_id ", USER_ID);
+      console.log("token ",token);
+      console.log("user_id ", user_id);
       // ------- User -------
       let formDataUser = new FormData();
       formDataUser.append("file", this.profile_picture_file);
@@ -1223,22 +1133,21 @@ export default {
       this.send_educations();
       // ------- User file and put -------
 
-      // this.isUploading = true;
       axios
         .all([
           axios.post(
-            "https://aace.ml/api/user/" + USER_ID + "/media",
+            "https://aace.ml/api/user/" + user_id + "/media",
             formDataUser,
             {
               "Content-Type": "multipart/form-data",
               headers: {
-                Authorization: "Bearer " + TOKEN
+                Authorization: "Bearer " + token
               }
             }
           ),
-          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
+          axios.put("https://aace.ml/api/user/" + user_id, user_string, {
             headers: {
-              Authorization: "Bearer " + TOKEN
+              Authorization: "Bearer " + token
             }
           })
         ])
@@ -1250,7 +1159,6 @@ export default {
 
             if (stringRes.status == 200 && profileRes.status == 200) {
               console.log("Profile sent successfully.");
-              // this.isUploading = false
               localStorage.setItem("user", JSON.stringify(stringRes.data));
               console.log("usually, now the router would push")
               // this.$router.push({
