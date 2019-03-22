@@ -52,15 +52,15 @@
                 <router-link
                   :to="{ name: 'Application' }"
                   class="btn btn-success"
-                  v-if="currentUser.application_status == 'blank'"
+                  v-if="getCurrentUser.application_status == 'blank'"
                   >Apliko tani</router-link
                 >
                 <router-link
                   :to="{ name: 'Reapplication' }"
                   class="btn btn-success"
                   v-if="
-                    currentUser.application_status == 'rebutted' ||
-                      currentUser.application_status == 'accepted'
+                    getCurrentUser.application_status == 'rebutted' ||
+                      getCurrentUser.application_status == 'accepted'
                   "
                   >Apliko tani</router-link
                 >
@@ -132,7 +132,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["currentUser", "isAuthenticated"])
+    ...mapGetters(["getCurrentUser", "isAuthenticated"])
   }
 };
 </script>

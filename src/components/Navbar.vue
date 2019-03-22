@@ -35,19 +35,19 @@
         <div class="pull-right" v-else>
           <ul class="profile-menu become-inline">
             <li>
-              <a href="#" v-if="currentUser.application_status == 'blank'">
+              <a href="#" v-if="getCurrentUser.application_status == 'blank'">
                 <i class="fa fa-user fa-2x profile-icon become-inline"></i>
                 <div class="become-inline become-margin-right">Profili</div>
               </a>
-              <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }" v-else>
+              <router-link :to="{ name: 'Profile', params: { id: getCurrentUser.id } }" v-else>
                 <i class="fa fa-user fa-2x profile-icon become-inline"></i>
                 <div class="become-inline become-margin-right">Profili</div>
               </router-link>
               <ul>
-                <li>{{ currentUser.email }}</li>
+                <li>{{ getCurrentUser.email }}</li>
                 <li
-                  v-if="currentUser.first_name"
-                >{{ currentUser.first_name + " " + currentUser.last_name }}</li>
+                  v-if="getCurrentUser.first_name"
+                >{{ getCurrentUser.first_name + " " + getCurrentUser.last_name }}</li>
               </ul>
             </li>
           </ul>
@@ -84,28 +84,28 @@
           <li v-if="isAuthenticated">
             <router-link :to="{ name: 'MemberArea' }">Zona e anetareve</router-link>
             <ul>
-              <li v-if="currentUser.application_status != 'blank'">
-                <router-link :to="{ name: 'Profile', params: { id: currentUser.id } }">Profili</router-link>
+              <li v-if="getCurrentUser.application_status != 'blank'">
+                <router-link :to="{ name: 'Profile', params: { id: getCurrentUser.id } }">Profili</router-link>
               </li>
-              <li v-if="currentUser.application_status == 'blank'">
+              <li v-if="getCurrentUser.application_status == 'blank'">
                 <router-link :to="{ name: 'Application' }">Forma e aplikimit</router-link>
               </li>
-              <li v-if="currentUser.application_status == 'rebutted'">
+              <li v-if="getCurrentUser.application_status == 'rebutted'">
                 <router-link :to="{ name: 'Reapplication' }">Forma e riaplikimit</router-link>
               </li>
-              <li v-if="currentUser.payment_status == 'blank'">
+              <li v-if="getCurrentUser.payment_status == 'blank'">
                 <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
               </li>
-              <li v-if="currentUser.payment_status == 'rebutted_payment'">
+              <li v-if="getCurrentUser.payment_status == 'rebutted_payment'">
                 <router-link :to="{ name: 'ResendingPayment' }">Mandati i pageses</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>
               </li>
-              <li v-if="currentUser.application_status == 'accepted'">
+              <li v-if="getCurrentUser.application_status == 'accepted'">
                 <router-link :to="{ name: 'Communications' }">Komunikime zyrtare</router-link>
               </li>
-              <li v-if="currentUser.application_status == 'accepted'">
+              <li v-if="getCurrentUser.application_status == 'accepted'">
                 <router-link :to="{ name: 'ComingSoon' }">Votime</router-link>
               </li>
               <!-- <li @click="logout" v-if="isAuthenticated">
@@ -143,7 +143,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "isAuthenticated"])
+    ...mapGetters(["getCurrentUser", "isAuthenticated"])
   },
   mounted() {
     if (this.isAuthenticated) {

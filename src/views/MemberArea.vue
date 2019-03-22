@@ -20,7 +20,7 @@
             <router-link
               :to="{ name: 'Application' }"
               style="height: 295px;"
-              v-if="currentUser.application_status == 'blank'"
+              v-if="getCurrentUser.application_status == 'blank'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>Forma e aplikimit</h6>
@@ -30,7 +30,7 @@
             <router-link
               :to="{ name: 'Reapplication' }"
               style="height: 295px;"
-              v-if="currentUser.application_status == 'rebutted'"
+              v-if="getCurrentUser.application_status == 'rebutted'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>Forma e riaplikimit</h6>
@@ -40,7 +40,7 @@
             <router-link
               :to="{ name: 'SendingPayment' }"
               style="height: 295px;"
-              v-if="currentUser.payment_status == 'blank'"
+              v-if="getCurrentUser.payment_status == 'blank'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>Mandati i pageses</h6>
@@ -50,7 +50,7 @@
             <router-link
               :to="{ name: 'ResendingPayment' }"
               style="height: 295px;"
-              v-if="currentUser.payment_status == 'rebutted_payment'"
+              v-if="getCurrentUser.payment_status == 'rebutted_payment'"
             >
               <i class="fa fa-file-excel-o"></i>
               <h6>Mandati i pageses</h6>
@@ -66,7 +66,7 @@
             <router-link
               :to="{ name: 'Communications' }"
               style="height: 295px;"
-              v-if="currentUser.application_status == 'accepted'"
+              v-if="getCurrentUser.application_status == 'accepted'"
             >
               <i class="fa fa-send-o"></i>
               <h6>Komunikime zyrtare</h6>
@@ -74,9 +74,9 @@
             </router-link>
 
             <router-link
-              :to="{ name: 'Profile', params: { id: currentUser.id } }"
+              :to="{ name: 'Profile', params: { id: getCurrentUser.id } }"
               style="height: 295px;"
-              v-if="currentUser.application_status != 'blank'"
+              v-if="getCurrentUser.application_status != 'blank'"
             >
               <i class="fa fa-vcard-o"></i>
               <h6>Profili</h6>
@@ -86,7 +86,7 @@
             <router-link
               :to="{ name: 'ComingSoon' }"
               style="height: 295px;"
-              v-if="currentUser.application_status == 'accepted'"
+              v-if="getCurrentUser.application_status == 'accepted'"
             >
               <i class="fa fa-bullhorn"></i>
               <h6>Votime</h6>
@@ -125,7 +125,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "isAuthenticated"])
+    ...mapGetters(["getCurrentUser", "isAuthenticated"])
   },
   mounted() {
     this.$store.dispatch(FETCH_APPLICATION_INFO);

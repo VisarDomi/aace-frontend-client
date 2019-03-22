@@ -1,8 +1,8 @@
 export const getters = {
-  currentUser(state) {
+  getCurrentUser(state) {
     return state.user;
   },
-  currentToken(state) {
+  getCurrentToken(state) {
     return state.token;
   },
   isAuthenticated(state) {

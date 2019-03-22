@@ -559,8 +559,14 @@
               <div
                 class="col-xs-12"
                 :key="skillInput.id"
-                v-for="(skillInput, index) in skillInputs"
+                v-for="(skillInput, index) in getSkillInputs"
               >
+              <!-- <div>{{consoleLog(skillInputs)}}</div>
+              <div>{{consoleLog(skillInputs[index])}}</div>
+              <div>{{consoleLog(skillInputs[index].id)}}</div>
+              <div>{{consoleLog(skillInput)}}</div>
+              <div>{{consoleLog(skillInput.id)}}</div>
+              <div>{{consoleLog(index)}}</div> -->
                 <div class="item-block">
                   <div class="item-form">
                     <button
@@ -578,19 +584,24 @@
                             type="file"
                             ref="skill"
                             class="input-file"
-                            :id="skillInputs[index].id"
+                            :id="getSkillInputs[index].id"
                             multiple
                             @change="
                               handleFileUploadSkill(skillInput.id, index)
                             "
                           />
-                          <label tabindex="0" :for="skillInputs[index].id" class="input-file-trigger"
+                          <label tabindex="0" :for="getSkillInputs[index].id" class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label
                         >
                         
                         <p :key='i' 
-                        v-for='i in skillInputs[index].files.length'
-                        class="file-return">{{ skillInputs[index].files[i-1].name }}</p>
+                        v-for='i in getSkillInputs[index].files.length'
+                        class="file-return">{{ getSkillInputs[index].files[i-1].name }}
+                        <!-- {{consoleLog(skillInputs[index].files)}}
+                        {{consoleLog(skillInputs[index].files.length)}}
+                        {{consoleLog(skillInputs[index].files[i-1])}}
+                        {{consoleLog(skillInputs[index].files[i-1].name)}} -->
+                        </p>
                         </div>
                       </div>
 
@@ -725,6 +736,11 @@ import {
   SEND_EXPERIENCE,
   SEND_SKILL
 } from "@/store/actions.type"
+import {
+  ADD_SKILL,
+  REMOVE_SKILL,
+  SET_UPLOADED_SKILL_FILES,
+} from "@/store/mutations.type"
 import { mapGetters } from 'vuex';
 
 export default {
@@ -801,14 +817,17 @@ export default {
       experience_files_index: 0,
 
       //---------------- Skill -------
-      skillInputs: [],
-      skill_files_index: 0
+      // skillInputs: [],
+      // getSkillFilesIndex: 0
     };
   },
   components: {
     formSummary: templates.multiErrorExtractor.foundation6
   },
   methods: {
+    consoleLog(param) {
+      console.log("console log is", param)
+    },
     // All the functions bellow need to be integrated in the store
     // ------- Dropdown -------
     changeProfession() {
@@ -877,10 +896,10 @@ export default {
       this.profile_picture_file = this.$refs.profile_file.files[0];
     },
     sendProfile() {
-      //currentUser
-      let user_id = this.currentUser.id;
-      //currentToken
-      let token = this.currentToken;
+      //getCurrentUser
+      let user_id = this.getCurrentUser.id;
+      //getCurrentToken
+      let token = this.getCurrentToken;
       console.log("token ",token);
       console.log("user_id ", user_id);
       // ------- User -------
@@ -967,8 +986,8 @@ export default {
       );
     },
     sendEducations() {
-      let user_id = this.currentUser.id;
-      let token = this.currentToken;
+      let user_id = this.getCurrentUser.id;
+      let token = this.getCurrentToken;
 
       let resEducationInputs = [];
 
@@ -1048,8 +1067,8 @@ export default {
       );
     },
     sendExperiences() {
-      let user_id = this.currentUser.id;
-      let token = this.currentToken;
+      let user_id = this.getCurrentUser.id;
+      let token = this.getCurrentToken;
 
       let resExperienceInputs = [];
 
@@ -1098,31 +1117,37 @@ export default {
       }
     },
     // ------- Skill -------
-    handleFileUploadSkill(id, index) {
-      let files = [];
-      for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
-        files.push(this.$refs.skill[index].files[i]);
-      }
-      this.skillInputs.filter(skill => skill.id === id)[0].files = files;
+    handleFileUploadSkill(skillInputId, index) {
+      // let files = [];
+      // for (let file of this.$refs.skill[index].files) {
+      //   files.push(file)
+      // }
+      // this.skillInputs.filter(skill => skill.id === skillInputId)[0].files = files;
+      console.log("handling file upload skill")
+      this.$store.commit(SET_UPLOADED_SKILL_FILES, { skillInputId, index })
     },
     onAddSkill() {
-      const newSkill = {
-        id: Math.random() * 1000000,
-        releaser: "",
-        name: "",
-        from_date: "",
-        to_date: "",
-        description: "",
-        files: []
-      };
-      this.skillInputs.push(newSkill);
+      // const newSkill = {
+      //   id: Math.random() * 1000000,
+      //   releaser: "",
+      //   name: "",
+      //   from_date: "",
+      //   to_date: "",
+      //   description: "",
+      //   files: []
+      // };
+      // this.skillInputs.push(newSkill);
+      console.log("adding skill")
+      this.$store.commit(ADD_SKILL)
     },
-    onDeleteSkill(id) {
-      this.skillInputs = this.skillInputs.filter(skill => skill.id !== id);
+    onDeleteSkill(skillInputId) {
+      // this.skillInputs = this.skillInputs.filter(skill => skill.id !== skillInputId);
+      console.log("removing skill")
+      this.$store.commit(REMOVE_SKILL, skillInputId)
     },
     sendSkills() {
-      let user_id = this.currentUser.id;
-      let token = this.currentToken;
+      let user_id = this.getCurrentUser.id;
+      let token = this.getCurrentToken;
 
       let resSkillInputs = [];
 
@@ -1142,33 +1167,33 @@ export default {
 
       // loop through all the skills
       for (var i = 0; i < this.skillInputs.length; i++) {
-        let skill = this.skillInputs[i]
-        let payload = { user_id, skill }
-        this.$store.dispatch(SEND_SKILL, payload)
-        // axios
-        //   .post(
-        //     "https://aace.ml/api/user/" + user_id + "/skill",
-        //     this.skillInputs[i],
-        //     {
-        //       "Content-Type": "multipart/form-data",
-        //       headers: {
-        //         Authorization: "Bearer " + token
-        //       }
-        //     }
-        //   )
-        //   .then(res => {
-        //     let skill_id = res.data.id;
-        //     let formDataSkill = new FormData();
-        //     let skiInput = this.skillInputs[this.skill_files_index]
-        //     if (skiInput.files.length) {
-        //       for (let j = 0; j < skiInput.files.length; j++) {
-        //         formDataSkill.append( "file", skiInput.files[j]);
-        //       }
-        //       this.skill_files_index++;
-        //       let payload = { user_id, skill_id, formDataSkill }
-        //       this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
-        //     }
-        //   });
+        // let skill = this.skillInputs[i]
+        // let payload = { user_id, skill }
+        // this.$store.dispatch(SEND_SKILL, payload)
+        axios
+          .post(
+            "https://aace.ml/api/user/" + user_id + "/skill",
+            this.skillInputs[i],
+            {
+              "Content-Type": "multipart/form-data",
+              headers: {
+                Authorization: "Bearer " + token
+              }
+            }
+          )
+          .then(res => {
+            let skill_id = res.data.id;
+            let formDataSkill = new FormData();
+            let skiInput = this.skillInputs[this.getSkillFilesIndex]
+            if (skiInput.files.length) {
+              for (let j = 0; j < skiInput.files.length; j++) {
+                formDataSkill.append( "file", skiInput.files[j]);
+              }
+              this.getSkillFilesIndex++;
+              let payload = { user_id, skill_id, formDataSkill }
+              this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
+            }
+          });
       }
     },
     // -----------------
@@ -1182,7 +1207,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["currentUser", "currentToken", "isUploading"])
+    ...mapGetters([
+      "getCurrentUser",
+      "getCurrentToken",
+      "isUploading",
+      "getSkillInputs",
+      "getSkillFilesIndex"
+    ])
   },
   validations: {
     user_data: {

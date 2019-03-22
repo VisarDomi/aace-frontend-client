@@ -203,7 +203,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "currentUser",
+      "getCurrentUser",
       "profile",
       "isAuthenticated",
       "profilePicture",

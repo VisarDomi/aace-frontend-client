@@ -14,18 +14,18 @@
           <header class="section-header">
             <h2>Status i aplikimit</h2>
           </header>
-          <div v-if="currentUser.application_status != 'blank'">
+          <div v-if="getCurrentUser.application_status != 'blank'">
             <h4>Emri i aplikantit:</h4>
-            <p>{{ currentUser.first_name }} {{ currentUser.last_name }}</p>
+            <p>{{ getCurrentUser.first_name }} {{ getCurrentUser.last_name }}</p>
           </div>
           <br>
-          <div v-if="currentUser.application_status == 'applying'">
+          <div v-if="getCurrentUser.application_status == 'applying'">
             <h4>Data e aplikimit:</h4>
-            <p>{{ getFormattedDate(currentUser.application_date) }}</p>
+            <p>{{ getFormattedDate(getCurrentUser.application_date) }}</p>
           </div>
-          <div v-else-if="currentUser.application_status == 'reapplying'">
+          <div v-else-if="getCurrentUser.application_status == 'reapplying'">
             <h4>Data e aplikimit:</h4>
-            <p>{{ getFormattedDate(currentUser.reapplication_date) }}</p>
+            <p>{{ getFormattedDate(getCurrentUser.reapplication_date) }}</p>
           </div>
           <br>
           <h4>Status i aplikimit:</h4>
@@ -33,7 +33,7 @@
             class="alert alert-warning"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.application_status == 'rebutted'"
+            v-if="getCurrentUser.application_status == 'rebutted'"
           >
             <strong>Aplikimi ka nevoje per ndryshime, ndiqni udhezimet e administratorit.</strong>
           </div>
@@ -41,7 +41,7 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.application_status == 'blank'"
+            v-if="getCurrentUser.application_status == 'blank'"
           >
             <strong>Nuk eshte derguar.</strong>
           </div>
@@ -50,8 +50,8 @@
             role="alert"
             style="width:33%; margin:auto;"
             v-if="
-              currentUser.application_status == 'applying' ||
-                currentUser.application_status == 'reapplying'
+              getCurrentUser.application_status == 'applying' ||
+                getCurrentUser.application_status == 'reapplying'
             "
           >
             <strong>Derguar.</strong>
@@ -60,7 +60,7 @@
             class="alert alert-danger"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.application_status == 'rejected'"
+            v-if="getCurrentUser.application_status == 'rejected'"
           >
             <strong>Refuzuar.</strong>
           </div>
@@ -68,7 +68,7 @@
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.application_status == 'accepted_application'"
+            v-if="getCurrentUser.application_status == 'accepted_application'"
           >
             <strong>Aplikimi eshte pranuar.</strong>
           </div>
@@ -76,18 +76,18 @@
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.application_status == 'accepted'"
+            v-if="getCurrentUser.application_status == 'accepted'"
           >
             <strong>Jeni pranuar si anetar i shoqates.</strong>
           </div>
           <br>
-          <div v-if="currentUser.payment_status == 'sending_payment'">
+          <div v-if="getCurrentUser.payment_status == 'sending_payment'">
             <h4>Data e dergimit te mandatit te pageses:</h4>
-            <p>{{ getFormattedDate(currentUser.send_payment_date) }}</p>
+            <p>{{ getFormattedDate(getCurrentUser.send_payment_date) }}</p>
           </div>
-          <div v-else-if="currentUser.payment_status == 'resending_payment'">
+          <div v-else-if="getCurrentUser.payment_status == 'resending_payment'">
             <h4>Data e dergimit te mandatit te pageses:</h4>
-            <p>{{ getFormattedDate(currentUser.resend_payment_date) }}</p>
+            <p>{{ getFormattedDate(getCurrentUser.resend_payment_date) }}</p>
           </div>
 
           <br>
@@ -95,7 +95,7 @@
             class="alert alert-info"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.payment_status == 'blank'"
+            v-if="getCurrentUser.payment_status == 'blank'"
           >
             <strong>Mandati i pageses nuk eshte derguar.</strong>
           </div>
@@ -104,8 +104,8 @@
             role="alert"
             style="width:33%; margin:auto;"
             v-if="
-              currentUser.payment_status == 'sending_payment' ||
-                currentUser.payment_status == 'resending_payment'
+              getCurrentUser.payment_status == 'sending_payment' ||
+                getCurrentUser.payment_status == 'resending_payment'
             "
           >
             <strong>Mandati i pageses eshte derguar.</strong>
@@ -114,7 +114,7 @@
             class="alert alert-success"
             role="alert"
             style="width:33%; margin:auto;"
-            v-if="currentUser.payment_status == 'accepted_payment'"
+            v-if="getCurrentUser.payment_status == 'accepted_payment'"
           >
             <strong>Mandati i pageses eshte pranuar.</strong>
           </div>
@@ -124,13 +124,13 @@
           <br>
           <router-link
             :to="{ name: 'Reapplication' }"
-            v-if="currentUser.application_status == 'rebutted'"
+            v-if="getCurrentUser.application_status == 'rebutted'"
           >
             <button type="submit" class="btn btn-primary">Rregullo aplikimin</button>
           </router-link>
           <router-link
             :to="{ name: 'Application' }"
-            v-if="currentUser.application_status == 'blank'"
+            v-if="getCurrentUser.application_status == 'blank'"
           >
             <button type="submit" class="btn btn-primary">Apliko</button>
           </router-link>
@@ -152,7 +152,7 @@ export default {
   name: "ApplicationStatus",
   methods: {
     getFormattedDate(time) {
-      console.log("currentUser.send_payment_date is", this.currentUser.send_payment_date);
+      console.log("getCurrentUser.send_payment_date is", this.getCurrentUser.send_payment_date);
       console.log("time is", time);
       return DateFilter(time);
     }
@@ -161,7 +161,7 @@ export default {
     this.$store.dispatch(FETCH_APPLICATION_INFO);
   },
   computed: {
-    ...mapGetters(["currentUser", "commentFromAdmin"])
+    ...mapGetters(["getCurrentUser", "commentFromAdmin"])
   }
 };
 </script>
