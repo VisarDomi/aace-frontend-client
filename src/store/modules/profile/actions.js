@@ -1,6 +1,6 @@
 import UserService from "@/common/userstorage.service";
 import {
-  MemberService,
+  ProfileService,
   MediaService,
   EducationService,
   ExperienceService,
@@ -21,7 +21,7 @@ import {
 export const actions = {
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
-    MemberService.getUser(id)
+    ProfileService.getProfile(id)
       .then(({ data }) => {
         context.commit(SET_PROFILE, data);
         return data;
@@ -64,7 +64,7 @@ export const actions = {
       .catch(() => {});
   },
   [FETCH_APPLICATION_INFO](context) {
-    MemberService.getUser(UserService.getUser().id)
+    ProfileService.getProfile(UserService.getUser().id)
       .then(({ data }) => {
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;

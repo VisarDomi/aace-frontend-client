@@ -135,7 +135,7 @@ import {
   FETCH_COMMENTS,
   MAKE_COMMENT
 } from "@/store/actions.type";
-import MemberService from "@/common/api.service";
+import ProfileService from "@/common/api.service";
 import store from "@/store";
 
 export default {

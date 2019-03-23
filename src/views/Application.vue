@@ -16,7 +16,7 @@
                 <div class="input-file-container">
                   <input
                     class="input-file"
-                    ref="profile_file"
+                    ref="profile"
                     id="my-file"
                     type="file"
                     @change="handleFileUploadProfile"
@@ -233,7 +233,7 @@
                             type="file"
                             class="input-file"
                             :id="educationInputs[index].id"
-                            ref="education"
+                            ref="educations"
                             multiple
                             @change="handleFileUploadEducation(educationInput.id, index)
                             "
@@ -420,7 +420,7 @@
                         <div class="input-file-container">
                           <input
                             type="file"
-                            ref="experience"
+                            ref="experiences"
                             class="input-file"
                             :id="experienceInputs[index].id"
                             multiple
@@ -571,7 +571,6 @@
                             :for="skill.skillId"
                             class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label>
-                          {{consoleLog("skill.files is", skill.files)}}
                           <p
                             v-for="(file, index) in skill.files"
                             :key="index"
@@ -702,15 +701,18 @@ import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
 import {
+  SEND_PROFILE_MEDIAS,
   SEND_EDUCATION_MEDIAS,
   SEND_EXPERIENCE_MEDIAS,
   SEND_SKILL_MEDIAS,
+  UPDATE_PROFILE,
   SEND_EDUCATION,
   SEND_EXPERIENCE,
   SEND_SKILL,
   SEND_EDUCATIONS,
   SEND_EXPERIENCES,
-  SEND_SKILLS
+  SEND_SKILLS,
+  SEND_APPLICATION
 } from "@/store/actions.type";
 import {
   ADD_SKILL,
@@ -725,20 +727,7 @@ export default {
   data() {
     return {
       //--------------- User -------
-      user_data: {
-        first_name: "",
-        last_name: "",
-        summary: "",
-        country: "",
-        phone: "",
-        address: "",
-        birthday: "",
-        website: "",
-        email: "",
-        comment_from_administrator: "",
-        profession: "",
-        sex: ""
-      },
+      user_data: this.getAppProfile,
       profession_other: false,
       profession_id: "",
       profession_options: [
@@ -862,262 +851,68 @@ export default {
       }
     },
     // ------- Profile picture -------
-    handleFileUploadProfile(event) {
-      this.profile_picture_file = this.$refs.profile_file.files[0];
+    handleFileUploadProfile() {
+      let self = this;
+      this.$store.commit(SET_PROFILE_FILES, { self });
     },
-    sendProfile() {
-      //getCurrentUser
-      let user_id = this.getCurrentUser.id;
-      //getCurrentToken
-      let token = this.getCurrentToken;
-      console.log("token ", token);
-      console.log("user_id ", user_id);
-      // ------- User -------
-      let formDataUser = new FormData();
-      formDataUser.append("file", this.profile_picture_file);
-      let user_string = {
-        first_name: this.user_data.first_name,
-        last_name: this.user_data.last_name,
-        profession: this.user_data.profession,
-        sex: this.user_data.sex,
-        summary: this.user_data.summary,
-        country: this.user_data.country,
-        phone: this.user_data.phone,
-        address: this.user_data.address,
-        birthday: this.user_data.birthday,
-        website: this.user_data.website,
-        email: this.user_data.email
-      };
-      console.log("user_string ", user_string);
-      // ------- User file and put -------
-      axios
-        .all([
-          axios.post(
-            "https://aace.ml/api/user/" + user_id + "/media",
-            formDataUser,
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + token
-              }
-            }
-          ),
-          axios.put("https://aace.ml/api/user/" + user_id, user_string, {
-            headers: {
-              Authorization: "Bearer " + token
-            }
-          })
-        ])
-        .then(
-          axios.spread((profileRes, stringRes) => {
-            console.log("user post");
-            console.log("profileRes", profileRes);
-            console.log("stringRes", stringRes);
-            if (stringRes.status == 200 && profileRes.status == 200) {
-              console.log("Profile sent successfully.");
-              localStorage.setItem("user", JSON.stringify(stringRes.data));
-              console.log("usually, now the router would push");
-              // this.$router.push({
-              //   name: "SuccessApplication"
-              // });
-            } else {
-              // console.log("String sent unsuccessfuly");
-            }
-          })
-        );
+    updateProfileField( field, value) {
+      let payload = { [field]: value };
+      this.$store.commit(UPDATE_PROFILE, payload);
     },
     // ------- Education -------
-    handleFileUploadEducation(id, index) {
-      let files = [];
-      for (let i = 0; i < this.$refs.education[index].files.length; i++) {
-        files.push(this.$refs.education[index].files[i]);
-      }
-      this.educationInputs.filter(
-        education => education.id === id
-      )[0].files = files;
+    handleFileUploadEducation(educationId) {
+      let self = this;
+      this.$store.commit(SET_EDUCATION_FILES, { self, educationId });
+    },
+    updateEducationField(educationId, field, value) {
+      let payload = { educationId, [field]: value };
+      this.$store.commit(UPDATE_EDUCATION, payload);
     },
     onAddEducation() {
-      const newEducation = {
-        id: Math.random() * 1000000,
-        education_type: "",
-        degree: "",
-        field_of_study: "",
-        school: "",
-        from_date: "",
-        to_date: "",
-        description: "",
-        files: []
-      };
-      this.educationInputs.push(newEducation);
+      this.$store.commit(ADD_EDUCATION);
     },
-    onDeleteEducation(id) {
-      this.educationInputs = this.educationInputs.filter(
-        education => education.id !== id
-      );
-    },
-    sendEducations() {
-      let user_id = this.getCurrentUser.id;
-      let token = this.getCurrentToken;
-
-      let resEducationInputs = [];
-
-      // removes unnecesary keys, like (id) and (user_id)
-      for (var i = 0; i < this.educationInputs.length; i++) {
-        resEducationInputs.push({});
-        // list of education ids
-        for (var j = 0; j < Object.keys(this.educationInputs[i]).length; j++) {
-          if (Object.keys(this.educationInputs[i])[j] != "id") {
-            resEducationInputs[i][
-              Object.keys(this.educationInputs[i])[j]
-            ] = this.educationInputs[i][
-              Object.keys(this.educationInputs[i])[j]
-            ];
-          }
-        }
-      }
-      this.educationInputs = resEducationInputs;
-
-      for (var i = 0; i < this.educationInputs.length; i++) {
-        console.log(`this.eduationInputs[${i}]`, this.educationInputs[i]);
-        axios
-          .post(
-            "https://aace.ml/api/user/" + user_id + "/education",
-            this.educationInputs[i],
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + token
-              }
-            }
-          )
-          .then(res => {
-            let education_id = res.data.id;
-            let formDataEducation = new FormData();
-            let eduInput = this.educationInputs[this.education_files_index];
-            if (eduInput.files.length) {
-              for (let j = 0; j < eduInput.files.length; j++) {
-                formDataEducation.append("file", eduInput.files[j]);
-              }
-              this.education_files_index++;
-              let payload = { user_id, education_id, formDataEducation };
-              this.$store.dispatch(SEND_EDUCATION_MEDIAS, payload);
-            }
-          });
-      }
+    onDeleteEducation(educationId) {
+      this.$store.commit(REMOVE_EDUCATION, educationId);
     },
     // ------- Experience -------
-    handleFileUploadExperience(id, index) {
-      let files = [];
-      for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
-        files.push(this.$refs.experience[index].files[i]);
-      }
-      this.experienceInputs.filter(
-        experience => experience.id === id
-      )[0].files = files;
+    handleFileUploadExperience(experienceId) {
+      let self = this;
+      this.$store.commit(SET_EXPERIENCE_FILES, { self, experienceId });
+    },
+    updateExperienceField(experienceId, field, value) {
+      let payload = { experienceId, [field]: value };
+      this.$store.commit(UPDATE_EXPERIENCE, payload);
     },
     onAddExperience() {
-      const newExperience = {
-        id: Math.random() * 1000000,
-        employer: "",
-        title: "",
-        location: "",
-        from_date: "",
-        to_date: "",
-        is_currently_work_here: false,
-        description: "",
-        files: []
-      };
-      this.experienceInputs.push(newExperience);
+      this.$store.commit(ADD_EXPERIENCE);
     },
-    onDeleteExperience(id) {
-      this.experienceInputs = this.experienceInputs.filter(
-        experience => experience.id !== id
-      );
-    },
-    sendExperiences() {
-      let user_id = this.getCurrentUser.id;
-      let token = this.getCurrentToken;
-
-      let resExperienceInputs = [];
-
-      // removes unnecesary keys, like (id) and (user_id)
-      for (var i = 0; i < this.experienceInputs.length; i++) {
-        resExperienceInputs.push({});
-        // list of education ids
-        for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
-          if (Object.keys(this.experienceInputs[i])[j] != "id") {
-            resExperienceInputs[i][
-              Object.keys(this.experienceInputs[i])[j]
-            ] = this.experienceInputs[i][
-              Object.keys(this.experienceInputs[i])[j]
-            ];
-          }
-        }
-      }
-      this.experienceInputs = resExperienceInputs;
-
-      for (var i = 0; i < this.experienceInputs.length; i++) {
-        axios
-          .post(
-            "https://aace.ml/api/user/" + user_id + "/experience",
-            this.experienceInputs[i],
-            {
-              headers: {
-                Authorization: "Bearer " + token
-              }
-            }
-          )
-          .then(res => {
-            let experience_id = res.data.id;
-            let formDataExperience = new FormData();
-            let expInput = this.experienceInputs[this.experience_files_index];
-            if (expInput.files.length) {
-              for (let j = 0; j < expInput.files.length; j++) {
-                formDataExperience.append("file", expInput.files[j]);
-              }
-              this.experience_files_index++;
-              let payload = { user_id, experience_id, formDataExperience };
-              this.$store.dispatch(SEND_EXPERIENCE_MEDIAS, payload);
-            }
-          });
-      }
+    onDeleteExperience(experienceId) {
+      this.$store.commit(REMOVE_EXPERIENCE, experienceId);
     },
     // ------- Skill -------
     handleFileUploadSkill(skillId) {
-      console.log("handling file upload skill");
-      self = this;
+      let self = this;
       this.$store.commit(SET_SKILL_FILES, { self, skillId });
     },
     updateSkillField(skillId, field, value) {
-      // this syntax lets fields (keys of an object) be a variable
-      let payload = { skillId, [field]: value }
+      let payload = { skillId, [field]: value };
       this.$store.commit(UPDATE_SKILL, payload);
     },
     onAddSkill() {
-      console.log("adding skill");
       this.$store.commit(ADD_SKILL);
     },
     onDeleteSkill(skillId) {
-      console.log(`removing skill ${skillId}`);
       this.$store.commit(REMOVE_SKILL, skillId);
     },
-    sendSkills() {
-      this.$store.dispatch(SEND_SKILLS);
-    },
     // ------- Application -------
-    sendApplication() {
-      // this.sendProfile();
-      // this.sendEducations();
-      // this.sendExperiences();
-      this.sendSkills();
-    },
     onApply() {
-      this.$v.user_data.$touch();
-      if (this.$v.user_data.$pending || this.$v.user_data.$error) {
-        console.log("errors");
-        return;
-      }
-      this.sendApplication();
+      // this.$v.user_data.$touch();
+      // if (this.$v.user_data.$pending || this.$v.user_data.$error) {
+      //   console.log("errors");
+      //   return;
+      // }
+      let self = this;
+      this.$store.dispatch(SEND_APPLICATION, { self });
     }
   },
   computed: {
@@ -1125,7 +920,10 @@ export default {
       "getCurrentUser",
       "getCurrentToken",
       "isUploading",
-      "getAppSkills",
+      "getAppProfile",
+      "getAppEducations",
+      "getAppExperiences",
+      "getAppSkills"
     ])
   },
   validations: {
@@ -1144,8 +942,8 @@ export default {
     }
   },
   mounted() {
-    let AACE_URL_USER = "https://aace.ml/api/user/";
-    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
+    let aaceUrl = "https://aace.ml/api/";
+    let userId = this.getCurrentUser;
     // this.onAddExperience();
     // this.onAddEducation();
     // this.onAddSkill();
@@ -1153,7 +951,7 @@ export default {
     this.user_data.profession = "Inxhinier Ndertimi";
     this.profession_id = 1;
     axios
-      .get(AACE_URL_USER + USER_ID, {
+      .get(aaceUrl + "user/" + userId, {
         responseType: "json"
       })
       .then(res => {

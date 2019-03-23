@@ -64,12 +64,15 @@ export const ApiService = {
   }
 };
 
-export const MemberService = {
-  getUser(userId) {
+export const ProfileService = {
+  getProfile(userId) {
     return ApiService.get("user", userId);
   },
   searchUser(name) {
     return ApiService.post("user/search", name);
+  },
+  putProfile(userId, profile) {
+    return ApiService.put(`user/${userId}`, profile);
   }
 };
 
@@ -139,6 +142,9 @@ export const MediaService = {
       "officialcommunication",
       `${communicationId}/media/all`
     );
+  },
+  postProfileMedia(userId, media) {
+    return ApiService.post(`user/${userId}/media`, media);
   },
   postEducationMedia(userId, educationId, media) {
     return ApiService.post(

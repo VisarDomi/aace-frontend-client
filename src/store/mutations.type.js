@@ -1,6 +1,16 @@
 // application
 export const START_UPLOAD = "startUpload";
 export const STOP_UPLOAD = "stopUpload";
+export const SET_PROFILE_FILES = "setProfileFiles";
+export const UPDATE_PROFILE = "updateProfile";
+export const ADD_EDUCATION = "addEducation";
+export const REMOVE_EDUCATION = "removeEducation";
+export const SET_EDUCATION_FILES = "setEducationFiles";
+export const UPDATE_EDUCATION = "updateEducation";
+export const ADD_EXPERIENCE = "addExperience";
+export const REMOVE_EXPERIENCE = "removeExperience";
+export const SET_EXPERIENCE_FILES = "setExperienceFiles";
+export const UPDATE_EXPERIENCE = "updateExperience";
 export const ADD_SKILL = "addSkill";
 export const REMOVE_SKILL = "removeSkill";
 export const SET_SKILL_FILES = "setSkillFiles";

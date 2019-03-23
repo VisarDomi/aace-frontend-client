@@ -1,13 +1,16 @@
 // application
+export const SEND_PROFILE_MEDIAS = "sendEducationMedias";
 export const SEND_EDUCATION_MEDIAS = "sendEducationMedias";
 export const SEND_EXPERIENCE_MEDIAS = "sendExperienceMedias";
 export const SEND_SKILL_MEDIAS = "sendSkillMedias";
+export const UPDATE_PROFILE = "sendProfile";
 export const SEND_EDUCATION = "sendEducation";
 export const SEND_EXPERIENCE = "sendExperience";
 export const SEND_SKILL = "sendSkill";
 export const SEND_EDUCATIONS = "sendEducations";
 export const SEND_EXPERIENCES = "sendExperiences";
 export const SEND_SKILLS = "sendSkills";
+export const SEND_APPLICATION = "sendApplication";
 
 // auth
 export const LOGIN = "login";

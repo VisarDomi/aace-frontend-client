@@ -1,10 +1,20 @@
 import {
+  START_UPLOAD,
+  STOP_UPLOAD,
+  SET_PROFILE_FILES,
+  UPDATE_PROFILE,
+  ADD_EDUCATION,
+  REMOVE_EDUCATION,
+  SET_EDUCATION_FILES,
+  UPDATE_EDUCATION,
+  ADD_EXPERIENCE,
+  REMOVE_EXPERIENCE,
+  SET_EXPERIENCE_FILES,
+  UPDATE_EXPERIENCE,
   ADD_SKILL,
   REMOVE_SKILL,
   SET_SKILL_FILES,
-  UPDATE_SKILL,
-  START_UPLOAD,
-  STOP_UPLOAD
+  UPDATE_SKILL
 } from "../../mutations.type";
 
 export const mutations = {
@@ -14,15 +24,106 @@ export const mutations = {
   [STOP_UPLOAD](state) {
     state.isUploading = false;
   },
+  [SET_PROFILE_FILES](state, { self }) {
+    let files = [];
+    for (let refsProfile of self.$refs.profile) {
+      files = refsProfile.files;
+    }
+    state.appProfile.files = files;
+  },
+  [UPDATE_PROFILE](state, payload) {
+    Object.assign(state.appProfile, payload);
+  },
+  [ADD_EDUCATION](state) {
+    const education = {
+      educationId: state.educationId,
+      files: [],
+      education_type: "",
+      degree: "",
+      field_of_study: "",
+      school: "",
+      from_date: "",
+      to_date: "",
+      description: ""
+    };
+    state.totalEducations = state.appEducations.push(education);
+    state.educationId += 1;
+  },
+  [REMOVE_EDUCATION](state, educationId) {
+    state.appEducations = state.appEducations.filter(
+      education => education.educationId != educationId
+    );
+    state.totalEducations -= 1;
+  },
+  [SET_EDUCATION_FILES](state, { self, educationId }) {
+    let foundIndex = state.appEducations.findIndex(
+      education => education.educationId == educationId
+    );
+    let files = [];
+    for (let refsEducation of self.$refs.educations) {
+      if (refsEducation.id == educationId) {
+        files = refsEducation.files;
+      }
+    }
+    state.appEducations[foundIndex].files = files;
+  },
+  [UPDATE_EDUCATION](state, payload) {
+    let foundIndex = state.appEducations.findIndex(
+      education => education.educationId == payload.educationId
+    );
+    delete payload.educationId;
+    Object.assign(state.appEducations[foundIndex], payload);
+  },
+  [ADD_EXPERIENCE](state) {
+    const experience = {
+      experienceId: state.experienceId,
+      files: [],
+      title: "",
+      employer: "",
+      company: "",
+      location: "",
+      from_date: "",
+      to_date: "",
+      is_currently_work_here: "",
+      description: ""
+    };
+    state.totalExperiences = state.appExperiences.push(experience);
+    state.experienceId += 1;
+  },
+  [REMOVE_EXPERIENCE](state, experienceId) {
+    state.appExperiences = state.appExperiences.filter(
+      experience => experience.experienceId != experienceId
+    );
+    state.totalExperiences -= 1;
+  },
+  [SET_EXPERIENCE_FILES](state, { self, experienceId }) {
+    let foundIndex = state.appExperiences.findIndex(
+      experience => experience.experienceId == experienceId
+    );
+    let files = [];
+    for (let refsExperience of self.$refs.experiences) {
+      if (refsExperience.id == experienceId) {
+        files = refsExperience.files;
+      }
+    }
+    state.appExperiences[foundIndex].files = files;
+  },
+  [UPDATE_EXPERIENCE](state, payload) {
+    let foundIndex = state.appExperiences.findIndex(
+      experience => experience.experienceId == payload.experienceId
+    );
+    delete payload.experienceId;
+    Object.assign(state.appExperiences[foundIndex], payload);
+  },
   [ADD_SKILL](state) {
     const skill = {
       skillId: state.skillId,
+      files: [],
       releaser: "",
       name: "",
       from_date: "",
       to_date: "",
-      description: "",
-      files: []
+      description: ""
     };
     state.totalSkills = state.appSkills.push(skill);
     state.skillId += 1;
@@ -37,8 +138,6 @@ export const mutations = {
     );
     let files = [];
     for (let refsSkill of self.$refs.skills) {
-      // check if ref/input id is equal to element id
-      // luckily ref id and element id are the same for the same element/input
       if (refsSkill.id == skillId) {
         files = refsSkill.files;
       }
@@ -46,13 +145,10 @@ export const mutations = {
     state.appSkills[foundIndex].files = files;
   },
   [UPDATE_SKILL](state, payload) {
-    // find index of skill
     let foundIndex = state.appSkills.findIndex(
       skill => skill.skillId == payload.skillId
     );
-    // remove unnecessary key
     delete payload.skillId;
-    // assign keys to found skill
     Object.assign(state.appSkills[foundIndex], payload);
   }
 };
