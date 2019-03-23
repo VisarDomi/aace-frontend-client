@@ -7,6 +7,7 @@ import {
   SkillService
 } from "@/common/api.service";
 import {
+  GET_PROFILE,
   SEND_PROFILE_MEDIAS,
   SEND_EDUCATION_MEDIAS,
   SEND_EXPERIENCE_MEDIAS,
@@ -20,9 +21,39 @@ import {
   SEND_SKILLS,
   SEND_APPLICATION
 } from "../../actions.type";
-import { START_UPLOAD, STOP_UPLOAD } from "../../mutations.type";
+import {
+  START_UPLOAD,
+  STOP_UPLOAD,
+  SET_APP_PROFILE
+} from "../../mutations.type";
 
 export const actions = {
+  async [GET_PROFILE](context, payload) {
+    const { self } = payload;
+    const userId = context.getters.getCurrentUser.id;
+    const email = context.getters.getCurrentUser.email;
+    const user_data = {
+      first_name: "Test",
+      last_name: `Numer${userId}`,
+      summary: "Pershkrim koti",
+      country: "Kukes",
+      phone: "0135345325",
+      address: "Rruga koti",
+      birthday: "1990-12-31",
+      website: "skam",
+      email: email,
+      profession: "Inxhinier Ndertimi",
+      sex: "Mashkull"
+    };
+    self.user_data = user_data;
+    context.commit(SET_APP_PROFILE, user_data);
+    console.log("self and userId and user_data are", self, userId, user_data);
+    await ProfileService.getProfile(userId).then(res => {
+      if (res.status == 200) {
+        console.log("success get", res);
+      }
+    });
+  },
   //---------------Medias--------------
   async [SEND_PROFILE_MEDIAS](context, payload) {
     const { userId, formDataProfile } = payload;
@@ -200,6 +231,29 @@ export const actions = {
   async [SEND_APPLICATION](context, payload) {
     const { self } = { payload };
     let t0 = performance.now();
+    context.commit(START_UPLOAD);
+    await context.dispatch(UPDATE_PROFILE).then(res => {
+      if (res.status == 200) {
+        context.dispatch(SEND_EDUCATIONS).then(res => {
+          if (res.status == 200) {
+            context.dispatch(SEND_EXPERIENCES).then(res => {
+              if (res.status == 200) {
+                context.dispatch(SEND_SKILLS).then(res => {
+                  if (res.status == 200) {
+                    context.commit(STOP_UPLOAD);
+                    let t1 = performance.now();
+                    console.log(
+                      "Call to Promise.all took " + (t1 - t0) + " milliseconds."
+                    );
+                    // self.$router.push({ name: "SuccessApplication" });
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    });
     // Promise.all([
     //   context.dispatch(UPDATE_PROFILE),
     //   context.dispatch(SEND_EDUCATIONS),
@@ -220,24 +274,5 @@ export const actions = {
     //   let t1 = performance.now();
     //   console.log("Call to Promise.all took " + (t1 - t0) + " milliseconds.");
     // });
-    context.commit(START_UPLOAD);
-    await context.dispatch(UPDATE_PROFILE).then(res => {
-      if (res.status == 200) {
-        context.dispatch(SEND_EDUCATIONS).then(res => {
-          if (res.status == 200) {
-            context.dispatch(SEND_EXPERIENCES).then(res => {
-              if (res.status == 200) {
-                context.dispatch(SEND_SKILLS).then(res => {
-                  if (res.status == 200) {
-                    context.commit(STOP_UPLOAD);
-                    self.$router.push({ name: "SuccessApplication" });
-                  }
-                });
-              }
-            });
-          }
-        });
-      }
-    });
   }
 };

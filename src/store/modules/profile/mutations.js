@@ -9,9 +9,6 @@ import {
 } from "../../mutations.type";
 
 export const mutations = {
-  // [SET_ERROR] (state, error) {
-  //   state.errors = error
-  // },
   [SET_PROFILE](state, profile) {
     state.profile = profile;
     state.errors = {};

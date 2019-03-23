@@ -1,9 +1,10 @@
 // application
+export const GET_PROFILE = "getProfile";
 export const SEND_PROFILE_MEDIAS = "sendEducationMedias";
 export const SEND_EDUCATION_MEDIAS = "sendEducationMedias";
 export const SEND_EXPERIENCE_MEDIAS = "sendExperienceMedias";
 export const SEND_SKILL_MEDIAS = "sendSkillMedias";
-export const UPDATE_PROFILE = "sendProfile";
+export const UPDATE_PROFILE = "updateProfile";
 export const SEND_EDUCATION = "sendEducation";
 export const SEND_EXPERIENCE = "sendExperience";
 export const SEND_SKILL = "sendSkill";
@@ -17,7 +18,6 @@ export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const REGISTER = "register";
 export const CHECK_AUTH = "checkAuth";
-export const UPDATE_USER = "updateUser";
 
 // communication
 export const FETCH_COMMUNICATIONS = "fetchCommunications";

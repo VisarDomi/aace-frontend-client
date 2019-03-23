@@ -2,7 +2,7 @@
 export const START_UPLOAD = "startUpload";
 export const STOP_UPLOAD = "stopUpload";
 export const SET_PROFILE_FILES = "setProfileFiles";
-export const UPDATE_PROFILE = "updateProfile";
+export const SET_APP_PROFILE = "setAppProfile";
 export const ADD_EDUCATION = "addEducation";
 export const REMOVE_EDUCATION = "removeEducation";
 export const SET_EDUCATION_FILES = "setEducationFiles";
@@ -17,7 +17,6 @@ export const SET_SKILL_FILES = "setSkillFiles";
 export const UPDATE_SKILL = "updateSkill";
 
 // auth
-export const SET_ERROR = "setError";
 export const SET_AUTH_SECOND = "setUserNoToken";
 export const SET_AUTH = "setUserAndToken";
 export const PURGE_AUTH = "logOut";

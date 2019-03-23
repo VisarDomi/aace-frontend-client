@@ -7,8 +7,7 @@ import { API_URL } from "@/common/config";
 export const ApiService = {
   init() {
     axios.defaults.headers.common = {
-      "Secure-Api-Key":
-        "asdfasdfetyeq" /* needs to be put on environment variable */,
+      "Secure-Api-Key": "asdfasdfetyeq",
       "Content-Type": "application/json"
     };
     Vue.use(VueAxios, axios);
@@ -35,8 +34,9 @@ export const ApiService = {
     });
   },
 
-  get(resource, slug = "") {
-    return Vue.axios.get(`${resource}/${slug}`).catch(error => {
+  get(resource) {
+    console.log(`resource is: ${resource}`);
+    return Vue.axios.get(`${resource}`).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },
@@ -66,7 +66,7 @@ export const ApiService = {
 
 export const ProfileService = {
   getProfile(userId) {
-    return ApiService.get("user", userId);
+    return ApiService.get(`user/${userId}`);
   },
   searchUser(name) {
     return ApiService.post("user/search", name);
@@ -78,7 +78,7 @@ export const ProfileService = {
 
 export const EducationService = {
   getEducation(userId) {
-    return ApiService.get(`user/${userId}/education`, "all");
+    return ApiService.get(`user/${userId}/education/all`);
   },
   postEducation(userId, education) {
     return ApiService.post(`user/${userId}/education`, education);
@@ -87,7 +87,7 @@ export const EducationService = {
 
 export const ExperienceService = {
   getExperience(userId) {
-    return ApiService.get(`user/${userId}/experience`, "all");
+    return ApiService.get(`user/${userId}/experience/all`);
   },
   postExperience(userId, experience) {
     return ApiService.post(`user/${userId}/experience`, experience);
@@ -96,7 +96,7 @@ export const ExperienceService = {
 
 export const SkillService = {
   getSkill(userId) {
-    return ApiService.get(`user/${userId}/skill`, "all");
+    return ApiService.get(`user/${userId}/skill/all`);
   },
   postSkill(userId, skill) {
     return ApiService.post(`user/${userId}/skill`, skill);
@@ -105,7 +105,7 @@ export const SkillService = {
 
 export const PaymentService = {
   getPayment(userId) {
-    return ApiService.get(`user/${userId}/payment`, "all");
+    return ApiService.get(`user/${userId}/payment/all`);
   },
   postPayment(userId, payment) {
     return ApiService.post(`user/${userId}/payment`, payment);
@@ -114,7 +114,7 @@ export const PaymentService = {
 
 export const CommunicationService = {
   getCommunications() {
-    return ApiService.get("officialcommunication", "all");
+    return ApiService.get("officialcommunication/all");
   },
   getCommunication(communicationId) {
     return ApiService.get("officialcommunication", communicationId);
@@ -127,21 +127,17 @@ export const CommunicationService = {
   },
   getComments(communicationId) {
     return ApiService.get(
-      `officialcommunication/${communicationId}/officialcomment`,
-      "all"
+      `officialcommunication/${communicationId}/officialcomment/all`
     );
   }
 };
 
 export const MediaService = {
   getPicture(userId) {
-    return ApiService.get("user", `${userId}/media/all`);
+    return ApiService.get(`user/${userId}/media/all`);
   },
   getCommunicationMedia(communicationId) {
-    return ApiService.get(
-      "officialcommunication",
-      `${communicationId}/media/all`
-    );
+    return ApiService.get(`officialcommunication/${communicationId}/media/all`);
   },
   postProfileMedia(userId, media) {
     return ApiService.post(`user/${userId}/media`, media);

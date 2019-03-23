@@ -1,4 +1,3 @@
-import UserService from "@/common/userstorage.service";
 import {
   ProfileService,
   MediaService,
@@ -21,16 +20,10 @@ import {
 export const actions = {
   [FETCH_PROFILE](context, payload) {
     const { id } = payload;
-    ProfileService.getProfile(id)
-      .then(({ data }) => {
-        context.commit(SET_PROFILE, data);
-        return data;
-      })
-      .catch(() => {
-        // #todo SET_ERROR cannot work in multiple states
-        // context.commit(SET_ERROR, response.data.errors)
-      });
-
+    ProfileService.getProfile(id).then(({ data }) => {
+      context.commit(SET_PROFILE, data);
+      return data;
+    });
     MediaService.getPicture(id)
       .then(({ data }) => {
         if (data.length != 0) {
@@ -64,14 +57,11 @@ export const actions = {
       .catch(() => {});
   },
   [FETCH_APPLICATION_INFO](context) {
-    ProfileService.getProfile(UserService.getUser().id)
-      .then(({ data }) => {
+    ProfileService.getProfile(context.getters.getCurrentUser.id).then(
+      ({ data }) => {
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;
-      })
-      .catch(() => {
-        // #todo SET_ERROR cannot work in multiple states
-        // context.commit(SET_ERROR, response.data.errors)
-      });
+      }
+    );
   }
 };

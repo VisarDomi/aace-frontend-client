@@ -2,7 +2,7 @@ import {
   START_UPLOAD,
   STOP_UPLOAD,
   SET_PROFILE_FILES,
-  UPDATE_PROFILE,
+  SET_APP_PROFILE,
   ADD_EDUCATION,
   REMOVE_EDUCATION,
   SET_EDUCATION_FILES,
@@ -25,13 +25,10 @@ export const mutations = {
     state.isUploading = false;
   },
   [SET_PROFILE_FILES](state, { self }) {
-    let files = [];
-    for (let refsProfile of self.$refs.profile) {
-      files = refsProfile.files;
-    }
-    state.appProfile.files = files;
+    console.log("self.$refs ", self.$refs);
+    state.appProfile.files = self.$refs.profile.files;
   },
-  [UPDATE_PROFILE](state, payload) {
+  [SET_APP_PROFILE](state, payload) {
     Object.assign(state.appProfile, payload);
   },
   [ADD_EDUCATION](state) {
@@ -56,6 +53,7 @@ export const mutations = {
     state.totalEducations -= 1;
   },
   [SET_EDUCATION_FILES](state, { self, educationId }) {
+    console.log("self.$refs ", self.$refs);
     let foundIndex = state.appEducations.findIndex(
       education => education.educationId == educationId
     );

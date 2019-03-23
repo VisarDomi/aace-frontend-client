@@ -10,7 +10,8 @@ export const state = {
     address: "",
     birthday: "",
     website: "",
-    email: ""
+    email: "",
+    files: []
   },
   appEducations: [],
   educationId: 0,

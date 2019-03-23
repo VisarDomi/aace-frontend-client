@@ -1,16 +1,8 @@
 import JwtService from "@/common/jwt.service";
 import UserService from "@/common/userstorage.service";
-import {
-  SET_AUTH,
-  SET_AUTH_SECOND,
-  PURGE_AUTH,
-  SET_ERROR
-} from "../../mutations.type";
+import { SET_AUTH, SET_AUTH_SECOND, PURGE_AUTH } from "../../mutations.type";
 
 export const mutations = {
-  [SET_ERROR](state, errors) {
-    state.errors = errors;
-  },
   [SET_AUTH_SECOND](state, user) {
     state.isAuthenticated = true;
     state.errors = {};
