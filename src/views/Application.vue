@@ -583,12 +583,11 @@
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Emri i kualifikimit</label>
                           <div class="col-sm-9">
-                            <!-- :value="skill.name"
-                            @keyup.stop="updateSkillField($event.target.value)"-->
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skill.name"
+                              :value="skill.name"
+                              @change="updateSkillField(skill.skillId, 'name', $event.target.value)"
                               placeholder="Emri i kualifikimit"
                             >
                           </div>
@@ -599,7 +598,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skill.releaser"
+                              :value="skill.releaser"
+                              @change="updateSkillField(skill.skillId, 'releaser', $event.target.value)"
                               placeholder="Leshuesi i kualifikimit"
                             >
                           </div>
@@ -610,19 +610,20 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skill.from_date"
+                              :value="skill.from_date"
+                              @change="updateSkillField(skill.skillId, 'from_date', $event.target.value)"
                               placeholder="e.g. 2012"
                             >
                           </div>
                         </div>
-
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Deri ne</label>
                           <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skill.to_date"
+                              :value="skill.to_date"
+                              @change="updateSkillField(skill.skillId, 'to_date', $event.target.value)"
                               placeholder="e.g. 2016"
                             >
                           </div>
@@ -632,7 +633,8 @@
                           <div class="col-sm-9">
                             <textarea
                               class="form-control"
-                              v-model="skill.description"
+                              :value="skill.description"
+                              @change="updateSkillField(skill.skillId, 'description', $event.target.value)"
                               rows="3"
                               placeholder="Pershkrim i shkurter"
                             ></textarea>
@@ -1146,8 +1148,8 @@ export default {
       }
       this.sendApplication();
     },
-    updateSkillField() {
-      console.log("inside skill field");
+    updateSkillField(skillId, field, value) {
+      this.$store.commit(UPDATE_SKILL, { skillId, [field]: value } );
     }
   },
   computed: {

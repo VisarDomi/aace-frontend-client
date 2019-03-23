@@ -43,10 +43,16 @@ export const mutations = {
     }
     console.log("state.appSkills", state.appSkills);
   },
-  [UPDATE_SKILL](state, skill) {
+  [UPDATE_SKILL](state, payload) {
+    console.log("payload is:", payload);
     let foundIndex = state.appSkills.findIndex(
-      appSkill => appSkill.skillId == skill.skillId
+      skill => skill.skillId == payload.skillId
     );
-    console.log(`foundIndex, ${foundIndex}`);
+    console.log(`update skill: ${foundIndex}`);
+    delete payload.skillId;
+    console.log(`target:`, state.appSkills[foundIndex]);
+    console.log("source:", payload);
+    Object.assign(state.appSkills[foundIndex], payload)
+    console.log(`updated:`, state.appSkills[foundIndex]);
   }
 };
