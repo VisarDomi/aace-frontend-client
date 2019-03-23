@@ -571,6 +571,7 @@
                             :for="skill.skillId"
                             class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label>
+                          {{consoleLog("skill.files is", skill.files)}}
                           <p
                             v-for="(file, index) in skill.files"
                             :key="index"
@@ -802,8 +803,9 @@ export default {
   },
   methods: {
     consoleLog(message, param) {
-      console.log(`message is: ${message}`);
-      console.log(`param is:   ${param}`);
+      console.log(`message is: `, message);
+      console.log(`param is:   `, param);
+      console.log(`store is:   `, this.$store);
     },
     // All the functions bellow need to be integrated in the store
     // ------- Dropdown -------
@@ -1149,7 +1151,7 @@ export default {
       this.sendApplication();
     },
     updateSkillField(skillId, field, value) {
-      this.$store.commit(UPDATE_SKILL, { skillId, [field]: value } );
+      this.$store.commit(UPDATE_SKILL, { skillId, [field]: value });
     }
   },
   computed: {

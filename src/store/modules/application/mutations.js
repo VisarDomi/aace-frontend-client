@@ -24,35 +24,22 @@ export const mutations = {
     state.totalSkills -= 1;
   },
   [SET_SKILL_FILES](state, { self, skillId }) {
-    // skillId = 3
-    // totalSkills = 2
-    console.log("self.$refs.skills is", self.$refs.skills);
-    // loop through $refs.skills
+    let foundIndex = state.appSkills.findIndex(
+      skill => skill.skillId == skillId
+    );
+    let files = [];
     for (let refsSkill of self.$refs.skills) {
-      console.log("refsSkill.files of self.$refs.skills", refsSkill.files);
-      // put files on appSkill of appSkills
-      let foundIndex = state.appSkills.findIndex(
-        skill => skill.skillId == skillId
-      );
-      console.log("foundIndex is :", foundIndex);
-      state.appSkills[foundIndex].files = refsSkill.files;
-
-      // for (let file of files) {
-      //   console.log("file", file);
-      // }
+      if (refsSkill.id == skillId) {
+        files = refsSkill.files;
+      }
     }
-    console.log("state.appSkills", state.appSkills);
+    state.appSkills[foundIndex].files = files;
   },
   [UPDATE_SKILL](state, payload) {
-    console.log("payload is:", payload);
     let foundIndex = state.appSkills.findIndex(
       skill => skill.skillId == payload.skillId
     );
-    console.log(`update skill: ${foundIndex}`);
     delete payload.skillId;
-    console.log(`target:`, state.appSkills[foundIndex]);
-    console.log("source:", payload);
-    Object.assign(state.appSkills[foundIndex], payload)
-    console.log(`updated:`, state.appSkills[foundIndex]);
+    Object.assign(state.appSkills[foundIndex], payload);
   }
 };
