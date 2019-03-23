@@ -1,5 +1,3 @@
 export const getters = {
-  communicationDocuments(state) {
-    return state.documents;
-  }
+  communicationDocuments: state => state.documents
 };

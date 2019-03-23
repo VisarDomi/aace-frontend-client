@@ -1,11 +1,4 @@
 export const getters = {
-  isUploading(state) {
-    return state.isUploading;
-  },
-  getAppSkills(state) {
-    return state.appSkills;
-  },
-  getTotalSkills(state) {
-    return state.totalSkills;
-  }
+  isUploading: state => state.isUploading,
+  getAppSkills: state => state.appSkills
 };

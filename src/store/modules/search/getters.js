@@ -1,8 +1,4 @@
 export const getters = {
-  searchResult(state) {
-    return state.searchResult;
-  },
-  profilePictures(state) {
-    return state.profilePictures;
-  }
+  searchResult: state => state.searchResult,
+  profilePictures: state => state.profilePictures
 };

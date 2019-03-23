@@ -1,23 +1,9 @@
 export const getters = {
-  profile(state) {
-    return state.profile;
-  },
-  profilePicture(state) {
-    return state.profilePicture;
-  },
-  educations(state) {
-    return state.educations;
-  },
-  experiences(state) {
-    return state.experiences;
-  },
-  skills(state) {
-    return state.skills;
-  },
-  payments(state) {
-    return state.payments;
-  },
-  commentFromAdmin(state) {
-    return state.commentFromAdmin;
-  }
+  profile: state => state.profile,
+  profilePicture: state => state.profilePicture,
+  educations: state => state.educations,
+  experiences: state => state.experiences,
+  skills: state => state.skills,
+  payments: state => state.payments,
+  commentFromAdmin: state => state.commentFromAdmin
 };

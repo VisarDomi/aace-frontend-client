@@ -4,6 +4,7 @@ export const REMOVE_SKILL = "removeSkill";
 export const SET_SKILL_FILES = "setSkillFiles";
 export const SET_UPLOADING_STATUS = "setUploadingStatus";
 export const SET_FINISHED_STATUS = "setFinishedStatus";
+export const SET_SKILL_NAME = "setFinishedStatus";
 
 // auth
 export const SET_ERROR = "setError";

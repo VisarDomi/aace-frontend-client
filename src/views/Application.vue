@@ -587,7 +587,7 @@
                         >
                         <p
                         v-for='(file, index) in skill.files'
-                        :key='file.name + index'
+                        :key='index'
                         class="file-return"
                         >
                           {{ file.name }}
@@ -602,7 +602,7 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skill.name"
+                              v-model="skillName"
                               placeholder="Emri i kualifikimit"
                             />
                           </div>
@@ -615,7 +615,7 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skill.releaser"
+                              v-model="skillName"
                               placeholder="Leshuesi i kualifikimit"
                             />
                           </div>
@@ -626,7 +626,7 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skill.from_date"
+                              v-model="skillName"
                               placeholder="e.g. 2012"
                             />
                           </div>
@@ -638,7 +638,7 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skill.to_date"
+                              v-model="skillName"
                               placeholder="e.g. 2016"
                             />
                           </div>
@@ -652,7 +652,7 @@
                               class="form-control"
                               rows="3"
                               placeholder="Pershkrim i shkurter"
-                              v-model="skill.description"
+                              v-model="skillName"
                             ></textarea>
                           </div>
                         </div>
@@ -724,14 +724,18 @@ import {
   SEND_SKILL_MEDIAS,
   SEND_EDUCATION,
   SEND_EXPERIENCE,
-  SEND_SKILL
+  SEND_SKILL,
+  SEND_EDUCATIONS,
+  SEND_EXPERIENCES,
+  SEND_SKILLS
 } from "@/store/actions.type"
 import {
   ADD_SKILL,
   REMOVE_SKILL,
   SET_SKILL_FILES,
+  SET_SKILL_NAME
 } from "@/store/mutations.type"
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: "Application",
@@ -867,17 +871,6 @@ export default {
             this.education_type_id[i]
           ][educationOptionId - 4].text;
       }
-    },
-    // ------- Application -------
-    sendApplication() {
-      // ------- Profile file and post -------
-      this.sendProfile();
-      // ------- Education file and post -------
-      this.sendEducations();
-      // ------- Experience file and post -------
-      this.sendExperiences();
-      // ------- Skill file and post -------
-      this.sendSkills();
     },
     // ------- Profile picture -------
     handleFileUploadProfile(event) {
@@ -1119,44 +1112,51 @@ export default {
       this.$store.commit(REMOVE_SKILL, skillId)
     },
     sendSkills() {
-      let user_id = this.getCurrentUser.id;
-      let token = this.getCurrentToken;
+      this.$store.dispatch(SEND_SKILLS)
+      // let user_id = this.getCurrentUser.id;
+      // let token = this.getCurrentToken;
 
-      for (let skill of this.$store.state.skills) {
-        delete skill.skillId
-      }
+      // for (let skill of this.$store.state.skills) {
+      //   delete skill.skillId
+      // }
 
-      // loop through all the skills
-      for (let skill of this.$store.state.skills) {
-        // let skill = skill
-        // let payload = { user_id, skill }
-        // this.$store.dispatch(SEND_SKILL, payload)
-        axios
-          .post(
-            "https://aace.ml/api/user/" + user_id + "/skill",
-            skill,
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + token
-              }
-            }
-          )
-          .then(res => {
-            let skillId = res.data.id;
-            let formDataSkill = new FormData();
-            if (skill.files.length) {
-              for (let file of skill.files) {
-                formDataSkill.append( "file", file);
-              }
-              // send medias
-              let payload = { user_id, skillId, formDataSkill }
-              this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
-            }
-          });
-      }
+      // // loop through all the skills
+      // for (let skill of this.$store.state.skills) {
+      //   // let skill = skill
+      //   // let payload = { user_id, skill }
+      //   // this.$store.dispatch(SEND_SKILL, payload)
+      //   axios
+      //     .post(
+      //       "https://aace.ml/api/user/" + user_id + "/skill",
+      //       skill,
+      //       {
+      //         "Content-Type": "multipart/form-data",
+      //         headers: {
+      //           Authorization: "Bearer " + token
+      //         }
+      //       }
+      //     )
+      //     .then(res => {
+      //       let skillId = res.data.id;
+      //       let formDataSkill = new FormData();
+      //       if (skill.files.length) {
+      //         for (let file of skill.files) {
+      //           formDataSkill.append( "file", file);
+      //         }
+      //         // send medias
+      //         let payload = { user_id, skillId, formDataSkill }
+      //         this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
+      //       }
+      //     });
+      // }
     },
-    // -----------------
+    // ------- Application -------
+    sendApplication() {
+      // this.sendProfile();
+      // this.sendEducations();
+      // this.sendExperiences();
+      this.sendSkills();
+    },
     onApply() {
       this.$v.user_data.$touch();
       if (this.$v.user_data.$pending || this.$v.user_data.$error) {
@@ -1172,7 +1172,51 @@ export default {
       "getCurrentToken",
       "isUploading",
       "getAppSkills"
-    ])
+    ]),
+    skillName: {
+      get () {
+        let skillId = 1
+        return console.log(`hello get, ${skillId}`)
+      },
+      set (name) {
+        let skillId = 1
+        return console.log(`hello set, ${skillId}`)
+        payload = { name, skillId }
+        this.$store.commit(SET_SKILL_NAME, payload)
+      }
+    },
+    skillReleaser: {
+      get () {
+        return this.$store.state.obj.message
+      },
+      set (value) {
+        this.$store.commit('updateMessage', value)
+      }
+    },
+    skillFromDate: {
+      get () {
+        return this.$store.state.obj.message
+      },
+      set (value) {
+        this.$store.commit('updateMessage', value)
+      }
+    },
+    skillToDate: {
+      get () {
+        return this.$store.state.obj.message
+      },
+      set (value) {
+        this.$store.commit('updateMessage', value)
+      }
+    },
+    skillDescription: {
+      get () {
+        return this.$store.state.obj.message
+      },
+      set (value) {
+        this.$store.commit('updateMessage', value)
+      }
+    },
   },
   validations: {
     user_data: {

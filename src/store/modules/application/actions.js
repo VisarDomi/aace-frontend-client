@@ -6,12 +6,11 @@ import {
   SEND_SKILL_MEDIAS,
   SEND_EDUCATION,
   SEND_EXPERIENCE,
-  SEND_SKILL
+  SEND_SKILL,
+  SEND_EDUCATIONS,
+  SEND_EXPERIENCES,
+  SEND_SKILLS
 } from "../../actions.type";
-import {
-  SET_UPLOADING_STATUS,
-  SET_FINISHED_STATUS
-} from "../../mutations.type";
 
 export const actions = {
   //---------------Medias--------------
@@ -68,21 +67,28 @@ export const actions = {
   //------------------------------
   async [SEND_SKILL](context, payload) {
     const { user_id, skill } = payload;
-    await SkillService.postSkill(user_id, skill).then(res => {
-      console.log("res of skill is :", res);
-    });
-    //   .then(res => {
-    //     let skill_id = res.data.id;
-    //     let formDataSkill = new FormData();
-    //     let skiInput = this.skillInputs[this.skill_files_index]
-    //     if (skiInput.files.length) {
-    //       for (let j = 0; j < skiInput.files.length; j++) {
-    //         formDataSkill.append( "file", skiInput.files[j]);
-    //       }
-    //       this.skill_files_index++;
-    //       let payload = { user_id, skill_id, formDataSkill }
-    //       this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
-    //     }
-    //   });
+    await SkillService.postSkill(user_id, skill)
+      .then(res => {
+        console.log("res of skill is :", res);
+      })
+      .then(res => {
+        let skillId = res.data.id;
+        let formDataSkill = new FormData();
+        if (skill.files.length) {
+          for (let j = 0; j < skill.files.length; j++) {
+            formDataSkill.append("file", skill.files[j]);
+          }
+          let payload = { user_id, skillId, formDataSkill };
+          this.$store.dispatch(SEND_SKILL_MEDIAS, payload);
+        }
+      });
+  },
+  [SEND_SKILLS](context) {
+    const user_id = context.getters.getCurrentUser;
+    console.log("user_id is ", user_id);
+    const skills = context.getters.getAppSkills;
+    for (let skill of skills) {
+      console.log("skill is:", skill);
+    }
   }
 };

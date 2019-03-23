@@ -1,11 +1,5 @@
 export const getters = {
-  communications(state) {
-    return state.communications;
-  },
-  communication(state) {
-    return state.communication;
-  },
-  comments(state) {
-    return state.comments;
-  }
+  communications: state => state.communications,
+  communication: state => state.communication,
+  comments: state => state.comments
 };

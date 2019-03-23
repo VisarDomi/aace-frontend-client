@@ -5,6 +5,9 @@ export const SEND_SKILL_MEDIAS = "sendSkillMedias";
 export const SEND_EDUCATION = "sendEducation";
 export const SEND_EXPERIENCE = "sendExperience";
 export const SEND_SKILL = "sendSkill";
+export const SEND_EDUCATIONS = "sendEducations";
+export const SEND_EXPERIENCES = "sendExperiences";
+export const SEND_SKILLS = "sendSkills";
 
 // auth
 export const LOGIN = "login";
