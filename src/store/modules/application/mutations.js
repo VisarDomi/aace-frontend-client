@@ -35,11 +35,7 @@ export const mutations = {
         skill => skill.skillId == skillId
       );
       console.log("foundIndex is :", foundIndex);
-      let files = state.appSkills[foundIndex].files;
-
-      console.log("files is :", files);
-      files = refsSkill.files;
-      console.log("files is :", files);
+      state.appSkills[foundIndex].files = refsSkill.files;
 
       // for (let file of files) {
       //   console.log("file", file);

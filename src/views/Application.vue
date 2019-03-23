@@ -6,9 +6,7 @@
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Krijoni nje aplikim</h1>
-          <p class="lead text-center">
-            Krijoni nje aplikimin personal dhe dergojeni bordit.
-          </p>
+          <p class="lead text-center">Krijoni nje aplikimin personal dhe dergojeni bordit.</p>
         </div>
 
         <div class="container">
@@ -22,10 +20,8 @@
                     id="my-file"
                     type="file"
                     @change="handleFileUploadProfile"
-                  />
-                  <label tabindex="0" for="my-file" class="input-file-trigger"
-                    >Zgjidhni nje foto...</label
                   >
+                  <label tabindex="0" for="my-file" class="input-file-trigger">Zgjidhni nje foto...</label>
                 </div>
                 <p class="file-return">{{ profile_picture_file.name }}</p>
               </div>
@@ -39,7 +35,7 @@
                     class="form-control input-lg"
                     placeholder="Emri"
                     v-model="user_data.first_name"
-                  />
+                  >
                 </div>
               </div>
               <div class="form-group col-sm-12">
@@ -50,16 +46,18 @@
                     class="form-control input-lg"
                     placeholder="Mbiemri"
                     v-model="user_data.last_name"
-                  />
+                  >
                 </div>
               </div>
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-4">
                   <select class="form-control" v-model="profession_id" @change="changeProfession">
-                    <option v-for="option in profession_options" v-bind:value="option.id" :key="option.id">
-                      {{ option.text }}
-                    </option>
+                    <option
+                      v-for="option in profession_options"
+                      v-bind:value="option.id"
+                      :key="option.id"
+                    >{{ option.text }}</option>
                   </select>
                 </div>
                 <div class="col-sm-5">
@@ -69,7 +67,7 @@
                     class="form-control"
                     v-model="user_data.profession"
                     :placeholder="profession_other"
-                  />
+                  >
                 </div>
               </div>
 
@@ -80,9 +78,8 @@
                     <option
                       v-for="option in sex_options"
                       v-bind:value="option.text"
-                      :key="option.id">
-                      {{ option.text }}
-                    </option>
+                      :key="option.id"
+                    >{{ option.text }}</option>
                   </select>
                 </div>
               </div>
@@ -99,7 +96,7 @@
                 </div>
               </div>
 
-              <hr class="hr-lg" />
+              <hr class="hr-lg">
 
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Vendlindja</label>
@@ -113,7 +110,7 @@
                       class="form-control"
                       placeholder="Vendlindja"
                       v-model="user_data.country"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -130,7 +127,7 @@
                       class="form-control"
                       placeholder="Datelindja"
                       v-model="user_data.birthday"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -147,7 +144,7 @@
                       class="form-control"
                       placeholder="Adresa"
                       v-model="user_data.address"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -164,7 +161,7 @@
                       class="form-control"
                       placeholder="Faqja juaj e internetit"
                       v-model="user_data.website"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -181,7 +178,7 @@
                       class="form-control"
                       placeholder="Numri telefonit"
                       v-model="user_data.phone"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -193,12 +190,7 @@
                     <span class="input-group-addon">
                       <i class="fa fa-envelope"></i>
                     </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      v-model="user_data.email"
-                      disabled
-                    />
+                    <input type="text" class="form-control" v-model="user_data.email" disabled>
                   </div>
                 </div>
               </div>
@@ -239,21 +231,25 @@
                         <div class="input-file-container">
                           <input
                             type="file"
-                            class='input-file'
+                            class="input-file"
                             :id="educationInputs[index].id"
                             ref="education"
                             multiple
                             @change="handleFileUploadEducation(educationInput.id, index)
                             "
-                          />
-                        <label tabindex="0" :for="educationInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje ose me shume dokumenta...</label
-                        >
+                          >
+                          <label
+                            tabindex="0"
+                            :for="educationInputs[index].id"
+                            class="input-file-trigger"
+                          >Zgjidhni nje ose me shume dokumenta...</label>
                         </div>
-                        
-                        <p :key='i' 
-                        v-for='i in educationInputs[index].files.length'
-                        class="file-return">{{ educationInputs[index].files[i-1].name }}</p>
+
+                        <p
+                          :key="i"
+                          v-for="i in educationInputs[index].files.length"
+                          class="file-return"
+                        >{{ educationInputs[index].files[i-1].name }}</p>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
@@ -269,8 +265,7 @@
                                 v-for="option in education_type_options"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                         </div>
@@ -291,8 +286,7 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="col-sm-5">
@@ -302,7 +296,7 @@
                               class="form-control"
                               v-model="educationInput.degree"
                               placeholder="Tipi i diplomes"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -322,8 +316,7 @@
                                 ]"
                                 v-bind:value="option.id"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
                           </div>
                           <div class="col-sm-5">
@@ -333,7 +326,7 @@
                               class="form-control"
                               v-model="educationInput.field_of_study"
                               placeholder="Dega"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -345,7 +338,7 @@
                               class="form-control"
                               v-model="educationInput.school"
                               placeholder="Emri i shkolles, psh Universiteti Politeknik i Tiranes"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -357,7 +350,7 @@
                               class="form-control"
                               placeholder="e.g. 2012"
                               v-model="educationInput.from_date"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -369,7 +362,7 @@
                               class="form-control"
                               placeholder="e.g. 2016"
                               v-model="educationInput.to_date"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -391,14 +384,8 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br />
-                <button
-                  class="btn btn-primary"
-                  type="button"
-                  @click="onAddEducation"
-                >
-                  Shto arsimim
-                </button>
+                <br>
+                <button class="btn btn-primary" type="button" @click="onAddEducation">Shto arsimim</button>
               </div>
             </div>
           </div>
@@ -443,15 +430,18 @@
                                 index
                               )
                             "
-                          />
-                          <label tabindex="0" :for="experienceInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje ose me shume dokumenta...</label
-                        >
-                        
-                        
-                        <p :key='i' 
-                        v-for='i in experienceInputs[index].files.length'
-                        class="file-return">{{ experienceInputs[index].files[i-1].name }}</p>
+                          >
+                          <label
+                            tabindex="0"
+                            :for="experienceInputs[index].id"
+                            class="input-file-trigger"
+                          >Zgjidhni nje ose me shume dokumenta...</label>
+
+                          <p
+                            :key="i"
+                            v-for="i in experienceInputs[index].files.length"
+                            class="file-return"
+                          >{{ experienceInputs[index].files[i-1].name }}</p>
                         </div>
                       </div>
 
@@ -464,7 +454,7 @@
                               class="form-control"
                               v-model="experienceInput.title"
                               placeholder="Titulli qe keni mbajtur ne pune"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -476,7 +466,7 @@
                               class="form-control"
                               v-model="experienceInput.employer"
                               placeholder="Emri i punedhenesit"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -488,7 +478,7 @@
                               class="form-control"
                               v-model="experienceInput.location"
                               placeholder="Vendi ku keni punuar"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -500,7 +490,7 @@
                               class="form-control"
                               v-model="experienceInput.from_date"
                               placeholder="e.g. 2012"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -512,7 +502,7 @@
                               class="form-control"
                               v-model="experienceInput.to_date"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -534,14 +524,12 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br />
+                <br>
                 <button
                   class="btn btn-primary btn-duplicator"
                   type="button"
                   @click="onAddExperience"
-                >
-                  Shto pervoje pune
-                </button>
+                >Shto pervoje pune</button>
               </div>
             </div>
           </div>
@@ -556,11 +544,7 @@
             </header>
 
             <div class="row">
-              <div
-                class="col-xs-12"
-                v-for="skill in getAppSkills"
-                :key="skill.skillId"
-              >
+              <div class="col-xs-12" v-for="skill in getAppSkills" :key="skill.skillId">
                 <div class="item-block">
                   <div class="item-form">
                     <button
@@ -581,17 +565,17 @@
                             :id="skill.skillId"
                             multiple
                             @change="handleFileUploadSkill(skill.skillId)"
-                          />
-                          <label tabindex="0" :for="skill.skillId" class="input-file-trigger"
-                          >Zgjidhni nje ose me shume dokumenta...</label
-                        >
-                        <p
-                        v-for='(file, index) in skill.files'
-                        :key='index'
-                        class="file-return"
-                        >
-                          {{ file.name }}
-                        </p>
+                          >
+                          <label
+                            tabindex="0"
+                            :for="skill.skillId"
+                            class="input-file-trigger"
+                          >Zgjidhni nje ose me shume dokumenta...</label>
+                          <p
+                            v-for="(file, index) in skill.files"
+                            :key="index"
+                            class="file-return"
+                          >{{ file.name }}</p>
                         </div>
                       </div>
 
@@ -599,25 +583,25 @@
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Emri i kualifikimit</label>
                           <div class="col-sm-9">
+                            <!-- :value="skill.name"
+                            @keyup.stop="updateSkillField($event.target.value)"-->
                             <input
                               type="text"
                               class="form-control"
-                              :value="skill.name"
-                              @keyup.stop="updateSkillField($event.target.value)"
+                              v-model="skill.name"
                               placeholder="Emri i kualifikimit"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3"
-                            >Leshuesi i kualifikimit</label
-                          >
+                          <label class="col-sm-3">Leshuesi i kualifikimit</label>
                           <div class="col-sm-9">
                             <input
                               type="text"
                               class="form-control"
+                              v-model="skill.releaser"
                               placeholder="Leshuesi i kualifikimit"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
@@ -626,8 +610,9 @@
                             <input
                               type="date"
                               class="form-control"
+                              v-model="skill.from_date"
                               placeholder="e.g. 2012"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -637,17 +622,17 @@
                             <input
                               type="date"
                               class="form-control"
+                              v-model="skill.to_date"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3"
-                            >Pershkrim i kualifikimit</label
-                          >
+                          <label class="col-sm-3">Pershkrim i kualifikimit</label>
                           <div class="col-sm-9">
                             <textarea
                               class="form-control"
+                              v-model="skill.description"
                               rows="3"
                               placeholder="Pershkrim i shkurter"
                             ></textarea>
@@ -660,14 +645,12 @@
               </div>
 
               <div class="col-xs-12 text-center">
-                <br />
+                <br>
                 <button
                   class="btn btn-primary btn-duplicator"
                   @click="onAddSkill"
                   type="button"
-                >
-                  Shto kualifikim
-                </button>
+                >Shto kualifikim</button>
               </div>
             </div>
           </div>
@@ -687,9 +670,7 @@
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">
-                Dergo aplikimin
-              </button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
             </p>
             <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
@@ -698,7 +679,9 @@
               <div class="card-header">Ngarkim dokumentash</div>
               <div class="card-body text-info">
                 <h5 class="card-title">Informacion</h5>
-                <p class="card-text">Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.</p>
+                <p
+                  class="card-text"
+                >Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.</p>
               </div>
             </div>
           </div>
@@ -725,14 +708,14 @@ import {
   SEND_EDUCATIONS,
   SEND_EXPERIENCES,
   SEND_SKILLS
-} from "@/store/actions.type"
+} from "@/store/actions.type";
 import {
   ADD_SKILL,
   REMOVE_SKILL,
   SET_SKILL_FILES,
   UPDATE_SKILL
-} from "@/store/mutations.type"
-import { mapGetters, mapState } from 'vuex';
+} from "@/store/mutations.type";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "Application",
@@ -796,7 +779,11 @@ export default {
       education_major_id: [],
       education_major_other: [false],
       education_major_options: {
-        1: [{ text: "Hidraulike", id: 1 }, { text: "Termoteknike", id: 2 }, {text:"Te tjere", id:3}],
+        1: [
+          { text: "Hidraulike", id: 1 },
+          { text: "Termoteknike", id: 2 },
+          { text: "Te tjere", id: 3 }
+        ],
         2: [
           { text: "Inxhinier Civil", id: 4 },
           { text: "Inxhinier Elektrik", id: 5 },
@@ -805,8 +792,7 @@ export default {
       },
       //---------------- Experience -------
       experienceInputs: [],
-      experience_files_index: 0,
-
+      experience_files_index: 0
     };
   },
   components: {
@@ -830,10 +816,12 @@ export default {
         ].text;
       }
     },
-    educationTypeChange(e, i){
-      this.educationInputs[i].degree = ''
-      this.educationInputs[i].field_of_study = ''
-      this.educationInputs[i].education_type = this.education_type_options[e.target.value-1].text
+    educationTypeChange(e, i) {
+      this.educationInputs[i].degree = "";
+      this.educationInputs[i].field_of_study = "";
+      this.educationInputs[i].education_type = this.education_type_options[
+        e.target.value - 1
+      ].text;
     },
     educationDegreeChange(e, i) {
       let educationOptionId = e.target.value;
@@ -878,7 +866,7 @@ export default {
       let user_id = this.getCurrentUser.id;
       //getCurrentToken
       let token = this.getCurrentToken;
-      console.log("token ",token);
+      console.log("token ", token);
       console.log("user_id ", user_id);
       // ------- User -------
       let formDataUser = new FormData();
@@ -896,7 +884,7 @@ export default {
         website: this.user_data.website,
         email: this.user_data.email
       };
-      console.log("user_string ", user_string)
+      console.log("user_string ", user_string);
       // ------- User file and put -------
       axios
         .all([
@@ -918,13 +906,13 @@ export default {
         ])
         .then(
           axios.spread((profileRes, stringRes) => {
-            console.log('user post')
-            console.log('profileRes', profileRes)
-            console.log('stringRes', stringRes)
+            console.log("user post");
+            console.log("profileRes", profileRes);
+            console.log("stringRes", stringRes);
             if (stringRes.status == 200 && profileRes.status == 200) {
               console.log("Profile sent successfully.");
               localStorage.setItem("user", JSON.stringify(stringRes.data));
-              console.log("usually, now the router would push")
+              console.log("usually, now the router would push");
               // this.$router.push({
               //   name: "SuccessApplication"
               // });
@@ -932,7 +920,7 @@ export default {
               // console.log("String sent unsuccessfuly");
             }
           })
-      );
+        );
     },
     // ------- Education -------
     handleFileUploadEducation(id, index) {
@@ -974,9 +962,7 @@ export default {
         resEducationInputs.push({});
         // list of education ids
         for (var j = 0; j < Object.keys(this.educationInputs[i]).length; j++) {
-          if (
-            Object.keys(this.educationInputs[i])[j] != "id"
-          ) {
+          if (Object.keys(this.educationInputs[i])[j] != "id") {
             resEducationInputs[i][
               Object.keys(this.educationInputs[i])[j]
             ] = this.educationInputs[i][
@@ -988,7 +974,7 @@ export default {
       this.educationInputs = resEducationInputs;
 
       for (var i = 0; i < this.educationInputs.length; i++) {
-        console.log(`this.eduationInputs[${i}]`,this.educationInputs[i])
+        console.log(`this.eduationInputs[${i}]`, this.educationInputs[i]);
         axios
           .post(
             "https://aace.ml/api/user/" + user_id + "/education",
@@ -1003,14 +989,14 @@ export default {
           .then(res => {
             let education_id = res.data.id;
             let formDataEducation = new FormData();
-            let eduInput = this.educationInputs[this.education_files_index]
+            let eduInput = this.educationInputs[this.education_files_index];
             if (eduInput.files.length) {
               for (let j = 0; j < eduInput.files.length; j++) {
                 formDataEducation.append("file", eduInput.files[j]);
               }
               this.education_files_index++;
-              let payload = { user_id, education_id, formDataEducation }
-              this.$store.dispatch(SEND_EDUCATION_MEDIAS, payload)
+              let payload = { user_id, education_id, formDataEducation };
+              this.$store.dispatch(SEND_EDUCATION_MEDIAS, payload);
             }
           });
       }
@@ -1055,9 +1041,7 @@ export default {
         resExperienceInputs.push({});
         // list of education ids
         for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
-          if (
-            Object.keys(this.experienceInputs[i])[j] != "id"
-          ) {
+          if (Object.keys(this.experienceInputs[i])[j] != "id") {
             resExperienceInputs[i][
               Object.keys(this.experienceInputs[i])[j]
             ] = this.experienceInputs[i][
@@ -1082,34 +1066,34 @@ export default {
           .then(res => {
             let experience_id = res.data.id;
             let formDataExperience = new FormData();
-            let expInput = this.experienceInputs[this.experience_files_index]
+            let expInput = this.experienceInputs[this.experience_files_index];
             if (expInput.files.length) {
               for (let j = 0; j < expInput.files.length; j++) {
                 formDataExperience.append("file", expInput.files[j]);
               }
               this.experience_files_index++;
-              let payload = { user_id, experience_id, formDataExperience }
-              this.$store.dispatch(SEND_EXPERIENCE_MEDIAS, payload)
+              let payload = { user_id, experience_id, formDataExperience };
+              this.$store.dispatch(SEND_EXPERIENCE_MEDIAS, payload);
             }
           });
       }
     },
     // ------- Skill -------
     handleFileUploadSkill(skillId) {
-      console.log("handling file upload skill")
-      self = this
-      this.$store.commit(SET_SKILL_FILES, { self, skillId })
+      console.log("handling file upload skill");
+      self = this;
+      this.$store.commit(SET_SKILL_FILES, { self, skillId });
     },
     onAddSkill() {
-      console.log("adding skill")
-      this.$store.commit(ADD_SKILL)
+      console.log("adding skill");
+      this.$store.commit(ADD_SKILL);
     },
     onDeleteSkill(skillId) {
-      console.log(`removing skill ${skillId}`)
-      this.$store.commit(REMOVE_SKILL, skillId)
+      console.log(`removing skill ${skillId}`);
+      this.$store.commit(REMOVE_SKILL, skillId);
     },
     sendSkills() {
-      this.$store.dispatch(SEND_SKILLS)
+      this.$store.dispatch(SEND_SKILLS);
       // let user_id = this.getCurrentUser.id;
       // let token = this.getCurrentToken;
 
@@ -1160,10 +1144,10 @@ export default {
         console.log("errors");
         return;
       }
-      this.sendApplication()
+      this.sendApplication();
     },
     updateSkillField() {
-      console.log("inside skill field")
+      console.log("inside skill field");
     }
   },
   computed: {
@@ -1173,7 +1157,7 @@ export default {
       "isUploading",
       "getAppSkills",
       "getAppSkill"
-    ]),
+    ])
     // skillName: {
     //   get () {
     //     let skillId = 0
@@ -1233,7 +1217,7 @@ export default {
           email: res.data.email,
           profession: "Inxhinier Ndertimi",
           sex: "Mashkull"
-      }
+        };
       });
   }
 };
