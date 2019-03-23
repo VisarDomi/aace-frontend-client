@@ -1171,17 +1171,22 @@ export default {
       "getCurrentUser",
       "getCurrentToken",
       "isUploading",
-      "getAppSkills"
+      "getAppSkills",
+      "getAppSkill"
     ]),
     skillName: {
       get () {
-        let skillId = 1
-        return console.log(`hello get, ${skillId}`)
+        let skillId = 0
+        console.log(`hello get, ${skillId}`)
+        let skillOne = this.getAppSkill(skillId)
+        return console.log(`get skillOne is, ${skillOne}`)
       },
       set (name) {
-        let skillId = 1
-        return console.log(`hello set, ${skillId}`)
-        payload = { name, skillId }
+        let skillId = 0
+        console.log(`hello set, ${skillId}`)
+        let skillOne = this.getAppSkill(skillId)
+        console.log(`set skillOne is, ${skillOne}`)
+        let payload = { name, skillId }
         this.$store.commit(SET_SKILL_NAME, payload)
       }
     },

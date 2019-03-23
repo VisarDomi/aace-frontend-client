@@ -8,7 +8,7 @@ import {
 export const mutations = {
   [ADD_SKILL](state) {
     const skill = {
-      skillId: state.SkillId,
+      skillId: state.skillId,
       releaser: "",
       name: "",
       from_date: "",
@@ -17,7 +17,7 @@ export const mutations = {
       files: []
     };
     state.totalSkills = state.appSkills.push(skill);
-    state.SkillId += 1;
+    state.skillId += 1;
   },
   [REMOVE_SKILL](state, skillId) {
     state.appSkills = state.appSkills.filter(skill => skill.skillId != skillId);

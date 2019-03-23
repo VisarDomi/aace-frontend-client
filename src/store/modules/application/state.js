@@ -1,6 +1,6 @@
 export const state = {
   appSkills: [],
-  SkillId: 0,
+  skillId: 0,
   totalSkills: 0,
   isUploading: false
 };
