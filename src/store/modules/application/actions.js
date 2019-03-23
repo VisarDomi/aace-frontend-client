@@ -84,7 +84,7 @@ export const actions = {
       });
   },
   [SEND_SKILLS](context) {
-    const user_id = context.getters.getCurrentUser;
+    const { id: user_id } = context.getters.getCurrentUser;
     console.log("user_id is ", user_id);
     const skills = context.getters.getAppSkills;
     for (let skill of skills) {

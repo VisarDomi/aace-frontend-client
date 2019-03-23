@@ -602,7 +602,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skillName"
+                              :value="skill.name"
+                              @keyup.stop="updateSkillField($event.target.value)"
                               placeholder="Emri i kualifikimit"
                             />
                           </div>
@@ -615,7 +616,6 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skillName"
                               placeholder="Leshuesi i kualifikimit"
                             />
                           </div>
@@ -626,7 +626,6 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skillName"
                               placeholder="e.g. 2012"
                             />
                           </div>
@@ -638,7 +637,6 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skillName"
                               placeholder="e.g. 2016"
                             />
                           </div>
@@ -652,7 +650,6 @@
                               class="form-control"
                               rows="3"
                               placeholder="Pershkrim i shkurter"
-                              v-model="skillName"
                             ></textarea>
                           </div>
                         </div>
@@ -733,7 +730,7 @@ import {
   ADD_SKILL,
   REMOVE_SKILL,
   SET_SKILL_FILES,
-  SET_SKILL_NAME
+  UPDATE_SKILL
 } from "@/store/mutations.type"
 import { mapGetters, mapState } from 'vuex';
 
@@ -1164,6 +1161,9 @@ export default {
         return;
       }
       this.sendApplication()
+    },
+    updateSkillField() {
+      console.log("inside skill field")
     }
   },
   computed: {
@@ -1174,54 +1174,22 @@ export default {
       "getAppSkills",
       "getAppSkill"
     ]),
-    skillName: {
-      get () {
-        let skillId = 0
-        console.log(`hello get, ${skillId}`)
-        let skillOne = this.getAppSkill(skillId)
-        return console.log(`get skillOne is, ${skillOne}`)
-      },
-      set (name) {
-        let skillId = 0
-        console.log(`hello set, ${skillId}`)
-        let skillOne = this.getAppSkill(skillId)
-        console.log(`set skillOne is, ${skillOne}`)
-        let payload = { name, skillId }
-        this.$store.commit(SET_SKILL_NAME, payload)
-      }
-    },
-    skillReleaser: {
-      get () {
-        return this.$store.state.obj.message
-      },
-      set (value) {
-        this.$store.commit('updateMessage', value)
-      }
-    },
-    skillFromDate: {
-      get () {
-        return this.$store.state.obj.message
-      },
-      set (value) {
-        this.$store.commit('updateMessage', value)
-      }
-    },
-    skillToDate: {
-      get () {
-        return this.$store.state.obj.message
-      },
-      set (value) {
-        this.$store.commit('updateMessage', value)
-      }
-    },
-    skillDescription: {
-      get () {
-        return this.$store.state.obj.message
-      },
-      set (value) {
-        this.$store.commit('updateMessage', value)
-      }
-    },
+    // skillName: {
+    //   get () {
+    //     let skillId = 0
+    //     console.log(`hello get, ${skillId}`)
+    //     let skillOne = this.getAppSkill(skillId)
+    //     return console.log(`get skillOne is, ${skillOne}`)
+    //   },
+    //   set (name) {
+    //     let skillId = 0
+    //     console.log(`hello set, ${skillId}`)
+    //     let skillOne = this.getAppSkill(skillId)
+    //     console.log(`set skillOne is, ${skillOne}`)
+    //     let payload = { name, skillId }
+    //     this.$store.commit(SET_SKILL_NAME, payload)
+    //   }
+    // },
   },
   validations: {
     user_data: {

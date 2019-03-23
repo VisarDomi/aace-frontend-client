@@ -2,7 +2,7 @@ import {
   ADD_SKILL,
   REMOVE_SKILL,
   SET_SKILL_FILES,
-  SET_SKILL_NAME
+  UPDATE_SKILL
 } from "../../mutations.type";
 
 export const mutations = {
@@ -47,9 +47,9 @@ export const mutations = {
     }
     console.log("state.appSkills", state.appSkills);
   },
-  [SET_SKILL_NAME](state, { name, skillId }) {
+  [UPDATE_SKILL](state, skill) {
     let foundIndex = state.appSkills.findIndex(
-      skill => skill.skillId == skillId
+      appSkill => appSkill.skillId == skill.skillId
     );
     console.log(`foundIndex, ${foundIndex}`);
   }
