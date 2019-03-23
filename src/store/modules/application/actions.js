@@ -51,9 +51,9 @@ export const actions = {
       .catch(err => console.log(err));
   },
   async [SEND_SKILL_MEDIAS](context, payload) {
-    const { user_id, skill_id, formDataSkill } = payload;
+    const { userId, skillId, formDataSkill } = payload;
     ApiService.setHeaderMultipart();
-    await MediaService.postSkillMedia(user_id, skill_id, formDataSkill)
+    await MediaService.postSkillMedia(userId, skillId, formDataSkill)
       .then(res => {
         for (let media of res.data) {
           console.log("media skill res", media);
@@ -66,29 +66,32 @@ export const actions = {
   },
   //------------------------------
   async [SEND_SKILL](context, payload) {
-    const { user_id, skill } = payload;
-    await SkillService.postSkill(user_id, skill)
+    const { userId, skill } = payload;
+    let copySkill = { ...skill };
+    delete copySkill.files;
+    delete copySkill.skillId;
+    await SkillService.postSkill(userId, copySkill)
       .then(res => {
-        console.log("res of skill is :", res);
-      })
-      .then(res => {
-        let skillId = res.data.id;
-        let formDataSkill = new FormData();
         if (skill.files.length) {
-          for (let j = 0; j < skill.files.length; j++) {
-            formDataSkill.append("file", skill.files[j]);
+          let skillId = res.data.id;
+          let formDataSkill = new FormData();
+          for (let file of skill.files) {
+            formDataSkill.append("file", file);
           }
-          let payload = { user_id, skillId, formDataSkill };
-          this.$store.dispatch(SEND_SKILL_MEDIAS, payload);
+          let payload = { userId, skillId, formDataSkill };
+          context.dispatch(SEND_SKILL_MEDIAS, payload);
         }
+      })
+      .then(() => {
+        console.log("on second then");
       });
   },
   [SEND_SKILLS](context) {
-    const { id: user_id } = context.getters.getCurrentUser;
-    console.log("user_id is ", user_id);
+    const { id: userId } = context.getters.getCurrentUser;
     const skills = context.getters.getAppSkills;
     for (let skill of skills) {
-      console.log("skill is:", skill);
+      let payload = { userId, skill };
+      context.dispatch(SEND_SKILL, payload);
     }
   }
 };

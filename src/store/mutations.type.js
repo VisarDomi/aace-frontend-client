@@ -1,9 +1,9 @@
 // application
+export const START_UPLOAD = "startUpload";
+export const STOP_UPLOAD = "stopUpload";
 export const ADD_SKILL = "addSkill";
 export const REMOVE_SKILL = "removeSkill";
 export const SET_SKILL_FILES = "setSkillFiles";
-export const SET_UPLOADING_STATUS = "setUploadingStatus";
-export const SET_FINISHED_STATUS = "setFinishedStatus";
 export const UPDATE_SKILL = "updateSkill";
 
 // auth

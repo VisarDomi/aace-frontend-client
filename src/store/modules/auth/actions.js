@@ -28,7 +28,15 @@ export const actions = {
     });
   },
   [LOGOUT](context) {
+    let applicationState = context.rootState.application;
+    console.log("context is", context);
+    console.log("context.rootState is", context.rootState);
+    console.log("context.rootState.application is", context.rootState.application);
     context.commit(PURGE_AUTH);
+    applicationState.appSkills = [];
+    applicationState.isUploading = false;
+    applicationState.skillId = 0;
+    applicationState.totalSkills = 0;
   },
   [REGISTER](context, credentials) {
     return new Promise((resolve, reject) => {

@@ -1088,6 +1088,11 @@ export default {
       self = this;
       this.$store.commit(SET_SKILL_FILES, { self, skillId });
     },
+    updateSkillField(skillId, field, value) {
+      // this syntax lets fields (keys of an object) be a variable
+      let payload = { skillId, [field]: value }
+      this.$store.commit(UPDATE_SKILL, payload);
+    },
     onAddSkill() {
       console.log("adding skill");
       this.$store.commit(ADD_SKILL);
@@ -1098,42 +1103,6 @@ export default {
     },
     sendSkills() {
       this.$store.dispatch(SEND_SKILLS);
-      // let user_id = this.getCurrentUser.id;
-      // let token = this.getCurrentToken;
-
-      // for (let skill of this.$store.state.skills) {
-      //   delete skill.skillId
-      // }
-
-      // // loop through all the skills
-      // for (let skill of this.$store.state.skills) {
-      //   // let skill = skill
-      //   // let payload = { user_id, skill }
-      //   // this.$store.dispatch(SEND_SKILL, payload)
-      //   axios
-      //     .post(
-      //       "https://aace.ml/api/user/" + user_id + "/skill",
-      //       skill,
-      //       {
-      //         "Content-Type": "multipart/form-data",
-      //         headers: {
-      //           Authorization: "Bearer " + token
-      //         }
-      //       }
-      //     )
-      //     .then(res => {
-      //       let skillId = res.data.id;
-      //       let formDataSkill = new FormData();
-      //       if (skill.files.length) {
-      //         for (let file of skill.files) {
-      //           formDataSkill.append( "file", file);
-      //         }
-      //         // send medias
-      //         let payload = { user_id, skillId, formDataSkill }
-      //         this.$store.dispatch(SEND_SKILL_MEDIAS, payload)
-      //       }
-      //     });
-      // }
     },
     // ------- Application -------
     sendApplication() {
@@ -1149,9 +1118,6 @@ export default {
         return;
       }
       this.sendApplication();
-    },
-    updateSkillField(skillId, field, value) {
-      this.$store.commit(UPDATE_SKILL, { skillId, [field]: value });
     }
   },
   computed: {
@@ -1160,24 +1126,7 @@ export default {
       "getCurrentToken",
       "isUploading",
       "getAppSkills",
-      "getAppSkill"
     ])
-    // skillName: {
-    //   get () {
-    //     let skillId = 0
-    //     console.log(`hello get, ${skillId}`)
-    //     let skillOne = this.getAppSkill(skillId)
-    //     return console.log(`get skillOne is, ${skillOne}`)
-    //   },
-    //   set (name) {
-    //     let skillId = 0
-    //     console.log(`hello set, ${skillId}`)
-    //     let skillOne = this.getAppSkill(skillId)
-    //     console.log(`set skillOne is, ${skillOne}`)
-    //     let payload = { name, skillId }
-    //     this.$store.commit(SET_SKILL_NAME, payload)
-    //   }
-    // },
   },
   validations: {
     user_data: {
