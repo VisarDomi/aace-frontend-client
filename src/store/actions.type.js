@@ -1,6 +1,7 @@
 // application
+export const UPLOAD = "upload";
 export const GET_PROFILE = "getProfile";
-export const SEND_PROFILE_MEDIAS = "sendEducationMedias";
+export const SEND_PROFILE_MEDIAS = "sendProfileMedias";
 export const SEND_EDUCATION_MEDIAS = "sendEducationMedias";
 export const SEND_EXPERIENCE_MEDIAS = "sendExperienceMedias";
 export const SEND_SKILL_MEDIAS = "sendSkillMedias";

@@ -13,8 +13,8 @@ export const actions = {
     });
   },
   [LOGOUT](context) {
-    let applicationState = context.rootState.application;
     context.commit(PURGE_AUTH);
+    let applicationState = context.rootState.application;
     applicationState.appProfile = {
       first_name: "",
       last_name: "",

@@ -7,6 +7,7 @@ import {
   SkillService
 } from "@/common/api.service";
 import {
+  UPLOAD,
   GET_PROFILE,
   SEND_PROFILE_MEDIAS,
   SEND_EDUCATION_MEDIAS,
@@ -29,6 +30,7 @@ import {
 
 export const actions = {
   async [GET_PROFILE](context, payload) {
+    console.log("GET_PROFILE");
     const userId = context.getters.getCurrentUser.id;
     const email = context.getters.getCurrentUser.email;
     const user_data = {
@@ -53,6 +55,7 @@ export const actions = {
     });
   },
   async [SEND_PROFILE_MEDIAS](context, payload) {
+    console.log("SEND_PROFILE_MEDIAS");
     const { userId, formDataProfile } = payload;
     ApiService.setHeaderMultipart();
     await MediaService.postProfileMedia(userId, formDataProfile).then(res => {
@@ -62,6 +65,7 @@ export const actions = {
     });
   },
   async [UPDATE_PROFILE](context) {
+    console.log("UPDATE_PROFILE");
     const { id: userId } = context.getters.getCurrentUser;
     const profile = context.getters.getAppProfile;
     let copyProfile = { ...profile };
@@ -81,6 +85,7 @@ export const actions = {
     });
   },
   async [SEND_EDUCATION_MEDIAS](context, payload) {
+    console.log("SEND_EDUCATION_MEDIAS");
     const { userId, educationId, formDataEducation } = payload;
     ApiService.setHeaderMultipart();
     await MediaService.postEducationMedia(
@@ -94,6 +99,7 @@ export const actions = {
     });
   },
   async [SEND_EDUCATION](context, payload) {
+    console.log("SEND_EDUCATION");
     const { userId, education } = payload;
     let copyEducation = { ...education };
     delete copyEducation.files;
@@ -114,11 +120,16 @@ export const actions = {
     });
   },
   async [SEND_EDUCATIONS](context) {
+    console.log("SEND_EDUCATIONS");
     const { id: userId } = context.getters.getCurrentUser;
     const educations = context.getters.getAppEducations;
-    for (let education of educations) {
-      let payload = { userId, education };
-      await context.dispatch(SEND_EDUCATION, payload);
+    console.log("educations", educations);
+    console.log("educations.length", educations.length);
+    if (educations.length) {
+      for (let education of educations) {
+        let payload = { userId, education };
+        await context.dispatch(SEND_EDUCATION, payload);
+      }
     }
   },
   async [SEND_EXPERIENCE_MEDIAS](context, payload) {
@@ -135,6 +146,7 @@ export const actions = {
     });
   },
   async [SEND_EXPERIENCE](context, payload) {
+    console.log("SEND_EXPERIENCE");
     const { userId, experience } = payload;
     let copyExperience = { ...experience };
     delete copyExperience.files;
@@ -155,14 +167,18 @@ export const actions = {
     });
   },
   async [SEND_EXPERIENCES](context) {
+    console.log("SEND_EXPERIENCES");
     const { id: userId } = context.getters.getCurrentUser;
     const experiences = context.getters.getAppExperiences;
-    for (let experience of experiences) {
-      let payload = { userId, experience };
-      await context.dispatch(SEND_EXPERIENCE, payload);
+    if (experiences.length) {
+      for (let experience of experiences) {
+        let payload = { userId, experience };
+        await context.dispatch(SEND_EXPERIENCE, payload);
+      }
     }
   },
   async [SEND_SKILL_MEDIAS](context, payload) {
+    console.log("SEND_SKILL_MEDIAS");
     const { userId, skillId, formDataSkill } = payload;
     ApiService.setHeaderMultipart();
     await MediaService.postSkillMedia(userId, skillId, formDataSkill).then(
@@ -189,7 +205,6 @@ export const actions = {
             formDataSkill.append("file", file);
           }
           let payload = { userId, skillId, formDataSkill };
-          console.log("SEND_SKILL then");
           context.dispatch(SEND_SKILL_MEDIAS, payload);
         }
       }
@@ -199,14 +214,15 @@ export const actions = {
     console.log("SEND_SKILLS");
     const { id: userId } = context.getters.getCurrentUser;
     const skills = context.getters.getAppSkills;
-    for (let skill of skills) {
-      let payload = { userId, skill };
-      console.log("SEND_SKILLS for loop");
-      await context.dispatch(SEND_SKILL, payload);
+    if (skills.length) {
+      for (let skill of skills) {
+        let payload = { userId, skill };
+        await context.dispatch(SEND_SKILL, payload);
+      }
     }
   },
   async [SEND_APPLICATION](context, payload) {
-    console.log("SEND_APPLICATION start");
+    console.log("\n\nSEND_APPLICATION start");
     let t0 = performance.now();
     context.commit(START_UPLOAD);
     await context.dispatch(UPDATE_PROFILE);
@@ -225,42 +241,11 @@ export const actions = {
       "a repeat of SEND_SKILL -> SEND_SKILL_MEDIAS\n",
       "SEND_APPLICATION took some milliseconds\n"
     );
-    // await context.dispatch(UPDATE_PROFILE).then(() => {
-    //   context.dispatch(SEND_EDUCATIONS).then(() => {
-    //     context.dispatch(SEND_EXPERIENCES).then(() => {
-    //       context.dispatch(SEND_SKILLS).then(() => {
-    //         context.commit(STOP_UPLOAD);
-    //         let t1 = performance.now();
-    //         console.log(
-    //           "Call to Promise.all took " + (t1 - t0) + " milliseconds."
-    //         );
-    //         // vm.$router.push({ name: "SuccessApplication" });
-    //       });
-    //     });
-    //   });
-    // });
-    //   const success = [];
-    //   Promise.all([
-    //     await context
-    //       .dispatch(UPDATE_PROFILE)
-    //       .then(() => success.push("updated_profile")),
-    //     await context
-    //       .dispatch(SEND_EDUCATIONS)
-    //       .then(() => success.push("sent_educations")),
-    //     await context
-    //       .dispatch(SEND_EXPERIENCES)
-    //       .then(() => success.push("sent_experiences")),
-    //     await context
-    //       .dispatch(SEND_SKILLS)
-    //       .then(() => success.push("sent_skills"))
-    //   ]).then(([res1, res2, res3, res4]) => {
-    //     console.log("success is", success);
-    //     console.log("reses are", res1, res2, res3, res4);
-    //     context.commit(STOP_UPLOAD);
-    //     let t1 = performance.now();
-    //     console.log("Call to Promise.all took " + (t1 - t0) + " milliseconds.");
-    //     console.log("payload.vm action", payload.vm);
-    //     // vm.$router.push({ name: "SuccessApplication" });
-    //   });
+  },
+  async [UPLOAD](context, payload) {
+    console.log("uploading");
+    await context.dispatch(SEND_APPLICATION, payload).then(() => {
+      console.log("can it be?");
+    });
   }
 };

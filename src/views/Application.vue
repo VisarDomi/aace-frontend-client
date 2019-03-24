@@ -380,8 +380,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              :value="education.school"
-                              @change="updateEducationField(education.educationId, 'school', $event.target.value)"
+                              :value="education.education_type"
+                              @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
                               placeholder="Lloji i arsimimit, psh Arsim i larte"
                             >
                           </div>
@@ -419,8 +419,8 @@
                             <input
                               type="text"
                               class="form-control"
-                              :value="education.education_type"
-                              @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
+                              :value="education.school"
+                              @change="updateEducationField(education.educationId, 'school', $event.target.value)"
                               placeholder="Emri i shkolles, psh Universiteti Politeknik i Tiranes"
                             >
                           </div>
@@ -795,6 +795,7 @@ import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
 import {
+  UPLOAD,
   GET_PROFILE,
   SEND_PROFILE_MEDIAS,
   SEND_EDUCATION_MEDIAS,
@@ -1024,7 +1025,7 @@ export default {
         return;
       }
       let vm = this;
-      this.$store.dispatch(SEND_APPLICATION, { vm });
+      this.$store.dispatch(UPLOAD, { vm });
     }
   },
   computed: {

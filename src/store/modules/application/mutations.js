@@ -78,11 +78,9 @@ export const mutations = {
       files: [],
       title: "",
       employer: "",
-      company: "",
       location: "",
       from_date: "",
       to_date: "",
-      is_currently_work_here: "",
       description: ""
     };
     state.totalExperiences = state.appExperiences.push(experience);
