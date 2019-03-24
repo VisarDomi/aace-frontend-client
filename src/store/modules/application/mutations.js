@@ -24,9 +24,8 @@ export const mutations = {
   [STOP_UPLOAD](state) {
     state.isUploading = false;
   },
-  [SET_PROFILE_FILES](state, { self }) {
-    console.log("self.$refs ", self.$refs);
-    state.appProfile.files = self.$refs.profile.files;
+  [SET_PROFILE_FILES](state, { vm }) {
+    state.appProfile.files = vm.$refs.profile.files;
   },
   [SET_APP_PROFILE](state, payload) {
     Object.assign(state.appProfile, payload);
@@ -52,14 +51,15 @@ export const mutations = {
     );
     state.totalEducations -= 1;
   },
-  [SET_EDUCATION_FILES](state, { self, educationId }) {
-    console.log("self.$refs ", self.$refs);
+  [SET_EDUCATION_FILES](state, { vm, educationId }) {
     let foundIndex = state.appEducations.findIndex(
       education => education.educationId == educationId
     );
     let files = [];
-    for (let refsEducation of self.$refs.educations) {
-      if (refsEducation.id == educationId) {
+    for (let refsEducation of vm.$refs.educations) {
+      // get number
+      let num = refsEducation.id.match(/\d+/)[0];
+      if (num == educationId) {
         files = refsEducation.files;
       }
     }
@@ -94,13 +94,15 @@ export const mutations = {
     );
     state.totalExperiences -= 1;
   },
-  [SET_EXPERIENCE_FILES](state, { self, experienceId }) {
+  [SET_EXPERIENCE_FILES](state, { vm, experienceId }) {
     let foundIndex = state.appExperiences.findIndex(
       experience => experience.experienceId == experienceId
     );
     let files = [];
-    for (let refsExperience of self.$refs.experiences) {
-      if (refsExperience.id == experienceId) {
+    for (let refsExperience of vm.$refs.experiences) {
+      // get number
+      let num = refsExperience.id.match(/\d+/)[0];
+      if (num == experienceId) {
         files = refsExperience.files;
       }
     }
@@ -130,13 +132,15 @@ export const mutations = {
     state.appSkills = state.appSkills.filter(skill => skill.skillId != skillId);
     state.totalSkills -= 1;
   },
-  [SET_SKILL_FILES](state, { self, skillId }) {
+  [SET_SKILL_FILES](state, { vm, skillId }) {
     let foundIndex = state.appSkills.findIndex(
       skill => skill.skillId == skillId
     );
     let files = [];
-    for (let refsSkill of self.$refs.skills) {
-      if (refsSkill.id == skillId) {
+    for (let refsSkill of vm.$refs.skills) {
+      // get number
+      let num = refsSkill.id.match(/\d+/)[0];
+      if (num == skillId) {
         files = refsSkill.files;
       }
     }

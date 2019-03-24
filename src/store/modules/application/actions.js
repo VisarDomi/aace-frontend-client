@@ -29,7 +29,6 @@ import {
 
 export const actions = {
   async [GET_PROFILE](context, payload) {
-    const { self } = payload;
     const userId = context.getters.getCurrentUser.id;
     const email = context.getters.getCurrentUser.email;
     const user_data = {
@@ -45,89 +44,31 @@ export const actions = {
       profession: "Inxhinier Ndertimi",
       sex: "Mashkull"
     };
-    self.user_data = user_data;
+    payload.vm.user_data = user_data;
     context.commit(SET_APP_PROFILE, user_data);
-    console.log("self and userId and user_data are", self, userId, user_data);
     await ProfileService.getProfile(userId).then(res => {
       if (res.status == 200) {
-        console.log("success get", res);
+        console.log("success GET_PROFILE", res);
       }
     });
   },
-  //---------------Medias--------------
   async [SEND_PROFILE_MEDIAS](context, payload) {
     const { userId, formDataProfile } = payload;
     ApiService.setHeaderMultipart();
-    await MediaService.postProfileMedia(userId, formDataProfile)
-      .then(res => {
-        for (let media of res.data) {
-          console.log("media profile res", media);
-        }
-        if (res.status == 200) {
-          console.log("success media profile");
-        }
-      })
-      .catch(err => console.log(err));
+    await MediaService.postProfileMedia(userId, formDataProfile).then(res => {
+      if (res.status == 200) {
+        console.log("success SEND_PROFILE_MEDIAS");
+      }
+    });
   },
-  async [SEND_EDUCATION_MEDIAS](context, payload) {
-    const { userId, educationId, formDataEducation } = payload;
-    ApiService.setHeaderMultipart();
-    await MediaService.postEducationMedia(
-      userId,
-      educationId,
-      formDataEducation
-    )
-      .then(res => {
-        for (let media of res.data) {
-          console.log("media education res", media);
-        }
-        if (res.status == 200) {
-          console.log("success media education");
-        }
-      })
-      .catch(err => console.log(err));
-  },
-  async [SEND_EXPERIENCE_MEDIAS](context, payload) {
-    const { userId, experienceId, formDataExperience } = payload;
-    ApiService.setHeaderMultipart();
-    await MediaService.postExperienceMedia(
-      userId,
-      experienceId,
-      formDataExperience
-    )
-      .then(res => {
-        for (let media of res.data) {
-          console.log("media experience res", media);
-        }
-        if (res.status == 200) {
-          console.log("success media experience");
-        }
-      })
-      .catch(err => console.log(err));
-  },
-  async [SEND_SKILL_MEDIAS](context, payload) {
-    const { userId, skillId, formDataSkill } = payload;
-    ApiService.setHeaderMultipart();
-    await MediaService.postSkillMedia(userId, skillId, formDataSkill)
-      .then(res => {
-        for (let media of res.data) {
-          console.log("media skill res", media);
-        }
-        if (res.status == 200) {
-          console.log("success media skill");
-        }
-      })
-      .catch(err => console.log(err));
-  },
-  //------------------------------
   async [UPDATE_PROFILE](context) {
     const { id: userId } = context.getters.getCurrentUser;
     const profile = context.getters.getAppProfile;
     let copyProfile = { ...profile };
     delete copyProfile.files;
-    await ProfileService.putProfile(userId, copyProfile)
-      .then(res => {
-        console.log("profile res", res);
+    await ProfileService.putProfile(userId, copyProfile).then(res => {
+      if (res.status == 200) {
+        console.log("success UPDATE_PROFILE", res);
         if (profile.files.length) {
           let formDataProfile = new FormData();
           for (let file of profile.files) {
@@ -136,18 +77,30 @@ export const actions = {
           let payload = { userId, formDataProfile };
           context.dispatch(SEND_PROFILE_MEDIAS, payload);
         }
-      })
-      .then(() => {
-        console.log("on second then of profile");
-      });
+      }
+    });
+  },
+  async [SEND_EDUCATION_MEDIAS](context, payload) {
+    const { userId, educationId, formDataEducation } = payload;
+    ApiService.setHeaderMultipart();
+    await MediaService.postEducationMedia(
+      userId,
+      educationId,
+      formDataEducation
+    ).then(res => {
+      if (res.status == 200) {
+        console.log("success SEND_EDUCATION_MEDIAS");
+      }
+    });
   },
   async [SEND_EDUCATION](context, payload) {
     const { userId, education } = payload;
     let copyEducation = { ...education };
     delete copyEducation.files;
     delete copyEducation.educationId;
-    await EducationService.postEducation(userId, copyEducation)
-      .then(res => {
+    await EducationService.postEducation(userId, copyEducation).then(res => {
+      if (res.status == 200) {
+        console.log("success SEND_EDUCATION", res);
         if (education.files.length) {
           let educationId = res.data.id;
           let formDataEducation = new FormData();
@@ -157,10 +110,8 @@ export const actions = {
           let payload = { userId, educationId, formDataEducation };
           context.dispatch(SEND_EDUCATION_MEDIAS, payload);
         }
-      })
-      .then(() => {
-        console.log("on second then of education");
-      });
+      }
+    });
   },
   async [SEND_EDUCATIONS](context) {
     const { id: userId } = context.getters.getCurrentUser;
@@ -170,13 +121,27 @@ export const actions = {
       await context.dispatch(SEND_EDUCATION, payload);
     }
   },
+  async [SEND_EXPERIENCE_MEDIAS](context, payload) {
+    const { userId, experienceId, formDataExperience } = payload;
+    ApiService.setHeaderMultipart();
+    await MediaService.postExperienceMedia(
+      userId,
+      experienceId,
+      formDataExperience
+    ).then(res => {
+      if (res.status == 200) {
+        console.log("success SEND_EXPERIENCE_MEDIAS");
+      }
+    });
+  },
   async [SEND_EXPERIENCE](context, payload) {
     const { userId, experience } = payload;
     let copyExperience = { ...experience };
     delete copyExperience.files;
     delete copyExperience.experienceId;
-    await ExperienceService.postExperience(userId, copyExperience)
-      .then(res => {
+    await ExperienceService.postExperience(userId, copyExperience).then(res => {
+      if (res.status == 200) {
+        console.log("success SEND_EXPERIENCE", res);
         if (experience.files.length) {
           let experienceId = res.data.id;
           let formDataExperience = new FormData();
@@ -186,10 +151,8 @@ export const actions = {
           let payload = { userId, experienceId, formDataExperience };
           context.dispatch(SEND_EXPERIENCE_MEDIAS, payload);
         }
-      })
-      .then(() => {
-        console.log("on second then of experience");
-      });
+      }
+    });
   },
   async [SEND_EXPERIENCES](context) {
     const { id: userId } = context.getters.getCurrentUser;
@@ -199,13 +162,26 @@ export const actions = {
       await context.dispatch(SEND_EXPERIENCE, payload);
     }
   },
+  async [SEND_SKILL_MEDIAS](context, payload) {
+    const { userId, skillId, formDataSkill } = payload;
+    ApiService.setHeaderMultipart();
+    await MediaService.postSkillMedia(userId, skillId, formDataSkill).then(
+      res => {
+        if (res.status == 200) {
+          console.log("success SEND_SKILL_MEDIAS");
+        }
+      }
+    );
+  },
   async [SEND_SKILL](context, payload) {
+    console.log("SEND_SKILL");
     const { userId, skill } = payload;
     let copySkill = { ...skill };
     delete copySkill.files;
     delete copySkill.skillId;
-    await SkillService.postSkill(userId, copySkill)
-      .then(res => {
+    await SkillService.postSkill(userId, copySkill).then(res => {
+      if (res.status == 200) {
+        console.log("success SEND_SKILL", res);
         if (skill.files.length) {
           let skillId = res.data.id;
           let formDataSkill = new FormData();
@@ -213,66 +189,78 @@ export const actions = {
             formDataSkill.append("file", file);
           }
           let payload = { userId, skillId, formDataSkill };
+          console.log("SEND_SKILL then");
           context.dispatch(SEND_SKILL_MEDIAS, payload);
         }
-      })
-      .then(() => {
-        console.log("on second then of skill");
-      });
+      }
+    });
   },
   async [SEND_SKILLS](context) {
+    console.log("SEND_SKILLS");
     const { id: userId } = context.getters.getCurrentUser;
     const skills = context.getters.getAppSkills;
     for (let skill of skills) {
       let payload = { userId, skill };
+      console.log("SEND_SKILLS for loop");
       await context.dispatch(SEND_SKILL, payload);
     }
   },
   async [SEND_APPLICATION](context, payload) {
-    const { self } = { payload };
+    console.log("SEND_APPLICATION start");
     let t0 = performance.now();
     context.commit(START_UPLOAD);
-    await context.dispatch(UPDATE_PROFILE).then(res => {
-      if (res.status == 200) {
-        context.dispatch(SEND_EDUCATIONS).then(res => {
-          if (res.status == 200) {
-            context.dispatch(SEND_EXPERIENCES).then(res => {
-              if (res.status == 200) {
-                context.dispatch(SEND_SKILLS).then(res => {
-                  if (res.status == 200) {
-                    context.commit(STOP_UPLOAD);
-                    let t1 = performance.now();
-                    console.log(
-                      "Call to Promise.all took " + (t1 - t0) + " milliseconds."
-                    );
-                    // self.$router.push({ name: "SuccessApplication" });
-                  }
-                });
-              }
-            });
-          }
-        });
-      }
-    });
-    // Promise.all([
-    //   context.dispatch(UPDATE_PROFILE),
-    //   context.dispatch(SEND_EDUCATIONS),
-    //   context.dispatch(SEND_EXPERIENCES),
-    //   context.dispatch(SEND_SKILLS)
-    // ]).then(([res1, res2, res3, res4]) => {
-    //   console.log("reses are", res1, res2, res3, res4);
-    //   if (
-    //     res1.status == 200 &&
-    //     res2.status == 200 &&
-    //     res3.status == 200 &&
-    //     res4.status == 200
-    //   ) {
-    //     console.log(`successfully,`, res1, res2, res3, res4);
-    //     context.commit(STOP_UPLOAD);
-    //     self.$router.push({ name: "SuccessApplication" });
-    //   }
-    //   let t1 = performance.now();
-    //   console.log("Call to Promise.all took " + (t1 - t0) + " milliseconds.");
+    await context.dispatch(UPDATE_PROFILE);
+    await context.dispatch(SEND_EDUCATIONS);
+    await context.dispatch(SEND_EXPERIENCES);
+    await context.dispatch(SEND_SKILLS);
+    context.commit(STOP_UPLOAD);
+    let t1 = performance.now();
+    console.log("SEND_APPLICATION took " + (t1 - t0) + " milliseconds");
+    console.log(
+      "\nThe order of logs should be: \n",
+      "SEND_APPLICATION start\n",
+      "UPDATE_PROFILE -> SEND_PROFILE_MEDIAS\n",
+      "a repeat of SEND_EDUCATION -> SEND_EDUCATION_MEDIAS\n",
+      "a repeat of SEND_EXPERIENCE -> SEND_EXPERIENCE_MEDIAS\n",
+      "a repeat of SEND_SKILL -> SEND_SKILL_MEDIAS\n",
+      "SEND_APPLICATION took some milliseconds\n"
+    );
+    // await context.dispatch(UPDATE_PROFILE).then(() => {
+    //   context.dispatch(SEND_EDUCATIONS).then(() => {
+    //     context.dispatch(SEND_EXPERIENCES).then(() => {
+    //       context.dispatch(SEND_SKILLS).then(() => {
+    //         context.commit(STOP_UPLOAD);
+    //         let t1 = performance.now();
+    //         console.log(
+    //           "Call to Promise.all took " + (t1 - t0) + " milliseconds."
+    //         );
+    //         // vm.$router.push({ name: "SuccessApplication" });
+    //       });
+    //     });
+    //   });
     // });
+    //   const success = [];
+    //   Promise.all([
+    //     await context
+    //       .dispatch(UPDATE_PROFILE)
+    //       .then(() => success.push("updated_profile")),
+    //     await context
+    //       .dispatch(SEND_EDUCATIONS)
+    //       .then(() => success.push("sent_educations")),
+    //     await context
+    //       .dispatch(SEND_EXPERIENCES)
+    //       .then(() => success.push("sent_experiences")),
+    //     await context
+    //       .dispatch(SEND_SKILLS)
+    //       .then(() => success.push("sent_skills"))
+    //   ]).then(([res1, res2, res3, res4]) => {
+    //     console.log("success is", success);
+    //     console.log("reses are", res1, res2, res3, res4);
+    //     context.commit(STOP_UPLOAD);
+    //     let t1 = performance.now();
+    //     console.log("Call to Promise.all took " + (t1 - t0) + " milliseconds.");
+    //     console.log("payload.vm action", payload.vm);
+    //     // vm.$router.push({ name: "SuccessApplication" });
+    //   });
   }
 };

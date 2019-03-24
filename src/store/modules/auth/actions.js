@@ -14,17 +14,31 @@ export const actions = {
   },
   [LOGOUT](context) {
     let applicationState = context.rootState.application;
-    console.log("context is", context);
-    console.log("context.rootState is", context.rootState);
-    console.log(
-      "context.rootState.application is",
-      context.rootState.application
-    );
     context.commit(PURGE_AUTH);
+    applicationState.appProfile = {
+      first_name: "",
+      last_name: "",
+      profession: "",
+      sex: "",
+      summary: "",
+      country: "",
+      phone: "",
+      address: "",
+      birthday: "",
+      website: "",
+      email: "",
+      files: []
+    };
+    applicationState.appEducations = [];
+    applicationState.educationId = 0;
+    applicationState.totalEducations = 0;
+    applicationState.appExperiences = [];
+    applicationState.experienceId = 0;
+    applicationState.totalExperiences = 0;
     applicationState.appSkills = [];
-    applicationState.isUploading = false;
     applicationState.skillId = 0;
     applicationState.totalSkills = 0;
+    applicationState.isUploading = false;
   },
   async [REGISTER](context, credentials) {
     await ApiService.post("user", credentials).then(res => {

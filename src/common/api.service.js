@@ -13,51 +13,38 @@ export const ApiService = {
     Vue.use(VueAxios, axios);
     Vue.axios.defaults.baseURL = API_URL;
   },
-
   setHeader() {
     let token = JwtService.getToken();
     Vue.axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    console.log("token in setHeader is", token);
   },
-
   setHeaderMultipart() {
     Vue.axios.defaults.headers.common["Content-Type"] = "multipart/form-data";
-    console.log(
-      "header in set header multipart is ",
-      Vue.axios.defaults.headers.common["Content-Type"]
-    );
   },
-
   query(resource, params) {
     return Vue.axios.get(resource, params).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },
-
   get(resource) {
-    console.log(`resource is: ${resource}`);
+    console.log(`get resource is:`, resource);
     return Vue.axios.get(`${resource}`).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
     });
   },
-
   post(resource, params) {
+    console.log(`post resource and params are:`, resource, params);
     return Vue.axios.post(`${resource}`, params);
   },
-
   login(resource, params) {
+    console.log(`login resource and params are:`, resource, params);
     return Vue.axios.post(`${resource}`, {}, params);
   },
-
-  update(resource, slug, params) {
-    return Vue.axios.put(`${resource}/${slug}`, params);
-  },
-
   put(resource, params) {
+    console.log(`put resource and params are:`, resource, params);
     return Vue.axios.put(`${resource}`, params);
   },
-
   delete(resource) {
+    console.log(`delete resource is:`, resource);
     return Vue.axios.delete(resource).catch(error => {
       throw new Error(`[RWV] ApiService ${error}`);
     });

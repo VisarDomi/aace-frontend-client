@@ -12,11 +12,9 @@ export const mutations = {
   },
   [SET_AUTH](state, user) {
     state.errors = {};
-    console.log("token in set auth is", user.token);
     JwtService.saveToken(user.token);
     state.token = user.token;
     state.isAuthenticated = true;
-    console.log("user in set auth is", user);
     UserService.saveUser(user);
     state.user = user;
   },

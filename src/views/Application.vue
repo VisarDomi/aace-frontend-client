@@ -259,7 +259,7 @@
               <div
                 class="col-xs-12"
                 v-for="education in getAppEducations"
-                :key="education.educationId"
+                :key="'education' + education.educationId"
               >
                 <div class="item-block">
                   <div class="item-form">
@@ -278,13 +278,13 @@
                             type="file"
                             ref="educations"
                             class="input-file"
-                            :id="education.educationId"
+                            :id="'education' + education.educationId"
                             multiple
                             @change="handleFileUploadEducation(education.educationId)"
                           >
                           <label
                             tabindex="0"
-                            :for="education.educationId"
+                            :for="'education' + education.educationId"
                             class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label>
                           <p
@@ -494,7 +494,7 @@
               <div
                 class="col-xs-12"
                 v-for="experience in getAppExperiences"
-                :key="experience.experienceId"
+                :key="'experience' + experience.experienceId"
               >
                 <div class="item-block">
                   <div class="item-form">
@@ -513,13 +513,13 @@
                             type="file"
                             ref="experiences"
                             class="input-file"
-                            :id="experience.experienceId"
+                            :id="'experience' + experience.experienceId"
                             multiple
                             @change="handleFileUploadExperience(experience.experienceId)"
                           >
                           <label
                             tabindex="0"
-                            :for="experience.experienceId"
+                            :for="'experience' + experience.experienceId"
                             class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label>
 
@@ -636,7 +636,7 @@
             </header>
 
             <div class="row">
-              <div class="col-xs-12" v-for="skill in getAppSkills" :key="skill.skillId">
+              <div class="col-xs-12" v-for="skill in getAppSkills" :key="'skill' + skill.skillId">
                 <div class="item-block">
                   <div class="item-form">
                     <button
@@ -648,19 +648,20 @@
                     </button>
 
                     <div class="row">
+
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input
                             type="file"
                             ref="skills"
                             class="input-file"
-                            :id="skill.skillId"
+                            :id="'skill' + skill.skillId"
                             multiple
                             @change="handleFileUploadSkill(skill.skillId)"
                           >
                           <label
                             tabindex="0"
-                            :for="skill.skillId"
+                            :for="'skill' + skill.skillId"
                             class="input-file-trigger"
                           >Zgjidhni nje ose me shume dokumenta...</label>
                           <p
@@ -896,84 +897,84 @@ export default {
     },
     // All the functions bellow need to be integrated in the store
     // ------- Dropdown -------
-    educationTypeChange(e, i) {
-      this.educationInputs[i].degree = "";
-      this.educationInputs[i].field_of_study = "";
-      this.educationInputs[i].education_type = this.education_type_options[
-        e.target.value - 1
-      ].text;
-    },
-    educationDegreeChange(e, i) {
-      let educationOptionId = e.target.value;
-      if (educationOptionId == 7 || educationOptionId == 3) {
-        this.education_degree_other[i] = true;
-        this.educationInputs[i].degree = "Fut tipin e diplomes";
-      } else {
-        this.education_degree_other[i] = false;
-        if (this.education_type_id[i] == 1)
-          this.educationInputs[i].degree = this.education_degree_options[
-            this.education_type_id[i]
-          ][educationOptionId - 1].text;
-        else
-          this.educationInputs[i].degree = this.education_degree_options[
-            this.education_type_id[i]
-          ][educationOptionId - 4].text;
-      }
-    },
-    educationMajorChange(e, i) {
-      let educationOptionId = e.target.value;
-      if (educationOptionId == 6 || educationOptionId == 3) {
-        this.education_major_other[i] = true;
-        this.educationInputs[i].field_of_study = "Fut degen";
-      } else {
-        this.education_major_other[i] = false;
-        if (this.education_type_id[i] == 1)
-          this.educationInputs[i].field_of_study = this.education_major_options[
-            this.education_type_id[i]
-          ][educationOptionId - 1].text;
-        else
-          this.educationInputs[i].field_of_study = this.education_major_options[
-            this.education_type_id[i]
-          ][educationOptionId - 4].text;
-      }
-    },
+    // educationTypeChange(e, i) {
+    //   this.educationInputs[i].degree = "";
+    //   this.educationInputs[i].field_of_study = "";
+    //   this.educationInputs[i].education_type = this.education_type_options[
+    //     e.target.value - 1
+    //   ].text;
+    // },
+    // educationDegreeChange(e, i) {
+    //   let educationOptionId = e.target.value;
+    //   if (educationOptionId == 7 || educationOptionId == 3) {
+    //     this.education_degree_other[i] = true;
+    //     this.educationInputs[i].degree = "Fut tipin e diplomes";
+    //   } else {
+    //     this.education_degree_other[i] = false;
+    //     if (this.education_type_id[i] == 1)
+    //       this.educationInputs[i].degree = this.education_degree_options[
+    //         this.education_type_id[i]
+    //       ][educationOptionId - 1].text;
+    //     else
+    //       this.educationInputs[i].degree = this.education_degree_options[
+    //         this.education_type_id[i]
+    //       ][educationOptionId - 4].text;
+    //   }
+    // },
+    // educationMajorChange(e, i) {
+    //   let educationOptionId = e.target.value;
+    //   if (educationOptionId == 6 || educationOptionId == 3) {
+    //     this.education_major_other[i] = true;
+    //     this.educationInputs[i].field_of_study = "Fut degen";
+    //   } else {
+    //     this.education_major_other[i] = false;
+    //     if (this.education_type_id[i] == 1)
+    //       this.educationInputs[i].field_of_study = this.education_major_options[
+    //         this.education_type_id[i]
+    //       ][educationOptionId - 1].text;
+    //     else
+    //       this.educationInputs[i].field_of_study = this.education_major_options[
+    //         this.education_type_id[i]
+    //       ][educationOptionId - 4].text;
+    //   }
+    // },
     // ------- Profile picture -------
     handleFileUploadProfile() {
-      let self = this;
-      this.$store.commit(SET_PROFILE_FILES, { self });
+      let vm = this;
+      this.$store.commit(SET_PROFILE_FILES, { vm });
     },
     updateProfileField(field, value) {
       // legacy code - changeProfession()
-      console.log("value is :", value)
-      if (value == 4) {
-        console.log("this.profession_other :", this.profession_other)
-        this.profession_other = true;
-        console.log("this.profession_other :", this.profession_other)
-        console.log("this.user_data.profession :", this.user_data.profession)
-        this.user_data.profession = "Fut profesionin";
-        console.log("this.user_data.profession :", this.user_data.profession)
-      } else {
-        console.log("this.profession_other :", this.profession_other)
-        this.profession_other = false;
-        console.log("this.profession_other :", this.profession_other)
-        console.log("this.user_data.profession :", this.user_data.profession)
-        console.log("this.profession_options :", this.profession_options)
-        console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
-        console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
-        this.user_data.profession = this.profession_options[value - 1].text;
-        console.log("this.profession_options :", this.profession_options)
-        console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
-        console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
-        console.log("this.user_data.profession :", this.user_data.profession)
-      }
+      // console.log("value is :", value)
+      // if (value == 4) {
+      //   console.log("this.profession_other :", this.profession_other)
+      //   this.profession_other = true;
+      //   console.log("this.profession_other :", this.profession_other)
+      //   console.log("this.user_data.profession :", this.user_data.profession)
+      //   this.user_data.profession = "Fut profesionin";
+      //   console.log("this.user_data.profession :", this.user_data.profession)
+      // } else {
+      //   console.log("this.profession_other :", this.profession_other)
+      //   this.profession_other = false;
+      //   console.log("this.profession_other :", this.profession_other)
+      //   console.log("this.user_data.profession :", this.user_data.profession)
+      //   console.log("this.profession_options :", this.profession_options)
+      //   console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
+      //   console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
+      //   this.user_data.profession = this.profession_options[value - 1].text;
+      //   console.log("this.profession_options :", this.profession_options)
+      //   console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
+      //   console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
+      //   console.log("this.user_data.profession :", this.user_data.profession)
+      // }
       // new code
       let payload = { [field]: value };
       this.$store.commit(SET_APP_PROFILE, payload);
     },
     // ------- Education -------
     handleFileUploadEducation(educationId) {
-      let self = this;
-      this.$store.commit(SET_EDUCATION_FILES, { self, educationId });
+      let vm = this;
+      this.$store.commit(SET_EDUCATION_FILES, { vm, educationId });
     },
     updateEducationField(educationId, field, value) {
       let payload = { educationId, [field]: value };
@@ -987,8 +988,8 @@ export default {
     },
     // ------- Experience -------
     handleFileUploadExperience(experienceId) {
-      let self = this;
-      this.$store.commit(SET_EXPERIENCE_FILES, { self, experienceId });
+      let vm = this;
+      this.$store.commit(SET_EXPERIENCE_FILES, { vm, experienceId });
     },
     updateExperienceField(experienceId, field, value) {
       let payload = { experienceId, [field]: value };
@@ -1002,8 +1003,8 @@ export default {
     },
     // ------- Skill -------
     handleFileUploadSkill(skillId) {
-      let self = this;
-      this.$store.commit(SET_SKILL_FILES, { self, skillId });
+      let vm = this;
+      this.$store.commit(SET_SKILL_FILES, { vm, skillId });
     },
     updateSkillField(skillId, field, value) {
       let payload = { skillId, [field]: value };
@@ -1022,8 +1023,8 @@ export default {
         console.log("errors");
         return;
       }
-      let self = this;
-      this.$store.dispatch(SEND_APPLICATION, { self });
+      let vm = this;
+      this.$store.dispatch(SEND_APPLICATION, { vm });
     }
   },
   computed: {
@@ -1052,8 +1053,8 @@ export default {
   },
   mounted() {
     this.profession_id = 1;
-    let self = this;
-    this.$store.dispatch(GET_PROFILE, { self });
+    let vm = this;
+    this.$store.dispatch(GET_PROFILE, { vm });
   }
 };
 
