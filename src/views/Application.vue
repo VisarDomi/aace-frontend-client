@@ -18,12 +18,12 @@
                   type="file"
                   ref="profile"
                   class="input-file"
-                  :id="getCurrentUser.id"
+                  :id="'profile' + getCurrentUser.id"
                   @change="handleFileUploadProfile()"
                 >
                 <label
                   tabindex="0"
-                  :for="getCurrentUser.id"
+                  :for="'profile' + getCurrentUser.id"
                   class="input-file-trigger"
                 >Zgjidhni nje foto profili...</label>
                 <p

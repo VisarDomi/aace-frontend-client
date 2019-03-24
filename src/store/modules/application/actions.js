@@ -66,23 +66,23 @@ export const actions = {
   },
   async [UPDATE_PROFILE](context) {
     console.log("UPDATE_PROFILE");
-    const { id: userId } = context.getters.getCurrentUser;
+    const userId = context.getters.getCurrentUser.id;
     const profile = context.getters.getAppProfile;
     let copyProfile = { ...profile };
     delete copyProfile.files;
     await ProfileService.putProfile(userId, copyProfile).then(res => {
       if (res.status == 200) {
         console.log("success UPDATE_PROFILE", res);
-        if (profile.files.length) {
-          let formDataProfile = new FormData();
-          for (let file of profile.files) {
-            formDataProfile.append("file", file);
-          }
-          let payload = { userId, formDataProfile };
-          context.dispatch(SEND_PROFILE_MEDIAS, payload);
-        }
       }
     });
+    if (profile.files.length) {
+      let formDataProfile = new FormData();
+      for (let file of profile.files) {
+        formDataProfile.append("file", file);
+      }
+      let payload = { userId, formDataProfile };
+      await context.dispatch(SEND_PROFILE_MEDIAS, payload);
+    }
   },
   async [SEND_EDUCATION_MEDIAS](context, payload) {
     console.log("SEND_EDUCATION_MEDIAS");
@@ -104,24 +104,25 @@ export const actions = {
     let copyEducation = { ...education };
     delete copyEducation.files;
     delete copyEducation.educationId;
+    let educationId = null;
     await EducationService.postEducation(userId, copyEducation).then(res => {
       if (res.status == 200) {
         console.log("success SEND_EDUCATION", res);
-        if (education.files.length) {
-          let educationId = res.data.id;
-          let formDataEducation = new FormData();
-          for (let file of education.files) {
-            formDataEducation.append("file", file);
-          }
-          let payload = { userId, educationId, formDataEducation };
-          context.dispatch(SEND_EDUCATION_MEDIAS, payload);
-        }
+        educationId = res.data.id;
       }
     });
+    if (education.files.length) {
+      let formDataEducation = new FormData();
+      for (let file of education.files) {
+        formDataEducation.append("file", file);
+      }
+      let payload = { userId, educationId, formDataEducation };
+      context.dispatch(SEND_EDUCATION_MEDIAS, payload);
+    }
   },
   async [SEND_EDUCATIONS](context) {
     console.log("SEND_EDUCATIONS");
-    const { id: userId } = context.getters.getCurrentUser;
+    const userId = context.getters.getCurrentUser.id;
     const educations = context.getters.getAppEducations;
     console.log("educations", educations);
     console.log("educations.length", educations.length);
@@ -151,24 +152,25 @@ export const actions = {
     let copyExperience = { ...experience };
     delete copyExperience.files;
     delete copyExperience.experienceId;
+    let experienceId = null;
     await ExperienceService.postExperience(userId, copyExperience).then(res => {
       if (res.status == 200) {
         console.log("success SEND_EXPERIENCE", res);
-        if (experience.files.length) {
-          let experienceId = res.data.id;
-          let formDataExperience = new FormData();
-          for (let file of experience.files) {
-            formDataExperience.append("file", file);
-          }
-          let payload = { userId, experienceId, formDataExperience };
-          context.dispatch(SEND_EXPERIENCE_MEDIAS, payload);
-        }
+        experienceId = res.data.id;
       }
     });
+    if (experience.files.length) {
+      let formDataExperience = new FormData();
+      for (let file of experience.files) {
+        formDataExperience.append("file", file);
+      }
+      let payload = { userId, experienceId, formDataExperience };
+      await context.dispatch(SEND_EXPERIENCE_MEDIAS, payload);
+    }
   },
   async [SEND_EXPERIENCES](context) {
     console.log("SEND_EXPERIENCES");
-    const { id: userId } = context.getters.getCurrentUser;
+    const userId = context.getters.getCurrentUser.id;
     const experiences = context.getters.getAppExperiences;
     if (experiences.length) {
       for (let experience of experiences) {
@@ -195,24 +197,25 @@ export const actions = {
     let copySkill = { ...skill };
     delete copySkill.files;
     delete copySkill.skillId;
+    let skillId = null;
     await SkillService.postSkill(userId, copySkill).then(res => {
       if (res.status == 200) {
         console.log("success SEND_SKILL", res);
-        if (skill.files.length) {
-          let skillId = res.data.id;
-          let formDataSkill = new FormData();
-          for (let file of skill.files) {
-            formDataSkill.append("file", file);
-          }
-          let payload = { userId, skillId, formDataSkill };
-          context.dispatch(SEND_SKILL_MEDIAS, payload);
-        }
+        skillId = res.data.id;
       }
     });
+    if (skill.files.length) {
+      let formDataSkill = new FormData();
+      for (let file of skill.files) {
+        formDataSkill.append("file", file);
+      }
+      let payload2 = { userId, skillId, formDataSkill };
+      await context.dispatch(SEND_SKILL_MEDIAS, payload2);
+    }
   },
   async [SEND_SKILLS](context) {
     console.log("SEND_SKILLS");
-    const { id: userId } = context.getters.getCurrentUser;
+    const userId = context.getters.getCurrentUser.id;
     const skills = context.getters.getAppSkills;
     if (skills.length) {
       for (let skill of skills) {
@@ -231,7 +234,7 @@ export const actions = {
     await context.dispatch(SEND_SKILLS);
     context.commit(STOP_UPLOAD);
     let t1 = performance.now();
-    console.log("SEND_APPLICATION took " + (t1 - t0) + " milliseconds");
+    console.log("SEND_APPLICATION took " + (t1 - t0) / 1000 + " seconds");
     console.log(
       "\nThe order of logs should be: \n",
       "SEND_APPLICATION start\n",
@@ -239,7 +242,7 @@ export const actions = {
       "a repeat of SEND_EDUCATION -> SEND_EDUCATION_MEDIAS\n",
       "a repeat of SEND_EXPERIENCE -> SEND_EXPERIENCE_MEDIAS\n",
       "a repeat of SEND_SKILL -> SEND_SKILL_MEDIAS\n",
-      "SEND_APPLICATION took some milliseconds\n"
+      "SEND_APPLICATION took some seconds\n"
     );
   },
   async [UPLOAD](context, payload) {
