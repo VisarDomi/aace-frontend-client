@@ -123,7 +123,7 @@
           <p>{{ commentFromAdmin }}</p>
           <br>
           <router-link
-            :to="{ name: 'Reapplication' }"
+            :to="{ name: 'ComingSoon' }"
             v-if="getCurrentUser.application_status == 'rebutted'"
           >
             <button type="submit" class="btn btn-primary">Rregullo aplikimin</button>

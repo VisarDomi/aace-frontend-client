@@ -91,7 +91,7 @@
                 <router-link :to="{ name: 'Application' }">Forma e aplikimit</router-link>
               </li>
               <li v-if="getCurrentUser.application_status == 'rebutted'">
-                <router-link :to="{ name: 'Reapplication' }">Forma e riaplikimit</router-link>
+                <router-link :to="{ name: 'ComingSoon' }">Forma e riaplikimit</router-link>
               </li>
               <li v-if="getCurrentUser.payment_status == 'blank'">
                 <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
