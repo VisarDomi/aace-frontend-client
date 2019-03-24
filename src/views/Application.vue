@@ -10,7 +10,6 @@
         </div>
 
         <div class="container">
-
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="input-file-container">
@@ -35,7 +34,6 @@
             </div>
 
             <div class="col-xs-12 col-sm-8">
-
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Emri</label>
                 <div class="col-sm-9">
@@ -103,7 +101,7 @@
                     >{{ option.text }}</option>
                   </select>
                 </div>
-              </div> -->
+              </div>-->
 
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
@@ -648,7 +646,6 @@
                     </button>
 
                     <div class="row">
-
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input

@@ -33,7 +33,7 @@
 
               <li>
                 <i class="fa fa-birthday-cake"></i>
-                <span>{{ getFormattedDate(profile.birthday) }}</span>
+                <span>{{ profile.birthday }}</span>
               </li>
 
               <li>
@@ -190,11 +190,6 @@ export default {
         iconType = "female";
       }
       return iconType;
-    },
-    getFormattedDate(datetime) {
-      let date_object = new Date(datetime);
-      let formatted_date = date_object.toISOString().split("T")[0]
-      return formatted_date
     },
 
   },
