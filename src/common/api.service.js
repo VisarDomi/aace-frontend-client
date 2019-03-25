@@ -101,10 +101,10 @@ export const PaymentService = {
 
 export const CommunicationService = {
   getCommunications() {
-    return ApiService.get("officialcommunication/all");
+    return ApiService.get(`officialcommunication/all`);
   },
   getCommunication(communicationId) {
-    return ApiService.get("officialcommunication", communicationId);
+    return ApiService.get(`officialcommunication/${communicationId}`);
   },
   postComment(communicationId, comment) {
     return ApiService.post(

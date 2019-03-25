@@ -652,7 +652,6 @@
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
-import DateFilter from "@/common/date.filter";
 import { EducationService } from "@/common/api.service";
 
 export default {
@@ -1270,7 +1269,7 @@ export default {
         // this.application_status = res.data.application_status;
         this.phone = res.data.phone;
         this.address = res.data.address;
-        this.birthday = DateFilter(res.data.birthday);
+        this.birthday = res.data.birthday;
         this.website = res.data.website;
 
         this.sex = res.data.sex;

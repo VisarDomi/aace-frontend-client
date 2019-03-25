@@ -32,7 +32,7 @@
               <p>{{ communication.description }}</p>
               <br />
               <p>
-                <strong>{{ getFormattedDate(communication.timestamp) }}</strong>
+                <strong>{{ communication.timestamp }}</strong>
               </p>
             </router-link>
           </div>
@@ -47,15 +47,10 @@
 <script>
 import { mapGetters } from "vuex";
 import store from "@/store";
-import DateFilter from "@/common/date.filter";
 import { FETCH_COMMUNICATIONS } from "@/store/actions.type";
 export default {
   name: "Communications",
   methods: {
-    getFormattedDate(time) {
-      return DateFilter(time);
-      // console.log("time", time)
-    },
     reverseCommunications(communications) {
       let reversed_communications = this.communications.slice().reverse();
       return reversed_communications;

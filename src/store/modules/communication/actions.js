@@ -17,13 +17,14 @@ export const actions = {
     const { data } = await CommunicationService.getCommunications();
     console.log("communciations ", data);
     context.commit(SET_COMMUNICATIONS, data);
-    console.log("state communication", context.state.communications);
+    console.log("context.state.communications", context.state.communications);
   },
   async [FETCH_COMMUNICATION](context, communicationId) {
     const { id } = communicationId;
     console.log("FETCH_COMMUNICATION", id);
     const { data } = await CommunicationService.getCommunication(id);
     context.commit(SET_COMMUNICATION, data);
+    console.log("context.state.communication", context.state.communication);
   },
   async [FETCH_COMMENTS](context, communicationId) {
     const { id } = communicationId;
