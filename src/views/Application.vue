@@ -762,19 +762,35 @@
               </p>
             </header>
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
+              <button class="btn btn-success btn-xl btn-round" type="submit" :disabled="!isUploading">Dergo aplikimin</button>
             </p>
             <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
             </form-summary>
-            <div class="card border-info mb-3" v-if="isUploading">
+            <div class="card border-info mb-3 become-centered" v-if="!isUploading">
+              <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
               <div class="card-header">Ngarkim dokumentash</div>
               <div class="card-body text-info">
                 <h5 class="card-title">Informacion</h5>
-                <p class="card-text">
-                  Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.
-                  Ne mbarim te procesit do te ridrejtoheni automatikisht ne faqen e suksesit.
-                </p>
+                <p
+                  class="card-text"
+                >Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.</p>
+                <p
+                  class="card-text"
+                >Ne mbarim te procesit do te ridrejtoheni automatikisht ne faqen e suksesit.</p>
               </div>
             </div>
           </div>
@@ -808,8 +824,8 @@ import {
   SEND_APPLICATION
 } from "@/store/actions.type";
 import {
-  START_UPLOAD,
-  STOP_UPLOAD,
+  START_LOADING,
+  STOP_LOADING,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -1067,6 +1083,14 @@ document.querySelector("html").classList.add("js");
 </script>
 
 <style scoped>
+/**/
+.become-centered {
+  margin: auto;
+}
+/*
+spinner style is at App.vue
+*/
+/**/
 .input-file-container {
   position: relative;
   width: 225px;

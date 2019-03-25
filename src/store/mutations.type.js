@@ -1,6 +1,6 @@
 // application
-export const START_UPLOAD = "startUpload";
-export const STOP_UPLOAD = "stopUpload";
+export const START_LOADING = "startLoading";
+export const STOP_LOADING = "stopLoading";
 export const SET_PROFILE_FILES = "setProfileFiles";
 export const SET_APP_PROFILE = "setAppProfile";
 export const ADD_EDUCATION = "addEducation";

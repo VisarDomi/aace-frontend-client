@@ -23,8 +23,8 @@ import {
   SEND_APPLICATION
 } from "../../actions.type";
 import {
-  START_UPLOAD,
-  STOP_UPLOAD,
+  START_LOADING,
+  STOP_LOADING,
   SET_APP_PROFILE
 } from "../../mutations.type";
 
@@ -227,12 +227,12 @@ export const actions = {
   async [SEND_APPLICATION](context) {
     console.log("\n\nSEND_APPLICATION start");
     let t0 = performance.now();
-    context.commit(START_UPLOAD);
+    context.commit(START_LOADING);
     await context.dispatch(UPDATE_PROFILE);
     await context.dispatch(SEND_EDUCATIONS);
     await context.dispatch(SEND_EXPERIENCES);
     await context.dispatch(SEND_SKILLS);
-    context.commit(STOP_UPLOAD);
+    context.commit(STOP_LOADING);
     let t1 = performance.now();
     console.log("SEND_APPLICATION took " + (t1 - t0) / 1000 + " seconds");
     console.log(

@@ -1,6 +1,6 @@
 import {
-  START_UPLOAD,
-  STOP_UPLOAD,
+  START_LOADING,
+  STOP_LOADING,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -18,10 +18,10 @@ import {
 } from "../../mutations.type";
 
 export const mutations = {
-  [START_UPLOAD](state) {
+  [START_LOADING](state) {
     state.isUploading = true;
   },
-  [STOP_UPLOAD](state) {
+  [STOP_LOADING](state) {
     state.isUploading = false;
   },
   [SET_PROFILE_FILES](state, { vm }) {

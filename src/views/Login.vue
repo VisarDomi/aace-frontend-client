@@ -5,21 +5,16 @@
       style="background-image: url(static/img/home_banner_grayed_short.jpg); margin-bottom: 0px;"
     >
       <div class="login-page">
-        <main
-          style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;"
-        >
+        <main style="margin-bottom: 0px; margin-top: 20px; padding-bottom: 50px;">
           <div class="login-block">
-            <img src="static/img/logo_partial2.png" alt="AACE logo" />
+            <img src="static/img/logo_partial2.png" alt="AACE logo">
             <h1>Hyr ne llogarine e juaj</h1>
 
-            <div class="summary text-red" v-if="invalid">
-              Email/password eshte gabim
-            </div>
+            <div class="summary text-red" v-if="invalid">Email/password eshte gabim</div>
 
             <form @submit.prevent="onSubmit">
               <div class="form-group">
-                <div class="input-group"
-                  :class="{ 'hasError': $v.login_form.email.$error}">
+                <div class="input-group" :class="{ 'hasError': $v.login_form.email.$error}">
                   <span class="input-group-addon">
                     <i class="ti-email"></i>
                   </span>
@@ -29,18 +24,18 @@
                     placeholder="Email-i juaj"
                     @input="invalid = false"
                     v-model="login_form.email"
-                  />
+                  >
                 </div>
-                <div class="summary text-red" v-if="$v.login_form.email.$error">
-                  Vendos nje email te sakte
-                </div>
+                <div
+                  class="summary text-red"
+                  v-if="$v.login_form.email.$error"
+                >Vendos nje email te sakte</div>
               </div>
 
-              <hr class="hr-xs" />
+              <hr class="hr-xs">
 
               <div class="form-group">
-                <div class="input-group"
-                  :class="{ 'hasError': $v.login_form.password.$error}">
+                <div class="input-group" :class="{ 'hasError': $v.login_form.password.$error}">
                   <span class="input-group-addon">
                     <i class="ti-unlock"></i>
                   </span>
@@ -50,18 +45,17 @@
                     placeholder="Fjalekalimi juaj"
                     @input="invalid = false"
                     v-model="login_form.password"
-                  />
+                  >
                 </div>
-                <div class="summary text-red" v-if="$v.login_form.password.$error">
-                  Passwordi juaj eshte shume i shkurter
-                </div>
+                <div
+                  class="summary text-red"
+                  v-if="$v.login_form.password.$error"
+                >Passwordi juaj eshte shume i shkurter</div>
               </div>
 
-              <button class="btn btn-primary btn-block" type="submit">
-                Hyr
-              </button>
+              <button class="btn btn-primary btn-block" type="submit">Hyr</button>
 
-              <hr class="hr-xs" />
+              <hr class="hr-xs">
               <!-- <div class="form-group">{{ loading }}</div> -->
             </form>
           </div>
@@ -69,12 +63,11 @@
           <div class="login-links">
             <!-- <a href="#" class="pull-left btn btn-light"
               >Keni harruar fjalekalimin?</a
-            > -->
+            >-->
             <router-link
-              to="/register"
+              :to="{ name: 'Register' }"
               class="pull-right btn btn-light go-to-pull-left"
-              >Regjistrohu</router-link
-            >
+            >Regjistrohu</router-link>
           </div>
         </main>
       </div>
@@ -107,20 +100,19 @@ export default {
   methods: {
     onSubmit() {
       this.$v.login_form.$touch();
-      if(this.$v.login_form.$error) return
+      if (this.$v.login_form.$error) return;
 
+      let credentials = {
+        username: this.login_form.email,
+        password: this.login_form.password
+      };
 
-      let credentials = { 
-        username: this.login_form.email, 
-        password: this.login_form.password 
-      }
-      
       this.$store
         .dispatch(LOGIN, credentials)
         .then(() => this.$router.push({ name: "MemberArea" }))
         .catch(err => {
-          if(err.response.status == 401){
-            this.invalid = true
+          if (err.response.status == 401) {
+            this.invalid = true;
           }
         });
     }
@@ -140,10 +132,10 @@ export default {
     margin-top: 10px;
   }
 }
-.hasError{
-  border: solid 2px
+.hasError {
+  border: solid 2px;
 }
-.text-red{
-  color: red
+.text-red {
+  color: red;
 }
 </style>
