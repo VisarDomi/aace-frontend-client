@@ -18,46 +18,34 @@ import {
 } from "../../mutations.type";
 
 export const actions = {
-  [FETCH_PROFILE](context, payload) {
+  async [FETCH_PROFILE](context, payload) {
     const { id } = payload;
-    ProfileService.getProfile(id).then(({ data }) => {
+    await ProfileService.getProfile(id).then(({ data }) => {
       context.commit(SET_PROFILE, data);
-      return data;
+      // return data;
     });
-    MediaService.getPicture(id)
-      .then(({ data }) => {
-        if (data.length != 0) {
-          context.commit(SET_PICTURE, data[0].url);
-        } else {
-          context.commit(SET_PICTURE, "https://aace.ml/static/dpi.jpg");
-        }
-      })
-      .catch(() => {});
-
-    EducationService.getEducation(id)
-      .then(({ data }) => {
-        context.commit(SET_EDUCATIONS, data);
-      })
-      .catch(() => {});
-
-    ExperienceService.getExperience(id)
-      .then(({ data }) => {
-        context.commit(SET_EXPERIENCES, data);
-      })
-      .catch(() => {});
-    SkillService.getSkill(id)
-      .then(({ data }) => {
-        context.commit(SET_SKILLS, data);
-      })
-      .catch(() => {});
-    PaymentService.getPayment(id)
-      .then(({ data }) => {
-        context.commit(SET_PAYMENTS, data);
-      })
-      .catch(() => {});
+    await MediaService.getPicture(id).then(({ data }) => {
+      if (data.length != 0) {
+        context.commit(SET_PICTURE, data[0].url);
+      } else {
+        context.commit(SET_PICTURE, "https://aace.ml/static/dpi.jpg");
+      }
+    });
+    await EducationService.getEducations(id).then(({ data }) => {
+      context.commit(SET_EDUCATIONS, data);
+    });
+    await ExperienceService.getExperiences(id).then(({ data }) => {
+      context.commit(SET_EXPERIENCES, data);
+    });
+    await SkillService.getSkills(id).then(({ data }) => {
+      context.commit(SET_SKILLS, data);
+    });
+    await PaymentService.getPayments(id).then(({ data }) => {
+      context.commit(SET_PAYMENTS, data);
+    });
   },
-  [FETCH_APPLICATION_INFO](context) {
-    ProfileService.getProfile(context.getters.getCurrentUser.id).then(
+  async [FETCH_APPLICATION_INFO](context) {
+    await ProfileService.getProfile(context.getters.getCurrentUser.id).then(
       ({ data }) => {
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
         return data;

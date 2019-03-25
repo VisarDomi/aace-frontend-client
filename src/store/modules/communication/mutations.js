@@ -1,3 +1,4 @@
+import { hourFormat } from "@/common/date.filter";
 import {
   SET_COMMUNICATION,
   SET_COMMUNICATIONS,
@@ -7,6 +8,9 @@ import {
 
 export const mutations = {
   [SET_COMMUNICATIONS](state, communications) {
+    for (let communication of communications) {
+      console.log("communication is", communication);
+    }
     state.communications = communications;
   },
   [SET_COMMUNICATION](state, communication) {

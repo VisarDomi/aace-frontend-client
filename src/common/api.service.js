@@ -64,7 +64,7 @@ export const ProfileService = {
 };
 
 export const EducationService = {
-  getEducation(userId) {
+  getEducations(userId) {
     return ApiService.get(`user/${userId}/education/all`);
   },
   postEducation(userId, education) {
@@ -73,7 +73,7 @@ export const EducationService = {
 };
 
 export const ExperienceService = {
-  getExperience(userId) {
+  getExperiences(userId) {
     return ApiService.get(`user/${userId}/experience/all`);
   },
   postExperience(userId, experience) {
@@ -82,7 +82,7 @@ export const ExperienceService = {
 };
 
 export const SkillService = {
-  getSkill(userId) {
+  getSkills(userId) {
     return ApiService.get(`user/${userId}/skill/all`);
   },
   postSkill(userId, skill) {
@@ -91,7 +91,7 @@ export const SkillService = {
 };
 
 export const PaymentService = {
-  getPayment(userId) {
+  getPayments(userId) {
     return ApiService.get(`user/${userId}/payment/all`);
   },
   postPayment(userId, payment) {
