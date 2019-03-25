@@ -2,14 +2,11 @@
   <div>
     <!-- Page header -->
     <!-- Page header -->
-    <header
-      class="page-header bg-img"
-      style="background-image: url(static/img/bg-banner1.jpg)"
-    >
+    <header class="page-header bg-img" style="background-image: url(static/img/bg-banner1.jpg)">
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-4">
-            <img :src="profilePicture" alt />
+            <img :src="profilePicture" alt>
           </div>
 
           <div class="col-xs-12 col-sm-8 header-detail">
@@ -17,7 +14,7 @@
               <h1>{{ profile.first_name + " " + profile.last_name }}</h1>
               <h3>{{ profile.profession }}</h3>
             </div>
-            <hr />
+            <hr>
             <p class="lead">{{ profile.summary }}</p>
 
             <ul class="details cols-2">
@@ -33,7 +30,7 @@
 
               <li>
                 <i class="fa fa-birthday-cake"></i>
-                <span>{{ profile.birthday }}</span>
+                <span>{{ profile.birthday | yearFormat }}</span>
               </li>
 
               <li>
@@ -67,11 +64,7 @@
           </header>
 
           <div class="row" v-if="educations.length">
-            <div
-              class="col-xs-12"
-              :key="education.id"
-              v-for="education in educations"
-            >
+            <div class="col-xs-12" :key="education.id" v-for="education in educations">
               <div class="item-block">
                 <header>
                   <div class="hgroup">
@@ -81,9 +74,7 @@
                     </h4>
                     <h5>{{ education.school }}</h5>
                   </div>
-                  <h6 class="time">
-                    {{ education.from_date }} deri ne {{ education.to_date }}
-                  </h6>
+                  <h6 class="time">{{ education.from_date }} deri ne {{ education.to_date }}</h6>
                 </header>
                 <div class="item-body">
                   <p>{{ education.description }}</p>
@@ -106,11 +97,7 @@
           </header>
 
           <div class="row" v-if="experiences.length">
-            <div
-              class="col-xs-12"
-              :key="experience.id"
-              v-for="experience in experiences"
-            >
+            <div class="col-xs-12" :key="experience.id" v-for="experience in experiences">
               <div class="item-block">
                 <header>
                   <div class="hgroup">
@@ -118,9 +105,7 @@
                     <h5>{{ experience.employer }}</h5>
                     <h5>{{ experience.location }}</h5>
                   </div>
-                  <h6 class="time">
-                    {{ experience.from_date }} deri ne {{ experience.to_date }}
-                  </h6>
+                  <h6 class="time">{{ experience.from_date }} deri ne {{ experience.to_date }}</h6>
                 </header>
                 <div class="item-body">
                   <p>{{ experience.description }}</p>
@@ -129,9 +114,7 @@
             </div>
           </div>
           <div v-else>
-            <h3 class="text-center" style="color: #ff6666">
-              S'ka pervoje pune
-            </h3>
+            <h3 class="text-center" style="color: #ff6666">S'ka pervoje pune</h3>
           </div>
         </div>
       </section>
@@ -152,9 +135,7 @@
                     <h4>{{ skill.name }}</h4>
                     <h5>{{ skill.releaser }}</h5>
                   </div>
-                  <h6 class="time">
-                    {{ skill.from_date }} deri ne {{ skill.to_date }}
-                  </h6>
+                  <h6 class="time">{{ skill.from_date }} deri ne {{ skill.to_date }}</h6>
                 </header>
                 <div class="item-body">
                   <p>{{ skill.description }}</p>
@@ -177,7 +158,7 @@
 import { mapGetters } from "vuex";
 import { FETCH_PROFILE } from "@/store/actions.type";
 import store from "@/store";
-import DateFilter from "@/common/date.filter";
+import { yearFormat } from "@/common/date.filter";
 
 export default {
   name: "Profile",
@@ -190,8 +171,7 @@ export default {
         iconType = "female";
       }
       return iconType;
-    },
-
+    }
   },
   mounted() {
     this.$store.dispatch(FETCH_PROFILE, this.$route.params);

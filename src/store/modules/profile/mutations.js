@@ -1,4 +1,3 @@
-import { yearFormat } from "@/common/date.filter";
 import {
   SET_PROFILE,
   SET_PICTURE,
@@ -11,8 +10,6 @@ import {
 
 export const mutations = {
   [SET_PROFILE](state, profile) {
-    const { birthday } = profile;
-    profile.birthday = yearFormat(birthday);
     state.profile = profile;
     state.errors = {};
   },

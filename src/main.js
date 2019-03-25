@@ -5,7 +5,7 @@ import store from "./store";
 import "./registerServiceWorker";
 import { CHECK_AUTH } from "./store/actions.type";
 import { ApiService } from "./common/api.service";
-// import DateFilter from "./common/date.filter";
+import { yearFormat, hourFormat } from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
 
 import Vuelidate from "vuelidate";
@@ -36,7 +36,8 @@ Vue.use(VuelidateErrorExtractor, {
 });
 
 Vue.config.productionTip = false;
-// Vue.filter("date", DateFilter);
+Vue.filter("yearFormat", yearFormat);
+Vue.filter("hourFormat", hourFormat);
 Vue.filter("error", ErrorFilter);
 
 ApiService.init();

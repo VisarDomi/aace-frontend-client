@@ -33,6 +33,8 @@ export default {
 .navbar .container {
   width: 100%;
 }
+
+/* spinner */
 .lds-spinner {
   display: block;
   margin: auto;

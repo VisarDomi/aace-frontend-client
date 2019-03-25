@@ -25,7 +25,7 @@ export const actions = {
     console.log("FETCH_COMMUNICATION, id:", id);
     let communication = context.state.communications.filter(
       communication => communication.id == id
-    );
+    )[0];
     context.commit(SET_COMMUNICATION, communication);
     console.log("context.state.communication", context.state.communication);
   },

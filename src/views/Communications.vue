@@ -32,7 +32,7 @@
               <p>{{ communication.description }}</p>
               <br />
               <p>
-                <strong>{{ communication.timestamp }}</strong>
+                <strong>{{ communication.timestamp | hourFormat }}</strong>
               </p>
             </router-link>
           </div>
@@ -48,6 +48,8 @@
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_COMMUNICATIONS } from "@/store/actions.type";
+import { hourFormat } from "@/common/date.filter";
+
 export default {
   name: "Communications",
   methods: {
