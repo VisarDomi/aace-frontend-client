@@ -186,11 +186,6 @@ export default {
       "experiences",
       "skills"
     ])
-  },
-  watch: {
-    $route(to) {
-      this.$store.dispatch(FETCH_PROFILE, to.params);
-    }
   }
 };
 </script>

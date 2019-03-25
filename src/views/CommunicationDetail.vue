@@ -25,9 +25,7 @@
                     <h4
                       style="margin-bottom:0px;"
                       v-if="communicationDocuments.length != 0"
-                    >
-                      Dokumenta
-                    </h4>
+                    >Dokumenta</h4>
 
                     <div class="row">
                       <div
@@ -66,32 +64,25 @@
 
             <div class="row item-blocks-connected">
               <!-- Job item -->
-              <div
-                class="col-xs-12"
-                :key="comment.id"
-                v-for="comment in comments"
-              >
+              <div class="col-xs-12" :key="comment.id" v-for="comment in comments">
                 <div class="item-block">
                   <header>
                     <div class="hgroup">
-                      <h4>
-                        {{ comment.author_first_name }}
-                        {{ comment.author_last_name }}
-                      </h4>
+                      <router-link :to="{ name: 'Profile', params: comment.author }">
+                        <h4>
+                          {{ comment.author.first_name }}
+                          {{ comment.author.last_name }}
+                        </h4>
+                      </router-link>
                       <span
                         :class="returnLabel(comment.author_organizationgroup)"
-                        >{{ comment.author_organizationgroup }}</span
-                      >
+                      >{{ comment.author_organizationgroup }}</span>
                       <h5>{{ comment.body }}</h5>
                     </div>
                     <div class="header-meta">
                       <!-- <span class="clock timeago"  > {{comment.timestamp}}</span> -->
-                      <br />
-                      <time-ago
-                        :datetime="comment.timestamp"
-                        locale="en"
-                        class="time"
-                      ></time-ago>
+                      <br>
+                      <time-ago :datetime="comment.timestamp" locale="en" class="time"></time-ago>
                     </div>
                   </header>
                 </div>
@@ -109,10 +100,8 @@
                 v-model="comment_body"
                 placeholder="Shkruaj nje koment..."
               ></textarea>
-              <br />
-              <div class="btn btn-primary" @click="sendComment">
-                Dergo koment
-              </div>
+              <br>
+              <div class="btn btn-primary" @click="sendComment">Dergo koment</div>
             </form>
           </div>
         </div>
@@ -126,7 +115,7 @@
 <script>
 import axios from "axios";
 import TimeAgo from "vue2-timeago";
-const FileSaver = require("file-saver");
+import FileSaver from "file-saver";
 import { mapGetters } from "vuex";
 import JwtService from "@/common/jwt.service";
 import {
@@ -227,15 +216,8 @@ export default {
         });
     }
   },
-
   computed: {
     ...mapGetters(["comments", "communication", "communicationDocuments"])
-  },
-
-  watch: {
-    $route(to) {
-      this.$store.dispatch(FETCH_COMMUNICATION, to.params);
-    }
   }
 };
 </script>

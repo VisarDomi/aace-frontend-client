@@ -19,14 +19,12 @@ export const actions = {
     context.commit(SET_COMMUNICATIONS, data);
     console.log("context.state.communications", context.state.communications);
   },
-  [FETCH_COMMUNICATION](context, payload) {
+  async [FETCH_COMMUNICATION](context, payload) {
     console.log("FETCH_COMMUNICATION, payload:", payload);
     const { id } = payload;
     console.log("FETCH_COMMUNICATION, id:", id);
-    let communication = context.state.communications.filter(
-      communication => communication.id == id
-    )[0];
-    context.commit(SET_COMMUNICATION, communication);
+    const { data } = await CommunicationService.getCommunication(id);
+    context.commit(SET_COMMUNICATION, data);
     console.log("context.state.communication", context.state.communication);
   },
   async [FETCH_COMMENTS](context, payload) {
