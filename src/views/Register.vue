@@ -54,8 +54,9 @@
                   Passwordi juaj eshte shume i shkurter
                 </div>
               </div>
-
-              <button class="btn btn-primary btn-block" type="submit">
+              <input type="checkbox" id="terms" @change="submit_disabled = !submit_disabled">
+              <label for="terms">Accept Terms of Use </label>
+              <button class="btn btn-primary btn-block" type="submit" :disabled='!submit_disabled'>
                 Regjistrohu
               </button>
 
@@ -93,7 +94,8 @@ export default {
         email: "",
         password: ""
       },
-      email_exists: false
+      email_exists: false,
+      submit_disabled: false
     };
   },
   validations: {
