@@ -17,7 +17,8 @@ Vue.use(VuelidateErrorExtractor, {
   // Define common validation messages.
   messages: {
     required: "{attribute} duhet plotesuar!",
-    email: "{attribute} duhet te jete format emaili!"
+    email: "{attribute} duhet te jete format emaili!",
+    minLength: "{attribute} duhet te jete me i gjate!"
   },
   attributes: {
     first_name: "Emri",

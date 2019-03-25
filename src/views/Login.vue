@@ -12,9 +12,14 @@
             <img src="static/img/logo_partial2.png" alt="AACE logo" />
             <h1>Hyr ne llogarine e juaj</h1>
 
-            <form @submit.prevent="onSubmit(username, password)">
+            <div class="summary text-red" v-if="invalid">
+              Email/password eshte gabim
+            </div>
+
+            <form @submit.prevent="onSubmit">
               <div class="form-group">
-                <div class="input-group">
+                <div class="input-group"
+                  :class="{ 'hasError': $v.login_form.email.$error}">
                   <span class="input-group-addon">
                     <i class="ti-email"></i>
                   </span>
@@ -22,15 +27,20 @@
                     type="text"
                     class="form-control"
                     placeholder="Email-i juaj"
-                    v-model="username"
+                    @input="invalid = false"
+                    v-model="login_form.email"
                   />
+                </div>
+                <div class="summary text-red" v-if="$v.login_form.email.$error">
+                  Vendos nje email te sakte
                 </div>
               </div>
 
               <hr class="hr-xs" />
 
               <div class="form-group">
-                <div class="input-group">
+                <div class="input-group"
+                  :class="{ 'hasError': $v.login_form.password.$error}">
                   <span class="input-group-addon">
                     <i class="ti-unlock"></i>
                   </span>
@@ -38,8 +48,12 @@
                     type="password"
                     class="form-control"
                     placeholder="Fjalekalimi juaj"
-                    v-model="password"
+                    @input="invalid = false"
+                    v-model="login_form.password"
                   />
+                </div>
+                <div class="summary text-red" v-if="$v.login_form.password.$error">
+                  Passwordi juaj eshte shume i shkurter
                 </div>
               </div>
 
@@ -50,9 +64,6 @@
               <hr class="hr-xs" />
               <!-- <div class="form-group">{{ loading }}</div> -->
             </form>
-            <ul v-if="errors" class="error-messages">
-              <li v-for="(v, k) in errors" :key="k">{{ k }} {{ v | error }}</li>
-            </ul>
           </div>
 
           <div class="login-links">
@@ -74,20 +85,44 @@
 <script>
 import { mapState } from "vuex";
 import { LOGIN } from "@/store/actions.type";
+import { required, email, minLength } from "vuelidate/lib/validators";
 
 export default {
   name: "Login",
   data() {
     return {
-      username: null,
-      password: null
+      login_form: {
+        email: null,
+        password: null
+      },
+      invalid: false
     };
   },
+  validations: {
+    login_form: {
+      email: { required, email },
+      password: { required, min: minLength(6) }
+    }
+  },
   methods: {
-    onSubmit(username, password) {
+    onSubmit() {
+      this.$v.login_form.$touch();
+      if(this.$v.login_form.$error) return
+
+
+      let credentials = { 
+        username: this.login_form.email, 
+        password: this.login_form.password 
+      }
+      
       this.$store
-        .dispatch(LOGIN, { username, password })
-        .then(() => this.$router.push({ name: "MemberArea" }));
+        .dispatch(LOGIN, credentials)
+        .then(() => this.$router.push({ name: "MemberArea" }))
+        .catch(err => {
+          if(err.response.status == 401){
+            this.invalid = true
+          }
+        });
     }
   },
   computed: {
@@ -104,5 +139,11 @@ export default {
     float: left !important;
     margin-top: 10px;
   }
+}
+.hasError{
+  border: solid 2px
+}
+.text-red{
+  color: red
 }
 </style>
