@@ -1,6 +1,5 @@
 // application
-export const START_LOADING = "startLoading";
-export const STOP_LOADING = "stopLoading";
+export const PURGE_APPLICATION = "purgeApplication";
 export const SET_PROFILE_FILES = "setProfileFiles";
 export const SET_APP_PROFILE = "setAppProfile";
 export const ADD_EDUCATION = "addEducation";
@@ -17,15 +16,19 @@ export const SET_SKILL_FILES = "setSkillFiles";
 export const UPDATE_SKILL = "updateSkill";
 
 // auth
-export const SET_AUTH_SECOND = "setUserNoToken";
+export const SET_AUTH_SECOND = "setUserButNoToken";
 export const SET_AUTH = "setUserAndToken";
-export const PURGE_AUTH = "logOut";
+export const PURGE_AUTH = "purgeAuth";
 
 // communication
 export const SET_COMMUNICATION = "setCommunication";
 export const SET_COMMUNICATIONS = "setCommunications";
 export const SET_COMMENTS = "setComments";
 export const SET_COMMENT = "setComment";
+
+// loading
+export const START_LOADING = "startLoading";
+export const STOP_LOADING = "stopLoading";
 
 // media
 export const SET_COMMUNICATION_DOCS = "setCommunicationDocs";
@@ -42,4 +45,4 @@ export const SET_PAYMENTS = "setPayments";
 // search
 export const SET_SEARCH_RESULT = "setSearchResult";
 export const SET_PICTURES = "setPictures";
-export const DELETE_PICTURES = "cleanPictures";
+export const DELETE_PICTURES = "deletePictures";

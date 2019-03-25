@@ -762,12 +762,12 @@
               </p>
             </header>
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit" :disabled="!isUploading">Dergo aplikimin</button>
+              <button class="btn btn-success btn-xl btn-round" type="submit" :disabled="isLoading">Dergo aplikimin</button>
             </p>
             <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
             </form-summary>
-            <div class="card border-info mb-3 become-centered" v-if="!isUploading">
+            <div class="card border-info mb-3 become-centered" v-if="isLoading">
               <div class="lds-spinner">
                 <div></div>
                 <div></div>
@@ -809,23 +809,9 @@ import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
 import {
   UPLOAD,
-  GET_PROFILE,
-  SEND_PROFILE_MEDIAS,
-  SEND_EDUCATION_MEDIAS,
-  SEND_EXPERIENCE_MEDIAS,
-  SEND_SKILL_MEDIAS,
-  UPDATE_PROFILE,
-  SEND_EDUCATION,
-  SEND_EXPERIENCE,
-  SEND_SKILL,
-  SEND_EDUCATIONS,
-  SEND_EXPERIENCES,
-  SEND_SKILLS,
-  SEND_APPLICATION
+  GET_PROFILE
 } from "@/store/actions.type";
 import {
-  START_LOADING,
-  STOP_LOADING,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -1045,7 +1031,7 @@ export default {
     ...mapGetters([
       "getCurrentUser",
       "getCurrentToken",
-      "isUploading",
+      "isLoading",
       "getAppProfile",
       "getAppEducations",
       "getAppExperiences",

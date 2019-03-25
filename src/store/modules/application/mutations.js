@@ -1,6 +1,5 @@
 import {
-  START_LOADING,
-  STOP_LOADING,
+  PURGE_APPLICATION,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -18,10 +17,30 @@ import {
 } from "../../mutations.type";
 
 export const mutations = {
-  [START_LOADING](state) {
-    state.isUploading = true;
-  },
-  [STOP_LOADING](state) {
+  [PURGE_APPLICATION](state) {
+    state.appProfile = {
+      first_name: "",
+      last_name: "",
+      profession: "",
+      sex: "",
+      summary: "",
+      country: "",
+      phone: "",
+      address: "",
+      birthday: "",
+      website: "",
+      email: "",
+      files: []
+    };
+    state.appEducations = [];
+    state.educationId = 0;
+    state.totalEducations = 0;
+    state.appExperiences = [];
+    state.experienceId = 0;
+    state.totalExperiences = 0;
+    state.appSkills = [];
+    state.skillId = 0;
+    state.totalSkills = 0;
     state.isUploading = false;
   },
   [SET_PROFILE_FILES](state, { vm }) {

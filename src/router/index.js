@@ -506,42 +506,42 @@ export default new Router({
         }
       }
     },
-    // {
-    //   path: "/privacy",
-    //   name: "Privacy",
-    //   component: () => import("@/views/almost_static/Privacy"),
-    //   meta: {
-    //     title: "Privacy",
-    //     metaTags: [
-    //       {
-    //         name: "description",
-    //         content: "The privacy page of AACE."
-    //       },
-    //       {
-    //         property: "og:description",
-    //         content: "The privacy page of AACE."
-    //       }
-    //     ]
-    //   }
-    // },
-    // {
-    //   path: "/terms",
-    //   name: "Terms",
-    //   component: () => import("@/views/almost_static/Terms"),
-    //   meta: {
-    //     title: "Terms",
-    //     metaTags: [
-    //       {
-    //         name: "description",
-    //         content: "The terms page of AACE."
-    //       },
-    //       {
-    //         property: "og:description",
-    //         content: "The terms page of AACE."
-    //       }
-    //     ]
-    //   }
-    // },
+    {
+      path: "/privacy",
+      name: "Privacy",
+      component: () => import("@/views/almost_static/Privacy"),
+      meta: {
+        title: "Privacy",
+        metaTags: [
+          {
+            name: "description",
+            content: "The privacy page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The privacy page of AACE."
+          }
+        ]
+      }
+    },
+    {
+      path: "/terms",
+      name: "Terms",
+      component: () => import("@/views/almost_static/Terms"),
+      meta: {
+        title: "Terms",
+        metaTags: [
+          {
+            name: "description",
+            content: "The terms page of AACE."
+          },
+          {
+            property: "og:description",
+            content: "The terms page of AACE."
+          }
+        ]
+      }
+    },
     {
       path: "/member_area",
       name: "MemberArea",

@@ -53,10 +53,26 @@
                 >Passwordi juaj eshte shume i shkurter</div>
               </div>
 
-              <button class="btn btn-primary btn-block" type="submit">Hyr</button>
+              <button class="btn btn-primary btn-block" type="submit" :disabled="isLoading">Hyr</button>
 
               <hr class="hr-xs">
-              <!-- <div class="form-group">{{ loading }}</div> -->
+              <div class="card border-info mb-3 become-centered" v-if="isLoading">
+                <div class="lds-spinner">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <div class="card-header">Duke u futur ne platform</div>
+              </div>
             </form>
           </div>
 
@@ -76,7 +92,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import { LOGIN } from "@/store/actions.type";
 import { required, email, minLength } from "vuelidate/lib/validators";
 
@@ -120,7 +136,8 @@ export default {
   computed: {
     ...mapState({
       errors: state => state.auth.errors
-    })
+    }),
+    ...mapGetters(["isLoading"])
   }
 };
 </script>
