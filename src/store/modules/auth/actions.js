@@ -4,12 +4,12 @@ import {
   SET_AUTH,
   SET_AUTH_SECOND,
   PURGE_AUTH,
+  PURGE_APPLICATION,
   START_LOADING,
   STOP_LOADING
 } from "../../mutations.type";
 import JwtService from "@/common/jwt.service";
 import UserService from "@/common/userstorage.service";
-import { PURGE_APPLICATION } from "./../../mutations.type";
 
 export const actions = {
   async [LOGIN](context, credentials) {

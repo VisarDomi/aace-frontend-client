@@ -95,6 +95,7 @@
 import { mapState, mapGetters } from "vuex";
 import { LOGIN } from "@/store/actions.type";
 import { required, email, minLength } from "vuelidate/lib/validators";
+import { STOP_LOADING } from "@/store/mutations.type";
 
 export default {
   name: "Login",
@@ -129,6 +130,7 @@ export default {
         .catch(err => {
           if (err.response.status == 401) {
             this.invalid = true;
+            this.$store.commit(STOP_LOADING)
           }
         });
     }
