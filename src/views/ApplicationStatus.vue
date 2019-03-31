@@ -21,11 +21,11 @@
           <br>
           <div v-if="getCurrentUser.application_status == 'applying'">
             <h4>Data e aplikimit:</h4>
-            <p>{{ getCurrentUser.application_date }}</p>
+            <p>{{ getCurrentUser.application_date | yearFormat }}</p>
           </div>
           <div v-else-if="getCurrentUser.application_status == 'reapplying'">
             <h4>Data e aplikimit:</h4>
-            <p>{{ getCurrentUser.reapplication_date }}</p>
+            <p>{{ getCurrentUser.reapplication_date | yearFormat}}</p>
           </div>
           <br>
           <h4>Status i aplikimit:</h4>
@@ -83,11 +83,11 @@
           <br>
           <div v-if="getCurrentUser.payment_status == 'sending_payment'">
             <h4>Data e dergimit te mandatit te pageses:</h4>
-            <p>{{ getCurrentUser.send_payment_date }}</p>
+            <p>{{ getCurrentUser.send_payment_date | yearFormat}}</p>
           </div>
           <div v-else-if="getCurrentUser.payment_status == 'resending_payment'">
             <h4>Data e dergimit te mandatit te pageses:</h4>
-            <p>{{ getCurrentUser.resend_payment_date }}</p>
+            <p>{{ getCurrentUser.resend_payment_date | yearFormat}}</p>
           </div>
 
           <br>
@@ -143,6 +143,7 @@
 </template>
 
 <script>
+import yearFormat from '@/common/date.filter.js';
 import { mapGetters } from "vuex";
 import store from "@/store";
 import { FETCH_APPLICATION_INFO } from "../store/actions.type";
