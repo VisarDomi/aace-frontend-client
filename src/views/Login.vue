@@ -82,7 +82,7 @@
             >-->
             <router-link
               :to="{ name: 'Register' }"
-              class="pull-right btn btn-light go-to-pull-left"
+              class=" btn btn-light "
             >Regjistrohu</router-link>
           </div>
         </main>
@@ -156,5 +156,9 @@ export default {
 }
 .text-red {
   color: red;
+}
+
+.login-links{
+  text-align: center;
 }
 </style>

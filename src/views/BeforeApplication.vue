@@ -23,13 +23,13 @@
           <br />
 
           <div class="text-center">
-            <hr />
+            <br>
             <div class="action-buttons">
               <router-link :to="{ name: 'Register' }" class="btn btn-success"
                 >Krijoni nje llogari te re</router-link
               >
             </div>
-            <hr />
+            <br>
             <div class="action-buttons">
               <router-link :to="{ name: 'Login' }" class="btn btn-success"
                 >Futuni ne llogarine e juaj egzistuese</router-link
