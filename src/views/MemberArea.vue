@@ -111,7 +111,8 @@ import { mapGetters } from "vuex";
 import {
   LOGOUT,
   FETCH_APPLICATION_INFO,
-  FETCH_COMMUNICATIONS
+  FETCH_COMMUNICATIONS,
+  FETCH_PROFILE
 } from "@/store/actions.type";
 import store from "@/store";
 
@@ -130,6 +131,7 @@ export default {
   mounted() {
     this.$store.dispatch(FETCH_APPLICATION_INFO);
     this.$store.dispatch(FETCH_COMMUNICATIONS);
+    this.$store.dispatch(FETCH_PROFILE);
   }
 };
 </script>

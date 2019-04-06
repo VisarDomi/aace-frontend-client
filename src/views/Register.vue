@@ -55,14 +55,16 @@
                   v-if="$v.register_form.password.$error"
                 >Passwordi juaj eshte shume i shkurter</div>
               </div>
-              <div>
+              <div >
+                <br>
                 <router-link :to="{ name: 'Terms' }">Kushtet e perdorimit</router-link>
-              </div>
-              <div>
+                &nbsp;
                 <router-link :to="{ name: 'Privacy' }">Polica e privacise</router-link>
-              </div>
-              <input type="checkbox" id="terms" @change="submit_disabled = !submit_disabled">
+                <br>
+                <input type="checkbox" id="terms" @change="submit_disabled = !submit_disabled">
               <label for="terms">Pranoj kushtet e mesiperme</label>
+              </div>
+
               <button
                 class="btn btn-primary btn-block"
                 type="submit"
@@ -90,11 +92,12 @@
             </form>
           </div>
 
-          <div class="login-links">
-            <p class="text-center">
+          <div class="login-links text-center">
+            <p >
               Keni nje llogari te meparshme?
-              <router-link :to="{ name: 'Login' }" class="txt-brand btn btn-light">Hyr</router-link>
+              
             </p>
+            <router-link :to="{ name: 'Login' }" class="txt-brand btn btn-light ">Hyr</router-link>
           </div>
         </main>
       </div>

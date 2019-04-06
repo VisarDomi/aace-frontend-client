@@ -14,7 +14,8 @@ import {
   SET_EXPERIENCES,
   SET_SKILLS,
   SET_PAYMENTS,
-  SET_COMMENT_ADMIN
+  SET_COMMENT_ADMIN,
+  SET_AUTH_SECOND
 } from "../../mutations.type";
 
 export const actions = {
@@ -45,6 +46,7 @@ export const actions = {
     await ProfileService.getProfile(context.getters.getCurrentUser.id).then(
       ({ data }) => {
         context.commit(SET_COMMENT_ADMIN, data.comment_from_administrator);
+        context.commit(SET_AUTH_SECOND, data);
         return data;
       }
     );
