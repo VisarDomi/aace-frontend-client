@@ -787,7 +787,7 @@ import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
 import { UPLOAD, GET_PROFILE } from "@/store/actions.type";
 import {
-  TEMP_PROFESSION,
+  TOGGLE_PROFESSION_INPUT,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -929,7 +929,7 @@ export default {
       } else {
         enabled = false;
       }
-      this.$store.commit(TEMP_PROFESSION, { enabled });
+      this.$store.commit(TOGGLE_PROFESSION_INPUT, { enabled });
       let payload = { [field]: value };
       this.$store.commit(SET_APP_PROFILE, payload);
     },
