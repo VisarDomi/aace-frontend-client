@@ -60,16 +60,17 @@
                 </div>
               </div>
 
-              <!-- <div class="form-group col-sm-12">
+              <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-4">
-                  <select class="form-control"
-                    :value="getAppProfile.profession"
-                    @change="updateProfileField('profession', $event.target.value)"
+                  <select
+                    class="form-control"
+                    :value="profileSelectedValue()"
+                    @change="changeProfileSelectedValue('profession', $event.target.value, $event)"
                   >
                     <option
-                      v-for="option in profession_options"
-                      :value="option.id"
+                      v-for="option in getProfessionDropdown.professionOptions"
+                      :value="option.text"
                       :key="option.id"
                     >{{ option.text }}</option>
                   </select>
@@ -77,39 +78,8 @@
                 <div class="col-sm-5">
                   <input
                     type="text"
-                    :disabled="!profession_other"
+                    :disabled="!getProfessionDropdown.isProfessionInputEnabled"
                     class="form-control"
-                    :value="getAppProfile.profession"
-                    @change="updateProfileField('profession', $event.target.value)"
-                    :placeholder="profession_other"
-                  >
-                </div>
-              </div>
-
-              <div class="form-group col-sm-12">
-                <label class="col-sm-3">Gjinia</label>
-                <div class="col-sm-9">
-                  <select
-                    class="form-control"
-                    :value="getAppProfile.sex"
-                    @change="updateProfileField('sex', $event.target.value)"
-                  >
-                    <option
-                      v-for="option in this.sex_options"
-                      :value="option.text"
-                      :key="option.id"
-                    >{{ option.text }}</option>
-                  </select>
-                </div>
-              </div>-->
-
-              <div class="form-group col-sm-12">
-                <label class="col-sm-3">Profesioni</label>
-                <div class="col-sm-9">
-                  <input
-                    type="text"
-                    class="form-control input-lg"
-                    placeholder="Profesioni juaj"
                     :value="getAppProfile.profession"
                     @change="updateProfileField('profession', $event.target.value)"
                   >
@@ -119,7 +89,6 @@
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Gjinia</label>
                 <div class="col-sm-9">
-                  {{consoleLog("getSexOptions", getSexOptions)}}
                   <select
                     class="form-control"
                     :value="getAppProfile.sex"
@@ -129,16 +98,8 @@
                       v-for="option in getSexOptions"
                       :value="option.text"
                       :key="option.id"
-                    >{{ option.text }}
-                    </option>
+                    >{{ option.text }}</option>
                   </select>
-                  <!-- <input
-                    type="text"
-                    class="form-control input-lg"
-                    placeholder="Gjinia juaj"
-                    :value="getAppProfile.sex"
-                    @change="updateProfileField('sex', $event.target.value)"
-                  > -->
                 </div>
               </div>
 
@@ -775,7 +736,11 @@
               </p>
             </header>
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit" :disabled="isLoading">Dergo aplikimin</button>
+              <button
+                class="btn btn-success btn-xl btn-round"
+                type="submit"
+                :disabled="isLoading"
+              >Dergo aplikimin</button>
             </p>
             <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
@@ -820,11 +785,9 @@ import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
+import { UPLOAD, GET_PROFILE } from "@/store/actions.type";
 import {
-  UPLOAD,
-  GET_PROFILE
-} from "@/store/actions.type";
-import {
+  TEMP_PROFESSION,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -847,19 +810,8 @@ export default {
   data() {
     return {
       //--------------- User -------
-      user_data: this.getAppProfile,
+      user_data: this.getAppProfile
       //-----------------------------
-
-      // profession_other: false,
-      // profession_id: "",
-      // profession_options: [
-      //   { text: "Inxhinier Ndertimi", id: 1 },
-      //   { text: "Inxhinier Civil", id: 2 },
-      //   { text: "Inxhinier Mekanik", id: 3 },
-      //   { text: "Te tjere", id: 4 }
-      // ],
-
-      // sex_options: this.getSexOptions,
 
       // //--------------- Education -------
       // education_type_id: [],
@@ -902,12 +854,14 @@ export default {
     formSummary: templates.multiErrorExtractor.foundation6
   },
   methods: {
-    consoleLog(message, param) {
+    consoleLog(message, params) {
       console.log(`message is: `, message);
-      console.log(`param is:   `, param);
+      for (let param of params) {
+        console.log(`param is:   `, param);
+      }
       console.log(`store is:   `, this.$store);
     },
-    commentedFunctions(){
+    commentedFunctions() {
       // All the functions bellow need to be integrated in the store
       // ------- Dropdown -------
       // educationTypeChange(e, i) {
@@ -957,33 +911,29 @@ export default {
       let vm = this;
       this.$store.commit(SET_PROFILE_FILES, { vm });
     },
+    profileSelectedValue() {
+      let first = this.getProfessionDropdown.professionOptions[0].text
+      let second = this.getProfessionDropdown.professionOptions[1].text
+      let third = this.getProfessionDropdown.professionOptions[2].text
+      let last = this.getProfessionDropdown.professionOptions[3].text
+      let profession = this.getAppProfile.profession
+      if (!(profession == first)&&!(profession == second)&&!(profession == third)&&!(profession == "")) {
+        profession = last
+      }
+      return profession
+    },
+    changeProfileSelectedValue(field, value, event) {
+      let enabled = false;
+      if (event.srcElement.options.selectedIndex == 3) {
+        enabled = true;
+      } else {
+        enabled = false;
+      }
+      this.$store.commit(TEMP_PROFESSION, { enabled });
+      let payload = { [field]: value };
+      this.$store.commit(SET_APP_PROFILE, payload);
+    },
     updateProfileField(field, value) {
-      // legacy code
-      // changeProfession() {
-      //   console.log("value is :", value)
-      //   if (value == 4) {
-      //     console.log("this.profession_other :", this.profession_other)
-      //     this.profession_other = true;
-      //     console.log("this.profession_other :", this.profession_other)
-      //     console.log("this.user_data.profession :", this.user_data.profession)
-      //     this.user_data.profession = "Fut profesionin";
-      //     console.log("this.user_data.profession :", this.user_data.profession)
-      //   } else {
-      //     console.log("this.profession_other :", this.profession_other)
-      //     this.profession_other = false;
-      //     console.log("this.profession_other :", this.profession_other)
-      //     console.log("this.user_data.profession :", this.user_data.profession)
-      //     console.log("this.profession_options :", this.profession_options)
-      //     console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
-      //     console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
-      //     this.user_data.profession = this.profession_options[value - 1].text;
-      //     console.log("this.profession_options :", this.profession_options)
-      //     console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
-      //     console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
-      //     console.log("this.user_data.profession :", this.user_data.profession)
-      //   }
-      // }
-      // new code
       let payload = { [field]: value };
       this.$store.commit(SET_APP_PROFILE, payload);
     },
@@ -1052,7 +1002,8 @@ export default {
       "getAppEducations",
       "getAppExperiences",
       "getAppSkills",
-      "getSexOptions"
+      "getSexOptions",
+      "getProfessionDropdown"
     ])
   },
   validations: {
@@ -1069,7 +1020,6 @@ export default {
     }
   },
   mounted() {
-    // this.profession_id = 1;
     let vm = this;
     this.$store.dispatch(GET_PROFILE, { vm });
   }

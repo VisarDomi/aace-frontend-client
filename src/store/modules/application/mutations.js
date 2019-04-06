@@ -1,5 +1,6 @@
 import {
   PURGE_APPLICATION,
+  TEMP_PROFESSION,
   SET_PROFILE_FILES,
   SET_APP_PROFILE,
   ADD_EDUCATION,
@@ -42,6 +43,9 @@ export const mutations = {
     state.skillId = 0;
     state.totalSkills = 0;
     // state.isUploading = false;
+  },
+  [TEMP_PROFESSION](state, { enabled }) {
+    state.professionDropdown.isProfessionInputEnabled = enabled
   },
   [SET_PROFILE_FILES](state, { vm }) {
     state.appProfile.files = vm.$refs.profile.files;

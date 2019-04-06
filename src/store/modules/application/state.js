@@ -22,6 +22,15 @@ export const state = {
   appSkills: [],
   skillId: 0,
   totalSkills: 0,
-  sexOptions: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }]
+  sexOptions: [{ text: "Mashkull", id: 0 }, { text: "Femer", id: 1 }],
+  professionDropdown: {
+    isProfessionInputEnabled: false,
+    professionOptions: [
+      { text: "Inxhinier Ndertimi", id: 0 },
+      { text: "Inxhinier Civil", id: 1 },
+      { text: "Inxhinier Mekanik", id: 2 },
+      { text: "Te tjere", id: 3 }
+    ]
+  }
   // isUploading: false
 };

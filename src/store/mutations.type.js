@@ -1,5 +1,6 @@
 // application
 export const PURGE_APPLICATION = "purgeApplication";
+export const TEMP_PROFESSION = "tempProfession";
 export const SET_PROFILE_FILES = "setProfileFiles";
 export const SET_APP_PROFILE = "setAppProfile";
 export const ADD_EDUCATION = "addEducation";
