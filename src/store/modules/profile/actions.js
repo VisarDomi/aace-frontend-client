@@ -40,9 +40,6 @@ export const actions = {
     await SkillService.getSkills(id).then(({ data }) => {
       context.commit(SET_SKILLS, data);
     });
-    await PaymentService.getPayments(id).then(({ data }) => {
-      context.commit(SET_PAYMENTS, data);
-    });
   },
   async [FETCH_APPLICATION_INFO](context) {
     await ProfileService.getProfile(context.getters.getCurrentUser.id).then(

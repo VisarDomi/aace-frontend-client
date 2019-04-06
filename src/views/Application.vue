@@ -835,55 +835,54 @@ export default {
     return {
       //--------------- User -------
       user_data: this.getAppProfile,
-      profession_other: false,
-      profession_id: "",
-      profession_options: [
-        { text: "Inxhinier Ndertimi", id: 1 },
-        { text: "Inxhinier Civil", id: 2 },
-        { text: "Inxhinier Mekanik", id: 3 },
-        { text: "Te tjere", id: 4 }
-      ],
+      //-----------------------------
 
-      sex_options: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }],
+      // profession_other: false,
+      // profession_id: "",
+      // profession_options: [
+      //   { text: "Inxhinier Ndertimi", id: 1 },
+      //   { text: "Inxhinier Civil", id: 2 },
+      //   { text: "Inxhinier Mekanik", id: 3 },
+      //   { text: "Te tjere", id: 4 }
+      // ],
 
-      //--------------- Image Files -------
-      profile_picture_file: "",
+      // sex_options: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }],
 
-      //--------------- Education -------
-      education_type_id: [],
-      education_type_options: [
-        { text: "Shkolle e mesme", id: 1 },
-        { text: "Shkolle e larte", id: 2 }
-      ],
-      education_degree_id: [],
-      education_degree_other: [false],
-      education_degree_options: {
-        1: [
-          { text: "Pergjithshme", id: 1 },
-          { text: "Teknike", id: 2 },
-          { text: "Te tjere", id: 3 }
-        ],
-        2: [
-          { text: "Bachelor", id: 4 },
-          { text: "Master", id: 5 },
-          { text: "Diplom", id: 6 },
-          { text: "Te tjera", id: 7 }
-        ]
-      },
-      education_major_id: [],
-      education_major_other: [false],
-      education_major_options: {
-        1: [
-          { text: "Hidraulike", id: 1 },
-          { text: "Termoteknike", id: 2 },
-          { text: "Te tjere", id: 3 }
-        ],
-        2: [
-          { text: "Inxhinier Civil", id: 4 },
-          { text: "Inxhinier Elektrik", id: 5 },
-          { text: "Te tjera", id: 6 }
-        ]
-      }
+      // //--------------- Education -------
+      // education_type_id: [],
+      // education_type_options: [
+      //   { text: "Shkolle e mesme", id: 1 },
+      //   { text: "Shkolle e larte", id: 2 }
+      // ],
+      // education_degree_id: [],
+      // education_degree_other: [false],
+      // education_degree_options: {
+      //   1: [
+      //     { text: "Pergjithshme", id: 1 },
+      //     { text: "Teknike", id: 2 },
+      //     { text: "Te tjere", id: 3 }
+      //   ],
+      //   2: [
+      //     { text: "Bachelor", id: 4 },
+      //     { text: "Master", id: 5 },
+      //     { text: "Diplom", id: 6 },
+      //     { text: "Te tjera", id: 7 }
+      //   ]
+      // },
+      // education_major_id: [],
+      // education_major_other: [false],
+      // education_major_options: {
+      //   1: [
+      //     { text: "Hidraulike", id: 1 },
+      //     { text: "Termoteknike", id: 2 },
+      //     { text: "Te tjere", id: 3 }
+      //   ],
+      //   2: [
+      //     { text: "Inxhinier Civil", id: 4 },
+      //     { text: "Inxhinier Elektrik", id: 5 },
+      //     { text: "Te tjera", id: 6 }
+      //   ]
+      // }
     };
   },
   components: {
