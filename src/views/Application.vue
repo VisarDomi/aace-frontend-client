@@ -119,13 +119,26 @@
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Gjinia</label>
                 <div class="col-sm-9">
-                  <input
+                  {{consoleLog("getSexOptions", getSexOptions)}}
+                  <select
+                    class="form-control"
+                    :value="getAppProfile.sex"
+                    @change="updateProfileField('sex', $event.target.value)"
+                  >
+                    <option
+                      v-for="option in getSexOptions"
+                      :value="option.text"
+                      :key="option.id"
+                    >{{ option.text }}
+                    </option>
+                  </select>
+                  <!-- <input
                     type="text"
                     class="form-control input-lg"
                     placeholder="Gjinia juaj"
                     :value="getAppProfile.sex"
                     @change="updateProfileField('sex', $event.target.value)"
-                  >
+                  > -->
                 </div>
               </div>
 
@@ -846,7 +859,7 @@ export default {
       //   { text: "Te tjere", id: 4 }
       // ],
 
-      // sex_options: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }],
+      // sex_options: this.getSexOptions,
 
       // //--------------- Education -------
       // education_type_id: [],
@@ -894,77 +907,81 @@ export default {
       console.log(`param is:   `, param);
       console.log(`store is:   `, this.$store);
     },
-    // All the functions bellow need to be integrated in the store
-    // ------- Dropdown -------
-    // educationTypeChange(e, i) {
-    //   this.educationInputs[i].degree = "";
-    //   this.educationInputs[i].field_of_study = "";
-    //   this.educationInputs[i].education_type = this.education_type_options[
-    //     e.target.value - 1
-    //   ].text;
-    // },
-    // educationDegreeChange(e, i) {
-    //   let educationOptionId = e.target.value;
-    //   if (educationOptionId == 7 || educationOptionId == 3) {
-    //     this.education_degree_other[i] = true;
-    //     this.educationInputs[i].degree = "Fut tipin e diplomes";
-    //   } else {
-    //     this.education_degree_other[i] = false;
-    //     if (this.education_type_id[i] == 1)
-    //       this.educationInputs[i].degree = this.education_degree_options[
-    //         this.education_type_id[i]
-    //       ][educationOptionId - 1].text;
-    //     else
-    //       this.educationInputs[i].degree = this.education_degree_options[
-    //         this.education_type_id[i]
-    //       ][educationOptionId - 4].text;
-    //   }
-    // },
-    // educationMajorChange(e, i) {
-    //   let educationOptionId = e.target.value;
-    //   if (educationOptionId == 6 || educationOptionId == 3) {
-    //     this.education_major_other[i] = true;
-    //     this.educationInputs[i].field_of_study = "Fut degen";
-    //   } else {
-    //     this.education_major_other[i] = false;
-    //     if (this.education_type_id[i] == 1)
-    //       this.educationInputs[i].field_of_study = this.education_major_options[
-    //         this.education_type_id[i]
-    //       ][educationOptionId - 1].text;
-    //     else
-    //       this.educationInputs[i].field_of_study = this.education_major_options[
-    //         this.education_type_id[i]
-    //       ][educationOptionId - 4].text;
-    //   }
-    // },
+    commentedFunctions(){
+      // All the functions bellow need to be integrated in the store
+      // ------- Dropdown -------
+      // educationTypeChange(e, i) {
+      //   this.educationInputs[i].degree = "";
+      //   this.educationInputs[i].field_of_study = "";
+      //   this.educationInputs[i].education_type = this.education_type_options[
+      //     e.target.value - 1
+      //   ].text;
+      // },
+      // educationDegreeChange(e, i) {
+      //   let educationOptionId = e.target.value;
+      //   if (educationOptionId == 7 || educationOptionId == 3) {
+      //     this.education_degree_other[i] = true;
+      //     this.educationInputs[i].degree = "Fut tipin e diplomes";
+      //   } else {
+      //     this.education_degree_other[i] = false;
+      //     if (this.education_type_id[i] == 1)
+      //       this.educationInputs[i].degree = this.education_degree_options[
+      //         this.education_type_id[i]
+      //       ][educationOptionId - 1].text;
+      //     else
+      //       this.educationInputs[i].degree = this.education_degree_options[
+      //         this.education_type_id[i]
+      //       ][educationOptionId - 4].text;
+      //   }
+      // },
+      // educationMajorChange(e, i) {
+      //   let educationOptionId = e.target.value;
+      //   if (educationOptionId == 6 || educationOptionId == 3) {
+      //     this.education_major_other[i] = true;
+      //     this.educationInputs[i].field_of_study = "Fut degen";
+      //   } else {
+      //     this.education_major_other[i] = false;
+      //     if (this.education_type_id[i] == 1)
+      //       this.educationInputs[i].field_of_study = this.education_major_options[
+      //         this.education_type_id[i]
+      //       ][educationOptionId - 1].text;
+      //     else
+      //       this.educationInputs[i].field_of_study = this.education_major_options[
+      //         this.education_type_id[i]
+      //       ][educationOptionId - 4].text;
+      //   }
+      // },
+    },
     // ------- Profile picture -------
     handleFileUploadProfile() {
       let vm = this;
       this.$store.commit(SET_PROFILE_FILES, { vm });
     },
     updateProfileField(field, value) {
-      // legacy code - changeProfession()
-      // console.log("value is :", value)
-      // if (value == 4) {
-      //   console.log("this.profession_other :", this.profession_other)
-      //   this.profession_other = true;
-      //   console.log("this.profession_other :", this.profession_other)
-      //   console.log("this.user_data.profession :", this.user_data.profession)
-      //   this.user_data.profession = "Fut profesionin";
-      //   console.log("this.user_data.profession :", this.user_data.profession)
-      // } else {
-      //   console.log("this.profession_other :", this.profession_other)
-      //   this.profession_other = false;
-      //   console.log("this.profession_other :", this.profession_other)
-      //   console.log("this.user_data.profession :", this.user_data.profession)
-      //   console.log("this.profession_options :", this.profession_options)
-      //   console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
-      //   console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
-      //   this.user_data.profession = this.profession_options[value - 1].text;
-      //   console.log("this.profession_options :", this.profession_options)
-      //   console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
-      //   console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
-      //   console.log("this.user_data.profession :", this.user_data.profession)
+      // legacy code
+      // changeProfession() {
+      //   console.log("value is :", value)
+      //   if (value == 4) {
+      //     console.log("this.profession_other :", this.profession_other)
+      //     this.profession_other = true;
+      //     console.log("this.profession_other :", this.profession_other)
+      //     console.log("this.user_data.profession :", this.user_data.profession)
+      //     this.user_data.profession = "Fut profesionin";
+      //     console.log("this.user_data.profession :", this.user_data.profession)
+      //   } else {
+      //     console.log("this.profession_other :", this.profession_other)
+      //     this.profession_other = false;
+      //     console.log("this.profession_other :", this.profession_other)
+      //     console.log("this.user_data.profession :", this.user_data.profession)
+      //     console.log("this.profession_options :", this.profession_options)
+      //     console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
+      //     console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
+      //     this.user_data.profession = this.profession_options[value - 1].text;
+      //     console.log("this.profession_options :", this.profession_options)
+      //     console.log("this.profession_options[value - 1] :", this.profession_options[value - 1])
+      //     console.log("this.profession_options[value - 1].text :", this.profession_options[value - 1].text)
+      //     console.log("this.user_data.profession :", this.user_data.profession)
+      //   }
       // }
       // new code
       let payload = { [field]: value };
@@ -1034,7 +1051,8 @@ export default {
       "getAppProfile",
       "getAppEducations",
       "getAppExperiences",
-      "getAppSkills"
+      "getAppSkills",
+      "getSexOptions"
     ])
   },
   validations: {
@@ -1051,7 +1069,7 @@ export default {
     }
   },
   mounted() {
-    this.profession_id = 1;
+    // this.profession_id = 1;
     let vm = this;
     this.$store.dispatch(GET_PROFILE, { vm });
   }

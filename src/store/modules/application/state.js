@@ -22,5 +22,6 @@ export const state = {
   appSkills: [],
   skillId: 0,
   totalSkills: 0,
+  sexOptions: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }]
   // isUploading: false
 };

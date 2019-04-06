@@ -6,5 +6,6 @@ export const getters = {
   getAppProfile: state => state.appProfile,
   getAppEducations: state => state.appEducations,
   getAppExperiences: state => state.appExperiences,
-  getAppSkills: state => state.appSkills
+  getAppSkills: state => state.appSkills,
+  getSexOptions: state => state.sexOptions
 };
