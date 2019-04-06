@@ -41,7 +41,7 @@ export const mutations = {
     state.appSkills = [];
     state.skillId = 0;
     state.totalSkills = 0;
-    state.isUploading = false;
+    // state.isUploading = false;
   },
   [SET_PROFILE_FILES](state, { vm }) {
     state.appProfile.files = vm.$refs.profile.files;

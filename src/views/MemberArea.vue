@@ -131,7 +131,7 @@ export default {
   mounted() {
     this.$store.dispatch(FETCH_APPLICATION_INFO);
     this.$store.dispatch(FETCH_COMMUNICATIONS);
-    this.$store.dispatch(FETCH_PROFILE);
+    this.$store.dispatch(FETCH_PROFILE, this.$store.getters.getCurrentUser);
   }
 };
 </script>

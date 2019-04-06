@@ -108,6 +108,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import { REGISTER } from "@/store/actions.type";
+import { STOP_LOADING } from "@/store/mutations.type";
 import { required, email, minLength } from "vuelidate/lib/validators";
 
 export default {
@@ -139,6 +140,7 @@ export default {
         })
         .then(() => this.$router.push({ name: "MemberArea" }))
         .catch(err => {
+          this.$store.commit(STOP_LOADING)
           if (err.response.status == 409) {
             this.email_exists = true;
           }
