@@ -31,35 +31,5 @@ export const state = {
   totalExperiences: 0,
   appSkills: [],
   skillId: 0,
-  totalSkills: 0,
-  educationTypeOptions: [
-    { text: "Shkolle e mesme", id: 0 },
-    { text: "Shkolle e larte", id: 1 }
-  ],
-  // the following should be conditional on the previous choice
-  educationMiddleDegreeDropdown: {
-    isEducationMiddleDegreeInputEnabled: false,
-    educationMiddleDegreeOptions: [
-      { text: "Pergjithshme", id: 0 },
-      { text: "Teknike", id: 1 },
-      { text: "Te tjere", id: 2 }
-    ]
-  },
-  educationHighDegreeDropdown: {
-    isEducationHighDegreeInputEnabled: false,
-    educationHighDegreeOptions: [
-      { text: "Bachelor", id: 0 },
-      { text: "Master", id: 1 },
-      { text: "Diplome", id: 2 },
-      { text: "Te tjere", id: 3 }
-    ]
-  },
-  educationHighFieldOfStudyDropdown: {
-    isEducationHighFieldOfStudyInput: false,
-    educationHighFieldOfStudyOptions: [
-      { text: "Inxhinier Civil", id: 0 },
-      { text: "Inxhinier Elektrik", id: 1 },
-      { text: "Te tjera", id: 2 }
-    ]
-  }
+  totalSkills: 0
 };

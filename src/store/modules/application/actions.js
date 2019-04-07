@@ -106,6 +106,10 @@ export const actions = {
     let copyEducation = { ...education };
     delete copyEducation.files;
     delete copyEducation.educationId;
+    delete copyEducation.educationTypeOptions;
+    delete copyEducation.educationMiddleDegreeDropdown;
+    delete copyEducation.educationHighDegreeDropdown;
+    delete copyEducation.educationHighFieldOfStudyDropdown;
     let educationId = null;
     await EducationService.postEducation(userId, copyEducation).then(res => {
       if (res.status == 200) {

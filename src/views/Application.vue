@@ -279,7 +279,7 @@
                               @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
                             >
                               <option
-                                v-for="option in getEducationTypeOptions"
+                                v-for="option in education.educationTypeOptions"
                                 :value="option.text"
                                 :key="option.id"
                               >{{ option.text }}</option>
@@ -796,23 +796,25 @@ export default {
       let vm = this;
       this.$store.commit(SET_EDUCATION_FILES, { vm, educationId });
     },
-    educationMiddleDegreeSelectedValue(education) {
-      let first = this.getEducationMiddleDegreeDropdown.educationMiddleDegreeOptions[0].text
-      let second = this.getEducationMiddleDegreeDropdown.educationMiddleDegreeOptions[1].text
-      let last = this.getEducationMiddleDegreeDropdown.educationMiddleDegreeOptions[2].text
-      // this needs to be inside a for loop
-      let educationMiddleDegree = education.degree
-      if (!(educationMiddleDegree == first)&&!(educationMiddleDegree == second)&&!(educationMiddleDegree == "")) {
-        educationMiddleDegree = last
-      }
-      return educationMiddleDegree
-    },
-    changeEducationMiddleDegreeSelectedValue(educationId, field, value, event) {
-      let enabled = this.isEnabled(event);
-      this.$store.commit(TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT, { enabled });
-      let payload = { educationId, [field]: value };
-      this.$store.commit(UPDATE_EDUCATION, payload);
-    },
+    // educationMiddleDegreeSelectedValue(educationId) {
+    //   let education = this.getAppEducation(educationId)
+    //   // with a spread operator you can loop through the following
+    //   let first = education.educationMiddleDegreeOptions[0].text
+    //   let second = education.educationMiddleDegreeOptions[1].text
+    //   let last = education.educationMiddleDegreeOptions[2].text
+    //   // this needs to be inside a for loop
+    //   let educationMiddleDegree = education.degree
+    //   if (!(educationMiddleDegree == first)&&!(educationMiddleDegree == second)&&!(educationMiddleDegree == "")) {
+    //     educationMiddleDegree = last
+    //   }
+    //   return educationMiddleDegree
+    // },
+    // changeEducationMiddleDegreeSelectedValue(educationId, field, value, event) {
+    //   let enabled = this.isEnabled(event);
+    //   this.$store.commit(TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT, { educationId, enabled });
+    //   let payload = { educationId, [field]: value };
+    //   this.$store.commit(UPDATE_EDUCATION, payload);
+    // },
     updateEducationField(educationId, field, value) {
       let payload = { educationId, [field]: value };
       this.$store.commit(UPDATE_EDUCATION, payload);
@@ -871,12 +873,9 @@ export default {
       "isLoading",
       "getAppProfile",
       "getAppEducations",
+      "getAppEducation",
       "getAppExperiences",
-      "getAppSkills",
-      "getEducationTypeOptions",
-      "getEducationMiddleDegreeDropdown",
-      "getEducationHighDegreeDropdown",
-      "getEducationHighFieldOfStudyDropdown"
+      "getAppSkills"
     ])
   },
   validations: {

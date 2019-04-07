@@ -64,8 +64,6 @@ export const mutations = {
     state.appProfile.files = vm.$refs.profile.files;
   },
   [SET_APP_PROFILE](state, payload) {
-    console.log("state is", state)
-    console.log("state.appProfile is", state.appProfile)
     Object.assign(state.appProfile, payload);
   },
   [ADD_EDUCATION](state) {
@@ -78,7 +76,36 @@ export const mutations = {
       school: "",
       from_date: "",
       to_date: "",
-      description: ""
+      description: "",
+      educationTypeOptions: [
+        { text: "Shkolle e mesme", id: 0 },
+        { text: "Shkolle e larte", id: 1 }
+      ],
+      educationMiddleDegreeDropdown: {
+        isEducationMiddleDegreeInputEnabled: false,
+        educationMiddleDegreeOptions: [
+          { text: "Pergjithshme", id: 0 },
+          { text: "Teknike", id: 1 },
+          { text: "Te tjere", id: 2 }
+        ]
+      },
+      educationHighDegreeDropdown: {
+        isEducationHighDegreeInputEnabled: false,
+        educationHighDegreeOptions: [
+          { text: "Bachelor", id: 0 },
+          { text: "Master", id: 1 },
+          { text: "Diplome", id: 2 },
+          { text: "Te tjere", id: 3 }
+        ]
+      },
+      educationHighFieldOfStudyDropdown: {
+        isEducationHighFieldOfStudyInput: false,
+        educationHighFieldOfStudyOptions: [
+          { text: "Inxhinier Civil", id: 0 },
+          { text: "Inxhinier Elektrik", id: 1 },
+          { text: "Te tjera", id: 2 }
+        ]
+      }
     };
     state.totalEducations = state.appEducations.push(education);
     state.educationId += 1;
@@ -89,8 +116,11 @@ export const mutations = {
     );
     state.totalEducations -= 1;
   },
-  [TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT](state, { enabled }) {
-    state.educationMiddleDegreeDropdown.isEducationMiddleDegreeInputEnabled = enabled;
+  [TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT](state, payload) {
+    let foundIndex = state.appEducations.findIndex(
+      education => education.educationId == payload.educationId
+    );
+    state.appEducations[foundIndex].educationMiddleDegreeDropdown.isEducationMiddleDegreeInputEnabled = payload.enabled;
   },
   [TOGGLE_EDUCATION_HIGH_DEGREE_INPUT](state, { enabled }) {
     state.educationHighDegreeDropdown.isEducationHighDegreeInputEnabled = enabled;
