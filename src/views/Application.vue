@@ -69,7 +69,7 @@
                     @change="changeProfileSelectedValue('profession', $event.target.value, $event)"
                   >
                     <option
-                      v-for="option in getProfessionDropdown.professionOptions"
+                      v-for="option in getAppProfile.professionDropdown.professionOptions"
                       :value="option.text"
                       :key="option.id"
                     >{{ option.text }}</option>
@@ -78,7 +78,7 @@
                 <div class="col-sm-5">
                   <input
                     type="text"
-                    :disabled="!getProfessionDropdown.isProfessionInputEnabled"
+                    :disabled="!getAppProfile.professionDropdown.isProfessionInputEnabled"
                     class="form-control"
                     :value="getAppProfile.profession"
                     @change="updateProfileField('profession', $event.target.value)"
@@ -95,7 +95,7 @@
                     @change="updateProfileField('sex', $event.target.value)"
                   >
                     <option
-                      v-for="option in getSexOptions"
+                      v-for="option in getAppProfile.sexOptions"
                       :value="option.text"
                       :key="option.id"
                     >{{ option.text }}</option>
@@ -244,6 +244,7 @@
                     </button>
 
                     <div class="row">
+
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input
@@ -268,94 +269,21 @@
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <!-- <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Lloji i arsimimit</label>
-                          <div class="col-sm-9">
-                            <select
-                              class="form-control"
-                              :value="education.school"
-                              @change="updateEducationField(education.educationId, 'school', $event.target.value)"
-                              @change="educationTypeChange($event, index)"
-                            >
-                              <option
-                                v-for="option in education_type_options"
-                                v-bind:value="option.id"
-                                :key="option.id"
-                              >{{ option.text }}</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Tipi i diplomes</label>
-                          <div class="col-sm-4">
-                            <select
-                              class="form-control"
-                              v-model="education_degree_id[index]"
-                              @change="
-                                educationDegreeChange($event, index)
-                              "
-                            >
-                              <option
-                                v-for="option in education_degree_options[
-                                  education_type_id[index]
-                                ]"
-                                v-bind:value="option.id"
-                                :key="option.id"
-                              >{{ option.text }}</option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
-                            <input
-                              type="text"
-                              :disabled="!education_degree_other[index]"
-                              class="form-control"
-                              v-model="educationInput.degree"
-                              placeholder="Tipi i diplomes"
-                            >
-                          </div>
-                        </div>
-
-                        <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Dega</label>
-                          <div class="col-sm-4">
-                            <select
-                              class="form-control"
-                              v-model="education_major_id[index]"
-                              @change="
-                                educationMajorChange($event, index)
-                              "
-                            >
-                              <option
-                                v-for="option in education_major_options[
-                                  education_type_id[index]
-                                ]"
-                                v-bind:value="option.id"
-                                :key="option.id"
-                              >{{ option.text }}</option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
-                            <input
-                              type="text"
-                              :disabled="!education_major_other[index]"
-                              class="form-control"
-                              v-model="educationInput.field_of_study"
-                              placeholder="Dega"
-                            >
-                          </div>
-                        </div>-->
 
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Lloji i arsimimit</label>
                           <div class="col-sm-9">
-                            <input
-                              type="text"
+                            <select
                               class="form-control"
                               :value="education.education_type"
                               @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
-                              placeholder="Lloji i arsimimit, psh Arsim i larte"
                             >
+                              <option
+                                v-for="option in getEducationTypeOptions"
+                                :value="option.text"
+                                :key="option.id"
+                              >{{ option.text }}</option>
+                            </select>
                           </div>
                         </div>
 
@@ -792,6 +720,9 @@ import {
   SET_APP_PROFILE,
   ADD_EDUCATION,
   REMOVE_EDUCATION,
+  TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT,
+  TOGGLE_EDUCATION_HIGH_DEGREE_INPUT,
+  TOGGLE_EDUCATION_HIGH_FIELD_OF_STUDY_INPUT,
   SET_EDUCATION_FILES,
   UPDATE_EDUCATION,
   ADD_EXPERIENCE,
@@ -809,45 +740,8 @@ export default {
   name: "Application",
   data() {
     return {
-      //--------------- User -------
+      //profile validation
       user_data: this.getAppProfile
-      //-----------------------------
-
-      // //--------------- Education -------
-      // education_type_id: [],
-      // education_type_options: [
-      //   { text: "Shkolle e mesme", id: 1 },
-      //   { text: "Shkolle e larte", id: 2 }
-      // ],
-      // education_degree_id: [],
-      // education_degree_other: [false],
-      // education_degree_options: {
-      //   1: [
-      //     { text: "Pergjithshme", id: 1 },
-      //     { text: "Teknike", id: 2 },
-      //     { text: "Te tjere", id: 3 }
-      //   ],
-      //   2: [
-      //     { text: "Bachelor", id: 4 },
-      //     { text: "Master", id: 5 },
-      //     { text: "Diplom", id: 6 },
-      //     { text: "Te tjera", id: 7 }
-      //   ]
-      // },
-      // education_major_id: [],
-      // education_major_other: [false],
-      // education_major_options: {
-      //   1: [
-      //     { text: "Hidraulike", id: 1 },
-      //     { text: "Termoteknike", id: 2 },
-      //     { text: "Te tjere", id: 3 }
-      //   ],
-      //   2: [
-      //     { text: "Inxhinier Civil", id: 4 },
-      //     { text: "Inxhinier Elektrik", id: 5 },
-      //     { text: "Te tjera", id: 6 }
-      //   ]
-      // }
     };
   },
   components: {
@@ -861,50 +755,15 @@ export default {
       }
       console.log(`store is:   `, this.$store);
     },
-    commentedFunctions() {
-      // All the functions bellow need to be integrated in the store
-      // ------- Dropdown -------
-      // educationTypeChange(e, i) {
-      //   this.educationInputs[i].degree = "";
-      //   this.educationInputs[i].field_of_study = "";
-      //   this.educationInputs[i].education_type = this.education_type_options[
-      //     e.target.value - 1
-      //   ].text;
-      // },
-      // educationDegreeChange(e, i) {
-      //   let educationOptionId = e.target.value;
-      //   if (educationOptionId == 7 || educationOptionId == 3) {
-      //     this.education_degree_other[i] = true;
-      //     this.educationInputs[i].degree = "Fut tipin e diplomes";
-      //   } else {
-      //     this.education_degree_other[i] = false;
-      //     if (this.education_type_id[i] == 1)
-      //       this.educationInputs[i].degree = this.education_degree_options[
-      //         this.education_type_id[i]
-      //       ][educationOptionId - 1].text;
-      //     else
-      //       this.educationInputs[i].degree = this.education_degree_options[
-      //         this.education_type_id[i]
-      //       ][educationOptionId - 4].text;
-      //   }
-      // },
-      // educationMajorChange(e, i) {
-      //   let educationOptionId = e.target.value;
-      //   if (educationOptionId == 6 || educationOptionId == 3) {
-      //     this.education_major_other[i] = true;
-      //     this.educationInputs[i].field_of_study = "Fut degen";
-      //   } else {
-      //     this.education_major_other[i] = false;
-      //     if (this.education_type_id[i] == 1)
-      //       this.educationInputs[i].field_of_study = this.education_major_options[
-      //         this.education_type_id[i]
-      //       ][educationOptionId - 1].text;
-      //     else
-      //       this.educationInputs[i].field_of_study = this.education_major_options[
-      //         this.education_type_id[i]
-      //       ][educationOptionId - 4].text;
-      //   }
-      // },
+    // common code
+    isEnabled(event) {
+      let enabled = false;
+      if (event.srcElement.options.selectedIndex == event.srcElement.options.length-1) {
+        enabled = true;
+      } else {
+        enabled = false;
+      }
+      return enabled
     },
     // ------- Profile picture -------
     handleFileUploadProfile() {
@@ -912,10 +771,10 @@ export default {
       this.$store.commit(SET_PROFILE_FILES, { vm });
     },
     profileSelectedValue() {
-      let first = this.getProfessionDropdown.professionOptions[0].text
-      let second = this.getProfessionDropdown.professionOptions[1].text
-      let third = this.getProfessionDropdown.professionOptions[2].text
-      let last = this.getProfessionDropdown.professionOptions[3].text
+      let first = this.getAppProfile.professionDropdown.professionOptions[0].text
+      let second = this.getAppProfile.professionDropdown.professionOptions[1].text
+      let third = this.getAppProfile.professionDropdown.professionOptions[2].text
+      let last = this.getAppProfile.professionDropdown.professionOptions[3].text
       let profession = this.getAppProfile.profession
       if (!(profession == first)&&!(profession == second)&&!(profession == third)&&!(profession == "")) {
         profession = last
@@ -923,12 +782,7 @@ export default {
       return profession
     },
     changeProfileSelectedValue(field, value, event) {
-      let enabled = false;
-      if (event.srcElement.options.selectedIndex == 3) {
-        enabled = true;
-      } else {
-        enabled = false;
-      }
+      let enabled = this.isEnabled(event);
       this.$store.commit(TOGGLE_PROFESSION_INPUT, { enabled });
       let payload = { [field]: value };
       this.$store.commit(SET_APP_PROFILE, payload);
@@ -941,6 +795,23 @@ export default {
     handleFileUploadEducation(educationId) {
       let vm = this;
       this.$store.commit(SET_EDUCATION_FILES, { vm, educationId });
+    },
+    educationMiddleDegreeSelectedValue(education) {
+      let first = this.getEducationMiddleDegreeDropdown.educationMiddleDegreeOptions[0].text
+      let second = this.getEducationMiddleDegreeDropdown.educationMiddleDegreeOptions[1].text
+      let last = this.getEducationMiddleDegreeDropdown.educationMiddleDegreeOptions[2].text
+      // this needs to be inside a for loop
+      let educationMiddleDegree = education.degree
+      if (!(educationMiddleDegree == first)&&!(educationMiddleDegree == second)&&!(educationMiddleDegree == "")) {
+        educationMiddleDegree = last
+      }
+      return educationMiddleDegree
+    },
+    changeEducationMiddleDegreeSelectedValue(educationId, field, value, event) {
+      let enabled = this.isEnabled(event);
+      this.$store.commit(TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT, { enabled });
+      let payload = { educationId, [field]: value };
+      this.$store.commit(UPDATE_EDUCATION, payload);
     },
     updateEducationField(educationId, field, value) {
       let payload = { educationId, [field]: value };
@@ -1002,8 +873,10 @@ export default {
       "getAppEducations",
       "getAppExperiences",
       "getAppSkills",
-      "getSexOptions",
-      "getProfessionDropdown"
+      "getEducationTypeOptions",
+      "getEducationMiddleDegreeDropdown",
+      "getEducationHighDegreeDropdown",
+      "getEducationHighFieldOfStudyDropdown"
     ])
   },
   validations: {

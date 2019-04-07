@@ -5,6 +5,9 @@ import {
   SET_APP_PROFILE,
   ADD_EDUCATION,
   REMOVE_EDUCATION,
+  TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT,
+  TOGGLE_EDUCATION_HIGH_DEGREE_INPUT,
+  TOGGLE_EDUCATION_HIGH_FIELD_OF_STUDY_INPUT,
   SET_EDUCATION_FILES,
   UPDATE_EDUCATION,
   ADD_EXPERIENCE,
@@ -31,7 +34,17 @@ export const mutations = {
       birthday: "",
       website: "",
       email: "",
-      files: []
+      files: [],
+      sexOptions: [{ text: "Mashkull", id: 0 }, { text: "Femer", id: 1 }],
+      professionDropdown: {
+        isProfessionInputEnabled: false,
+        professionOptions: [
+          { text: "Inxhinier Ndertimi", id: 0 },
+          { text: "Inxhinier Civil", id: 1 },
+          { text: "Inxhinier Mekanik", id: 2 },
+          { text: "Te tjere", id: 3 }
+        ]
+      }
     };
     state.appEducations = [];
     state.educationId = 0;
@@ -45,12 +58,14 @@ export const mutations = {
     // state.isUploading = false;
   },
   [TOGGLE_PROFESSION_INPUT](state, { enabled }) {
-    state.professionDropdown.isProfessionInputEnabled = enabled;
+    state.appProfile.professionDropdown.isProfessionInputEnabled = enabled;
   },
   [SET_PROFILE_FILES](state, { vm }) {
     state.appProfile.files = vm.$refs.profile.files;
   },
   [SET_APP_PROFILE](state, payload) {
+    console.log("state is", state)
+    console.log("state.appProfile is", state.appProfile)
     Object.assign(state.appProfile, payload);
   },
   [ADD_EDUCATION](state) {
@@ -73,6 +88,15 @@ export const mutations = {
       education => education.educationId != educationId
     );
     state.totalEducations -= 1;
+  },
+  [TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT](state, { enabled }) {
+    state.educationMiddleDegreeDropdown.isEducationMiddleDegreeInputEnabled = enabled;
+  },
+  [TOGGLE_EDUCATION_HIGH_DEGREE_INPUT](state, { enabled }) {
+    state.educationHighDegreeDropdown.isEducationHighDegreeInputEnabled = enabled;
+  },
+  [TOGGLE_EDUCATION_HIGH_FIELD_OF_STUDY_INPUT](state, { enabled }) {
+    state.educationHighFieldOfStudyDropdown.isEducationHighFieldOfStudyInput = enabled;
   },
   [SET_EDUCATION_FILES](state, { vm, educationId }) {
     let foundIndex = state.appEducations.findIndex(

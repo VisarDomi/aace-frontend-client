@@ -1,16 +1,23 @@
 // application
 export const PURGE_APPLICATION = "purgeApplication";
+  // profile
 export const TOGGLE_PROFESSION_INPUT = "toggleProfessionInput";
 export const SET_PROFILE_FILES = "setProfileFiles";
 export const SET_APP_PROFILE = "setAppProfile";
+// education
 export const ADD_EDUCATION = "addEducation";
 export const REMOVE_EDUCATION = "removeEducation";
+export const TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT = "toggleEducationMiddleDegreeInput";
+export const TOGGLE_EDUCATION_HIGH_DEGREE_INPUT = "toggleEducationHighDegreeInput";
+export const TOGGLE_EDUCATION_HIGH_FIELD_OF_STUDY_INPUT = "toggleEducationHighFieldOfStudyInput";
 export const SET_EDUCATION_FILES = "setEducationFiles";
 export const UPDATE_EDUCATION = "updateEducation";
+  // experience
 export const ADD_EXPERIENCE = "addExperience";
 export const REMOVE_EXPERIENCE = "removeExperience";
 export const SET_EXPERIENCE_FILES = "setExperienceFiles";
 export const UPDATE_EXPERIENCE = "updateExperience";
+  // skill
 export const ADD_SKILL = "addSkill";
 export const REMOVE_SKILL = "removeSkill";
 export const SET_SKILL_FILES = "setSkillFiles";

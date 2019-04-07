@@ -70,6 +70,8 @@ export const actions = {
     const profile = context.getters.getAppProfile;
     let copyProfile = { ...profile };
     delete copyProfile.files;
+    delete copyProfile.sexOptions;
+    delete copyProfile.professionDropdown;
     await ProfileService.putProfile(userId, copyProfile).then(res => {
       if (res.status == 200) {
         console.log("success UPDATE_PROFILE", res);
@@ -247,10 +249,16 @@ export const actions = {
   },
   async [UPLOAD](context, payload) {
     console.log("uploading");
-    await context.dispatch(SEND_APPLICATION).then(() => {
-      console.log("can it be?");
-      console.log("payload", payload);
-      payload.vm.$router.push({ name: "SuccessApplication" });
-    });
+    await context
+      .dispatch(SEND_APPLICATION)
+      .then(() => {
+        console.log("can it be?");
+        console.log("payload", payload);
+        payload.vm.$router.push({ name: "SuccessApplication" });
+      })
+      .catch(error => {
+        console.log("error", error);
+        context.commit(STOP_LOADING);
+      });
   }
 };

@@ -7,6 +7,8 @@ export const getters = {
   getAppEducations: state => state.appEducations,
   getAppExperiences: state => state.appExperiences,
   getAppSkills: state => state.appSkills,
-  getSexOptions: state => state.sexOptions,
-  getProfessionDropdown: state => state.professionDropdown
+  getEducationTypeOptions: state => state.educationTypeOptions,
+  getEducationMiddleDegreeDropdown: state => state.educationMiddleDegreeDropdown,
+  getEducationHighDegreeDropdown: state => state.educationHighDegreeDropdown,
+  getEducationHighFieldOfStudyDropdown: state => state.educationHighFieldOfStudyDropdown
 };
