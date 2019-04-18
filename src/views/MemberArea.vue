@@ -28,7 +28,7 @@
             </router-link>
 
             <router-link
-              :to="{ name: 'ComingSoon' }"
+              :to="{ name: 'Reapplication' }"
               style="height: 295px;"
               v-if="getCurrentUser.application_status == 'rebutted'"
             >

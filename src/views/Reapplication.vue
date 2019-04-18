@@ -5,17 +5,15 @@
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Rregullo aplikimin</h1>
-          <p class="lead text-center">
-            Rregulloni aplikimin sipas udhezimit te komentit te administratorit.
-          </p>
+          <p class="lead text-center">Rregulloni aplikimin sipas udhezimit te komentit te administratorit.</p>
         </div>
+
         <div class="container">
           <header class="section-header">
             <h2>Udhezime nga administratori</h2>
-            <p>{{ comment_from_administrator }}</p>
+            <!-- <p>{{ comment_from_administrator }}</p> -->
           </header>
         </div>
-
 
         <div class="container">
           <div class="row">
@@ -23,17 +21,24 @@
               <div class="input-file-container">
                 <input
                   type="file"
+                  ref="profile"
                   class="input-file"
-                  ref="profile_file"
-                  id="my-file"
-                  @change="handleFileUploadProfile"
-                />
-                  <label tabindex="0" for="my-file" class="input-file-trigger"
-                    >Zgjidhni nje foto...</label
-                  >
-                <p class="file-return">{{ profile_picture_file.name }}</p>
+                  :id="'profile' + getCurrentUser.id"
+                  @change="handleFileUploadProfile()"
+                >
+                <label
+                  tabindex="0"
+                  :for="'profile' + getCurrentUser.id"
+                  class="input-file-trigger"
+                >Zgjidhni nje foto profili...</label>
+                <p
+                  v-for="(file, index) in getReappProfile.files"
+                  :key="index"
+                  class="file-return"
+                >{{ file.name }}</p>
               </div>
             </div>
+
             <div class="col-xs-12 col-sm-8">
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Emri</label>
@@ -42,10 +47,12 @@
                     type="text"
                     class="form-control input-lg"
                     placeholder="Emri"
-                    v-model="first_name"
-                  />
+                    :value="getReappProfile.first_name"
+                    @change="updateProfileField('first_name', $event.target.value)"
+                  >
                 </div>
               </div>
+
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Mbiemri</label>
                 <div class="col-sm-9">
@@ -53,64 +60,57 @@
                     type="text"
                     class="form-control input-lg"
                     placeholder="Mbiemri"
-                    v-model="last_name"
-                  />
+                    :value="getReappProfile.last_name"
+                    @change="updateProfileField('last_name', $event.target.value)"
+                  >
                 </div>
               </div>
+
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Profesioni</label>
                 <div class="col-sm-4">
                   <select
                     class="form-control"
-                    v-model="profession_id"
-                    @change="changeProfession"
+                    :value="profileSelectedValue()"
+                    @change="changeProfileSelectedValue('profession', $event.target.value, $event)"
                   >
                     <option
-                      v-for="option in profession_options"
-                      v-bind:value="option.id"
+                      v-for="option in getReappProfile.professionDropdown.professionOptions"
+                      :value="option.text"
                       :key="option.id"
-                      >{{ option.text }}</option
-                    >>
+                    >{{ option.text }}</option>
                   </select>
                 </div>
-                <div class="form-group col-sm-5">
+                <div class="col-sm-5">
                   <input
                     type="text"
-                    :disabled="!profession_other"
+                    :disabled="!getReappProfile.professionDropdown.isProfessionInputEnabled"
                     class="form-control"
-                    v-model="profession"
-                    :placeholder="profession_other"
-                  />
+                    :value="getReappProfile.profession"
+                    @change="updateProfileField('profession', $event.target.value)"
+                    placeholder="Profesioni juaj, psh inxhinier ndertimi"
+                  >
                 </div>
               </div>
 
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Gjinia</label>
                 <div class="col-sm-9">
-                  <select class="form-control" v-model="sex">
+                  <select
+                    class="form-control"
+                    :value="getReappProfile.sex"
+                    @change="updateProfileField('sex', $event.target.value)"
+                  >
                     <option
-                      v-for="option in sex_options"
-                      v-bind:value="option.text"
+                      v-for="option in getReappProfile.sexOptions"
+                      :value="option.text"
                       :key="option.id"
-                      >{{ option.text }}</option
-                    >
+                    >{{ option.text }}</option>
                   </select>
                 </div>
               </div>
 
-              <div class="form-group col-sm-12">
-                <label class="col-sm-3">Pershkrimi</label>
-                <div class="col-sm-9">
-                  <textarea
-                    class="form-control"
-                    rows="3"
-                    placeholder="Pershkrim i shkurter rreth jush"
-                    v-model="summary"
-                  ></textarea>
-                </div>
-              </div>
-
-              <hr class="hr-lg" />
+              <hr class="hr-lg">
 
               <div class="form-group col-sm-12">
                 <label class="col-sm-3">Vendlindja</label>
@@ -123,8 +123,9 @@
                       type="text"
                       class="form-control"
                       placeholder="Vendlindja"
-                      v-model="country"
-                    />
+                      :value="getReappProfile.country"
+                      @change="updateProfileField('country', $event.target.value)"
+                    >
                   </div>
                 </div>
               </div>
@@ -140,8 +141,9 @@
                       type="date"
                       class="form-control"
                       placeholder="Datelindja"
-                      v-model="birthday"
-                    />
+                      :value="getReappProfile.birthday"
+                      @change="updateProfileField('birthday', $event.target.value)"
+                    >
                   </div>
                 </div>
               </div>
@@ -157,8 +159,9 @@
                       type="text"
                       class="form-control"
                       placeholder="Adresa"
-                      v-model="address"
-                    />
+                      :value="getReappProfile.address"
+                      @change="updateProfileField('address', $event.target.value)"
+                    >
                   </div>
                 </div>
               </div>
@@ -174,8 +177,9 @@
                       type="text"
                       class="form-control"
                       placeholder="Faqja juaj e internetit"
-                      v-model="website"
-                    />
+                      :value="getReappProfile.website"
+                      @change="updateProfileField('website', $event.target.value)"
+                    >
                   </div>
                 </div>
               </div>
@@ -190,9 +194,10 @@
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Numri i telefonit"
-                      v-model="phone"
-                    />
+                      placeholder="Numri telefonit"
+                      :value="getReappProfile.phone"
+                      @change="updateProfileField('phone', $event.target.value)"
+                    >
                   </div>
                 </div>
               </div>
@@ -207,9 +212,10 @@
                     <input
                       type="text"
                       class="form-control"
-                      :placeholder="email"
+                      :value="getReappProfile.email"
+                      @change="updateProfileField('email', $event.target.value)"
                       disabled
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -220,8 +226,7 @@
       <!-- END Page header -->
       <!-- Main container -->
       <main>
-        <section>
-        </section>
+        <section></section>
         <!-- Education -->
         <section class="bg-alt">
           <div class="container">
@@ -233,112 +238,94 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="educationInput.id"
-                v-for="(educationInput, index) in educationInputs"
+                v-for="education in getReappEducations"
+                :key="'education' + education.educationId"
               >
                 <div class="item-block">
                   <div class="item-form">
+
                     <div class="row">
+
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input
                             type="file"
-                            class='input-file'
-                            :id="educationInputs[index].id"
-                            ref="education"
+                            ref="educations"
+                            class="input-file"
+                            :id="'education' + education.educationId"
                             multiple
-                            @change="handleFileUploadEducation(educationInput.id, index)
-                            "
-                          />
-                        <label tabindex="0" :for="educationInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje ose me shume dokumenta...</label
-                        >
-                        
-                        <!-- <p
-                        :key='i' 
-                        v-for='i in educationInputs[index].files.length'
-                        class="file-return">{{ educationInputs[index].files[i-1].name }}</p> -->
+                            @change="handleFileUploadEducation(education.educationId)"
+                          >
+                          <label
+                            tabindex="0"
+                            :for="'education' + education.educationId"
+                            class="input-file-trigger"
+                          >Zgjidhni nje ose me shume dokumenta...</label>
+                          <p
+                            v-for="(file, index) in education.files"
+                            :key="index"
+                            class="file-return"
+                          >{{ file.name }}</p>
                         </div>
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-                        <div class="form-group col-sm-12">
-                          <label class="col-sm-3">Tipi i arsimimit</label>
+
+                        <!-- <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Lloji i arsimimit</label>
                           <div class="col-sm-9">
                             <select
                               class="form-control"
-                              v-model="education_type_id[index]"
-                              @change="educationTypeChange($event, index)"
+                              :value="education.education_type"
+                              @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
                             >
                               <option
-                                v-for="option in education_type_options"
-                                v-bind:value="option.id"
+                                v-for="option in education.educationTypeOptions"
+                                :value="option.text"
                                 :key="option.id"
-                                >{{ option.text }}</option
-                              >
+                              >{{ option.text }}</option>
                             </select>
+                          </div>
+                        </div> -->
+
+
+
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Lloji i arsimimit</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              :value="education.education_type"
+                              @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
+                              placeholder="Lloji i arsimit, psh shkolle e mesme, ose shkolle e larte"
+                            >
                           </div>
                         </div>
 
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Tipi i diplomes</label>
-                          <div class="col-sm-4">
-                            <select
-                              class="form-control"
-                              v-model="education_degree_id[index]"
-                              @change="
-                                educationDegreeChange($event, index)
-                              "
-                            >
-                              <option
-                                v-for="option in education_degree_options[
-                                  education_type_id[index]
-                                ]"
-                                v-bind:value="option.id"
-                                :key="option.id"
-                                >{{ option.text }}</option
-                              >
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
+                          <div class="col-sm-9">
                             <input
                               type="text"
-                              :disabled="!education_degree_other[index]"
                               class="form-control"
-                              v-model="educationInput.degree"
-                              placeholder="..."
-                            />
+                              :value="education.degree"
+                              @change="updateEducationField(education.educationId, 'degree', $event.target.value)"
+                              placeholder="Tipi i diplomes, psh Bachelor, ose e mesme e pergjithshme"
+                            >
                           </div>
                         </div>
 
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Dega</label>
-                          <div class="col-sm-4">
-                            <select
-                              class="form-control"
-                              v-model="education_major_id[index]"
-                              @change="
-                                educationMajorChange($event, index)
-                              "
-                            >
-                              <option
-                                v-for="option in education_major_options[
-                                  education_type_id[index]
-                                ]"
-                                v-bind:value="option.id"
-                                :key="option.id"
-                                >{{ option.text }}</option
-                              >
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
+                          <div class="col-sm-9">
                             <input
                               type="text"
-                              :disabled="!education_major_other[index]"
                               class="form-control"
-                              v-model="educationInput.field_of_study"
-                              placeholder="..."
-                            />
+                              :value="education.field_of_study"
+                              @change="updateEducationField(education.educationId, 'field_of_study', $event.target.value)"
+                              placeholder="Dega, psh inxhinieri ndertimi"
+                            >
                           </div>
                         </div>
 
@@ -348,9 +335,10 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="educationInput.school"
-                              placeholder="School name, e.g. Massachusetts Institute of Technology"
-                            />
+                              :value="education.school"
+                              @change="updateEducationField(education.educationId, 'school', $event.target.value)"
+                              placeholder="Emri i shkolles, psh Universiteti Politeknik i Tiranes"
+                            >
                           </div>
                         </div>
 
@@ -361,8 +349,9 @@
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2012"
-                              v-model="educationInput.from_date"
-                            />
+                              :value="education.from_date"
+                              @change="updateEducationField(education.educationId, 'from_date', $event.target.value)"
+                            >
                           </div>
                         </div>
 
@@ -373,8 +362,9 @@
                               type="date"
                               class="form-control"
                               placeholder="e.g. 2016"
-                              v-model="educationInput.to_date"
-                            />
+                              :value="education.to_date"
+                              @change="updateEducationField(education.educationId, 'to_date', $event.target.value)"
+                            >
                           </div>
                         </div>
 
@@ -384,8 +374,9 @@
                             <textarea
                               class="form-control"
                               rows="3"
-                              placeholder="Short description"
-                              v-model="educationInput.description"
+                              placeholder="Pershkrim i shkurter"
+                              :value="education.description"
+                              @change="updateEducationField(education.educationId, 'description', $event.target.value)"
                             ></textarea>
                           </div>
                         </div>
@@ -394,6 +385,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
@@ -409,30 +401,34 @@
             <div class="row">
               <div
                 class="col-xs-12"
-                :key="experienceInput.id"
-                v-for="(experienceInput, index) in experienceInputs"
+                v-for="experience in getReappExperiences"
+                :key="'experience' + experience.experienceId"
               >
                 <div class="item-block">
                   <div class="item-form">
+
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input
                             type="file"
-                            ref="experience"
+                            ref="experiences"
                             class="input-file"
-                            :id="experienceInputs[index].id"
+                            :id="'experience' + experience.experienceId"
                             multiple
-                            @change="
-                              handleFileUploadExperience(
-                                experienceInput.id,
-                                index
-                              )
-                            "
-                          />
-                          <label tabindex="0" :for="experienceInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje ose me shume dokumenta...</label
-                        >
+                            @change="handleFileUploadExperience(experience.experienceId)"
+                          >
+                          <label
+                            tabindex="0"
+                            :for="'experience' + experience.experienceId"
+                            class="input-file-trigger"
+                          >Zgjidhni nje ose me shume dokumenta...</label>
+
+                          <p
+                            v-for="(file, index) in experience.files"
+                            :key="index"
+                            class="file-return"
+                          >{{ file.name }}</p>
                         </div>
                       </div>
 
@@ -443,9 +439,10 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="experienceInput.title"
+                              :value="experience.title"
+                              @change="updateExperienceField(experience.experienceId, 'title', $event.target.value)"
                               placeholder="Titulli qe keni mbajtur ne pune"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -455,9 +452,10 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="experienceInput.employer"
+                              :value="experience.employer"
+                              @change="updateExperienceField(experience.experienceId, 'employer', $event.target.value)"
                               placeholder="Emri i punedhenesit"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -467,9 +465,10 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="experienceInput.location"
+                              :value="experience.location"
+                              @change="updateExperienceField(experience.experienceId, 'location', $event.target.value)"
                               placeholder="Vendi ku keni punuar"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -479,9 +478,10 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="experienceInput.from_date"
+                              :value="experience.from_date"
+                              @change="updateExperienceField(experience.experienceId, 'from_date', $event.target.value)"
                               placeholder="e.g. 2012"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -491,9 +491,10 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="experienceInput.to_date"
+                              :value="experience.to_date"
+                              @change="updateExperienceField(experience.experienceId, 'to_date', $event.target.value)"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
 
@@ -503,7 +504,8 @@
                             <textarea
                               class="form-control"
                               rows="3"
-                              v-model="experienceInput.description"
+                              :value="experience.description"
+                              @change="updateExperienceField(experience.experienceId, 'description', $event.target.value)"
                               placeholder="Pershkrim i shkurter"
                             ></textarea>
                           </div>
@@ -513,6 +515,7 @@
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </section>
@@ -526,29 +529,31 @@
             </header>
 
             <div class="row">
-              <div
-                class="col-xs-12"
-                :key="skillInput.id"
-                v-for="(skillInput, index) in skillInputs"
-              >
+              <div class="col-xs-12" v-for="skill in getReappSkills" :key="'skill' + skill.skillId">
                 <div class="item-block">
                   <div class="item-form">
+
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input
                             type="file"
-                            ref="skill"
+                            ref="skills"
                             class="input-file"
-                            :id="skillInputs[index].id"
+                            :id="'skill' + skill.skillId"
                             multiple
-                            @change="
-                              handleFileUploadSkill(skillInput.id, index)
-                            "
-                          />
-                          <label tabindex="0" :for="skillInputs[index].id" class="input-file-trigger"
-                          >Zgjidhni nje ose me shume dokumenta...</label
-                        >
+                            @change="handleFileUploadSkill(skill.skillId)"
+                          >
+                          <label
+                            tabindex="0"
+                            :for="'skill' + skill.skillId"
+                            class="input-file-trigger"
+                          >Zgjidhni nje ose me shume dokumenta...</label>
+                          <p
+                            v-for="(file, index) in skill.files"
+                            :key="index"
+                            class="file-return"
+                          >{{ file.name }}</p>
                         </div>
                       </div>
 
@@ -559,22 +564,22 @@
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skillInput.name"
+                              :value="skill.name"
+                              @change="updateSkillField(skill.skillId, 'name', $event.target.value)"
                               placeholder="Emri i kualifikimit"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3"
-                            >Leshuesi i kualifikimit</label
-                          >
+                          <label class="col-sm-3">Leshuesi i kualifikimit</label>
                           <div class="col-sm-9">
                             <input
                               type="text"
                               class="form-control"
-                              v-model="skillInput.releaser"
+                              :value="skill.releaser"
+                              @change="updateSkillField(skill.skillId, 'releaser', $event.target.value)"
                               placeholder="Leshuesi i kualifikimit"
-                            />
+                            >
                           </div>
                         </div>
                         <div class="form-group col-sm-12">
@@ -583,38 +588,40 @@
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skillInput.from_date"
+                              :value="skill.from_date"
+                              @change="updateSkillField(skill.skillId, 'from_date', $event.target.value)"
                               placeholder="e.g. 2012"
-                            />
+                            >
                           </div>
                         </div>
-
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Deri ne</label>
                           <div class="col-sm-9">
                             <input
                               type="date"
                               class="form-control"
-                              v-model="skillInput.to_date"
+                              :value="skill.to_date"
+                              @change="updateSkillField(skill.skillId, 'to_date', $event.target.value)"
                               placeholder="e.g. 2016"
-                            />
+                            >
                           </div>
                         </div>
+
                         <div class="form-group col-sm-12">
-                          <label class="col-sm-3"
-                            >Pershkrim i kualifikimit</label
-                          >
+                          <label class="col-sm-3">Pershkrim i kualifikimit</label>
                           <div class="col-sm-9">
                             <textarea
                               class="form-control"
+                              :value="skill.description"
+                              @change="updateSkillField(skill.skillId, 'description', $event.target.value)"
                               rows="3"
                               placeholder="Pershkrim i shkurter"
-                              v-model="skillInput.description"
                             ></textarea>
                           </div>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -636,10 +643,37 @@
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">
-                Dergo aplikimin
-              </button>
+              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
             </p>
+            <form-summary :validator="$v.user_data">
+              <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
+            </form-summary>
+            <div class="card border-info mb-3 become-centered" v-if="isLoading">
+              <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="card-header">Ngarkim dokumentash</div>
+              <div class="card-body text-info">
+                <h5 class="card-title">Informacion</h5>
+                <p
+                  class="card-text"
+                >Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.</p>
+                <p
+                  class="card-text"
+                >Ne mbarim te procesit do te ridrejtoheni automatikisht ne faqen e suksesit.</p>
+              </div>
+            </div>
           </div>
         </section>
         <!-- END Submit -->
@@ -651,645 +685,150 @@
 
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
-import { EducationService } from "@/common/api.service";
+import { required, email } from "vuelidate/lib/validators";
+import { templates } from "vuelidate-error-extractor";
+import store from "@/store";
+import { RE_UPLOAD, RE_GET_PROFILE } from "@/store/actions.type";
+import {
+  RE_TOGGLE_PROFESSION_INPUT,
+  RE_SET_PROFILE_FILES,
+  RE_SET_APP_PROFILE,
+  RE_SET_EDUCATION_FILES,
+  RE_UPDATE_EDUCATION,
+  RE_SET_EXPERIENCE_FILES,
+  RE_UPDATE_EXPERIENCE,
+  RE_SET_SKILL_FILES,
+  RE_UPDATE_SKILL
+} from "@/store/mutations.type";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "Reapplication",
   data() {
     return {
-      //--------------- User -------
-
-      first_name: "",
-      last_name: "",
-
-      profession: "",
-      profession_other: false,
-      profession_id: "",
-      profession_options: [
-        { text: "Inxhinier Ndertimi", id: 1 },
-        { text: "Inxhinier Civil", id: 2 },
-        { text: "Inxhinier Mekanik", id: 3 },
-        { text: "Te tjere", id: 4 }
-      ],
-
-      sex: "",
-      sex_options: [{ text: "Mashkull", id: 1 }, { text: "Femer", id: 2 }],
-
-      summary: "",
-      country: "",
-      industry: "",
-      phone: "",
-      address: "",
-      birthday: "",
-      website: "",
-      email: "",
-      comment_from_administrator: "",
-
-      //--------------- Image Files -------
-      profile_picture_file: "",
-
-      //--------------- Education -------
-      educationInputs: [],
-      resEducationIds: [],
-
-      education_files_index: 0,
-      education_type_id: [],
-      education_type_options: [
-        { text: "Shkolle e mesme", id: 1 },
-        { text: "Shkolle e larte", id: 2 }
-      ],
-
-      education_degree_id: [],
-      education_degree_other: [false],
-      education_degree_options: {
-        1: [
-          { text: "Pergjithshme", id: 1 },
-          { text: "Teknike", id: 2 },
-          { text: "Te tjera", id: 3 }
-        ],
-        2: [
-          { text: "Bachelor", id: 4 },
-          { text: "Master", id: 5 },
-          { text: "Diplom", id: 6 },
-          { text: "Te tjera", id: 7 }
-        ]
-      },
-
-      education_major_id: [],
-      education_major_other: [false],
-      education_major_options: {
-        1: [
-          { text: "Hidraulike", id: 1 },
-          { text: "Termoteknike", id: 2 },
-          { text: "Te tjera", id: 3 }
-        ],
-        2: [
-          { text: "Inxhinier Civil", id: 4 },
-          { text: "Inxhinier Elektrik", id: 5 },
-          { text: "Te tjera", id: 6 }
-        ]
-      },
-      //---------------- Experience -------
-      experienceInputs: [],
-      resExperienceIds: [],
-      experience_files_index: 0,
-
-      //---------------- Skill -------
-      skillInputs: [],
-      resSkillIds: [],
-      skill_files_index: 0
+      //profile validation
+      user_data: this.getReappProfile
     };
   },
+  components: {
+    formSummary: templates.multiErrorExtractor.foundation6
+  },
   methods: {
-    changeProfession() {
-      if (event.target.value == 4) {
-        this.profession_other = true;
-        this.profession = "Fut profesionin";
-      } else {
-        this.profession_other = false;
-        this.profession = this.profession_options[event.target.value - 1].text;
+    consoleLog(message, params) {
+      console.log(`message is: `, message);
+      for (let param of params) {
+        console.log(`param is:   `, param);
       }
+      console.log(`store is:   `, this.$store);
     },
-    educationTypeChange(e, i){
-      this.educationInputs[i].degree = ''
-      this.educationInputs[i].field_of_study = ''
-      this.educationInputs[i].education_type = this.education_type_options[e.target.value-1].text
-    },
-    educationDegreeChange(e, i) {
-      let educationOptionId = e.target.value;
-      if (educationOptionId == 7 || educationOptionId == 3) {
-        this.education_degree_other[i] = true;
-        this.educationInputs[i].degree = "Fut tipin e diplomes";
+    // common code
+    isEnabled(event) {
+      let enabled = false;
+      if (event.srcElement.options.selectedIndex == event.srcElement.options.length-1) {
+        enabled = true;
       } else {
-        this.education_degree_other[i] = false;
-        if (this.education_type_id[i] == 1)
-          this.educationInputs[i].degree = this.education_degree_options[
-            this.education_type_id[i]
-          ][educationOptionId - 1].text;
-        else
-          this.educationInputs[i].degree = this.education_degree_options[
-            this.education_type_id[i]
-          ][educationOptionId - 4].text;
+        enabled = false;
       }
+      return enabled
     },
-    educationMajorChange(e, i) {
-      let educationOptionId = e.target.value;
-      if (educationOptionId == 6 || educationOptionId == 3) {
-        this.education_major_other[i] = true;
-        this.educationInputs[i].field_of_study = "Fut degen";
-      } else {
-        this.education_major_other[i] = false;
-        if (this.education_type_id[i] == 1)
-          this.educationInputs[i].field_of_study = this.education_major_options[
-            this.education_type_id[i]
-          ][educationOptionId - 1].text;
-        else
-          this.educationInputs[i].field_of_study = this.education_major_options[
-            this.education_type_id[i]
-          ][educationOptionId - 4].text;
+    // ------- Profile picture -------
+    handleFileUploadProfile() {
+      let vm = this;
+      this.$store.commit(RE_SET_PROFILE_FILES, { vm });
+    },
+    // method should be renamed to professionSelectedValue()
+    profileSelectedValue() {
+      let first = this.getReappProfile.professionDropdown.professionOptions[0].text
+      let second = this.getReappProfile.professionDropdown.professionOptions[1].text
+      let third = this.getReappProfile.professionDropdown.professionOptions[2].text
+      let last = this.getReappProfile.professionDropdown.professionOptions[3].text
+      let profession = this.getReappProfile.profession
+      if (!(profession == first)&&!(profession == second)&&!(profession == third)&&!(profession == "")) {
+        profession = last
       }
+      return profession
     },
-    handleFileUploadProfile(event) {
-      this.profile_picture_file = this.$refs.profile_file.files[0];
+    changeProfileSelectedValue(field, value, event) {
+      let enabled = this.isEnabled(event);
+      this.$store.commit(RE_TOGGLE_PROFESSION_INPUT, { enabled });
+      let payload = { [field]: value };
+      this.$store.commit(RE_SET_APP_PROFILE, payload);
+    },
+    updateProfileField(field, value) {
+      let payload = { [field]: value };
+      this.$store.commit(RE_SET_APP_PROFILE, payload);
     },
     // ------- Education -------
-    handleFileUploadEducation(id, index) {
-      let files = [];
-      for (let i = 0; i < this.$refs.education[index].files.length; i++) {
-        files.push(this.$refs.education[index].files[i]);
-      }
-      this.educationInputs.filter(
-        education => education.id === id
-      )[0].files = files;
+    handleFileUploadEducation(educationId) {
+      let vm = this;
+      this.$store.commit(RE_SET_EDUCATION_FILES, { vm, educationId });
+    },
+    updateEducationField(educationId, field, value) {
+      let payload = { educationId, [field]: value };
+      this.$store.commit(RE_UPDATE_EDUCATION, payload);
+      console.log("store is", this.$store)
     },
     // ------- Experience -------
-    handleFileUploadExperience(id, index) {
-      let files = [];
-      for (let i = 0; i < this.$refs.experience[index].files.length; i++) {
-        files.push(this.$refs.experience[index].files[i]);
-      }
-      this.experienceInputs.filter(
-        experience => experience.id === id
-      )[0].files = files;
+    handleFileUploadExperience(experienceId) {
+      let vm = this;
+      this.$store.commit(RE_SET_EXPERIENCE_FILES, { vm, experienceId });
+    },
+    updateExperienceField(experienceId, field, value) {
+      let payload = { experienceId, [field]: value };
+      this.$store.commit(RE_UPDATE_EXPERIENCE, payload);
     },
     // ------- Skill -------
-    handleFileUploadSkill(id, index) {
-      let files = [];
-      for (let i = 0; i < this.$refs.skill[index].files.length; i++) {
-        files.push(this.$refs.skill[index].files[i]);
-      }
-      this.skillInputs.filter(skill => skill.id === id)[0].files = files;
+    handleFileUploadSkill(skillId) {
+      let vm = this;
+      this.$store.commit(RE_SET_SKILL_FILES, { vm, skillId });
     },
-
-    sendExperiences() {
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
-
-      let resExperienceInputs = [];
-
-      for (var i = 0; i < this.experienceInputs.length; i++) {
-        resExperienceInputs.push({});
-        // list of education ids
-        this.resExperienceIds.push(this.experienceInputs[i].id);
-        for (var j = 0; j < Object.keys(this.experienceInputs[i]).length; j++) {
-          if (
-            Object.keys(this.experienceInputs[i])[j] != "id" &&
-            Object.keys(this.experienceInputs[i])[j] != "user_id" &&
-            Object.keys(this.experienceInputs[i])[j] != "timestamp" &&
-            Object.keys(this.experienceInputs[i])[j] != "media_experience_ids"
-          ) {
-            resExperienceInputs[i][
-              Object.keys(this.experienceInputs[i])[j]
-            ] = this.experienceInputs[i][
-              Object.keys(this.experienceInputs[i])[j]
-            ];
-          }
-        }
-      }
-      this.experienceInputs = resExperienceInputs;
-      for (var i = 0; i < this.experienceInputs.length; i++) {
-        axios
-          .put(
-            "https://aace.ml/api/user/" +
-              USER_ID +
-              "/experience/" +
-              this.resExperienceIds[i],
-            this.experienceInputs[i],
-            {
-              // "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + TOKEN
-              }
-            }
-          )
-          .then(res => {
-            console.log("put experience");
-            let EXPERIENCE_ID = res.data.id;
-
-            let formDataExperience = new FormData();
-            if (this.experienceInputs[this.experience_files_index].files) {
-              for (
-                let j = 0;
-                j <
-                this.experienceInputs[this.experience_files_index].files.length;
-                j++
-              ) {
-                formDataExperience.append(
-                  "file",
-                  this.experienceInputs[this.experience_files_index].files[j]
-                );
-              }
-              this.experience_files_index++;
-              axios
-                .post(
-                  "https://aace.ml/api/user/" +
-                    USER_ID +
-                    "/experience/" +
-                    EXPERIENCE_ID +
-                    "/media",
-                  formDataExperience,
-                  {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                      Authorization: "Bearer " + TOKEN
-                    }
-                  }
-                )
-                .then(res => {
-                  if (res.status == 200) {
-                    console.log("pdf updated sucessfully experience.");
-                    // this.$router.push({
-                    //   name: "/success"
-                    // });
-                  }
-                })
-                .catch(err => console.log(err));
-            } // closes the if statement
-          });
-      }
+    updateSkillField(skillId, field, value) {
+      let payload = { skillId, [field]: value };
+      this.$store.commit(RE_UPDATE_SKILL, payload);
     },
-    sendSkills() {
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
-
-      let resSkillInputs = [];
-
-      for (var i = 0; i < this.skillInputs.length; i++) {
-        resSkillInputs.push({});
-        // list of education ids
-        this.resSkillIds.push(this.skillInputs[i].id);
-        for (var j = 0; j < Object.keys(this.skillInputs[i]).length; j++) {
-          if (
-            Object.keys(this.skillInputs[i])[j] != "id" &&
-            Object.keys(this.skillInputs[i])[j] != "user_id" &&
-            Object.keys(this.skillInputs[i])[j] != "timestamp" &&
-            Object.keys(this.skillInputs[i])[j] != "media_skill_ids"
-          ) {
-            resSkillInputs[i][
-              Object.keys(this.skillInputs[i])[j]
-            ] = this.skillInputs[i][Object.keys(this.skillInputs[i])[j]];
-          }
-        }
-      }
-      this.skillInputs = resSkillInputs;
-
-      for (var i = 0; i < this.skillInputs.length; i++) {
-        axios
-          .put(
-            "https://aace.ml/api/user/" +
-              USER_ID +
-              "/skill/" +
-              this.resSkillIds[i],
-            this.skillInputs[i],
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + TOKEN
-              }
-            }
-          )
-          .then(res => {
-            console.log("put skill");
-            let SKILL_ID = res.data.id;
-
-            let formDataSkill = new FormData();
-            if (this.skillInputs[this.skill_files_index].files) {
-              for (
-                let j = 0;
-                j < this.skillInputs[this.skill_files_index].files.length;
-                j++
-              ) {
-                formDataSkill.append(
-                  "file",
-                  this.skillInputs[this.skill_files_index].files[j]
-                );
-              }
-              this.skill_files_index++;
-              axios
-                .post(
-                  "https://aace.ml/api/user/" +
-                    USER_ID +
-                    "/skill/" +
-                    SKILL_ID +
-                    "/media",
-                  formDataSkill,
-                  {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                      Authorization: "Bearer " + TOKEN
-                    }
-                  }
-                )
-                .then(res => {
-                  if (res.status == 200) {
-                    console.log("pdf updated sucessfully.");
-                    // this.$router.push({
-                    //   path: "/success"
-                    // });
-                  }
-                })
-                .catch(err => console.log(err));
-            }
-          });
-      }
-    },
-    sendEducations() {
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
-
-      let resEducationInputs = [];
-
-      // removes unnecesary keys, like (id) and (user_id)
-      for (var i = 0; i < this.educationInputs.length; i++) {
-        resEducationInputs.push({});
-        // list of education ids
-        this.resEducationIds.push(this.educationInputs[i].id);
-        for (var j = 0; j < Object.keys(this.educationInputs[i]).length; j++) {
-          if (
-            Object.keys(this.educationInputs[i])[j] != "id" &&
-            Object.keys(this.educationInputs[i])[j] != "user_id" &&
-            Object.keys(this.educationInputs[i])[j] != "timestamp" &&
-            Object.keys(this.educationInputs[i])[j] != "media_education_ids"
-          ) {
-            resEducationInputs[i][
-              Object.keys(this.educationInputs[i])[j]
-            ] = this.educationInputs[i][
-              Object.keys(this.educationInputs[i])[j]
-            ];
-          }
-        }
-      }
-      this.educationInputs = resEducationInputs;
-
-      for (var i = 0; i < this.educationInputs.length; i++) {
-        axios
-          .put(
-            "https://aace.ml/api/user/" +
-              USER_ID +
-              "/education/" +
-              this.resEducationIds[i],
-            this.educationInputs[i],
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + TOKEN
-              }
-            }
-          )
-          .then(res => {
-            console.log("");
-            console.log("put education");
-            let EDUCATION_ID = res.data.id;
-
-            let formDataEducation = new FormData();
-            if (this.educationInputs[this.education_files_index].files) {
-              for (
-                let j = 0;
-                j <
-                this.educationInputs[this.education_files_index].files.length;
-                j++
-              ) {
-                formDataEducation.append(
-                  "file",
-                  this.educationInputs[this.education_files_index].files[j]
-                );
-              }
-              this.education_files_index++;
-              axios
-                .post(
-                  "https://aace.ml/api/user/" +
-                    USER_ID +
-                    "/education/" +
-                    EDUCATION_ID +
-                    "/media",
-                  formDataEducation,
-                  {
-                    "Content-Type": "multipart/form-data",
-                    headers: {
-                      Authorization: "Bearer " + TOKEN
-                    }
-                  }
-                )
-                .then(res => {
-                  if (res.status == 200) {
-                    console.log("media education.");
-                    // this.$router.push({
-                    //   name: "SuccessApplication"
-                    // });
-                  }
-                })
-                .catch(err => console.log(err));
-            } // close if-statement
-          });
-      }
-    },
+    // ------- Application -------
     onApply() {
-      // ------- Basic
-      let AACE_URL_USER = "https://aace.ml/api/user/";
-      let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-      let TOKEN = localStorage.getItem("id_token");
-
-      console.log(TOKEN);
-      console.log(USER_ID);
-      // ------- User -------
-      let formDataUser = new FormData();
-      formDataUser.append("file", this.profile_picture_file);
-      let user_string = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        profession: this.profession,
-        sex: this.sex,
-        summary: this.summary,
-        country: this.country,
-        phone: this.phone,
-        address: this.address,
-        birthday: this.birthday,
-        website: this.website
-      };
-
-      // ------- Experience file and post -------
-      this.sendExperiences();
-      // ------- Skill file and post -------
-      this.sendSkills();
-      // ------- Education file and post -------
-      this.sendEducations();
-      // ------- User file and put -------
-      axios
-        .all([
-          axios.post(
-            "https://aace.ml/api/user/" + USER_ID + "/media",
-            formDataUser,
-            {
-              "Content-Type": "multipart/form-data",
-              headers: {
-                Authorization: "Bearer " + TOKEN
-              }
-            }
-          ),
-          axios.put("https://aace.ml/api/user/" + USER_ID, user_string, {
-            headers: {
-              Authorization: "Bearer " + TOKEN
-            }
-          })
-        ])
-        .then(
-          axios.spread((profileRes, stringRes) => {
-            // console.log(
-            //   "res.statuses are: ",
-            //   profileRes.status,
-            //   stringRes.status
-            // );
-
-            if (profileRes.status == 200) {
-              // console.log("Profile picture updated successfully.");
-            } else {
-              // console.log("profile picture bad response");
-            }
-
-            if (stringRes.status == 200) {
-              // console.log("Strings sent successfully.");
-              localStorage.setItem("user", JSON.stringify(stringRes.data));
-              this.$router.push({
-                name: "SuccessApplication"
-              });
-            } else {
-              // console.log("String sent unsuccessfuly");
-            }
-          })
-        );
+      this.$v.user_data.$touch();
+      if (this.$v.user_data.$pending || this.$v.user_data.$error) {
+        console.log("errors");
+        return;
+      }
+      let vm = this;
+      this.$store.dispatch(RE_UPLOAD, { vm });
+    }
+  },
+  computed: {
+    ...mapGetters([
+      "getCurrentUser",
+      "getCurrentToken",
+      "isLoading",
+      "getReappProfile",
+      "getReappEducations",
+      "getReappExperiences",
+      "getReappSkills"
+    ])
+  },
+  validations: {
+    user_data: {
+      first_name: { required },
+      last_name: { required },
+      profession: { required },
+      sex: { required },
+      country: { required },
+      phone: { required },
+      address: { required },
+      birthday: { required },
+      email: { required, email }
     }
   },
   mounted() {
-    let AACE_URL_USER = "https://aace.ml/api/user/";
-    let USER_ID = JSON.parse(localStorage.getItem("user")).id;
-
-    // get EDUCATION
-    axios
-      .get(AACE_URL_USER + USER_ID + "/education/all", {
-        responseType: "json"
-      })
-      .then(res => {
-        this.educationInputs = res.data;
-        // autofill dropdowns
-        for (var i = 0; i < this.educationInputs.length; i++) {
-
-          // education type id ---------------------------
-          if (this.educationInputs[i].education_type == "Shkolle e mesme")
-            this.education_type_id[i] = 1;
-          else 
-            this.education_type_id[i] = 2;
-          // degree --------------------------------------
-
-          if(this.education_type_id[i] == 1){
-            for (let j = 0; j < this.education_degree_options[1].length; j++) {
-              if (this.educationInputs[i].degree == this.education_degree_options[1][j].text) {
-                this.education_degree_id[i] = j + 1;
-              }
-            }
-            if(!this.education_degree_id[i]){
-              this.education_degree_id[i] = 3
-              this.education_degree_other[i] = true;
-            }
-          }
-
-          if(this.education_type_id[i] == 2){
-            for (let j = 0; j < this.education_degree_options[2].length; j++) {
-              if (this.educationInputs[i].degree == this.education_degree_options[2][j].text) {
-                this.education_degree_id[i] = j + 4;
-              }
-            }
-            if(!this.education_degree_id[i]){
-              this.education_degree_id[i] = 7
-              this.education_degree_other[i] = true;
-            }
-          }
-          // major  --------------------------------------
-          if(this.education_type_id[i] == 1){
-            for (let j = 0; j < this.education_major_options[1].length; j++) {
-              if (this.educationInputs[i].field_of_study == this.education_major_options[1][j].text) {
-                this.education_major_id[i] = j + 1;
-              }
-            }
-            if(!this.education_major_id[i]){
-              this.education_major_id[i] = 3
-              this.education_major_other[i] = true;
-            }
-          }
-          if(this.education_type_id[i] == 2){
-            for (let j = 0; j < this.education_major_options[2].length; j++) {
-              if (this.educationInputs[i].field_of_study == this.education_major_options[2][j].text) {
-                this.education_major_id[i] = j + 4;
-              }
-            }
-            if(!this.education_major_id[i]){
-              this.education_major_id[i] = 6
-              this.education_major_other[i] = true;
-            }
-          }
-        }
-      });
-
-    // get EXPERIENCE
-    axios
-      .get(AACE_URL_USER + USER_ID + "/experience/all", {
-        responseType: "json"
-      })
-      .then(res => {
-        this.experienceInputs = res.data;
-      });
-
-    // get SKILL
-    axios
-      .get(AACE_URL_USER + USER_ID + "/skill/all", {
-        responseType: "json"
-      })
-      .then(res => {
-        this.skillInputs = res.data;
-      });
-
-    // get USER
-    axios
-      .get(AACE_URL_USER + USER_ID, {
-        responseType: "json"
-      })
-      .then(res => {
-        console.log(res);
-
-        this.first_name = res.data.first_name;
-        this.last_name = res.data.last_name;
-        this.summary = res.data.summary;
-        this.country = res.data.country;
-        // this.years_of_experience = res.data.years_of_experience;
-        this.email = res.data.email;
-        this.comment_from_administrator = res.data.comment_from_administrator;
-        // this.application_status = res.data.application_status;
-        this.phone = res.data.phone;
-        this.address = res.data.address;
-        this.birthday = res.data.birthday;
-        this.website = res.data.website;
-
-        this.sex = res.data.sex;
-        this.profession = res.data.profession;
-        // profession autocomplete
-        for (var i = 0; i < this.profession_options.length; i++) {
-          if (this.profession == this.profession_options[i].text) {
-            this.profession_id = i + 1;
-          }
-        }
-        if (!this.profession_id) {
-          this.profession_id = 4;
-          this.profession_other = true;
-        }
-      });
-  }
+    // get user data from server
+    let vm = this;
+    this.$store.dispatch(RE_GET_PROFILE, { vm });
+  },
 };
 
 document.querySelector("html").classList.add("js");
-
 </script>
 
 <style scoped>

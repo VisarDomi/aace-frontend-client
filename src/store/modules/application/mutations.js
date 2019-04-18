@@ -19,33 +19,16 @@ import {
   SET_SKILL_FILES,
   UPDATE_SKILL
 } from "../../mutations.type";
+import {
+  baseProfile,
+  baseEducation,
+  baseExperience,
+  baseSkill
+} from "./common";
 
 export const mutations = {
   [PURGE_APPLICATION](state) {
-    state.appProfile = {
-      first_name: "",
-      last_name: "",
-      profession: "",
-      sex: "",
-      summary: "",
-      country: "",
-      phone: "",
-      address: "",
-      birthday: "",
-      website: "",
-      email: "",
-      files: [],
-      sexOptions: [{ text: "Mashkull", id: 0 }, { text: "Femer", id: 1 }],
-      professionDropdown: {
-        isProfessionInputEnabled: false,
-        professionOptions: [
-          { text: "Inxhinier Ndertimi", id: 0 },
-          { text: "Inxhinier Civil", id: 1 },
-          { text: "Inxhinier Mekanik", id: 2 },
-          { text: "Te tjere", id: 3 }
-        ]
-      }
-    };
+    state.appProfile = { ...baseProfile };
     state.appEducations = [];
     state.educationId = 0;
     state.totalEducations = 0;
@@ -68,44 +51,8 @@ export const mutations = {
   },
   [ADD_EDUCATION](state) {
     const education = {
-      educationId: state.educationId,
-      files: [],
-      education_type: "",
-      degree: "",
-      field_of_study: "",
-      school: "",
-      from_date: "",
-      to_date: "",
-      description: "",
-      educationTypeOptions: [
-        { text: "Shkolle e mesme", id: 0 },
-        { text: "Shkolle e larte", id: 1 }
-      ],
-      educationMiddleDegreeDropdown: {
-        isEducationMiddleDegreeInputEnabled: false,
-        educationMiddleDegreeOptions: [
-          { text: "Pergjithshme", id: 0 },
-          { text: "Teknike", id: 1 },
-          { text: "Te tjere", id: 2 }
-        ]
-      },
-      educationHighDegreeDropdown: {
-        isEducationHighDegreeInputEnabled: false,
-        educationHighDegreeOptions: [
-          { text: "Bachelor", id: 0 },
-          { text: "Master", id: 1 },
-          { text: "Diplome", id: 2 },
-          { text: "Te tjere", id: 3 }
-        ]
-      },
-      educationHighFieldOfStudyDropdown: {
-        isEducationHighFieldOfStudyInput: false,
-        educationHighFieldOfStudyOptions: [
-          { text: "Inxhinier Civil", id: 0 },
-          { text: "Inxhinier Elektrik", id: 1 },
-          { text: "Te tjera", id: 2 }
-        ]
-      }
+      ...baseEducation,
+      educationId: state.educationId
     };
     state.totalEducations = state.appEducations.push(education);
     state.educationId += 1;
@@ -116,18 +63,33 @@ export const mutations = {
     );
     state.totalEducations -= 1;
   },
-  [TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT](state, payload) {
-    let foundIndex = state.appEducations.findIndex(
-      education => education.educationId == payload.educationId
-    );
-    state.appEducations[foundIndex].educationMiddleDegreeDropdown.isEducationMiddleDegreeInputEnabled = payload.enabled;
-  },
-  [TOGGLE_EDUCATION_HIGH_DEGREE_INPUT](state, { enabled }) {
-    state.educationHighDegreeDropdown.isEducationHighDegreeInputEnabled = enabled;
-  },
-  [TOGGLE_EDUCATION_HIGH_FIELD_OF_STUDY_INPUT](state, { enabled }) {
-    state.educationHighFieldOfStudyDropdown.isEducationHighFieldOfStudyInput = enabled;
-  },
+  // [TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT](state, payload) {
+  //   let foundIndex = state.appEducations.findIndex(
+  //     education => education.educationId == payload.educationId
+  //   );
+  //   state.appEducations[
+  //     foundIndex
+  //   ].educationMiddleDegreeDropdown.isEducationMiddleDegreeInputEnabled =
+  //     payload.enabled;
+  // },
+  // [TOGGLE_EDUCATION_HIGH_DEGREE_INPUT](state, payload) {
+  //   let foundIndex = state.appEducations.findIndex(
+  //     education => education.educationId == payload.educationId
+  //   );
+  //   state.appEducations[
+  //     foundIndex
+  //   ].educationHighDegreeDropdown.isEducationHighDegreeInputEnabled =
+  //     payload.enabled;
+  // },
+  // [TOGGLE_EDUCATION_HIGH_FIELD_OF_STUDY_INPUT](state, payload) {
+  //   let foundIndex = state.appEducations.findIndex(
+  //     education => education.educationId == payload.educationId
+  //   );
+  //   state.appEducations[
+  //     foundIndex
+  //   ].educationHighFieldOfStudyDropdown.isEducationHighFieldOfStudyInputEnabled =
+  //     payload.enabled;
+  // },
   [SET_EDUCATION_FILES](state, { vm, educationId }) {
     let foundIndex = state.appEducations.findIndex(
       education => education.educationId == educationId
@@ -146,19 +108,24 @@ export const mutations = {
     let foundIndex = state.appEducations.findIndex(
       education => education.educationId == payload.educationId
     );
+    let education = state.appEducations[foundIndex];
+    const { education_type } = payload;
+    if (education_type) {
+      // maybe this is an artifact that needs to be deleted
+      // reset everything
+      delete baseEducation.education_type;
+      Object.assign(education, baseEducation);
+      console.log("education is", education);
+      console.log("state is", state);
+    }
     delete payload.educationId;
-    Object.assign(state.appEducations[foundIndex], payload);
+    delete payload.field;
+    Object.assign(education, payload);
   },
   [ADD_EXPERIENCE](state) {
     const experience = {
-      experienceId: state.experienceId,
-      files: [],
-      title: "",
-      employer: "",
-      location: "",
-      from_date: "",
-      to_date: "",
-      description: ""
+      ...baseExperience,
+      experienceId: state.experienceId
     };
     state.totalExperiences = state.appExperiences.push(experience);
     state.experienceId += 1;
@@ -192,13 +159,8 @@ export const mutations = {
   },
   [ADD_SKILL](state) {
     const skill = {
-      skillId: state.skillId,
-      files: [],
-      releaser: "",
-      name: "",
-      from_date: "",
-      to_date: "",
-      description: ""
+      ...baseSkill,
+      skillId: state.skillId
     };
     state.totalSkills = state.appSkills.push(skill);
     state.skillId += 1;
@@ -222,10 +184,16 @@ export const mutations = {
     state.appSkills[foundIndex].files = files;
   },
   [UPDATE_SKILL](state, payload) {
+    console.log("1payload is", payload);
     let foundIndex = state.appSkills.findIndex(
       skill => skill.skillId == payload.skillId
     );
+    let skill = state.appSkills[foundIndex];
+
+    console.log("1skill is", skill);
     delete payload.skillId;
-    Object.assign(state.appSkills[foundIndex], payload);
+    console.log("2skill is", skill);
+    console.log("2payload is", payload);
+    Object.assign(skill, payload);
   }
 };

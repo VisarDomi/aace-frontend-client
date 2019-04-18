@@ -1,14 +1,14 @@
 import { baseProfile } from "./common";
 
 export const state = {
-  appProfile: { ...baseProfile },
-  appEducations: [],
+  reappProfile: { ...baseProfile },
+  reappEducations: [],
   educationId: 0,
   totalEducations: 0,
-  appExperiences: [],
+  reappExperiences: [],
   experienceId: 0,
   totalExperiences: 0,
-  appSkills: [],
+  reappSkills: [],
   skillId: 0,
   totalSkills: 0
 };

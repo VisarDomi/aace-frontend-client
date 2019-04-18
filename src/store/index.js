@@ -6,6 +6,7 @@ import communication from "./modules/communication";
 import loading from "./modules/loading";
 import media from "./modules/media";
 import profile from "./modules/profile";
+import reapplication from "./modules/reapplication";
 import search from "./modules/search";
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     loading,
     media,
     profile,
+    reapplication,
     search
   },
   strict: process.env.NODE_ENV !== "production"

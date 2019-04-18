@@ -271,7 +271,7 @@
 
                       <div class="col-xs-12 col-sm-8">
 
-                        <div class="form-group col-sm-12">
+                        <!-- <div class="form-group col-sm-12">
                           <label class="col-sm-3">Lloji i arsimimit</label>
                           <div class="col-sm-9">
                             <select
@@ -286,31 +286,32 @@
                               >{{ option.text }}</option>
                             </select>
                           </div>
+                        </div> -->
+
+
+
+                        <div class="form-group col-sm-12">
+                          <label class="col-sm-3">Lloji i arsimimit</label>
+                          <div class="col-sm-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              :value="education.education_type"
+                              @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
+                              placeholder="Lloji i arsimit, psh shkolle e mesme, ose shkolle e larte"
+                            >
+                          </div>
                         </div>
 
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Tipi i diplomes</label>
-                          <div class="col-sm-4">
-                            <select
-                              class="form-control"
-                              :value="educationMiddleDegreeSelectedValue(education.educationId)"
-                              @change="changeEducationMiddleDegreeSelectedValue(education.educationId, 'degree', $event.target.value, $event)"
-                            >
-                              <option
-                                v-for="option in education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions"
-                                :value="option.text"
-                                :key="option.id"
-                              >{{ option.text }}</option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
+                          <div class="col-sm-9">
                             <input
                               type="text"
-                              :disabled="!education.educationMiddleDegreeDropdown.isEducationMiddleDegreeInputEnabled"
                               class="form-control"
                               :value="education.degree"
                               @change="updateEducationField(education.educationId, 'degree', $event.target.value)"
-                              placeholder="Tipi i diplomes, psh Bachelor"
+                              placeholder="Tipi i diplomes, psh Bachelor, ose e mesme e pergjithshme"
                             >
                           </div>
                         </div>
@@ -811,29 +812,48 @@ export default {
       let vm = this;
       this.$store.commit(SET_EDUCATION_FILES, { vm, educationId });
     },
-    educationMiddleDegreeSelectedValue(educationId) {
-      let education = this.getAppEducation(educationId)
-      console.log("education is", education)
-      // with a spread operator you can loop through the following
-      let first = education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions[0].text
-      let second = education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions[1].text
-      let last = education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions[2].text
-      // this needs to be inside a for loop
-      let educationMiddleDegree = education.degree
-      if (!(educationMiddleDegree == first)&&!(educationMiddleDegree == second)&&!(educationMiddleDegree == "")) {
-        educationMiddleDegree = last
-      }
-      return educationMiddleDegree
-    },
-    changeEducationMiddleDegreeSelectedValue(educationId, field, value, event) {
-      let enabled = this.isEnabled(event);
-      this.$store.commit(TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT, { educationId, enabled });
-      let payload = { educationId, [field]: value };
-      this.$store.commit(UPDATE_EDUCATION, payload);
-    },
+    // start of selections
+    // educationMiddleDegreeSelectedValue(educationId) {
+    //   let education = this.getAppEducation(educationId)
+    //   let first = education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions[0].text
+    //   let second = education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions[1].text
+    //   let last = education.educationMiddleDegreeDropdown.educationMiddleDegreeOptions[2].text
+    //   let educationMiddleDegree = education.degree
+    //   if (!(educationMiddleDegree == first)&&!(educationMiddleDegree == second)&&!(educationMiddleDegree == "")) {
+    //     educationMiddleDegree = last
+    //   }
+    //   // return text of degree ? why
+    //   return educationMiddleDegree
+    // },
+    // changeEducationMiddleDegreeSelectedValue(educationId, field, value, event) {
+    //   let enabled = this.isEnabled(event);
+    //   this.$store.commit(TOGGLE_EDUCATION_MIDDLE_DEGREE_INPUT, { educationId, enabled });
+    //   let payload = { educationId, [field]: value };
+    //   this.$store.commit(UPDATE_EDUCATION, payload);
+    // },
+    // educationHighDegreeSelectedValue(educationId) {
+    //   let education = this.getAppEducation(educationId)
+    //   let first = education.educationHighDegreeDropdown.educationHighDegreeOptions[0].text
+    //   let second = education.educationHighDegreeDropdown.educationHighDegreeOptions[1].text
+    //   let third = education.educationHighDegreeDropdown.educationHighDegreeOptions[2].text
+    //   let last = education.educationHighDegreeDropdown.educationHighDegreeOptions[3].text
+    //   let educationHighDegree = education.degree
+    //   if (!(educationHighDegree == first)&&!(educationHighDegree == second)&&!(educationHighDegree == third)&&!(educationHighDegree == "")) {
+    //     educationHighDegree = last
+    //   }
+    //   return educationHighDegree
+    // },
+    // changeEducationHighDegreeSelectedValue(educationId, field, value, event) {
+    //   let enabled = this.isEnabled(event);
+    //   this.$store.commit(TOGGLE_EDUCATION_HIGH_DEGREE_INPUT, { educationId, enabled });
+    //   let payload = { educationId, [field]: value };
+    //   this.$store.commit(UPDATE_EDUCATION, payload);
+    // },
+    // end of selections
     updateEducationField(educationId, field, value) {
       let payload = { educationId, [field]: value };
       this.$store.commit(UPDATE_EDUCATION, payload);
+      console.log("store is", this.$store)
     },
     onAddEducation() {
       this.$store.commit(ADD_EDUCATION);
@@ -889,7 +909,7 @@ export default {
       "isLoading",
       "getAppProfile",
       "getAppEducations",
-      "getAppEducation",
+      // "getAppEducation",
       "getAppExperiences",
       "getAppSkills"
     ])

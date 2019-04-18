@@ -14,6 +14,22 @@ export const SEND_SKILLS = "sendSkills";
 export const SEND_SKILL = "sendSkill";
 export const SEND_SKILL_MEDIAS = "sendSkillMedias";
 
+//reapplication
+export const RE_GET_PROFILE = "reGetProfile";
+export const RE_UPLOAD = "reUpload";
+export const RE_SEND_APPLICATION = "reSendApplication";
+export const RE_SEND_PROFILE_MEDIAS = "reSendProfileMedias";
+export const RE_UPDATE_PROFILE = "reUpdateProfile";
+export const RE_SEND_EDUCATIONS = "reSendEducations";
+export const RE_SEND_EDUCATION = "reSendEducation";
+export const RE_SEND_EDUCATION_MEDIAS = "reSendEducationMedias";
+export const RE_SEND_EXPERIENCES = "reSendExperiences";
+export const RE_SEND_EXPERIENCE = "reSendExperience";
+export const RE_SEND_EXPERIENCE_MEDIAS = "reSendExperienceMedias";
+export const RE_SEND_SKILLS = "reSendSkills";
+export const RE_SEND_SKILL = "reSendSkill";
+export const RE_SEND_SKILL_MEDIAS = "reSendSkillMedias";
+
 // auth
 export const LOGIN = "login";
 export const LOGOUT = "logout";
