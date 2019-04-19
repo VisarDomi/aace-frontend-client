@@ -2,6 +2,9 @@ import {
   RE_TOGGLE_PROFESSION_INPUT,
   RE_SET_PROFILE_FILES,
   RE_SET_APP_PROFILE,
+  RE_SET_APP_EDUCATIONS,
+  RE_SET_APP_EXPERIENCES,
+  RE_SET_APP_SKILLS,
   RE_SET_EDUCATION_FILES,
   RE_UPDATE_EDUCATION,
   RE_SET_EXPERIENCE_FILES,
@@ -24,9 +27,34 @@ export const mutations = {
     state.reappProfile.files = vm.$refs.profile.files;
   },
   [RE_SET_APP_PROFILE](state, payload) {
-    console.log("payload is", payload);
-    console.log("state.reappProfile is", state.reappProfile);
     Object.assign(state.reappProfile, payload);
+  },
+  [RE_SET_APP_EDUCATIONS](state, payload) {
+    let educations = payload;
+    for (let education of educations) {
+      state.totalEducations += 1;
+      education.educationId = state.totalEducations;
+      education.files = [];
+    }
+    state.reappEducations = payload;
+  },
+  [RE_SET_APP_EXPERIENCES](state, payload) {
+    let experiences = payload;
+    for (let experience of experiences) {
+      state.totalExperiences += 1;
+      experience.experienceId = state.totalExperiences;
+      experience.files = [];
+    }
+    state.reappExperiences = payload;
+  },
+  [RE_SET_APP_SKILLS](state, payload) {
+    let skills = payload;
+    for (let skill of skills) {
+      state.totalSkills += 1;
+      skill.skillId = state.totalSkills;
+      skill.files = [];
+    }
+    state.reappSkills = payload;
   },
   [RE_SET_EDUCATION_FILES](state, { vm, educationId }) {
     let foundIndex = state.reappEducations.findIndex(

@@ -32,6 +32,9 @@ export const UPDATE_SKILL = "updateSkill";
 export const RE_TOGGLE_PROFESSION_INPUT = "reToggleProfessionInput";
 export const RE_SET_PROFILE_FILES = "reSetProfileFiles";
 export const RE_SET_APP_PROFILE = "reSetAppProfile";
+export const RE_SET_APP_EDUCATIONS = "reSetAppEducations";
+export const RE_SET_APP_EXPERIENCES = "reSetAppExperiences";
+export const RE_SET_APP_SKILLS = "reSetAppSkills";
 // education
 export const RE_SET_EDUCATION_FILES = "reSetEducationFiles";
 export const RE_UPDATE_EDUCATION = "reUpdateEducation";

@@ -16,6 +16,9 @@ export const SEND_SKILL_MEDIAS = "sendSkillMedias";
 
 //reapplication
 export const RE_GET_PROFILE = "reGetProfile";
+export const RE_GET_EDUCATIONS = "reGetEducations";
+export const RE_GET_EXPERIENCES = "reGetExperiences";
+export const RE_GET_SKILLS = "reGetSkills";
 export const RE_UPLOAD = "reUpload";
 export const RE_SEND_APPLICATION = "reSendApplication";
 export const RE_SEND_PROFILE_MEDIAS = "reSendProfileMedias";

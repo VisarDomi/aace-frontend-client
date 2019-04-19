@@ -1,5 +1,5 @@
 import { ApiService } from "@/common/api.service";
-import { yearFormat } from '@/common/date.filter';
+import { yearFormat } from "@/common/date.filter";
 import {
   MediaService,
   ProfileService,
@@ -10,6 +10,9 @@ import {
 import {
   RE_UPLOAD,
   RE_GET_PROFILE,
+  RE_GET_EDUCATIONS,
+  RE_GET_EXPERIENCES,
+  RE_GET_SKILLS,
   RE_SEND_PROFILE_MEDIAS,
   RE_SEND_EDUCATION_MEDIAS,
   RE_SEND_EXPERIENCE_MEDIAS,
@@ -26,15 +29,16 @@ import {
 import {
   START_LOADING,
   STOP_LOADING,
-  RE_SET_APP_PROFILE
+  RE_SET_APP_PROFILE,
+  RE_SET_APP_EDUCATIONS,
+  RE_SET_APP_EXPERIENCES,
+  RE_SET_APP_SKILLS
 } from "../../mutations.type";
 
 export const actions = {
   async [RE_GET_PROFILE](context, payload) {
     console.log("RE_GET_PROFILE");
     const userId = context.getters.getCurrentUser.id;
-
-    // tani duhet marr fotoja e profilit
 
     await ProfileService.getProfile(userId).then(res => {
       if (res.status == 200) {
@@ -50,14 +54,52 @@ export const actions = {
         delete server_user_data.send_payment_date;
         delete server_user_data.years_of_experience;
         delete server_user_data.comment_from_administrator;
-        server_user_data.birthday = yearFormat(server_user_data.birthday)
-        // user_data = { ...server_user_data }; //? po ndoshta duhet me heq keys qe nuk duhen
-        // sepse e gjith ideja e user_data esht per validation
+        server_user_data.birthday = yearFormat(server_user_data.birthday);
         payload.vm.user_data = server_user_data;
         context.commit(RE_SET_APP_PROFILE, server_user_data);
       }
     });
   },
+  async [RE_GET_EDUCATIONS](context, payload) {
+    // payload may be used for validation
+    console.log("RE_GET_EDUCATIONS");
+    const userId = context.getters.getCurrentUser.id;
+
+    await EducationService.getEducations(userId).then(res => {
+      if (res.status == 200) {
+        console.log("success RE_GET_EDUCATIONS", res.data);
+        let educations = res.data;
+        context.commit(RE_SET_APP_EDUCATIONS, educations);
+      }
+    });
+  },
+  async [RE_GET_EXPERIENCES](context, payload) {
+    // payload may be used for validation
+    console.log("RE_GET_EXPERIENCES");
+    const userId = context.getters.getCurrentUser.id;
+
+    await ExperienceService.getExperiences(userId).then(res => {
+      if (res.status == 200) {
+        console.log("success RE_GET_EXPERIENCES", res.data);
+        let experiences = res.data;
+        context.commit(RE_SET_APP_EXPERIENCES, experiences);
+      }
+    });
+  },
+  async [RE_GET_SKILLS](context, payload) {
+    // payload may be used for validation
+    console.log("RE_GET_SKILLS");
+    const userId = context.getters.getCurrentUser.id;
+
+    await SkillService.getSkills(userId).then(res => {
+      if (res.status == 200) {
+        console.log("success RE_GET_SKILLS", res.data);
+        let skills = res.data;
+        context.commit(RE_SET_APP_SKILLS, skills);
+      }
+    });
+  },
+
   async [RE_SEND_PROFILE_MEDIAS](context, payload) {
     console.log("RE_SEND_PROFILE_MEDIAS");
     const { userId, formDataProfile } = payload;
@@ -71,7 +113,7 @@ export const actions = {
   async [RE_UPDATE_PROFILE](context) {
     console.log("RE_UPDATE_PROFILE");
     const userId = context.getters.getCurrentUser.id;
-    const profile = context.getters.getAppProfile;
+    const profile = context.getters.getReappProfile;
     let copyProfile = { ...profile };
     delete copyProfile.files;
     delete copyProfile.sexOptions;
@@ -81,6 +123,7 @@ export const actions = {
         console.log("success RE_UPDATE_PROFILE", res);
       }
     });
+    console.log("profile.files.length", profile.files.length);
     if (profile.files.length) {
       let formDataProfile = new FormData();
       for (let file of profile.files) {
@@ -108,17 +151,22 @@ export const actions = {
     console.log("RE_SEND_EDUCATION");
     const { userId, education } = payload;
     let copyEducation = { ...education };
+
     delete copyEducation.files;
     delete copyEducation.educationId;
-    // delete copyEducation.educationTypeOptions;
-    // delete copyEducation.educationMiddleDegreeDropdown;
-    // delete copyEducation.educationHighDegreeDropdown;
-    // delete copyEducation.educationHighFieldOfStudyDropdown;
-    let educationId = null;
-    await EducationService.putEducation(userId, copyEducation).then(res => {
+    delete copyEducation.education_medias;
+    delete copyEducation.id;
+    delete copyEducation.timestamp;
+    delete copyEducation.user_id;
+    console.log("copyEducation", copyEducation);
+    let educationId = education.id;
+    await EducationService.putEducation(
+      userId,
+      copyEducation,
+      educationId
+    ).then(res => {
       if (res.status == 200) {
         console.log("success RE_SEND_EDUCATION", res);
-        educationId = res.data.id;
       }
     });
     if (education.files.length) {
@@ -127,7 +175,7 @@ export const actions = {
         formDataEducation.append("file", file);
       }
       let payload = { userId, educationId, formDataEducation };
-      context.dispatch(RE_SEND_EDUCATION_MEDIAS, payload);
+      await context.dispatch(RE_SEND_EDUCATION_MEDIAS, payload);
     }
   },
   async [RE_SEND_EDUCATIONS](context) {
@@ -160,13 +208,22 @@ export const actions = {
     console.log("RE_SEND_EXPERIENCE");
     const { userId, experience } = payload;
     let copyExperience = { ...experience };
+
     delete copyExperience.files;
     delete copyExperience.experienceId;
-    let experienceId = null;
-    await ExperienceService.putExperience(userId, copyExperience).then(res => {
+    delete copyExperience.experience_medias;
+    delete copyExperience.id;
+    delete copyExperience.is_currently_work_here;
+    delete copyExperience.timestamp;
+    delete copyExperience.user_id;
+    let experienceId = experience.id;
+    await ExperienceService.putExperience(
+      userId,
+      copyExperience,
+      experienceId
+    ).then(res => {
       if (res.status == 200) {
         console.log("success RE_SEND_EXPERIENCE", res);
-        experienceId = res.data.id;
       }
     });
     if (experience.files.length) {
@@ -205,13 +262,17 @@ export const actions = {
     console.log("RE_SEND_SKILL");
     const { userId, skill } = payload;
     let copySkill = { ...skill };
+
     delete copySkill.files;
     delete copySkill.skillId;
-    let skillId = null;
-    await SkillService.putSkill(userId, copySkill).then(res => {
+    delete copySkill.id;
+    delete copySkill.skill_medias;
+    delete copySkill.timestamp;
+    delete copySkill.user_id;
+    let skillId = skill.id;
+    await SkillService.putSkill(userId, copySkill, skillId).then(res => {
       if (res.status == 200) {
         console.log("success RE_SEND_SKILL", res);
-        skillId = res.data.id;
       }
     });
     if (skill.files.length) {
@@ -263,6 +324,7 @@ export const actions = {
         console.log("can it be?");
         console.log("payload", payload);
         payload.vm.$router.push({ name: "SuccessApplication" });
+        console.log("success!!!!!!!!!!!!!!!");
       })
       .catch(error => {
         console.log("error", error);

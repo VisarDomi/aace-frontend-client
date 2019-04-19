@@ -123,7 +123,7 @@ export const actions = {
         formDataEducation.append("file", file);
       }
       let payload = { userId, educationId, formDataEducation };
-      context.dispatch(SEND_EDUCATION_MEDIAS, payload);
+      await context.dispatch(SEND_EDUCATION_MEDIAS, payload);
     }
   },
   async [SEND_EDUCATIONS](context) {

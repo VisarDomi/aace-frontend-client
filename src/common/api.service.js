@@ -40,7 +40,8 @@ export const ApiService = {
     return Vue.axios.post(`${resource}`, {}, params);
   },
   put(resource, params) {
-    console.log(`put resource and params are:`, resource, params);
+    console.log(`put params are:`, params);
+    console.log(`put resource is:`, resource);
     return Vue.axios.put(`${resource}`, params);
   },
   delete(resource) {
@@ -69,6 +70,9 @@ export const EducationService = {
   },
   postEducation(userId, education) {
     return ApiService.post(`user/${userId}/education`, education);
+  },
+  putEducation(userId, education, educationId) {
+    return ApiService.put(`user/${userId}/education/${educationId}`, education);
   }
 };
 
@@ -78,6 +82,12 @@ export const ExperienceService = {
   },
   postExperience(userId, experience) {
     return ApiService.post(`user/${userId}/experience`, experience);
+  },
+  putExperience(userId, experience, experienceId) {
+    return ApiService.put(
+      `user/${userId}/experience/${experienceId}`,
+      experience
+    );
   }
 };
 
@@ -87,6 +97,9 @@ export const SkillService = {
   },
   postSkill(userId, skill) {
     return ApiService.post(`user/${userId}/skill`, skill);
+  },
+  putSkill(userId, skill, skillId) {
+    return ApiService.put(`user/${userId}/skill/${skillId}`, skill);
   }
 };
 

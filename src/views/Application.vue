@@ -65,8 +65,8 @@
                 <div class="col-sm-4">
                   <select
                     class="form-control"
-                    :value="profileSelectedValue()"
-                    @change="changeProfileSelectedValue('profession', $event.target.value, $event)"
+                    :value="professionSelectedValue()"
+                    @change="changeProfessionSelectedValue('profession', $event.target.value, $event)"
                   >
                     <option
                       v-for="option in getAppProfile.professionDropdown.professionOptions"
@@ -786,7 +786,7 @@ export default {
       let vm = this;
       this.$store.commit(SET_PROFILE_FILES, { vm });
     },
-    profileSelectedValue() {
+    professionSelectedValue() {
       let first = this.getAppProfile.professionDropdown.professionOptions[0].text
       let second = this.getAppProfile.professionDropdown.professionOptions[1].text
       let third = this.getAppProfile.professionDropdown.professionOptions[2].text
@@ -797,7 +797,7 @@ export default {
       }
       return profession
     },
-    changeProfileSelectedValue(field, value, event) {
+    changeProfessionSelectedValue(field, value, event) {
       let enabled = this.isEnabled(event);
       this.$store.commit(TOGGLE_PROFESSION_INPUT, { enabled });
       let payload = { [field]: value };

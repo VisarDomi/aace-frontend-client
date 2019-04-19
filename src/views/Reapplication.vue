@@ -5,13 +5,15 @@
       <header class="page-header">
         <div class="container page-name">
           <h1 class="text-center">Rregullo aplikimin</h1>
-          <p class="lead text-center">Rregulloni aplikimin sipas udhezimit te komentit te administratorit.</p>
+          <p
+            class="lead text-center"
+          >Rregulloni aplikimin sipas udhezimit te komentit te administratorit.</p>
         </div>
 
         <div class="container">
           <header class="section-header">
             <h2>Udhezime nga administratori</h2>
-            <!-- <p>{{ comment_from_administrator }}</p> -->
+            <p style="color: #dd4466">{{ getCurrentUser.comment_from_administrator }}</p>
           </header>
         </div>
 
@@ -71,8 +73,8 @@
                 <div class="col-sm-4">
                   <select
                     class="form-control"
-                    :value="profileSelectedValue()"
-                    @change="changeProfileSelectedValue('profession', $event.target.value, $event)"
+                    :value="professionSelectedValue()"
+                    @change="changeProfessionSelectedValue('profession', $event.target.value, $event)"
                   >
                     <option
                       v-for="option in getReappProfile.professionDropdown.professionOptions"
@@ -243,9 +245,7 @@
               >
                 <div class="item-block">
                   <div class="item-form">
-
                     <div class="row">
-
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
                           <input
@@ -286,9 +286,7 @@
                               >{{ option.text }}</option>
                             </select>
                           </div>
-                        </div> -->
-
-
+                        </div>-->
 
                         <div class="form-group col-sm-12">
                           <label class="col-sm-3">Lloji i arsimimit</label>
@@ -385,7 +383,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -406,7 +403,6 @@
               >
                 <div class="item-block">
                   <div class="item-form">
-
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
@@ -515,7 +511,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -532,7 +527,6 @@
               <div class="col-xs-12" v-for="skill in getReappSkills" :key="'skill' + skill.skillId">
                 <div class="item-block">
                   <div class="item-form">
-
                     <div class="row">
                       <div class="col-xs-12 col-sm-4">
                         <div class="input-file-container">
@@ -621,7 +615,6 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -688,7 +681,13 @@ import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
 import store from "@/store";
-import { RE_UPLOAD, RE_GET_PROFILE } from "@/store/actions.type";
+import {
+  RE_UPLOAD,
+  RE_GET_PROFILE,
+  RE_GET_EDUCATIONS,
+  RE_GET_EXPERIENCES,
+  RE_GET_SKILLS,
+} from "@/store/actions.type";
 import {
   RE_TOGGLE_PROFESSION_INPUT,
   RE_SET_PROFILE_FILES,
@@ -724,12 +723,15 @@ export default {
     // common code
     isEnabled(event) {
       let enabled = false;
-      if (event.srcElement.options.selectedIndex == event.srcElement.options.length-1) {
+      if (
+        event.srcElement.options.selectedIndex ==
+        event.srcElement.options.length - 1
+      ) {
         enabled = true;
       } else {
         enabled = false;
       }
-      return enabled
+      return enabled;
     },
     // ------- Profile picture -------
     handleFileUploadProfile() {
@@ -737,18 +739,27 @@ export default {
       this.$store.commit(RE_SET_PROFILE_FILES, { vm });
     },
     // method should be renamed to professionSelectedValue()
-    profileSelectedValue() {
-      let first = this.getReappProfile.professionDropdown.professionOptions[0].text
-      let second = this.getReappProfile.professionDropdown.professionOptions[1].text
-      let third = this.getReappProfile.professionDropdown.professionOptions[2].text
-      let last = this.getReappProfile.professionDropdown.professionOptions[3].text
-      let profession = this.getReappProfile.profession
-      if (!(profession == first)&&!(profession == second)&&!(profession == third)&&!(profession == "")) {
-        profession = last
+    professionSelectedValue() {
+      let first = this.getReappProfile.professionDropdown.professionOptions[0]
+        .text;
+      let second = this.getReappProfile.professionDropdown.professionOptions[1]
+        .text;
+      let third = this.getReappProfile.professionDropdown.professionOptions[2]
+        .text;
+      let last = this.getReappProfile.professionDropdown.professionOptions[3]
+        .text;
+      let profession = this.getReappProfile.profession;
+      if (
+        !(profession == first) &&
+        !(profession == second) &&
+        !(profession == third) &&
+        !(profession == "")
+      ) {
+        profession = last;
       }
-      return profession
+      return profession;
     },
-    changeProfileSelectedValue(field, value, event) {
+    changeProfessionSelectedValue(field, value, event) {
       let enabled = this.isEnabled(event);
       this.$store.commit(RE_TOGGLE_PROFESSION_INPUT, { enabled });
       let payload = { [field]: value };
@@ -766,7 +777,7 @@ export default {
     updateEducationField(educationId, field, value) {
       let payload = { educationId, [field]: value };
       this.$store.commit(RE_UPDATE_EDUCATION, payload);
-      console.log("store is", this.$store)
+      console.log("store is", this.$store);
     },
     // ------- Experience -------
     handleFileUploadExperience(experienceId) {
@@ -825,7 +836,10 @@ export default {
     // get user data from server
     let vm = this;
     this.$store.dispatch(RE_GET_PROFILE, { vm });
-  },
+    this.$store.dispatch(RE_GET_EDUCATIONS, { vm });
+    this.$store.dispatch(RE_GET_EXPERIENCES, { vm });
+    this.$store.dispatch(RE_GET_SKILLS, { vm });
+  }
 };
 
 document.querySelector("html").classList.add("js");
