@@ -94,7 +94,7 @@
             </div> -->
 
             <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" data-to="50"></span>+</p>
+              <p><span data-from="0" :data-to="getNumberOfAcceptedUsers"></span>+</p>
               <h6>Anetare</h6>
             </div>
 
@@ -183,11 +183,18 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { GET_NUMBER_OF_ACCEPTED_USERS } from "@/store/actions.type"
 
 export default {
   name: "Home",
+  methods: {
+    consoleLog() {}
+  },
   computed: {
-    ...mapGetters(["isAuthenticated"])
+    ...mapGetters(["isAuthenticated", "getNumberOfAcceptedUsers"])
+  },
+  mounted() {
+    this.$store.dispatch(GET_NUMBER_OF_ACCEPTED_USERS)
   }
 };
 </script>

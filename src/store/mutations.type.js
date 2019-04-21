@@ -71,6 +71,7 @@ export const SET_EDUCATIONS = "setEducations";
 export const SET_EXPERIENCES = "setExperiences";
 export const SET_SKILLS = "setSkills";
 export const SET_PAYMENTS = "setPayments";
+export const SET_NUMBER_OF_ACCEPTED_USERS = "setNumberOfAcceptedUsers";
 
 // search
 export const SET_SEARCH_RESULT = "setSearchResult";

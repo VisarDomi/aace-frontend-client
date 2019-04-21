@@ -44,6 +44,39 @@ export const actions = {
       if (res.status == 200) {
         console.log("success RE_GET_PROFILE", res.data);
         let server_user_data = res.data;
+
+        // the following is because there is no validation yet
+        if (!server_user_data.address) {
+          server_user_data.address = "";
+        }
+        if (!server_user_data.country) {
+          server_user_data.country = "";
+        }
+        if (!server_user_data.first_name) {
+          server_user_data.first_name = "";
+        }
+        if (
+          !server_user_data.last_name ||
+          server_user_data.last_name == "no_name"
+        ) {
+          server_user_data.last_name = "";
+        }
+        if (!server_user_data.phone) {
+          server_user_data.phone = "";
+        }
+        if (!server_user_data.profession) {
+          server_user_data.profession = "";
+        }
+        if (!server_user_data.sex) {
+          server_user_data.sex = "";
+        }
+        if (!server_user_data.summary) {
+          server_user_data.summary = "";
+        }
+        if (!server_user_data.website) {
+          server_user_data.website = "";
+        }
+
         console.log("server_user_data is", server_user_data);
         delete server_user_data.application_date;
         delete server_user_data.application_status;

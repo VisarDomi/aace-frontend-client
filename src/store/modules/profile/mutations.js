@@ -5,7 +5,8 @@ import {
   SET_EXPERIENCES,
   SET_SKILLS,
   SET_PAYMENTS,
-  SET_COMMENT_ADMIN
+  SET_COMMENT_ADMIN,
+  SET_NUMBER_OF_ACCEPTED_USERS
 } from "../../mutations.type";
 
 export const mutations = {
@@ -30,5 +31,8 @@ export const mutations = {
   },
   [SET_PAYMENTS](state, payments) {
     state.payments = payments;
+  },
+  [SET_NUMBER_OF_ACCEPTED_USERS](state, numberOfAcceptedUsers) {
+    state.numberOfAcceptedUsers = numberOfAcceptedUsers;
   }
 };

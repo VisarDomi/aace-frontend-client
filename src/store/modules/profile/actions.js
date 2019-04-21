@@ -6,7 +6,11 @@ import {
   SkillService,
   PaymentService
 } from "@/common/api.service";
-import { FETCH_PROFILE, FETCH_APPLICATION_INFO } from "../../actions.type";
+import {
+  FETCH_PROFILE,
+  FETCH_APPLICATION_INFO,
+  GET_NUMBER_OF_ACCEPTED_USERS
+} from "../../actions.type";
 import {
   SET_PROFILE,
   SET_PICTURE,
@@ -15,7 +19,8 @@ import {
   SET_SKILLS,
   SET_PAYMENTS,
   SET_COMMENT_ADMIN,
-  SET_AUTH_SECOND
+  SET_AUTH_SECOND,
+  SET_NUMBER_OF_ACCEPTED_USERS
 } from "../../mutations.type";
 
 export const actions = {
@@ -50,5 +55,19 @@ export const actions = {
         return data;
       }
     );
+  },
+  async [GET_NUMBER_OF_ACCEPTED_USERS](context) {
+    await ProfileService.getAllUsers().then(res => {
+      console.log("res.data is", res.data);
+      let allUsers = res.data;
+      let numberOfAcceptedUsers = 0;
+      for (let user of allUsers) {
+        if (user.application_status == "accepted") {
+          numberOfAcceptedUsers += 1;
+        }
+      }
+      console.log("numberOfAcceptedUsers", numberOfAcceptedUsers);
+      context.commit(SET_NUMBER_OF_ACCEPTED_USERS, numberOfAcceptedUsers);
+    });
   }
 };

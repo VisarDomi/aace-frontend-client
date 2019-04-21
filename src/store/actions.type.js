@@ -51,6 +51,7 @@ export const FETCH_DOCS = "fetchDocs";
 // profile
 export const FETCH_PROFILE = "fetchProfile";
 export const FETCH_APPLICATION_INFO = "fetchApplicationInfo";
+export const GET_NUMBER_OF_ACCEPTED_USERS = "getNumberOfAcceptedUsers";
 
 // search
 export const FETCH_MEMBER = "fetchMember";

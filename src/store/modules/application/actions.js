@@ -44,6 +44,16 @@ export const actions = {
       // website: "skam",
       // profession: "Inxhinier Ndertimi",
       // sex: "Mashkull",
+      first_name: "",
+      last_name: "",
+      summary: "",
+      country: "",
+      phone: "",
+      address: "",
+      birthday: "",
+      website: "",
+      profession: "",
+      sex: "",
       email: email
     };
     payload.vm.user_data = user_data;

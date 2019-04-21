@@ -6,5 +6,6 @@ export const state = {
   experiences: {},
   skills: {},
   payments: {},
-  commentFromAdmin: ""
+  commentFromAdmin: "",
+  numberOfAcceptedUsers: 0
 };

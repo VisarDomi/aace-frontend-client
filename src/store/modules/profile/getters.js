@@ -5,5 +5,6 @@ export const getters = {
   experiences: state => state.experiences,
   skills: state => state.skills,
   payments: state => state.payments,
-  commentFromAdmin: state => state.commentFromAdmin
+  commentFromAdmin: state => state.commentFromAdmin,
+  getNumberOfAcceptedUsers: state => state.numberOfAcceptedUsers
 };
