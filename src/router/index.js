@@ -332,7 +332,8 @@ export default new Router({
           console.log("payment_status", user["payment_status"]);
           if (
             user["application_status"] == undefined ||
-            user["payment_status"] == "blank"
+            user["payment_status"] == "blank" ||
+            user["payment_status"] == "rebutted_payment"
           ) {
             next();
           } else {
@@ -346,40 +347,40 @@ export default new Router({
         }
       }
     },
-    {
-      path: "/resending_payment",
-      name: "ResendingPayment",
-      component: () => import("@/views/ResendingPayment"),
-      meta: {
-        title: "ResendingPayment",
-        metaTags: [
-          {
-            name: "description",
-            content: "The resending_payment page of AACE."
-          },
-          {
-            property: "og:description",
-            content: "The resending_payment page of AACE."
-          }
-        ]
-      },
-      beforeEnter(to, from, next) {
-        if (localStorage.getItem("id_token")) {
-          let user = JSON.parse(localStorage.getItem("user"));
-          console.log("payment_status", user["payment_status"]);
-          if (user["payment_status"] == "rebutted_payment") {
-            next();
-          } else {
-            console.log("redirect");
-            next("/application_status");
-          }
-          //is there a way to get this using the new structure functionality?
-        } else {
-          console.log("redirect");
-          next("/login");
-        }
-      }
-    },
+    // {
+    //   path: "/resending_payment",
+    //   name: "ResendingPayment",
+    //   component: () => import("@/views/ResendingPayment"),
+    //   meta: {
+    //     title: "ResendingPayment",
+    //     metaTags: [
+    //       {
+    //         name: "description",
+    //         content: "The resending_payment page of AACE."
+    //       },
+    //       {
+    //         property: "og:description",
+    //         content: "The resending_payment page of AACE."
+    //       }
+    //     ]
+    //   },
+    //   beforeEnter(to, from, next) {
+    //     if (localStorage.getItem("id_token")) {
+    //       let user = JSON.parse(localStorage.getItem("user"));
+    //       console.log("payment_status", user["payment_status"]);
+    //       if (user["payment_status"] == "rebutted_payment") {
+    //         next();
+    //       } else {
+    //         console.log("redirect");
+    //         next("/application_status");
+    //       }
+    //       //is there a way to get this using the new structure functionality?
+    //     } else {
+    //       console.log("redirect");
+    //       next("/login");
+    //     }
+    //   }
+    // },
     {
       path: "/login",
       name: "Login",

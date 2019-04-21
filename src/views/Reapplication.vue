@@ -270,7 +270,6 @@
                       </div>
 
                       <div class="col-xs-12 col-sm-8">
-
                         <!-- <div class="form-group col-sm-12">
                           <label class="col-sm-3">Lloji i arsimimit</label>
                           <div class="col-sm-9">
@@ -382,6 +381,15 @@
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div class="col-xs-12 text-center">
+                <br>
+                <button
+                  class="btn btn-primary btn-duplicator"
+                  @click="addEducation"
+                  type="button"
+                >Shto arsimim</button>
               </div>
             </div>
           </div>
@@ -511,6 +519,15 @@
                   </div>
                 </div>
               </div>
+
+              <div class="col-xs-12 text-center">
+                <br>
+                <button
+                  class="btn btn-primary btn-duplicator"
+                  @click="addExperience"
+                  type="button"
+                >Shto pervoje pune</button>
+              </div>
             </div>
           </div>
         </section>
@@ -618,6 +635,15 @@
                   </div>
                 </div>
               </div>
+
+              <div class="col-xs-12 text-center">
+                <br>
+                <button
+                  class="btn btn-primary btn-duplicator"
+                  @click="addSkill"
+                  type="button"
+                >Shto kualifikim</button>
+              </div>
             </div>
           </div>
         </section>
@@ -636,11 +662,15 @@
             </header>
 
             <p class="text-center">
-              <button class="btn btn-success btn-xl btn-round" type="submit">Dergo aplikimin</button>
+              <button
+                class="btn btn-success btn-xl btn-round"
+                type="submit"
+                :disabled="isLoading"
+              >Dergo aplikimin</button>
             </p>
-            <form-summary :validator="$v.user_data">
+            <!-- <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
-            </form-summary>
+            </form-summary>-->
             <div class="card border-info mb-3 become-centered" v-if="isLoading">
               <div class="lds-spinner">
                 <div></div>
@@ -687,6 +717,9 @@ import {
   RE_GET_EDUCATIONS,
   RE_GET_EXPERIENCES,
   RE_GET_SKILLS,
+  SEND_EDUCATION,
+  SEND_EXPERIENCE,
+  SEND_SKILL
 } from "@/store/actions.type";
 import {
   RE_TOGGLE_PROFESSION_INPUT,
@@ -700,6 +733,11 @@ import {
   RE_UPDATE_SKILL
 } from "@/store/mutations.type";
 import { mapGetters, mapState } from "vuex";
+import {
+  baseEducation,
+  baseExperience,
+  baseSkill
+} from "@/store/modules/application/common";
 
 export default {
   name: "Reapplication",
@@ -738,7 +776,6 @@ export default {
       let vm = this;
       this.$store.commit(RE_SET_PROFILE_FILES, { vm });
     },
-    // method should be renamed to professionSelectedValue()
     professionSelectedValue() {
       let first = this.getReappProfile.professionDropdown.professionOptions[0]
         .text;
@@ -779,6 +816,16 @@ export default {
       this.$store.commit(RE_UPDATE_EDUCATION, payload);
       console.log("store is", this.$store);
     },
+    async addEducation() {
+      let education = { ...baseEducation };
+      education.from_date = "1999-12-30";
+      education.to_date = "1999-12-31";
+      let userId = this.getCurrentUser.id;
+      let payload = { userId, education };
+      await this.$store.dispatch(SEND_EDUCATION, payload);
+      let vm = this;
+      await this.$store.dispatch(RE_GET_EDUCATIONS, { vm });
+    },
     // ------- Experience -------
     handleFileUploadExperience(experienceId) {
       let vm = this;
@@ -787,6 +834,16 @@ export default {
     updateExperienceField(experienceId, field, value) {
       let payload = { experienceId, [field]: value };
       this.$store.commit(RE_UPDATE_EXPERIENCE, payload);
+    },
+    async addExperience() {
+      let experience = { ...baseExperience };
+      experience.from_date = "1999-12-30";
+      experience.to_date = "1999-12-31";
+      let userId = this.getCurrentUser.id;
+      let payload = { userId, experience };
+      await this.$store.dispatch(SEND_EXPERIENCE, payload);
+      let vm = this;
+      await this.$store.dispatch(RE_GET_EXPERIENCES, { vm });
     },
     // ------- Skill -------
     handleFileUploadSkill(skillId) {
@@ -797,13 +854,23 @@ export default {
       let payload = { skillId, [field]: value };
       this.$store.commit(RE_UPDATE_SKILL, payload);
     },
+    async addSkill() {
+      let skill = { ...baseSkill };
+      skill.from_date = "1999-12-30";
+      skill.to_date = "1999-12-31";
+      let userId = this.getCurrentUser.id;
+      let payload = { userId, skill };
+      await this.$store.dispatch(SEND_SKILL, payload);
+      let vm = this;
+      await this.$store.dispatch(RE_GET_SKILLS, { vm });
+    },
     // ------- Application -------
     onApply() {
-      this.$v.user_data.$touch();
-      if (this.$v.user_data.$pending || this.$v.user_data.$error) {
-        console.log("errors");
-        return;
-      }
+      // this.$v.user_data.$touch();
+      // if (this.$v.user_data.$pending || this.$v.user_data.$error) {
+      //   console.log("errors");
+      //   return;
+      // }
       let vm = this;
       this.$store.dispatch(RE_UPLOAD, { vm });
     }

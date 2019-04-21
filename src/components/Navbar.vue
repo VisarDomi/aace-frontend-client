@@ -96,8 +96,11 @@
               <li v-if="getCurrentUser.payment_status == 'blank'">
                 <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
               </li>
-              <li v-if="getCurrentUser.payment_status == 'rebutted_payment'">
+              <!-- <li v-if="getCurrentUser.payment_status == 'rebutted_payment'">
                 <router-link :to="{ name: 'ResendingPayment' }">Mandati i pageses</router-link>
+              </li> -->
+              <li v-if="getCurrentUser.payment_status == 'rebutted_payment'">
+                <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
               </li>
               <li>
                 <router-link :to="{ name: 'ApplicationStatus' }">Statusi i aplikimit</router-link>

@@ -298,7 +298,7 @@
                               class="form-control"
                               :value="education.education_type"
                               @change="updateEducationField(education.educationId, 'education_type', $event.target.value)"
-                              placeholder="Lloji i arsimit, psh shkolle e mesme, ose shkolle e larte"
+                              placeholder="Psh shkolle e mesme, ose shkolle e larte"
                             >
                           </div>
                         </div>
@@ -311,7 +311,7 @@
                               class="form-control"
                               :value="education.degree"
                               @change="updateEducationField(education.educationId, 'degree', $event.target.value)"
-                              placeholder="Tipi i diplomes, psh Bachelor, ose e mesme e pergjithshme"
+                              placeholder="Psh Bachelor, ose e mesme e pergjithshme"
                             >
                           </div>
                         </div>
@@ -324,7 +324,7 @@
                               class="form-control"
                               :value="education.field_of_study"
                               @change="updateEducationField(education.educationId, 'field_of_study', $event.target.value)"
-                              placeholder="Dega, psh inxhinieri ndertimi"
+                              placeholder="Psh inxhinieri ndertimi"
                             >
                           </div>
                         </div>
@@ -394,6 +394,7 @@
                   type="button"
                 >Shto arsimim</button>
               </div>
+
             </div>
           </div>
         </section>
@@ -539,6 +540,7 @@
                   @click="onAddExperience"
                 >Shto pervoje pune</button>
               </div>
+
             </div>
           </div>
         </section>
@@ -663,6 +665,7 @@
                   type="button"
                 >Shto kualifikim</button>
               </div>
+
             </div>
           </div>
         </section>
@@ -686,9 +689,9 @@
                 :disabled="isLoading"
               >Dergo aplikimin</button>
             </p>
-            <form-summary :validator="$v.user_data">
+            <!-- <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
-            </form-summary>
+            </form-summary> -->
             <div class="card border-info mb-3 become-centered" v-if="isLoading">
               <div class="lds-spinner">
                 <div></div>
@@ -893,11 +896,11 @@ export default {
     },
     // ------- Application -------
     onApply() {
-      this.$v.user_data.$touch();
-      if (this.$v.user_data.$pending || this.$v.user_data.$error) {
-        console.log("errors");
-        return;
-      }
+      // this.$v.user_data.$touch();
+      // if (this.$v.user_data.$pending || this.$v.user_data.$error) {
+      //   console.log("errors");
+      //   return;
+      // }
       let vm = this;
       this.$store.dispatch(UPLOAD, { vm });
     }

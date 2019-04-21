@@ -34,17 +34,17 @@ export const actions = {
     const userId = context.getters.getCurrentUser.id;
     const email = context.getters.getCurrentUser.email;
     const user_data = {
-      first_name: "Test",
-      last_name: `Numer${userId}`,
-      summary: "Pershkrim koti",
-      country: "Kukes",
-      phone: "0135345325",
-      address: "Rruga koti",
-      birthday: "1990-12-31",
-      website: "skam",
-      email: email,
-      profession: "Inxhinier Ndertimi",
-      sex: "Mashkull"
+      // first_name: "Test",
+      // last_name: `Numer${userId}`,
+      // summary: "Pershkrim koti",
+      // country: "Kukes",
+      // phone: "0135345325",
+      // address: "Rruga koti",
+      // birthday: "1990-12-31",
+      // website: "skam",
+      // profession: "Inxhinier Ndertimi",
+      // sex: "Mashkull",
+      email: email
     };
     payload.vm.user_data = user_data;
     context.commit(SET_APP_PROFILE, user_data);
