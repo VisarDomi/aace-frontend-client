@@ -39,9 +39,8 @@ export const actions = {
     console.log("communicationId", communicationId);
     console.log("body", body);
     console.log("files", files);
-    const { data } = await CommunicationService.postComment(communicationId, {
+    await CommunicationService.postComment(communicationId, {
       body: body
     });
-    context.commit(SET_COMMENT, data);
   }
 };

@@ -184,17 +184,16 @@ export default {
       }
       return iconType;
     },
-    sendComment() {
+    async sendComment() {
       console.log("communication.id", this.communication.id);
-      this.$store
+      await this.$store
         .dispatch(MAKE_COMMENT, {
           communicationId: this.communication.id,
           body: this.comment_body
         })
-        .then(res => {
-          this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
-          this.comment_body = "";
-        });
+        .then(res => {console.log("res sendComment is", res)});
+      await this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
+      this.comment_body = "";
     },
     downloadDoc(docID, docName) {
       axios

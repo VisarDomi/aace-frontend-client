@@ -18,10 +18,5 @@ export const mutations = {
   [SET_COMMENTS](state, comments) {
     state.comments = comments;
     console.log("SET_COMMENTS", state.comments);
-  },
-  [SET_COMMENT](state, comment) {
-    console.log("state.comments", state.comments);
-    state.comments = state.comments.concat(comment);
-    console.log("SET_COMMENT", state.comments);
   }
 };
