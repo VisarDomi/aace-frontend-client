@@ -1,6 +1,6 @@
 <template>
   <div class="nav-on-header smart-nav">
-    <form @submit.prevent="onApply">
+    <div>
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
@@ -664,7 +664,7 @@
             <p class="text-center">
               <button
                 class="btn btn-success btn-xl btn-round"
-                type="submit"
+                @click="apply"
                 :disabled="isLoading"
               >Dergo aplikimin</button>
             </p>
@@ -702,7 +702,7 @@
         <!-- END Submit -->
       </main>
       <!-- END Main container -->
-    </form>
+    </div>
   </div>
 </template>
 
@@ -865,7 +865,7 @@ export default {
       await this.$store.dispatch(RE_GET_SKILLS, { vm });
     },
     // ------- Application -------
-    onApply() {
+    apply() {
       // this.$v.user_data.$touch();
       // if (this.$v.user_data.$pending || this.$v.user_data.$error) {
       //   console.log("errors");

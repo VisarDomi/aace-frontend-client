@@ -1,7 +1,7 @@
 <template>
   <div class="nav-on-header smart-nav">
     <!-- <form-summary :validator="$v.first_name"/> -->
-    <form @submit.prevent="onApply">
+    <div>
       <!-- Page header -->
       <header class="page-header">
         <div class="container page-name">
@@ -238,7 +238,7 @@
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteEducation(education.educationId)"
+                      @click="deleteEducation(education.educationId)"
                       type="button"
                     >
                       <i class="ti-close"></i>
@@ -390,7 +390,7 @@
                 <br>
                 <button
                   class="btn btn-primary btn-duplicator"
-                  @click="onAddEducation"
+                  @click="addEducation"
                   type="button"
                 >Shto arsimim</button>
               </div>
@@ -417,7 +417,7 @@
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteExperience(experience.experienceId)"
+                      @click="deleteExperience(experience.experienceId)"
                       type="button"
                     >
                       <i class="ti-close"></i>
@@ -537,7 +537,7 @@
                 <button
                   class="btn btn-primary btn-duplicator"
                   type="button"
-                  @click="onAddExperience"
+                  @click="addExperience"
                 >Shto pervoje pune</button>
               </div>
 
@@ -559,7 +559,7 @@
                   <div class="item-form">
                     <button
                       class="btn btn-danger btn-float btn-remove"
-                      @click="onDeleteSkill(skill.skillId)"
+                      @click="deleteSkill(skill.skillId)"
                       type="button"
                     >
                       <i class="ti-close"></i>
@@ -661,7 +661,7 @@
                 <br>
                 <button
                   class="btn btn-primary btn-duplicator"
-                  @click="onAddSkill"
+                  @click="addSkill"
                   type="button"
                 >Shto kualifikim</button>
               </div>
@@ -685,7 +685,7 @@
             <p class="text-center">
               <button
                 class="btn btn-success btn-xl btn-round"
-                type="submit"
+                @click="apply"
                 :disabled="isLoading"
               >Dergo aplikimin</button>
             </p>
@@ -723,7 +723,7 @@
         <!-- END Submit -->
       </main>
       <!-- END Main container -->
-    </form>
+    </div>
   </div>
 </template>
 
@@ -858,10 +858,10 @@ export default {
       this.$store.commit(UPDATE_EDUCATION, payload);
       console.log("store is", this.$store)
     },
-    onAddEducation() {
+    addEducation() {
       this.$store.commit(ADD_EDUCATION);
     },
-    onDeleteEducation(educationId) {
+    deleteEducation(educationId) {
       this.$store.commit(REMOVE_EDUCATION, educationId);
     },
     // ------- Experience -------
@@ -873,10 +873,10 @@ export default {
       let payload = { experienceId, [field]: value };
       this.$store.commit(UPDATE_EXPERIENCE, payload);
     },
-    onAddExperience() {
+    addExperience() {
       this.$store.commit(ADD_EXPERIENCE);
     },
-    onDeleteExperience(experienceId) {
+    deleteExperience(experienceId) {
       this.$store.commit(REMOVE_EXPERIENCE, experienceId);
     },
     // ------- Skill -------
@@ -888,14 +888,14 @@ export default {
       let payload = { skillId, [field]: value };
       this.$store.commit(UPDATE_SKILL, payload);
     },
-    onAddSkill() {
+    addSkill() {
       this.$store.commit(ADD_SKILL);
     },
-    onDeleteSkill(skillId) {
+    deleteSkill(skillId) {
       this.$store.commit(REMOVE_SKILL, skillId);
     },
     // ------- Application -------
-    onApply() {
+    apply() {
       // this.$v.user_data.$touch();
       // if (this.$v.user_data.$pending || this.$v.user_data.$error) {
       //   console.log("errors");
