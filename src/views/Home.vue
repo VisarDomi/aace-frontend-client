@@ -94,7 +94,7 @@
             </div> -->
 
             <div class="counter col-md-3 col-sm-6">
-              <p><span data-from="0" :data-to="getNumberOfAcceptedUsers"></span>+</p>
+              <p><span data-from="0" :data-to="getNumberOfAcceptedUsers"></span></p>
               <h6>Anetare</h6>
             </div>
 
