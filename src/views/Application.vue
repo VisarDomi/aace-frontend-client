@@ -728,10 +728,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
-import store from "@/store";
 import { UPLOAD, GET_PROFILE } from "@/store/actions.type";
 import {
   TOGGLE_PROFESSION_INPUT,
@@ -753,7 +751,7 @@ import {
   SET_SKILL_FILES,
   UPDATE_SKILL
 } from "@/store/mutations.type";
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Application",

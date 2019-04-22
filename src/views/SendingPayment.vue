@@ -10,6 +10,13 @@
         </div>
 
         <div class="container">
+          <header class="section-header">
+            <h2>Udhezime nga administratori</h2>
+            <p style="color: #dd4466">{{ getCurrentUser.comment_from_administrator }}</p>
+          </header>
+        </div>
+
+        <div class="container">
           <div class="row">
             <div class="col-xs-12 col-sm-4">
               <div class="form-group">
@@ -77,6 +84,32 @@
             <!-- <form-summary :validator="$v.user_data">
               <div slot-scope="{ errorMessage }">{{ errorMessage }}</div>
             </form-summary>-->
+            <div class="card border-info mb-3 become-centered" v-if="isLoading">
+              <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="card-header">Ngarkim dokumentash</div>
+              <div class="card-body text-info">
+                <h5 class="card-title">Informacion</h5>
+                <p
+                  class="card-text"
+                >Dokumentat po ngarkohen, ju lutem mos ikni nga faqja gjate ketij procesi.</p>
+                <p
+                  class="card-text"
+                >Ne mbarim te procesit do te ridrejtoheni automatikisht ne faqen e suksesit.</p>
+              </div>
+            </div>
           </div>
         </section>
         <!-- END Submit -->
@@ -88,9 +121,8 @@
 
 <script>
 import axios from "axios";
-// import { required, email } from "vuelidate/lib/validators";
-// import { templates } from "vuelidate-error-extractor";
-// import store from "@/store";
+import { START_LOADING, STOP_LOADING } from "@/store/mutations.type";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -113,8 +145,9 @@ export default {
       let AACE_URL_USER = "https://aace.ml/api/user/";
       let USER_ID = JSON.parse(localStorage.getItem("user")).id;
       let TOKEN = localStorage.getItem("id_token");
-
-      axios.post(
+      this.$store.commit(START_LOADING);
+      axios
+        .post(
           "https://aace.ml/api/user/" + USER_ID + "/payment",
           this.payment_data,
           {
@@ -133,7 +166,11 @@ export default {
 
           axios
             .post(
-              "https://aace.ml/api/user/" + USER_ID + "/payment/" + PAYMENT_ID + "/media",
+              "https://aace.ml/api/user/" +
+                USER_ID +
+                "/payment/" +
+                PAYMENT_ID +
+                "/media",
               formDataPayment,
               {
                 "Content-Type": "multipart/form-data",
@@ -145,15 +182,25 @@ export default {
             .then(res => {
               console.log("media payment");
               if (res.status == 200) {
-              this.$router.push({
-                name: "SuccessPayment"
-              });
-
+                this.$store.commit(STOP_LOADING);
+                this.$router.push({
+                  name: "SuccessPayment"
+                });
               }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+              this.$store.commit(STOP_LOADING);
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          this.$store.commit(STOP_LOADING);
+          console.log(err);
         });
     }
+  },
+  computed: {
+    ...mapGetters(["getCurrentUser", "isLoading"])
   }
 };
 document.querySelector("html").classList.add("js");

@@ -707,10 +707,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import { required, email } from "vuelidate/lib/validators";
 import { templates } from "vuelidate-error-extractor";
-import store from "@/store";
 import {
   RE_UPLOAD,
   RE_GET_PROFILE,
@@ -732,7 +730,7 @@ import {
   RE_SET_SKILL_FILES,
   RE_UPDATE_SKILL
 } from "@/store/mutations.type";
-import { mapGetters, mapState } from "vuex";
+import { mapGetters } from "vuex";
 import {
   baseEducation,
   baseExperience,
