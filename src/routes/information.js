@@ -1,16 +1,15 @@
 import { setMeta } from "./common";
-import { getUser } from "@/store/services/userstorage";
 
-// almostStatic
-const About = () => import("@/views/almostStatic/About");
-// const Board = () => import("@/views/almostStatic/Board")
-const Contact = () => import("@/views/almostStatic/Contact");
-// const Events = () => import("@/views/almostStatic/Events")
-const Privacy = () => import("@/views/almostStatic/Privacy");
-// const Publications = () => import("@/views/almostStatic/Publications")
-const Terms = () => import("@/views/almostStatic/Terms");
+// information
+const About = () => import("@/views/information/About");
+// const Board = () => import("@/views/information/Board")
+const Contact = () => import("@/views/information/Contact");
+// const Events = () => import("@/views/information/Events")
+const Privacy = () => import("@/views/information/Privacy");
+// const Publications = () => import("@/views/information/Publications")
+const Terms = () => import("@/views/information/Terms");
 
-export const almostStatic = [
+export const information = [
   {
     path: "/about",
     name: "About",

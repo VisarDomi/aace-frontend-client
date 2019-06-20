@@ -146,7 +146,7 @@
 import yearFormat from '@/common/date.filter.js';
 import { mapGetters } from "vuex";
 import store from "@/store";
-import { FETCH_APPLICATION_INFO } from "../store/actions.type";
+import { FETCH_APPLICATION_INFO } from "@/store/actions.type";
 
 export default {
   name: "ApplicationStatus",
