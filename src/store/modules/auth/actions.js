@@ -1,4 +1,4 @@
-import { ApiService } from "@/common/api.service";
+import { ApiService } from "../../services/api";
 import { LOGIN, LOGOUT, REGISTER, CHECK_AUTH } from "../../actions.type";
 import {
   SET_AUTH,
@@ -8,8 +8,8 @@ import {
   START_LOADING,
   STOP_LOADING
 } from "../../mutations.type";
-import JwtService from "@/common/jwt.service";
-import UserService from "@/common/userstorage.service";
+import { getToken } from "../../services/jwt";
+import { getUser } from "../../services/userstorage";
 
 export const actions = {
   async [LOGIN](context, credentials) {
@@ -36,9 +36,9 @@ export const actions = {
     context.commit(STOP_LOADING);
   },
   [CHECK_AUTH](context) {
-    if (JwtService.getToken()) {
+    if (getToken()) {
       ApiService.setHeader();
-      context.commit(SET_AUTH_SECOND, UserService.getUser());
+      context.commit(SET_AUTH_SECOND, getUser());
     } else {
       context.commit(PURGE_AUTH);
     }

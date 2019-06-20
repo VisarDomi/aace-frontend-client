@@ -1,29 +1,29 @@
-import JwtService from "@/common/jwt.service";
-import UserService from "@/common/userstorage.service";
+import { saveToken, destroyToken, getToken } from "../../services/jwt";
+import { saveUser, destroyUser } from "../../services/userstorage";
 import { SET_AUTH, SET_AUTH_SECOND, PURGE_AUTH } from "../../mutations.type";
 
 export const mutations = {
   [SET_AUTH_SECOND](state, user) {
     state.isAuthenticated = true;
     state.errors = {};
-    UserService.saveUser(user);
+    saveUser(user);
     state.user = user;
-    state.token = JwtService.getToken();
+    state.token = getToken();
   },
   [SET_AUTH](state, user) {
     state.errors = {};
-    JwtService.saveToken(user.token);
+    saveToken(user.token);
     state.token = user.token;
     state.isAuthenticated = true;
-    UserService.saveUser(user);
+    saveUser(user);
     state.user = user;
   },
   [PURGE_AUTH](state) {
     state.errors = {};
-    JwtService.destroyToken();
+    destroyToken();
     state.token = "";
     state.isAuthenticated = false;
-    UserService.destroyUser();
+    destroyUser();
     state.user = {};
   }
 };

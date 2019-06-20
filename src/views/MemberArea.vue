@@ -47,16 +47,6 @@
               <p>Dergo mandatin e pageses</p>
             </router-link>
 
-            <!-- <router-link
-              :to="{ name: 'ResendingPayment' }"
-              style="height: 295px;"
-              v-if="getCurrentUser.payment_status == 'rebutted_payment'"
-            >
-              <i class="fa fa-file-excel-o"></i>
-              <h6>Mandati i pageses</h6>
-              <p>Dergo mandatin e pageses edhe njehere</p>
-            </router-link> -->
-
             <router-link
               :to="{ name: 'SendingPayment' }"
               style="height: 295px;"

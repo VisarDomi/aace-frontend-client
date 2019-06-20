@@ -5,7 +5,7 @@ import {
   ExperienceService,
   SkillService,
   PaymentService
-} from "@/common/api.service";
+} from "../../services/api";
 import {
   FETCH_PROFILE,
   FETCH_APPLICATION_INFO,

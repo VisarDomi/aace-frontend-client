@@ -1,4 +1,4 @@
-import { MediaService } from "@/common/api.service";
+import { MediaService } from "../../services/api";
 import { FETCH_DOCS } from "../../actions.type";
 
 import { SET_COMMUNICATION_DOCS } from "../../mutations.type";

@@ -96,9 +96,6 @@
               <li v-if="getCurrentUser.payment_status == 'blank'">
                 <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
               </li>
-              <!-- <li v-if="getCurrentUser.payment_status == 'rebutted_payment'">
-                <router-link :to="{ name: 'ResendingPayment' }">Mandati i pageses</router-link>
-              </li> -->
               <li v-if="getCurrentUser.payment_status == 'rebutted_payment'">
                 <router-link :to="{ name: 'SendingPayment' }">Mandati i pageses</router-link>
               </li>
@@ -139,10 +136,9 @@ export default {
         node.parentNode.removeChild(node);
       });
     },
-    logout() {
-      this.$store.dispatch(LOGOUT).then(() => {
-        this.$router.push({ name: "Home" });
-      });
+    async logout() {
+      await this.$store.dispatch(LOGOUT)
+      this.$router.push({ name: "Home" });
     }
   },
   computed: {

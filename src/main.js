@@ -1,16 +1,18 @@
 import Vue from "vue";
+import VueRouter from "vue-router";
 import App from "./App.vue";
-import router from "./router";
+import routes from "./routes";
 import store from "./store";
 import "./registerServiceWorker";
 import { CHECK_AUTH } from "./store/actions.type";
-import { ApiService } from "./common/api.service";
+import { ApiService } from "./store/services/api";
+import { getToken } from "./store/services/jwt";
 import { yearFormat, hourFormat } from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
-
 import Vuelidate from "vuelidate";
 import VuelidateErrorExtractor, { templates } from "vuelidate-error-extractor";
 
+Vue.use(VueRouter);
 Vue.use(Vuelidate);
 Vue.use(VuelidateErrorExtractor, {
   i18n: false,
@@ -41,6 +43,39 @@ Vue.filter("hourFormat", hourFormat);
 Vue.filter("error", ErrorFilter);
 
 ApiService.init();
+
+//configure router
+const router = new VueRouter({
+  mode: "history",
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  },
+  routes: routes
+});
+
+// check requiresAuth
+router.beforeEach((to, from, next) => {
+  console.log("router.beforeEach to: ", to);
+  console.log("router.beforeEach from: ", from);
+  console.log("router.beforeEach next: ", next);
+  ApiService.setHeader();
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (getToken() == null) {
+      next({
+        name: "Login",
+        params: { nextUrl: to.fullPath }
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 // Ensure we checked auth before each page load.
 router.beforeEach(

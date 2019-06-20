@@ -1,4 +1,4 @@
-import { CommunicationService } from "@/common/api.service";
+import { CommunicationService } from "../../services/api";
 import {
   FETCH_COMMUNICATIONS,
   FETCH_COMMUNICATION,

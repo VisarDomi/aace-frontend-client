@@ -1,4 +1,4 @@
-import { ProfileService, MediaService } from "@/common/api.service";
+import { ProfileService, MediaService } from "../../services/api";
 import { FETCH_MEMBER, CLEAN_PICTURES } from "../../actions.type";
 import {
   SET_SEARCH_RESULT,

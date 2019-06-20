@@ -117,14 +117,13 @@ import axios from "axios";
 import TimeAgo from "vue2-timeago";
 import FileSaver from "file-saver";
 import { mapGetters } from "vuex";
-import JwtService from "@/common/jwt.service";
+import { getToken } from "@/store/services/jwt";
 import {
   FETCH_COMMUNICATION,
   FETCH_DOCS,
   FETCH_COMMENTS,
   MAKE_COMMENT
 } from "@/store/actions.type";
-import ProfileService from "@/common/api.service";
 import store from "@/store";
 
 export default {
@@ -191,7 +190,9 @@ export default {
           communicationId: this.communication.id,
           body: this.comment_body
         })
-        .then(res => {console.log("res sendComment is", res)});
+        .then(res => {
+          console.log("res sendComment is", res);
+        });
       await this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
       this.comment_body = "";
     },
@@ -201,7 +202,7 @@ export default {
           responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + JwtService.getToken(),
+            Authorization: "Bearer " + getToken(),
             // 'Accept': 'application/pdf',
             "Secure-Api-Key": "asdfasdfetyeq"
           }
