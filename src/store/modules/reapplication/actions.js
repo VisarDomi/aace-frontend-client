@@ -1,4 +1,4 @@
-import { setHeaderMultipart } from "../../services/api";
+import { ApiService } from "../../services/api";
 import { yearFormat } from "@/common/date.filter";
 import {
   MediaService,
@@ -136,7 +136,7 @@ export const actions = {
   async [RE_SEND_PROFILE_MEDIAS](context, payload) {
     console.log("RE_SEND_PROFILE_MEDIAS");
     const { userId, formDataProfile } = payload;
-    setHeaderMultipart();
+    ApiService.setHeaderMultipart();
     await MediaService.postProfileMedia(userId, formDataProfile).then(res => {
       if (res.status == 200) {
         console.log("success RE_SEND_PROFILE_MEDIAS");
@@ -169,7 +169,7 @@ export const actions = {
   async [RE_SEND_EDUCATION_MEDIAS](context, payload) {
     console.log("RE_SEND_EDUCATION_MEDIAS");
     const { userId, educationId, formDataEducation } = payload;
-    setHeaderMultipart();
+    ApiService.setHeaderMultipart();
     await MediaService.postEducationMedia(
       userId,
       educationId,
@@ -226,7 +226,7 @@ export const actions = {
   },
   async [RE_SEND_EXPERIENCE_MEDIAS](context, payload) {
     const { userId, experienceId, formDataExperience } = payload;
-    setHeaderMultipart();
+    ApiService.setHeaderMultipart();
     await MediaService.postExperienceMedia(
       userId,
       experienceId,
@@ -282,7 +282,7 @@ export const actions = {
   async [RE_SEND_SKILL_MEDIAS](context, payload) {
     console.log("RE_SEND_SKILL_MEDIAS");
     const { userId, skillId, formDataSkill } = payload;
-    setHeaderMultipart();
+    ApiService.setHeaderMultipart();
     await MediaService.postSkillMedia(userId, skillId, formDataSkill).then(
       res => {
         if (res.status == 200) {
