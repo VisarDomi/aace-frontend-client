@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="<%= webpackConfig.output.publicPath %>favicon.png"
+    />
     <title>AACE</title>
   </head>
   <body>
@@ -13,7 +18,5 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-    <script src="/static/js/app.min.js"></script>
-    <script src="/static/js/custom.js"></script>
   </body>
 </html>

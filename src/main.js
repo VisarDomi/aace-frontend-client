@@ -11,7 +11,9 @@ import { yearFormat, hourFormat } from "./common/date.filter";
 import ErrorFilter from "./common/error.filter";
 import Vuelidate from "vuelidate";
 import VuelidateErrorExtractor, { templates } from "vuelidate-error-extractor";
+import VueScript2 from 'vue-script2';
 
+Vue.use(VueScript2);
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
 Vue.use(VuelidateErrorExtractor, {
@@ -140,4 +142,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-})
+});

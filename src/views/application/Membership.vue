@@ -56,7 +56,7 @@
                   >Apliko tani</router-link
                 >
                 <router-link
-                  :to="{ name: 'ComingSoon' }"
+                  :to="{ name: 'ApplicationStatus' }"
                   class="btn btn-success"
                   v-if="
                     getCurrentUser.application_status == 'rebutted' ||

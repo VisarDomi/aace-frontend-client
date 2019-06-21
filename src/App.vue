@@ -4,11 +4,9 @@
       <app-navbar/>
       <router-view/>
       <app-footer/>
-      <!-- Back to top button -->
-      <a id="scroll-up" href="#">
-        <i class="ti-angle-up"></i>
-      </a>
     </div>
+    <script2 src="/static/js/app.min.js"></script2>
+    <script2 src="/static/js/custom.js"></script2>
   </div>
 </template>
 
@@ -29,7 +27,6 @@ export default {
 @import "../public/static/css/app.min.css";
 @import "../public/static/css/custom.css";
 @import url("https://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800%7COpen+Sans:300,400,500,600,700,800%7CMontserrat:400,700");
-@import url();
 .navbar .container {
   width: 100%;
 }

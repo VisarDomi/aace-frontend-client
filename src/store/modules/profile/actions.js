@@ -34,7 +34,7 @@ export const actions = {
       if (data.length != 0) {
         context.commit(SET_PICTURE, data.pop().url);
       } else {
-        context.commit(SET_PICTURE, "https://aace.ml/static/dpi.jpg");
+        context.commit(SET_PICTURE, "https://aace.ml/static/dpi.png");
       }
     });
     await EducationService.getEducations(id).then(({ data }) => {
