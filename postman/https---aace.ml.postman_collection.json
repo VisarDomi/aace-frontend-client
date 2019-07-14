@@ -5059,21 +5059,21 @@
 	],
 	"variable": [
 		{
-			"id": "069c20a7-db29-4dca-ad60-33a02934e160",
+			"id": "555e3980-3317-4918-8a0f-a869032b9615",
 			"key": "url",
 			"value": "https://aace.ml",
 			"type": "string"
 		},
 		{
-			"id": "5543edff-854c-44f8-a639-bb6bc1b9f85f",
+			"id": "e7502183-e2b4-413e-ab05-1c5badbc0e2e",
 			"key": "Secure-Api-Key",
 			"value": "asdfasdfetyeq",
 			"type": "string"
 		},
 		{
-			"id": "cacf5828-3e61-403c-a6fa-27d1be5ef6e2",
+			"id": "7289dd59-fb85-4d51-9767-e5edc2029a0c",
 			"key": "admin_token",
-			"value": "P7dvWnmlPO8+F0IhzIdXG+I0IkL8NKWh",
+			"value": "A/0tRiLx+5rLcDgyFNvTfaVEy62Q5xEe",
 			"type": "string"
 		}
 	]
