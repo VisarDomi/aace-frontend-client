@@ -118,20 +118,20 @@ export const PaymentService = {
 
 export const CommunicationService = {
   getCommunications() {
-    return ApiService.get(`officialcommunication/all`);
+    return ApiService.get(`communication/all`);
   },
   getCommunication(communicationId) {
-    return ApiService.get(`officialcommunication/${communicationId}`);
+    return ApiService.get(`communication/${communicationId}`);
   },
   postComment(communicationId, comment) {
     return ApiService.post(
-      `officialcommunication/${communicationId}/officialcomment`,
+      `communication/${communicationId}/comment`,
       comment
     );
   },
   getComments(communicationId) {
     return ApiService.get(
-      `officialcommunication/${communicationId}/officialcomment/all`
+      `communication/${communicationId}/comment/all`
     );
   }
 };
@@ -141,7 +141,7 @@ export const MediaService = {
     return ApiService.get(`user/${userId}/media/all`);
   },
   getCommunicationMedia(communicationId) {
-    return ApiService.get(`officialcommunication/${communicationId}/media/all`);
+    return ApiService.get(`communication/${communicationId}/media/all`);
   },
   postProfileMedia(userId, media) {
     return ApiService.post(`user/${userId}/media`, media);

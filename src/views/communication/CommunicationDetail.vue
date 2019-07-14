@@ -198,7 +198,7 @@ export default {
     },
     downloadDoc(docID, docName) {
       axios
-        .get("https://aace.ml/api/media/media_officialcommunication/" + docID, {
+        .get("https://aace.ml/api/media/media_communication/" + docID, {
           responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
