@@ -1,26 +1,21 @@
 {
-  "name": "aace-client",
-  "version": "0.1.1",
+  "name": "aace-frontend-client",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --open",
-    "build": "vue-cli-service build && cp netlify.toml dist/netlify.toml",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "build": "vue-cli-service build && cp netlify.toml dist/netlify.toml"
   },
   "dependencies": {
+    "register-service-worker": "^1.6.2",
     "axios": "^0.19.0",
     "date-fns": "^1.29.0",
-    "eslint": "^5.15.1",
-    "eslint-plugin-vue": "^5.2.2",
     "file-saver": "^2.0.1",
-    "marked": "^0.6.2",
-    "register-service-worker": "^1.0.0",
-    "vue": "^2.5.17",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
     "vue-axios": "^2.1.4",
-    "vue-dropify": "^0.2.3",
-    "vue-router": "^3.0.1",
-    "vue-script2": "^2.0.3",
+    "vue-recaptcha-v3": "^1.5.0",
+    "vue-script2": "^2.1.0",
     "vue2-timeago": "^1.2.2",
     "vuelidate": "^0.7.4",
     "vuelidate-error-extractor": "^2.3.1",
@@ -28,23 +23,17 @@
   },
   "description": "The public facing Vue client for AACE",
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-plugin-eslint": "^3.2.1",
-    "@vue/cli-plugin-pwa": "^3.2.0",
-    "@vue/cli-plugin-unit-jest": "^3.8.0",
-    "@vue/cli-service": "^3.8.4",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "@vue/test-utils": "^1.0.0-beta.26",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "lint-staged": "^7.3.0",
-    "node-sass": "^4.10.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.17"
+    "@vue/cli-plugin-pwa": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   },
   "browserslist": [
     "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
+    "last 2 versions"
   ]
 }

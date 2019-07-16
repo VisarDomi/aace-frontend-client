@@ -44,7 +44,7 @@
                   ></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Dergo</button>
+                <button type="submit" class="btn btn-primary" @click="recaptcha">Dergo</button>
               </form>
             </div>
             <div class="col-sm-24 col-md-12">
@@ -107,7 +107,14 @@
 
 <script>
 export default {
-  name: "Contact"
+  name: "Contact",
+  methods: {
+    recaptcha() {
+      this.$recaptcha('login').then((token) => {
+        console.log(token) // Will print the token
+      })
+    }
+  }
 };
 </script>
 
