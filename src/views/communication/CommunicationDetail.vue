@@ -18,7 +18,7 @@
 
           <div class="container" style=" white-space: pre-line;">
             <div class="row">
-              <div class="col-md-9">{{ communication.body }}</div>
+              <div class="col-md-9"> <span v-html="communication.body"></span></div>
               <div class="col-md-3" style="padding-top: 37px;">
                 <ul class="pricing">
                   <li style="width: 100%; border: none;">
