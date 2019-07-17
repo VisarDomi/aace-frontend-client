@@ -12,7 +12,14 @@ import ErrorFilter from "./common/error.filter";
 import Vuelidate from "vuelidate";
 import VuelidateErrorExtractor, { templates } from "vuelidate-error-extractor";
 import VueScript2 from 'vue-script2';
+import { VueReCaptcha } from 'vue-recaptcha-v3'
 
+Vue.use(VueReCaptcha, {
+  siteKey: '6LfInq0UAAAAAEh0B4PCmyZbIvl7kQQRt-wrBdj0',
+  loaderOptions: {
+    useRecaptchaNet: true
+  }
+})
 Vue.use(VueScript2);
 Vue.use(VueRouter);
 Vue.use(Vuelidate);

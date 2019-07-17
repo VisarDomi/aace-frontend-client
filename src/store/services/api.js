@@ -63,8 +63,8 @@ export const ProfileService = {
   putProfile(userId, profile) {
     return ApiService.put(`user/${userId}`, profile);
   },
-  getAllUsers() {
-    return ApiService.get(`user/all`);
+  getNumberMembers() {
+    return ApiService.get(`user/all/count`);
   }
 };
 

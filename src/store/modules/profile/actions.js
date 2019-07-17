@@ -57,17 +57,10 @@ export const actions = {
     );
   },
   async [GET_NUMBER_OF_ACCEPTED_USERS](context) {
-    await ProfileService.getAllUsers().then(res => {
-      console.log("res.data is", res.data);
-      let allUsers = res.data;
-      let numberOfAcceptedUsers = 0;
-      for (let user of allUsers) {
-        if (user.application_status == "accepted") {
-          numberOfAcceptedUsers += 1;
-        }
-      }
-      console.log("numberOfAcceptedUsers", numberOfAcceptedUsers);
-      context.commit(SET_NUMBER_OF_ACCEPTED_USERS, numberOfAcceptedUsers);
+    await ProfileService.getNumberMembers().then(res => {
+      console.log("res.data.total_members is", res.data.total_members);
+      let count = res.data.total_members;
+      context.commit(SET_NUMBER_OF_ACCEPTED_USERS, count);
     });
   }
 };
