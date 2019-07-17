@@ -69,11 +69,18 @@
                             <label :for="option.id"><h4>{{option.body}}</h4></label>
                           </div>
                       </div>
-                      <div class="btn btn-primary" @click="sendVote" style="margin-top:50px;">Dergo voten</div>
                       
+              
+            <div class="row">
+              <div class="col-xs-12">
+
+              <div class="btn btn-primary" @click="sendVote" style="margin-top:50px;">Dergo voten</div>
+              </div>
+            </div>        
                     
               <!-- END Job item -->
             </div>
+
 
             <div v-else>
               You e keni derguar voten tuaj.
@@ -167,7 +174,23 @@ export default {
     TimeAgo
   },
   mounted() {
-    this.$store.dispatch(FETCH_POLL, this.$route.params);
+    this.$store.dispatch(FETCH_POLL, this.$route.params).then(data => {
+      
+
+            var labels= ['Options']
+        var results =['Results']
+
+
+      var series = []
+      for(var desc of this.poll.options){
+        labels.push(desc.body);
+        results.push(desc.votes);
+      }
+      console.log("results of poll-> ", results)
+      this.chartData.push(labels);
+      this.chartData.push(results)
+
+    });
     this.$store.dispatch(FETCH_POLL_DOCS, this.$route.params);
     this.$store.dispatch(FETCH_POLL_COMMENTS, this.$route.params);
   },
