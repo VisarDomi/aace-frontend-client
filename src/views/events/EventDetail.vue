@@ -12,25 +12,25 @@
       <section style="padding-top:0px; padding-bottom:50px;">
         <div class="container">
           <header class="section-header">
-            <h2>{{ communication.name }}</h2>
-            <h5>{{ communication.description }}</h5>
+            <h2>{{ event.name }}</h2>
+            <h5>{{ event.description }}</h5>
           </header>
 
           <div class="container" style=" white-space: pre-line;">
             <div class="row">
-              <div class="col-md-9"> <span v-html="communication.body"></span></div>
+              <div class="col-md-9"> <span v-html="event.body"></span></div>
               <div class="col-md-3" style="padding-top: 37px;">
                 <ul class="pricing">
                   <li style="width: 100%; border: none;">
                     <h4
                       style="margin-bottom:0px;"
-                      v-if="communicationDocuments.length != 0"
+                      v-if="eventDocuments.length != 0"
                     >Dokumenta</h4>
 
                     <div class="row">
                       <div
                         class="item-block"
-                        v-for="document in communicationDocuments"
+                        v-for="document in eventDocuments"
                         :key="document.id"
                       >
                         <p>{{ document.filename }}</p>
@@ -57,14 +57,14 @@
           </div>
 
           <div class="container">
-            <header class="section-header" v-if="communicationComments.length != 0">
+            <header class="section-header" v-if="eventComments.length != 0">
               <span>Komente</span>
               <h2>Komentet e fundit</h2>
             </header>
 
             <div class="row item-blocks-connected">
               <!-- Job item -->
-              <div class="col-xs-12" :key="comment.id" v-for="comment in communicationComments">
+              <div class="col-xs-12" :key="comment.id" v-for="comment in eventComments">
                 <div class="item-block">
                   <header>
                     <div class="hgroup">
@@ -119,22 +119,22 @@ import FileSaver from "file-saver";
 import { mapGetters } from "vuex";
 import { getToken } from "@/store/services/jwt";
 import {
-  FETCH_COMMUNICATION,
-  FETCH_COMMUNICATION_DOCS,
-  FETCH_COMMUNICATION_COMMENTS,
-  MAKE_COMMUNICATION_COMMENT
+  FETCH_EVENT,
+  FETCH_EVENT_DOCS,
+  FETCH_EVENT_COMMENTS,
+  MAKE_EVENT_COMMENT
 } from "@/store/actions.type";
 import store from "@/store";
 
 export default {
-  name: "CommunicationDetail",
+  name: "EventDetail",
   components: {
     TimeAgo
   },
   mounted() {
-    this.$store.dispatch(FETCH_COMMUNICATION, this.$route.params);
-    this.$store.dispatch(FETCH_COMMUNICATION_DOCS, this.$route.params).then(()=>{console.log("Communication Docs -> : ", this.communicationDocuments)});
-    this.$store.dispatch(FETCH_COMMUNICATION_COMMENTS, this.$route.params);
+    this.$store.dispatch(FETCH_EVENT, this.$route.params);
+    this.$store.dispatch(FETCH_EVENT_DOCS, this.$route.params);
+    this.$store.dispatch(FETCH_EVENT_COMMENTS, this.$route.params);
   },
   data() {
     return {
@@ -184,21 +184,21 @@ export default {
       return iconType;
     },
     async sendComment() {
-      console.log("communication.id", this.communication.id);
+      console.log("event.id", this.event.id);
       await this.$store
-        .dispatch(MAKE_COMMENT, {
-          communicationId: this.communication.id,
+        .dispatch(MAKE_EVENT_COMMENT, {
+          eventId: this.event.id,
           body: this.comment_body
         })
         .then(res => {
           console.log("res sendComment is", res);
         });
-      await this.$store.dispatch(FETCH_COMMENTS, this.$route.params);
+      await this.$store.dispatch(FETCH_EVENT_COMMENTS, this.$route.params);
       this.comment_body = "";
     },
     downloadDoc(docID, docName) {
       axios
-        .get("https://aace.ml/api/media/media_communication/" + docID, {
+        .get("https://aace.ml/api/media/media_event/" + docID, {
           responseType: "arraybuffer",
           headers: {
             "Content-Type": "application/json",
@@ -217,7 +217,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["communicationComments", "communication", "communicationDocuments"])
+    ...mapGetters(["eventComments", "event", "eventDocuments"])
   }
 };
 </script>

@@ -1,3 +1,4 @@
 export const getters = {
-  communicationDocuments: state => state.documents
+  communicationDocuments: state => state.communicationDocuments,
+  eventDocuments: state => state.eventDocuments
 };

@@ -1,3 +1,4 @@
 export const state = {
-  documents: []
+  communicationDocuments: [],
+  eventDocuments: []
 };

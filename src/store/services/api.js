@@ -125,13 +125,33 @@ export const CommunicationService = {
   },
   postComment(communicationId, comment) {
     return ApiService.post(
-      `communication/${communicationId}/comment`,
+      `comment/communication/${communicationId}`,
       comment
     );
   },
   getComments(communicationId) {
     return ApiService.get(
-      `communication/${communicationId}/comment/all`
+      `comment/all/communication/${communicationId}`
+    );
+  }
+};
+
+export const EventService = {
+  getEvents() {
+    return ApiService.get(`event/all`);
+  },
+  getEvent(eventId) {
+    return ApiService.get(`event/${eventId}`);
+  },
+  postComment(eventId, comment) {
+    return ApiService.post(
+      `comment/event/${eventId}`,
+      comment
+    );
+  },
+  getComments(eventId) {
+    return ApiService.get(
+      `comment/all/event/${eventId}`
     );
   }
 };
@@ -142,6 +162,9 @@ export const MediaService = {
   },
   getCommunicationMedia(communicationId) {
     return ApiService.get(`communication/${communicationId}/media/all`);
+  },
+  getEventMedia(eventId) {
+    return ApiService.get(`event/${eventId}/media/all`);
   },
   postProfileMedia(userId, media) {
     return ApiService.post(`user/${userId}/media`, media);

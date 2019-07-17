@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import application from "./modules/application";
 import auth from "./modules/auth";
 import communication from "./modules/communication";
+import event from "./modules/event";
 import loading from "./modules/loading";
 import media from "./modules/media";
 import profile from "./modules/profile";
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     application,
     auth,
     communication,
+    event,
     loading,
     media,
     profile,

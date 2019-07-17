@@ -2,14 +2,14 @@ import { CommunicationService } from "../../services/api";
 import {
   FETCH_COMMUNICATIONS,
   FETCH_COMMUNICATION,
-  FETCH_COMMENTS,
-  MAKE_COMMENT
+  FETCH_COMMUNICATION_COMMENTS,
+  MAKE_COMMUNICATION_COMMENT
 } from "../../actions.type";
 import {
   SET_COMMUNICATION,
   SET_COMMUNICATIONS,
-  SET_COMMENTS,
-  SET_COMMENT
+  SET_COMMUNICATION_COMMENTS,
+  SET_COMMUNICATION_COMMENT
 } from "../../mutations.type";
 
 export const actions = {
@@ -27,13 +27,13 @@ export const actions = {
     context.commit(SET_COMMUNICATION, data);
     console.log("context.state.communication", context.state.communication);
   },
-  async [FETCH_COMMENTS](context, payload) {
+  async [FETCH_COMMUNICATION_COMMENTS](context, payload) {
     const { id } = payload;
     console.log("FETCH_COMMENTS", id);
     const { data } = await CommunicationService.getComments(id);
-    context.commit(SET_COMMENTS, data);
+    context.commit(SET_COMMUNICATION_COMMENTS, data);
   },
-  async [MAKE_COMMENT](context, payload) {
+  async [MAKE_COMMUNICATION_COMMENT](context, payload) {
     const { communicationId, body, files } = payload;
     console.log("starting make comment calls");
     console.log("communicationId", communicationId);

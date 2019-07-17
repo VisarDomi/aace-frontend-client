@@ -42,12 +42,20 @@ export const CHECK_AUTH = "checkAuth";
 // communication
 export const FETCH_COMMUNICATIONS = "fetchCommunications";
 export const FETCH_COMMUNICATION = "fetchCommunication";
-export const FETCH_COMMENTS = "fetchComments";
-export const MAKE_COMMENT = "postComment";
+export const FETCH_COMMUNICATION_COMMENTS = "fetchCommunicationComments";
+export const MAKE_COMMUNICATION_COMMENT = "postCommunicationComment";
+
+// event
+export const FETCH_EVENTS = "fetchEvents";
+export const FETCH_EVENT = "fetchEvent";
+export const FETCH_EVENT_COMMENTS = "fetchEventComments";
+export const MAKE_EVENT_COMMENT = "postEventComment";
 
 // media
-export const FETCH_DOCS = "fetchDocs";
 
+
+export const FETCH_COMMUNICATION_DOCS = "fetchCommunicationDocs";
+export const FETCH_EVENT_DOCS = "fetchEventDocs";
 // profile
 export const FETCH_PROFILE = "fetchProfile";
 export const FETCH_APPLICATION_INFO = "fetchApplicationInfo";

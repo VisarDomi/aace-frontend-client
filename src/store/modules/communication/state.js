@@ -1,5 +1,5 @@
 export const state = {
   communications: [],
   communication: {},
-  comments: []
+  communicationComments: []
 };

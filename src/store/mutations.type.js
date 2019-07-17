@@ -53,8 +53,14 @@ export const PURGE_AUTH = "purgeAuth";
 // communication
 export const SET_COMMUNICATION = "setCommunication";
 export const SET_COMMUNICATIONS = "setCommunications";
-export const SET_COMMENTS = "setComments";
-export const SET_COMMENT = "setComment";
+export const SET_COMMUNICATION_COMMENTS = "setCommunicationComments";
+export const SET_COMMUNICATION_COMMENT = "setCommunicationComment";
+
+// event
+export const SET_EVENT = "setEvent";
+export const SET_EVENTS = "setEvents";
+export const SET_EVENT_COMMENTS = "setEventComments";
+export const SET_EVENT_COMMENT = "setEventComment";
 
 // loading
 export const START_LOADING = "startLoading";
@@ -62,6 +68,7 @@ export const STOP_LOADING = "stopLoading";
 
 // media
 export const SET_COMMUNICATION_DOCS = "setCommunicationDocs";
+export const SET_EVENT_DOCS = "setEventDocs";
 
 // profile
 export const SET_PROFILE = "setProfile";

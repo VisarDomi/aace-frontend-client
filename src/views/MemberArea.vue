@@ -74,6 +74,16 @@
             </router-link>
 
             <router-link
+              :to="{ name: 'Events' }"
+              style="height: 295px;"
+              v-if="getCurrentUser.application_status == 'accepted'"
+            >
+              <i class="fa fa-calendar-o"></i>
+              <h6>Evente zyrtare</h6>
+              <p>Merr pjese ne eventet e organizuara nga SHOSHIK</p>
+            </router-link>
+
+            <router-link
               :to="{ name: 'Profile', params: { id: getCurrentUser.id } }"
               style="height: 295px;"
               v-if="getCurrentUser.application_status != 'blank'"

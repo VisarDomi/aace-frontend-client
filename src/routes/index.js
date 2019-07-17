@@ -2,6 +2,7 @@ import { information } from "./information";
 import { dynamic } from "./other";
 import { application } from "./application";
 import { communication } from "./communication";
+import { event } from "./event";
 import { auth } from "./auth";
 
 const routes = [
@@ -9,7 +10,8 @@ const routes = [
   ...information,
   ...dynamic,
   ...application,
-  ...communication
+  ...communication,
+  ...event
 ];
 
 export default routes;
