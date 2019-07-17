@@ -62,6 +62,12 @@ export const SET_EVENTS = "setEvents";
 export const SET_EVENT_COMMENTS = "setEventComments";
 export const SET_EVENT_COMMENT = "setEventComment";
 
+// poll
+export const SET_POLL = "setPoll";
+export const SET_POLLS = "setPolls";
+export const SET_POLL_COMMENTS = "setPollComments";
+export const SET_POLL_COMMENT = "setPollComment";
+
 // loading
 export const START_LOADING = "startLoading";
 export const STOP_LOADING = "stopLoading";
@@ -69,6 +75,7 @@ export const STOP_LOADING = "stopLoading";
 // media
 export const SET_COMMUNICATION_DOCS = "setCommunicationDocs";
 export const SET_EVENT_DOCS = "setEventDocs";
+export const SET_POLL_DOCS = "setPollDocs";
 
 // profile
 export const SET_PROFILE = "setProfile";

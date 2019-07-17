@@ -14,6 +14,13 @@ import VuelidateErrorExtractor, { templates } from "vuelidate-error-extractor";
 import VueScript2 from 'vue-script2';
 import { VueReCaptcha } from 'vue-recaptcha-v3'
 
+
+import VueGoogleCharts from 'vue-google-charts'
+
+Vue.use(VueGoogleCharts)
+
+
+
 Vue.use(VueReCaptcha, {
   siteKey: '6LfInq0UAAAAAEh0B4PCmyZbIvl7kQQRt-wrBdj0',
   loaderOptions: {

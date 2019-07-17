@@ -4,6 +4,7 @@ import application from "./modules/application";
 import auth from "./modules/auth";
 import communication from "./modules/communication";
 import event from "./modules/event";
+import poll from "./modules/poll";
 import loading from "./modules/loading";
 import media from "./modules/media";
 import profile from "./modules/profile";
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     auth,
     communication,
     event,
+    poll,
     loading,
     media,
     profile,

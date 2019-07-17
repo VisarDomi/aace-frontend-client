@@ -3,6 +3,7 @@ import { dynamic } from "./other";
 import { application } from "./application";
 import { communication } from "./communication";
 import { event } from "./event";
+import { poll } from "./poll";
 import { auth } from "./auth";
 
 const routes = [
@@ -11,7 +12,8 @@ const routes = [
   ...dynamic,
   ...application,
   ...communication,
-  ...event
+  ...event,
+  ...poll
 ];
 
 export default routes;

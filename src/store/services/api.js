@@ -156,6 +156,30 @@ export const EventService = {
   }
 };
 
+export const PollService = {
+  getPolls() {
+    return ApiService.get(`poll/all`);
+  },
+  getPoll(pollId) {
+    return ApiService.get(`poll/${pollId}`);
+  },
+  postComment(pollId, comment) {
+    return ApiService.post(
+      `comment/poll/${pollId}`,
+      comment
+    );
+  },
+  getComments(pollId) {
+    return ApiService.get(
+      `comment/all/poll/${pollId}`
+    );
+  },
+  postVote(pollId, payload){
+    console.log("payload in api service-> ", payload)
+    return ApiService.put(`poll/${pollId}/vote`, payload)
+  }
+};
+
 export const MediaService = {
   getPicture(userId) {
     return ApiService.get(`user/${userId}/media/all`);
@@ -165,6 +189,9 @@ export const MediaService = {
   },
   getEventMedia(eventId) {
     return ApiService.get(`event/${eventId}/media/all`);
+  },
+  getPollMedia(pollId) {
+    return ApiService.get(`poll/${pollId}/media/all`);
   },
   postProfileMedia(userId, media) {
     return ApiService.post(`user/${userId}/media`, media);

@@ -51,10 +51,18 @@ export const FETCH_EVENT = "fetchEvent";
 export const FETCH_EVENT_COMMENTS = "fetchEventComments";
 export const MAKE_EVENT_COMMENT = "postEventComment";
 
+// poll
+export const FETCH_POLLS = "fetchPolls";
+export const FETCH_POLL = "fetchPoll";
+export const FETCH_POLL_COMMENTS = "fetchPollComments";
+export const MAKE_POLL_COMMENT = "postPollComment";
+export const MAKE_POLL_VOTE = "makePollVote";
+
 // media
 
 
 export const FETCH_COMMUNICATION_DOCS = "fetchCommunicationDocs";
+export const FETCH_POLL_DOCS = "fetchPollDocs";
 export const FETCH_EVENT_DOCS = "fetchEventDocs";
 // profile
 export const FETCH_PROFILE = "fetchProfile";

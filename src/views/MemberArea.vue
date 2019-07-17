@@ -94,13 +94,13 @@
             </router-link>
 
             <router-link
-              :to="{ name: 'ComingSoon' }"
+              :to="{ name: 'Polls' }"
               style="height: 295px;"
               v-if="getCurrentUser.application_status == 'accepted'"
             >
               <i class="fa fa-bullhorn"></i>
               <h6>Votime</h6>
-              <p>Merr pjese ne votime</p>
+              <p>Voto ne vendimarrjen e SHOSHIK</p>
             </router-link>
 
             <a href="#" style="height: 295px;" @click="logout" v-if="isAuthenticated">
