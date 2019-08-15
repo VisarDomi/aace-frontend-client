@@ -106,7 +106,10 @@
                 <router-link :to="{ name: 'Communications' }">Komunikime zyrtare</router-link>
               </li>
               <li v-if="getCurrentUser.application_status == 'accepted'">
-                <router-link :to="{ name: 'ComingSoon' }">Votime</router-link>
+                <router-link :to="{ name: 'Events' }">Evente zyrtare</router-link>
+              </li>
+              <li v-if="getCurrentUser.application_status == 'accepted'">
+                <router-link :to="{ name: 'Polls' }">Votime</router-link>
               </li>
               <!-- <li @click="logout" v-if="isAuthenticated">
                 <a href="#">Dil</a>
