@@ -12,10 +12,10 @@
       <section style="padding-top:0px; padding-bottom:50px;">
         <div class="container">
           <!-- <header class="section-header"> -->
-            <h2>{{ poll.name }}</h2>
-            <hr>
-            <h5>{{ poll.description }}</h5>
-            <hr>
+          <h2>{{ poll.name }}</h2>
+          <hr />
+          <h5>{{ poll.description }}</h5>
+          <hr />
           <!-- </header> -->
 
           <div class="container" style=" white-space: pre-line;">
@@ -59,39 +59,38 @@
               <h2>Dergo voten tende</h2>
             </header>
 
-            <div v-if="!this.poll.has_voted" class="row item-blocks-connected" style="margin-bottom:170px; margin-top:120px; text-align:center;">
+            <div
+              v-if="!this.poll.has_voted"
+              class="row item-blocks-connected"
+              style="margin-bottom:170px; margin-top:120px; text-align:center;"
+            >
               <!-- Job item -->
 
-
-                      <div class="col-xs-4" v-for="option in this.poll.options" :key="option.id">
-                          <div class="radio">
-                            <input type="radio" :id="option.id" :value="option.body" v-model="picked_vote"/>
-                            <label :for="option.id"><h4>{{option.body}}</h4></label>
-                          </div>
-                      </div>
-                      
-              
-            <div class="row">
-              <div class="col-xs-12">
-
-              <div class="btn btn-primary" @click="sendVote" style="margin-top:50px;">Dergo voten</div>
+              <div class="col-xs-4" v-for="option in this.poll.options" :key="option.id">
+                <div class="radio">
+                  <input type="radio" :id="option.id" :value="option.body" v-model="picked_vote" />
+                  <label :for="option.id">
+                    <h4>{{option.body}}</h4>
+                  </label>
+                </div>
               </div>
-            </div>        
-                    
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div
+                    class="btn btn-primary"
+                    @click="sendVote"
+                    style="margin-top:50px;"
+                  >Dergo voten</div>
+                </div>
+              </div>
+
               <!-- END Job item -->
             </div>
 
-
             <div v-else>
               You e keni derguar voten tuaj.
-
-                          <GChart
-                type="ColumnChart"
-                :data="chartData"
-                :options="chartOptions"
-              />
-
-
+              <GChart type="ColumnChart" :data="chartData" :options="chartOptions" />
             </div>
           </div>
 
@@ -152,7 +151,7 @@
 </template>
 
 <script>
-import { GChart } from 'vue-google-charts'
+import { GChart } from "vue-google-charts";
 import axios from "axios";
 import TimeAgo from "vue2-timeago";
 import FileSaver from "file-saver";
@@ -175,41 +174,32 @@ export default {
   },
   mounted() {
     this.$store.dispatch(FETCH_POLL, this.$route.params).then(data => {
-      
+      var labels = ["Options"];
+      var results = ["Results"];
 
-            var labels= ['Options']
-        var results =['Results']
-
-
-      var series = []
-      for(var desc of this.poll.options){
+      var series = [];
+      for (var desc of this.poll.options) {
         labels.push(desc.body);
         results.push(desc.votes);
       }
-      console.log("results of poll-> ", results)
+      console.log("results of poll-> ", results);
       this.chartData.push(labels);
-      this.chartData.push(results)
-
+      this.chartData.push(results);
     });
     this.$store.dispatch(FETCH_POLL_DOCS, this.$route.params);
     this.$store.dispatch(FETCH_POLL_COMMENTS, this.$route.params);
   },
   data() {
     return {
-
-            chartData: [
-
-            ],
+      chartData: [],
       chartOptions: {
         height: 700,
         chart: {
           height: 600,
-          title: 'Rezultatet e votimit',
-          subtitle: 'Rezultatet e tanishme',
+          title: "Rezultatet e votimit",
+          subtitle: "Rezultatet e tanishme"
         }
       },
-
-
 
       picked_vote: "",
       comment_body: "",
@@ -270,30 +260,25 @@ export default {
       await this.$store.dispatch(FETCH_POLL_COMMENTS, this.$route.params);
       this.comment_body = "";
     },
-    sendVote(){
+    async sendVote() {
       console.log("voting: ", this.picked_vote);
-      this.$store.dispatch(MAKE_POLL_VOTE, {
-        pollId: this.poll.id, 
-        options: [{body:this.picked_vote}]
-      }).then(()=>{
-       this.$store.dispatch(FETCH_POLL, this.$route.params).then(data => {
-      
+      await this.$store.dispatch(MAKE_POLL_VOTE, {
+        pollId: this.poll.id,
+        options: [{ body: this.picked_vote }]
+      });
+      await this.$store.dispatch(FETCH_POLL, this.$route.params);
+      var labels = ["Options"];
+      var results = ["Results"];
 
-            var labels= ['Options']
-        var results =['Results']
-
-
-      var series = []
-      for(var desc of this.poll.options){
+      var series = [];
+      for (var desc of this.poll.options) {
         labels.push(desc.body);
         results.push(desc.votes);
       }
-      console.log("results of poll-> ", results)
+      console.log("results of poll-> ", results);
+      this.chartData = []
       this.chartData.push(labels);
-      this.chartData.push(results)
-
-    });
-      })
+      this.chartData.push(results);
     },
     downloadDoc(docID, docName) {
       axios
